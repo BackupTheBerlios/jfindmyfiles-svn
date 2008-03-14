@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Untitled Gantt Project" company="" webLink="http://" view-date="2008-03-11" view-index="1" gantt-divider-location="281" resource-divider-location="301" version="2.0">
+    <description/>
+    <view zooming-state="default:2" id="gantt-chart"/>
+    <view id="resource-table">
+        <field id="0" name="Name" width="55" order="0"/>
+        <field id="1" name="Default role" width="44" order="1"/>
+    </view>
+    <!-- -->
+    <calendars>
+        <day-types>
+            <day-type id="0"/>
+            <day-type id="1"/>
+            <calendar id="1" name="default">
+                <default-week sun="1" mon="0" tue="0" wed="0" thu="0" fri="0" sat="1"/>
+                <overriden-day-types/>
+                <days/>
+            </calendar>
+        </day-types>
+    </calendars>
+    <tasks color="#8cb6ce">
+        <taskproperties>
+            <taskproperty id="tpd0" name="type" type="default" valuetype="icon"/>
+            <taskproperty id="tpd1" name="priority" type="default" valuetype="icon"/>
+            <taskproperty id="tpd2" name="info" type="default" valuetype="icon"/>
+            <taskproperty id="tpd3" name="name" type="default" valuetype="text"/>
+            <taskproperty id="tpd4" name="begindate" type="default" valuetype="date"/>
+            <taskproperty id="tpd5" name="enddate" type="default" valuetype="date"/>
+            <taskproperty id="tpd6" name="duration" type="default" valuetype="int"/>
+            <taskproperty id="tpd7" name="completion" type="default" valuetype="int"/>
+            <taskproperty id="tpd8" name="coordinator" type="default" valuetype="text"/>
+            <taskproperty id="tpd9" name="predecessorsr" type="default" valuetype="text"/>
+        </taskproperties>
+        <task id="0" name="Análise de sistemas existentes" color="#8cb6ce" meeting="false" start="2008-03-07" duration="5" complete="0" priority="1" expand="true"/>
+        <task id="1" name="Escolha e justificação da plataforma a usar" color="#8cb6ce" meeting="false" start="2008-03-07" duration="5" complete="0" priority="1" expand="true"/>
+        <task id="3" name="Desenho da calendarização" color="#8cb6ce" meeting="false" start="2008-03-07" duration="5" complete="0" priority="1" expand="true"/>
+        <task id="4" name="Análise do sistema" color="#8cb6ce" meeting="false" start="2008-03-14" duration="5" complete="0" priority="1" expand="true"/>
+        <task id="5" name="Período de adaptação e familiarização com a API da plataforma escolhida" color="#8cb6ce" meeting="false" start="2008-03-21" duration="5" complete="0" priority="1" expand="true"/>
+    </tasks>
+    <resources>
+        <resource id="0" name="Patrícia Monteiro" function="SoftwareDevelopment:10" contacts="ticamonteiro@gmail.com" phone=""/>
+        <resource id="1" name="Sérgio Lopes" function="SoftwareDevelopment:10" contacts="knitter.is@gmail.com" phone=""/>
+    </resources>
+    <allocations>
+        <allocation task-id="0" resource-id="0" function="SoftwareDevelopment:10" responsible="true" load="100.0"/>
+        <allocation task-id="1" resource-id="1" function="SoftwareDevelopment:10" responsible="true" load="100.0"/>
+        <allocation task-id="3" resource-id="1" function="SoftwareDevelopment:10" responsible="true" load="100.0"/>
+        <allocation task-id="4" resource-id="0" function="SoftwareDevelopment:10" responsible="true" load="100.0"/>
+        <allocation task-id="4" resource-id="1" function="SoftwareDevelopment:10" responsible="true" load="100.0"/>
+    </allocations>
+    <vacations/>
+    <taskdisplaycolumns>
+        <displaycolumn property-id="tpd3" order="0" width="127"/>
+        <displaycolumn property-id="tpd4" order="1" width="49"/>
+        <displaycolumn property-id="tpd5" order="2" width="49"/>
+    </taskdisplaycolumns>
+    <previous/>
+    <roles roleset-name="Default"/>
+    <roles roleset-name="SoftwareDevelopment"/>
+</project>
