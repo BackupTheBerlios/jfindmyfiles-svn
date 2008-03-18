@@ -1,0 +1,42 @@
+No desenvolvimento de aplicações desktop existem várias tarefas que são 
+repetidas de aplicação para aplicação e que distraem o programador dos requisitos
+que o seu sistema possui.
+A rápida prototipagem e avaliação de conceitos é também limitada por esse tipo 
+de tarefas que, embora não esteja associadas ao problema a testar, são necessárias 
+implementar para que a ideia possa ser correctamente avaliada.
+
+Plataformas de desenvolvimento de aplicações ricas, Rich Client Platform, RCP, 
+são frameworks que permitem retirar das mãos do programador a necessidade de 
+repetir as tarefas comuns a todas as aplicações desktop. Estas frameworks 
+fornecem serviços comuns como gestão de janelas, menus, definições da aplicação, 
+persistência e armazenamento, sistema de actualizações e acesso a ficheiros.
+
+Tendo em mente o requisito temporal associado ao projecto torna-se assim natural 
+a escolha e utilização de uma plataforma de desenvolvimento. A plataforma a 
+escolher terá de satisfazer os requisitos apresentados para o projecto.
+
+Foram inicialmente consideradas 4 plataformas de desenvolvimento. São elas, 
+a biblioteca Microsoft Foundation Class, MFC, a Eclipse Rich Client Platform, 
+Eclipse RCP, a Spring Rich Client Platform, Spring-rich e a Netbeans Platform.
+
+Dado a escolha da linguagem, a plataforma MFC foi imediatamente abandonada. A 
+Spring-rich foi rejeitada após ter sido avaliada a disponibilidade de documentação, 
+exemplos, e uso geral da plataforma.
+Esta plataforma está ainda em desenvolvimento, com uma versão estável não alpha/beta 
+lançada a 17 de Março de 2008.
+O projecto encontra-se também em fase de actualização com algum código a ser 
+reescrito e reestruturado, sendo prevista uma primeira versão do novo sistema para
+Outubro de 2008.
+A documentação é escassa e baseada numa abordagem "document-as-needed", em que 
+a documentação será criada conforme a necessidade dos programadores que usem a 
+plataforma. Esta abordagem, embora compreensível, impõe algumas restrições no 
+acesso a documentação relevante em tempo útil.
+
+Das quatro plataformas iniciais sobram assim para análise a Eclipse RCP e a 
+Netbeans platform.
+
+[REFERÊNCIAS]
+http://msdn2.microsoft.com/en-us/visualc/aa442855.aspx
+http://msdn2.microsoft.com/en-us/library/dd5497wx(VS.80).aspx
+http://msdn2.microsoft.com/en-us/library/188ht7d8(VS.80).aspx
+http://www.netbeans.org/features/platform/index.html

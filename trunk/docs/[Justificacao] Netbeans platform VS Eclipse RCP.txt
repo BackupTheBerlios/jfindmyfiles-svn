@@ -1,0 +1,23 @@
+A correcta avaliação das duas plataformas deveria ser feita recorrendo à 
+implementação de um mesmo sistema de forma a ser possível comparar o impacto 
+que as diferentes arquitecturas, funcionalidades e características têm no 
+desenvolvimento, no entanto, o curto tempo disponível para desenvolver todo o 
+sistema, invalida essa metodologia de avalição por parte da equipa de 
+desenvolvimento. Assim recorreu-se ao estudo feito por outro profissional 
+da área, que desenvolveu uma mesma aplicação nas duas plataformas e publicou o 
+seu estudo. [TEXTO INCORRECTO, REESCREVER!]
+
+Na conclusão da análise determina-se que ambas as plataformas possuem 
+caracteristicas similares, sendo os pormenores de implementação e arquitectura 
+pouco relavantes para a escolha, isto é, através da comparação das capacidades 
+técnicas das duas plataformas o resultado é um empate.
+
+Sendo assim, e tendo em conta os requisitos da aplicação efectuou-se a seguinte 
+comparação:
+[TABELA DE COMPARAÇÃO]
+
+A escolha recaiu sobre a plataforma Netbeans.
+
+[REFERÊNCIA]
+Java Rich Client Platforms:Eclipse RCP compared withNetBeans Platform, Kai Tödter - Siemens AGCT
+
