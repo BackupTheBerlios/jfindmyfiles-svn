@@ -15,6 +15,21 @@ técnicas das duas plataformas o resultado é um empate.
 Sendo assim, e tendo em conta os requisitos da aplicação efectuou-se a seguinte 
 comparação:
 [TABELA DE COMPARAÇÃO]
+Eclipse RCP	Netbeans Platform
+Documentação oficial	Bastante extensa e completa	Bastante extensa e completa
+Exemplos	Inúmeros exemplos existentes, tanto na documentação oficial como em documentação fornecida pela comunidade	Inúmeros exemplos existentes, tanto na documentação oficial como em documentação fornecida pela comunidade
+Comunidade(Listas de discussão, fóruns, blogs, etc.)	Comunidade numerosa com bastantes recursos	Comunidade numerosa com bastantes recursos
+IDEs possíveis	Eclipse IDE	Netbeans IDE
+Toolkit gráfico	SWT	Swing
+Portabilidade	Limitada devido ao toolkit gráfico usado.	Swing faz parte de todas as distribuições Java, é standard na plataforma
+Facilidade de integração de componentes Swing	Limitada devido a bugs existentes no SWT	Extremamente fácil, comunicação entre dois elementos Swing
+Conhecimento da API	Nenhum	Limitado
+Conhecimento do Toolkit gráfico	Nenhum	Usado nas diversas cadeiras do curso onde a linguagem é Java
+---------------
+
+
+
+
 
 A escolha recaiu sobre a plataforma Netbeans.
 
