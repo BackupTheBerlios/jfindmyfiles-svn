@@ -1,0 +1,24 @@
+Página do projecto: htpp://jfindmyfiles.berlios.de
+Página do projecto no sistema berlios: http://developer.berlios.de/projects/jfindmyfiles/
+URL do repositório SVN: http://svn.berlios.de/svnroot/repos/jfindmyfiles/trunk/
+
+
+No desenvolvimento do projecto foram usadas as seguintes ferramentas:
+
+Netbeans IDE - IDE de desenvolvimento para, entre outras, a linguagem JAVA
+URL: http://www.netbeans.org
+
+GanttProject - Elaboração do planeamento e gráfico de Gantt
+URL: http://ganttproject.biz
+
+ProjectPier - Ferramenta de colaboração e gestão de projectos.
+URL: http://www.projectpier.org
+
+TortoiseSVN - Cliente gráfico, para windows, do sistema de versões Subversion.
+URL:
+
+Subversion, edição Linux - Cliente linha de comandos do sistema de versões Subversion.
+URL:
+
+OpenOffice - Pacote de produtivide.
+URL:
