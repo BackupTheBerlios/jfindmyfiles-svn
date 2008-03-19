@@ -2,13 +2,13 @@ No desenvolvimento de aplicações desktop existem várias tarefas que são
 repetidas de aplicação para aplicação e que distraem o programador dos requisitos
 que o seu sistema possui.
 A rápida prototipagem e avaliação de conceitos é também limitada por esse tipo 
-de tarefas que, embora não esteja associadas ao problema a testar, são necessárias 
+de tarefas que, embora não estejam associadas ao problema a testar, são necessárias 
 implementar para que a ideia possa ser correctamente avaliada.
 
 Plataformas de desenvolvimento de aplicações ricas, Rich Client Platform, RCP, 
 são frameworks que permitem retirar das mãos do programador a necessidade de 
 repetir as tarefas comuns a todas as aplicações desktop. Estas frameworks 
-fornecem serviços comuns como gestão de janelas, menus, definições da aplicação, 
+fornecem serviços como gestão de janelas, menus, definições da aplicação, 
 persistência e armazenamento, sistema de actualizações e acesso a ficheiros.
 
 Tendo em mente o requisito temporal associado ao projecto torna-se assim natural 
@@ -19,11 +19,10 @@ Foram inicialmente consideradas 4 plataformas de desenvolvimento. São elas,
 a biblioteca Microsoft Foundation Class, MFC, a Eclipse Rich Client Platform, 
 Eclipse RCP, a Spring Rich Client Platform, Spring-rich e a Netbeans Platform.
 
-Dado a escolha da linguagem, a plataforma MFC foi imediatamente abandonada. A 
+Dada a escolha da linguagem, a plataforma MFC foi imediatamente abandonada. A 
 Spring-rich foi rejeitada após ter sido avaliada a disponibilidade de documentação, 
-exemplos, e uso geral da plataforma.
-Esta plataforma está ainda em desenvolvimento, com uma versão estável não alpha/beta 
-lançada a 17 de Março de 2008.
+exemplos, e uso geral da plataforma. Esta plataforma está ainda em desenvolvimento, c
+om uma versão estável não alpha/beta lançada a 17 de Março de 2008.
 O projecto encontra-se também em fase de actualização com algum código a ser 
 reescrito e reestruturado, sendo prevista uma primeira versão do novo sistema para
 Outubro de 2008.

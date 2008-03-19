@@ -1,0 +1,16 @@
+Um dos requisitos principais da aplicação é que a mesma seja multiplataforma. 
+Isto é, a aplicação terá de ser independente do sistema operativo e arquitectura física
+da máquina onde vai ser executada.
+
+Com base nesse requisito as linguagens de programação a que podemos recorrer 
+são ANSI C, C++, Python, Perl, PHP, C#, Object Pascal e Java.
+
+Perl e PHP são duas linguagens de scripting que não foram criadas com o objectivo 
+de desenvolver aplicações desktop e cujas ferramentas de desenvolvimento não 
+estão preparadas para o tipo de aplicação que se pretende construir.
+
+De todas as linguagens apresentadas, Java, surge como a solução os problemas que 
+as ditas linguagens possuem.
+
+
+[TODO O TEXTO É INVÁLIO]

@@ -12,27 +12,109 @@ caracteristicas similares, sendo os pormenores de implementação e arquitectura
 pouco relavantes para a escolha, isto é, através da comparação das capacidades 
 técnicas das duas plataformas o resultado é um empate.
 
-Sendo assim, e tendo em conta os requisitos da aplicação efectuou-se a seguinte 
-comparação:
-[TABELA DE COMPARAÇÃO]
-Eclipse RCP	Netbeans Platform
-Documentação oficial	Bastante extensa e completa	Bastante extensa e completa
-Exemplos	Inúmeros exemplos existentes, tanto na documentação oficial como em documentação fornecida pela comunidade	Inúmeros exemplos existentes, tanto na documentação oficial como em documentação fornecida pela comunidade
-Comunidade(Listas de discussão, fóruns, blogs, etc.)	Comunidade numerosa com bastantes recursos	Comunidade numerosa com bastantes recursos
-IDEs possíveis	Eclipse IDE	Netbeans IDE
-Toolkit gráfico	SWT	Swing
-Portabilidade	Limitada devido ao toolkit gráfico usado.	Swing faz parte de todas as distribuições Java, é standard na plataforma
-Facilidade de integração de componentes Swing	Limitada devido a bugs existentes no SWT	Extremamente fácil, comunicação entre dois elementos Swing
-Conhecimento da API	Nenhum	Limitado
-Conhecimento do Toolkit gráfico	Nenhum	Usado nas diversas cadeiras do curso onde a linguagem é Java
----------------
+Sendo assim, e tendo em conta os requisitos da aplicação efectuou-se uma 
+comparação baseada nos seguintes aspectos[1]:
 
+Disponibilidade de documentação oficial.
+Existência de exemplos práticos.
+Existência de comunidade
+IDEs que se podem usar
+Sistema gráfico
+Portabilidade da plataforma
+Conhecimento que os elementos do grupo possuem sobre:
+	Plataforma
+	Sistema gráfico
+Outros pontos de relevo.
 
+- Disponibilidade de documentação oficial, existência de exemplos práticos.
 
+Ambas as plataformas possuem uma sólida documentação oficial com bastantes 
+exemplos e caso de uso sobe o desenvolvimento de aplicações ricas. A documentação
+existente é actualizada e facilmente acessível.
 
+Neste ponto a plataforma Netbeans leva um ligeira vantagem na medida em que 
+providencia pequenos tutoriais onde se desenvolvem aplicações completas sobre a 
+plataforma.
+Existe também um módulo para o IDE Netbeans que permite ter acesso directo, dentro 
+do IDE, à documentação da API em modo offline.
 
-A escolha recaiu sobre a plataforma Netbeans.
+- Comunidade
+
+As comunidades das duas plataformas são também bastante vastas, com listas de 
+discussão, fóruns, e wikis onde as dúvidas poderão ser respondidas rápidademente.
+
+- IDEs que se podem usar
+
+Infelizmente a escolha da plataforma irá limitar o tipo de IDEs que se poderão 
+usar, nesse sentido, a escolha da plataforma Eclipse RCP irá condicionar à 
+utilização do IDE Eclipse, do mesmo modo que a escolha da plataforma Netbeans 
+irá condicionar à utilização do IDE Netbeans.
+
+Nenhum outro IDE poderá ser usado se o objectivo é tirar partido das 
+funcionalidades e vantagens que o uso de uma plataforma deste género oferece.
+Embora seja teóricamente possível programar usando outros IDEs e outras 
+ferramentas na prática isso resultará na perda de todas as facilidades existentes, 
+como assistentes e geração automática de código e aumentará a carga de trabalho 
+aos programadores.
+
+- Sistema gráfico
+
+A plataforma Netbeans é desenvolvida e usar o sistema gráfico Swing, este sistema 
+está disponível com todas as edições da plataforma Java e é o standard nesta 
+tecnologia. Questões de velocidade que assombravam este sistema estão actualmente
+ultrapassadas sendo este sistema cumpre o requisito de portabilidade imposto.
+
+A plataforma Eclipse RCP usa o sistema gráfico SWT. Apesar de ser anunciado como 
+um sistema nativo, rápido e multiplataforma, alguns problemas foram identidicados 
+que contradizem esse anúncio.
+A tecnlogia SWT não é enviada com a plataforma Java, não fazendo parte desta, e 
+por esse mesmo motivo não está tão rapidamente disponível em novos sistemas.
+A utilização desta tecnologia irá também expor os programadores a bugs específicos 
+da plataforma aumentando assim a complexidade de desenvolvimento.
+
+- Portabilidade da plataforma
+
+A plataforma Netbeans não apresenta problemas de portabilidade além dos existentes 
+na tecnologia Java.
+
+A plataforma Eclipse RCP introduz alguns problemas específicos ao sistema gráfico 
+que usa, como indicado no ponto anterior e posteriormente.
+
+- Conhecimento que os elementos do grupo possuem sobre as plataformas e sistema gráfico
+
+Ambas as plataformas são desconhecidas para os programadores, embora estes tenham 
+já alguma experiência com o sistema gráfico da plataforma Netbeans, Swing, e com 
+IDE Netbeans.
+
+O sistema gráfico da plataforma Eclipse RCP, SWT, é completamente desconhecido 
+para os programadores. O uso do IDE Eclipse também não é comum na equipa de 
+desenvolvimento.
+
+- Outros pontos de relevo.
+
+Irá ser necessária a integração de bibliotecas que foram desenvolvidas usando 
+Swing. No caso da escolha da plataforma Eclipse RCP essa integração ficará limitada 
+a sistema Linux e Windows devido a alguns bugs existentes no sistema SWT que 
+impendem essa integração de funcionar correctamente no sistemas operativos 
+Mac OS X.
+
+- Conclusão
+Tendo em conta os pontos acima indicados decidu-se a escolha da plataforma 
+Netbeans. Esta plataforma vai de encontro a todos os requisitos apresentados e 
+é a plataforma que introduz menos problemas à equipa de desenvolvimento
+
+[1]
+Além dos aspectos apresentados foram também tidas em conta, embora apenas como 
+referência pontual as opiniões deixadas por profissionais na àrea que 
+desenvolveram software usando as duas plataformas e que apresentaram os 
+problemas que encontrados durante os vários processos de desenvolvimento 
+na lista de discussão nbusers@netbeans.org, sob o tópico 
+"Choosing Netbeans platform or Eclipse RCP".
+
 
 [REFERÊNCIA]
 Java Rich Client Platforms:Eclipse RCP compared withNetBeans Platform, Kai Tödter - Siemens AGCT
-
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=221483
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=67384
+https://bugs.eclipse.org/bugs/show_bug.cgi?id=145890
+http://www.nabble.com/Choosing-Netbeans-platform-or-Eclipse-RCP-to16012394.html
