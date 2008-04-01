@@ -41,7 +41,7 @@ do IDE, à documentação da API em modo offline.
 - Comunidade
 
 As comunidades das duas plataformas são também bastante vastas, com listas de 
-discussão, fóruns, e wikis onde as dúvidas poderão ser respondidas rápidademente.
+discussão, fóruns, e wikis onde as dúvidas poderão ser respondidas rapidademente.
 
 - IDEs que se podem usar
 
@@ -52,7 +52,7 @@ irá condicionar à utilização do IDE Netbeans.
 
 Nenhum outro IDE poderá ser usado se o objectivo é tirar partido das 
 funcionalidades e vantagens que o uso de uma plataforma deste género oferece.
-Embora seja teóricamente possível programar usando outros IDEs e outras 
+Embora seja teoricamente possível programar usando outros IDEs e outras 
 ferramentas na prática isso resultará na perda de todas as facilidades existentes, 
 como assistentes e geração automática de código e aumentará a carga de trabalho 
 aos programadores.
@@ -62,10 +62,10 @@ aos programadores.
 A plataforma Netbeans é desenvolvida e usar o sistema gráfico Swing, este sistema 
 está disponível com todas as edições da plataforma Java e é o standard nesta 
 tecnologia. Questões de velocidade que assombravam este sistema estão actualmente
-ultrapassadas sendo este sistema cumpre o requisito de portabilidade imposto.
+ultrapassadas sendo que este sistema cumpre o requisito de portabilidade imposto.
 
 A plataforma Eclipse RCP usa o sistema gráfico SWT. Apesar de ser anunciado como 
-um sistema nativo, rápido e multiplataforma, alguns problemas foram identidicados 
+um sistema nativo, rápido e multiplataforma, alguns problemas foram identificados 
 que contradizem esse anúncio.
 A tecnlogia SWT não é enviada com a plataforma Java, não fazendo parte desta, e 
 por esse mesmo motivo não está tão rapidamente disponível em novos sistemas.
@@ -105,7 +105,7 @@ Netbeans. Esta plataforma vai de encontro a todos os requisitos apresentados e
 
 [1]
 Além dos aspectos apresentados foram também tidas em conta, embora apenas como 
-referência pontual as opiniões deixadas por profissionais na àrea que 
+referência pontual as opiniões deixadas por profissionais da àrea que 
 desenvolveram software usando as duas plataformas e que apresentaram os 
 problemas que encontrados durante os vários processos de desenvolvimento 
 na lista de discussão nbusers@netbeans.org, sob o tópico 
