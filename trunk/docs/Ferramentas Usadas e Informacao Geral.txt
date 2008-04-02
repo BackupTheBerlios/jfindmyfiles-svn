@@ -1,6 +1,7 @@
-Página do projecto: htpp://jfindmyfiles.berlios.de
+Página do projecto: http://jfindmyfiles.berlios.de
 Página do projecto no sistema berlios: http://developer.berlios.de/projects/jfindmyfiles/
 URL do repositório SVN: http://svn.berlios.de/svnroot/repos/jfindmyfiles/trunk/
+URL do gestor de projectos: http://jfindmyfiles.berlios.de/pier - Sistema privado
 
 No desenvolvimento do projecto foram usadas as seguintes ferramentas:
 
@@ -16,8 +17,12 @@ URL: http://www.projectpier.org
 TortoiseSVN - Cliente gráfico, para windows, do sistema de versões Subversion.
 URL: http://tortoisesvn.tigris.org
 
-Subversion, edição Linux - Cliente linha de comandos do sistema de versões Subversion.
+Subversion, versão para sistemas operativos baseados em  Linux 
+	- Cliente linha de comandos do sistema de versões Subversion.
 URL: http://subversion.tigris.org
 
 OpenOffice - Pacote de produtivide.
 URL: http://www.openoffice.org
+
+Notepad++ - Editor de texto para sistemas operativos Windows
+URL: http://notepad-plus.sourceforge.net
