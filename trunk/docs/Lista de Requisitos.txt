@@ -1,0 +1,17 @@
+Os seguintes requisitos devem ser cumpridos pelo sistema:
+R1: Permitir ler e guardar para cada ficheiro o seu nome, o seu caminho completo, o 
+seu tamanho, a sua extensão, data de criação e atributos
+
+R2: Permitir a introdução de uma descrição e uma categoria;
+	
+
+
+O software JFindMyFiles pretende fazer a gestão dos diversos documentos digitais 
+comuns aos utilizadores de computadores. Nessa gestão será importante que mantenha 
+pelo menos as seguintes caracteristicas para cada ficheiro:
+
+
+O sistema deverá dispor também de um mecanismo que permita extender o conjunto 
+de informações guardadas. Assim deverá possuir uma API que possibilite a 
+programação de plugins para o fornecimento de informações mais detalhadas ou 
+informações não contenpladas inicialmente.

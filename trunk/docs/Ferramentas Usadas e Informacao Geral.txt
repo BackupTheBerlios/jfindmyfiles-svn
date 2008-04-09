@@ -5,7 +5,8 @@ URL do gestor de projectos: http://jfindmyfiles.berlios.de/pier - Sistema privad
 
 No desenvolvimento do projecto foram usadas as seguintes ferramentas:
 
-Netbeans IDE - IDE de desenvolvimento para, entre outras, a linguagem JAVA
+Netbeans IDE - IDE de desenvolvimento para, entre outras, a linguagem JAVA e que 
+permite o uso da plataforma Netbeans.
 URL: http://www.netbeans.org
 
 GanttProject - Elaboração do planeamento e gráfico de Gantt
@@ -14,11 +15,12 @@ URL: http://ganttproject.biz
 ProjectPier - Ferramenta de colaboração e gestão de projectos.
 URL: http://www.projectpier.org
 
-TortoiseSVN - Cliente gráfico, para windows, do sistema de versões Subversion.
+TortoiseSVN - Cliente gráfico, para sistemas operativos Windows, do sistema de 
+versões Subversion.
 URL: http://tortoisesvn.tigris.org
 
-Subversion, versão para sistemas operativos baseados em  Linux 
-	- Cliente linha de comandos do sistema de versões Subversion.
+Subversion - Cliente linha de comandos do sistema de versões Subversion. Versão 
+	para sistemas operativos baseados em  Linux.
 URL: http://subversion.tigris.org
 
 OpenOffice - Pacote de produtivide.

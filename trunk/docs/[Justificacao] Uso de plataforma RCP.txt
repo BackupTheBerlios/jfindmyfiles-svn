@@ -19,10 +19,12 @@ Foram inicialmente consideradas 4 plataformas de desenvolvimento. São elas,
 a biblioteca Microsoft Foundation Class, MFC, a Eclipse Rich Client Platform, 
 Eclipse RCP, a Spring Rich Client Platform, Spring-rich e a Netbeans Platform.
 
-Dada a escolha da linguagem, a plataforma MFC foi imediatamente abandonada. A 
-Spring-rich foi rejeitada após ter sido avaliada a disponibilidade de documentação, 
-exemplos, e uso geral da plataforma. Esta plataforma está ainda em desenvolvimento, c
-om uma versão estável não alpha/beta lançada a 17 de Março de 2008.
+Dado a necessidade de uma aplicação multiplataforma a plataforma MFC foi 
+imediatamente abandonada visto ser destinada apenas a sistemas operativos Windows. 
+A Spring-rich foi rejeitada após ter sido avaliada a disponibilidade de 
+documentação, exemplos, e uso geral da plataforma. 
+Esta plataforma está ainda em desenvolvimento, com uma versão estável não 
+alpha/beta lançada a 17 de Março de 2008.
 O projecto encontra-se também em fase de actualização com algum código a ser 
 reescrito e reestruturado, sendo prevista uma primeira versão do novo sistema para
 Outubro de 2008.

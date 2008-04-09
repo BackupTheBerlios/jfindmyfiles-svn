@@ -1,9 +1,0 @@
-Um dos requisitos principais da aplicação é que a mesma seja multiplataforma. 
-Isto é, a aplicação terá de ser independente do sistema operativo e arquitectura física
-da máquina onde vai ser executada.
-
-Com base nesse requisito as linguagens de programação a que podemos recorrer 
-são ANSI C, C++, Python, Perl, PHP, C#, Object Pascal e Java.
---------------------------------------------------------------------------------
-Completo o texto hoje ou amanhã-
-Sérgio, 02-04-2008
