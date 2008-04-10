@@ -31,13 +31,13 @@ Outubro de 2008.
 A documentação é escassa e baseada numa abordagem "document-as-needed", em que 
 a documentação será criada conforme a necessidade dos programadores que usem a 
 plataforma. Esta abordagem, embora compreensível, impõe algumas restrições no 
-acesso a documentação relevante em tempo útil.
+acesso a informação relevante em tempo útil.
 
 Das quatro plataformas iniciais sobram assim para análise a Eclipse RCP e a 
 Netbeans platform.
 
 [REFERÊNCIAS]
-http://msdn2.microsoft.com/en-us/visualc/aa442855.aspx
-http://msdn2.microsoft.com/en-us/library/dd5497wx(VS.80).aspx
-http://msdn2.microsoft.com/en-us/library/188ht7d8(VS.80).aspx
-http://www.netbeans.org/features/platform/index.html
+[1]http://msdn2.microsoft.com/en-us/visualc/aa442855.aspx
+[2]http://msdn2.microsoft.com/en-us/library/dd5497wx(VS.80).aspx
+[3]http://msdn2.microsoft.com/en-us/library/188ht7d8(VS.80).aspx
+[4]http://www.netbeans.org/features/platform/index.html

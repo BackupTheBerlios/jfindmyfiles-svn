@@ -1,0 +1,28 @@
+Uma avaliação das metodologias existentes, objectiva e consciente dos requisitos 
+e caracteristicas do projecto e da equipa de desenvolvimento, especialmente o 
+tempo disponível para o desenvolvimento e o tamanho da equipa, leva a que a 
+escolha recaia sobre a aplicação do modelo ICONIX de forma ágil ou a metodologias ágeis.
+
+[FALAR DE PROCESSOS ÁGEIS?, PELO MENOS DA SUA FILOSOFIA.]
+
+Tipicamente, a metodologia XP, é recomendada no caso de projectos cujos requisitos 
+estão em constante mudança. No nosso projecto e dado que representamos o papel de 
+programadores e de clientes, não se espera que os requisitos sofram alterações 
+significativas nem que sejam alterados de forma continua. Mesmo assim 
+a metodologia apresenta outros pontos a favor ao ser aplicada a uma equipa de dois 
+programadores libertando-nos da formalidade extrema de outras metodologias que 
+apenas sobrecarregaria a equipa de desenvolvimento.
+
+A aplicação da metodologia ICONIX ao desenvolvimento ágil seria uma solução para 
+se tirar partido das vantagens associasdas a processos ágeis e ao mesmo tempo o 
+rigor e segurança no desenvolvimento de software que uma metodologia como a ICONIX 
+oferece. Mesmo assim, a aplicação da metodologia ICONIX ágil não responde ao 
+requisito temporal imposto.
+
+A opção da metodologia XP parece ser a que mais se adequa aos requisitos do 
+projecto e caracteristicas da equipa de desenvolvimento pelo que foi essa a 
+seguida durante o processo de desenvolvimento e de gestão do projecto.
+
+http://www.extremeprogramming.org
+Agile Development with ICONIX Process, Doug Rosenberg, Matt Stephens, 
+Mark Collins-Cope, Apress

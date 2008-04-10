@@ -1,11 +1,11 @@
 A correcta avaliação das duas plataformas deveria ser feita recorrendo à 
-implementação de um mesmo sistema de forma a ser possível comparar o impacto 
-que as diferentes arquitecturas, funcionalidades e características têm no 
-desenvolvimento, no entanto, o curto tempo disponível para desenvolver todo o 
-sistema, invalida essa metodologia de avalição por parte da equipa de 
+implementação de um mesmo sistema nas duas alternativas concorrentes de forma a 
+ser possível comparar o impacto que as diferentes arquitecturas, funcionalidades 
+e características têm no desenvolvimento, no entanto, o curto tempo disponível 
+para desenvolver todo o sistema invalida esse estudo por parte da equipa de 
 desenvolvimento. Assim recorreu-se ao estudo feito por outro profissional 
-da área, que desenvolveu uma mesma aplicação nas duas plataformas e publicou o 
-seu estudo. [TEXTO INCORRECTO, REESCREVER!]
+da área, que desenvolveu uma aplicação nas duas plataformas e publicou o seu 
+estudo na revista [FALTA NOME DA REVISTA].
 
 Na conclusão da análise determina-se que ambas as plataformas possuem 
 caracteristicas similares, sendo os pormenores de implementação e arquitectura 
@@ -95,8 +95,8 @@ desenvolvimento.
 Irá ser necessária a integração de bibliotecas que foram desenvolvidas usando 
 Swing. No caso da escolha da plataforma Eclipse RCP essa integração ficará limitada 
 a sistema Linux e Windows devido a alguns bugs existentes no sistema SWT que 
-impendem essa integração de funcionar correctamente no sistemas operativos 
-Mac OS X.
+impendem a correcta integração entre componentes SWT e componentes Swing em 
+sistemas operativos Mac OS X.
 
 - Conclusão
 Tendo em conta os pontos acima indicados decidu-se a escolha da plataforma 
@@ -113,7 +113,7 @@ na lista de discussão nbusers@netbeans.org, sob o tópico
 
 
 [REFERÊNCIA]
-Java Rich Client Platforms:Eclipse RCP compared withNetBeans Platform, Kai Tödter - Siemens AGCT
+Java Rich Client Platforms: Eclipse RCP compared withNetBeans Platform, Kai Tödter - Siemens AGCT
 https://bugs.eclipse.org/bugs/show_bug.cgi?id=221483
 https://bugs.eclipse.org/bugs/show_bug.cgi?id=67384
 https://bugs.eclipse.org/bugs/show_bug.cgi?id=145890
