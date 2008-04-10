@@ -23,6 +23,7 @@ A opção da metodologia XP parece ser a que mais se adequa aos requisitos do
 projecto e caracteristicas da equipa de desenvolvimento pelo que foi essa a 
 seguida durante o processo de desenvolvimento e de gestão do projecto.
 
+http://en.wikipedia.org/wiki/Extreme_Programming
 http://www.extremeprogramming.org
 Agile Development with ICONIX Process, Doug Rosenberg, Matt Stephens, 
 Mark Collins-Cope, Apress
