@@ -27,7 +27,7 @@ Preciso encontrar um ficheiro no catálogo, para isso quero escolher a categoria,
 grupo de discos, ou todo o catálogo para restringir a pesquisa.
 
 ST8:
-A aplicação deve permitir ser distrubuida em mais que uma língua, deve ser 
+A aplicação deve permitir ser distribuida em mais que uma língua, deve ser 
 internacionalizável.
 
 ST9:

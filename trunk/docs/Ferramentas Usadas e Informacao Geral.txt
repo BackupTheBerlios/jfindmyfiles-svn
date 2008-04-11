@@ -23,7 +23,7 @@ Subversion - Cliente linha de comandos do sistema de versões Subversion. Versão
 	para sistemas operativos baseados em  Linux.
 URL: http://subversion.tigris.org
 
-OpenOffice - Pacote de produtivide.
+OpenOffice - Pacote de produtividade.
 URL: http://www.openoffice.org
 
 Notepad++ - Editor de texto para sistemas operativos Windows
