@@ -3,7 +3,8 @@ O programa tem de permitir que se possa indicar a pasta a ler e tem de ler o
 conteúdo dessa pasta e guardar as informações dos ficheiros.
 
 ST2:
-Deve ser possível introduzir uma descrição para cada elemento existente.
+Deve ser possível introduzir uma descrição para cada elemento através de uma 
+janela que mostre as propriedades do ficheiro.
 
 ST3:
 As pastas lidas devem poder ser organizadas por categorias, devem também poder 
