@@ -92,3 +92,7 @@ conjunto de utilizadores e os empréstimos feitos a esses utilizadores.
 ST23:
 Deve ser possível adicionar, remover e editar os dados de utilizadores, bem como 
 ver os empréstimos actuais e passados feitos a esse utilizador.
+
+ST24:
+A aplicação deverá correr em qualquer sistema operativo, desde Windows XP/Vista, 
+Linux a Mac OS X.
