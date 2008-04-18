@@ -7,4 +7,4 @@ Planning Game
 	Iteração CB07 - 26/05 a 30/05
 	Iteração CB06 - 02/06 a 06/06
 	Iteração CB08 - 09/06 a 13/06
-	Iteração CB09 - 16/06 a 20/06
+	Iteração CB01 - 16/06 a 20/06
