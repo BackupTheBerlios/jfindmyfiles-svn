@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module codename="com.sun.syndication.io">
-    <module_version install_time="1208456341468" last="true" origin="installer" specification_version="1.0">
-        <file crc="4047638029" name="config/Modules/com-sun-syndication-io.xml"/>
-        <file crc="1323779694" name="modules/com-sun-syndication-io.jar"/>
-        <file crc="2928126524" name="modules/ext/rome-0.9.jar"/>
-    </module_version>
-</module>

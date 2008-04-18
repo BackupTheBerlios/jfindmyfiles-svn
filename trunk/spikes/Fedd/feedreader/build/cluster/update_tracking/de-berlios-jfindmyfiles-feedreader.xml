@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<module codename="de.berlios.jfindmyfiles.feedreader">
-    <module_version install_time="1208456342156" last="true" origin="installer" specification_version="1.0">
-        <file crc="3967713711" name="config/Modules/de-berlios-jfindmyfiles-feedreader.xml"/>
-        <file crc="177915167" name="modules/de-berlios-jfindmyfiles-feedreader.jar"/>
-    </module_version>
-</module>
