@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<group version="2.0">
-    <module name="org.netbeans.modules.xml.wsdlui" spec="1.1" />
-    <name unique="wsdl_ui" />
-    <state opened="false" />
-</group>
