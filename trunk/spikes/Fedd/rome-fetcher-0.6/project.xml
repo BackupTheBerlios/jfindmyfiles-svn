@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project>
+	<pomVersion>3</pomVersion>
+	<id>rome-fetcher</id>
+	<name>Rome HTTP Fetcher</name>
+	<groupId>rome</groupId>
+	<currentVersion>0.6</currentVersion>
+	<organization>
+		<name>Sun Microsystems</name>
+		<url>http://java.sun.com/</url>
+	</organization>
+	<inceptionYear>2004</inceptionYear>
+	<package>com.sun.syndication.fetcher</package>
+	<shortDescription>Rome HTTP Fetcher</shortDescription>
+	<dependencies>
+		<dependency>
+			<groupId>jdom</groupId>
+			<artifactId>jdom</artifactId>
+			<version>1.0</version>
+		</dependency>
+        <dependency>
+            <groupId>xerces</groupId>
+            <artifactId>xerces</artifactId>
+            <version>2.4.0</version>
+        </dependency>
+		<dependency>
+			<groupId>rome</groupId>
+			<artifactId>rome</artifactId>
+			<version>0.6</version>
+		</dependency>
+		<dependency>
+			<!-- Required at build time and to use HTTPClientFetcher -->
+			<groupId>commons-httpclient</groupId>
+			<artifactId>commons-httpclient</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+		<dependency>
+			<!-- Required at build time and to use HTTPClientFetcher -->
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.0.4</version>
+		</dependency>
+		<dependency>
+			<!-- Required at build time and to use HTTPClientFetcher -->
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging-api</artifactId>
+			<version>1.0.4</version>
+		</dependency>
+		<dependency>
+			<!-- Only required at compile time for testing -->
+			<id>servletapi</id>
+			<version>2.3</version>
+		</dependency>
+		<dependency>
+			<!-- Only required at compile time for testing -->
+			<groupId>jetty</groupId>
+			<artifactId>jetty</artifactId>
+			<version>4.2.12</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<sourceDirectory>src/java</sourceDirectory>
+		<resources>
+			<resource>
+				<directory>src/java</directory>
+				<includes>
+					<include>**/*.properties</include>
+				</includes>
+			</resource>
+		</resources>
+		<unitTestSourceDirectory>src/test</unitTestSourceDirectory>
+		<unitTest>
+			<includes>
+				<include>**/*Test.java</include>
+			</includes>
+			<excludes>
+				<exclude>**/Abstract*.java</exclude>
+				<exclude>**/*Servlet.java</exclude>
+			</excludes>
+			<resources>
+				<resource>
+					<directory>src/test</directory>
+					<includes>
+						<include>**/*.xml</include>
+						<include>**/*.properties</include>
+					</includes>
+				</resource>
+			</resources>
+		</unitTest>
+	</build>
+	<reports>
+	    <report>maven-jdepend-plugin</report>
+	    <report>maven-junit-report-plugin</report>
+	    <report>maven-jxr-plugin</report>
+	    <report>maven-pmd-plugin</report>
+	    <report>maven-simian-plugin</report>
+	    <report>maven-tasklist-plugin</report>     
+	</reports>
+</project>
+

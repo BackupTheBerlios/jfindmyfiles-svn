@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module: com.sun.syndication.io
+OpenIDE-Module-Localizing-Bundle: com/sun/syndication/io/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+

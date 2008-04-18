@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="">
+        <attr name="Editors\text\javascript\Popup\SeparatorAfterSelectInPopupAction.instance\instanceClass" stringvalue="javax.swing.JSeparator"/>
+        <attr name="Editors\text\javascript\Popup\SeparatorAfterSelectInPopupAction.instance\position" intvalue="7250"/>
+        <attr name="Editors\text\x-css\Popup\format\position" intvalue="4334"/>
+        <attr name="Editors\text\x-css\Popup\generate-fold-popup\position" intvalue="4050"/>
+    </fileobject>
+</attributes>

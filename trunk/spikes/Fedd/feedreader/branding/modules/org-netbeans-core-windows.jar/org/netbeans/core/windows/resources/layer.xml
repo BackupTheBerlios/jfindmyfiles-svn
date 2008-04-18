@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : layer.xml
+    Created on : 16 de Abril de 2008, 17:08
+    Author     : Administrador
+    Description:
+        Purpose of the document follows.
+-->
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.1//EN" "http://www.netbeans.org/dtds/filesystem-1_1.dtd">
+<!--
+This is a `branding' layer.  It gets merged with the layer file it's branding.
+In this case, it's just hiding menu items and toolbars we don't want.
+-->
+<filesystem>
+
+	<!-- hide unused toolbars -->
+	<folder name="Toolbars">
+		<folder name="File_hidden"/>
+		<folder name="Edit_hidden"/>
+	</folder>
+
+	<folder name="Menu">
+		<folder name="File">
+			<file name="org-openide-actions-SaveAction.instance_hidden"/>
+			<file name="org-openide-actions-SaveAllAction.instance_hidden"/>
+			<file name="org-netbeans-core-actions-RefreshAllFilesystemsAction.instance_hidden"/>            
+			<file name="org-openide-actions-PageSetupAction.instance_hidden"/>
+			<file name="org-openide-actions-PrintAction.instance_hidden"/>
+		</folder>
+		<folder name="Edit_hidden"/>
+		<folder name="Tools_hidden"/>
+	</folder>
+
+</filesystem>
+<!--root>
+
+</root-->

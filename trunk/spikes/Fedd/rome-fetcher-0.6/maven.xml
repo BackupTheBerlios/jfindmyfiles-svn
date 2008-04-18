@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<project default="dobuild" xmlns:j="jelly:core" xmlns:u="jelly:util" xmlns:ant="jelly:ant">
+	<path id="command.classpath">
+	    <path refid="maven.dependency.classpath" />
+		<fileset dir="${maven.build.dir}">
+			<include name="*.jar">
+			</include>
+		</fileset>
+	</path>
+
+	<preGoal name="java:compile">
+		<echo>Setting version number to ${pom.currentVersion}</echo>
+		<echo file="./src/java/fetcher.properties">rome.fetcher.version=${pom.currentVersion}</echo>
+	</preGoal>
+
+	<goal name="dobuild">
+		<j:set var="goals" value="clean,java:compile,test,javadoc,jar:install" />
+		<u:tokenize var="goals" delim=",">${goals}</u:tokenize>
+		<j:forEach items="${goals}" var="goal" indexVar="goalNumber">
+			<attainGoal name="${goal}" />
+		</j:forEach>
+	</goal>
+
+	<goal name="run-read">
+		<!-- <attainGoal name="jar" /> -->
+		<java classname="com.sun.syndication.fetcher.samples.FeedReader" fork="true" output="toto">
+			<arg value="http://blogs.sun.com/roller/rss/tucu" />
+			<classpath>
+				<path refid="command.classpath" />
+			</classpath>
+		</java>
+		<concat>
+			<filelist dir="." files="toto" />
+		</concat>
+	</goal>
+
+	<goal name="run-aggr">
+        <!-- How to I "attainGoal jar" without running unit tests? -->
+		<!-- <attainGoal name="jar" /> -->
+		<java classname="com.sun.syndication.fetcher.samples.FeedAggregator" fork="true" output="toto">
+			<arg value="rss_2.0" />
+			<arg value="http://blogs.sun.com/roller/rss/rome" />
+			<arg value="http://blogs.sun.com/roller/rss/tucu" />
+			<arg value="http://blogs.sun.com/roller/rss/pat" />
+			<classpath>
+				<path refid="command.classpath" />
+			</classpath>
+		</java>
+		<concat>
+			<filelist dir="." files="toto" />
+		</concat>
+	</goal>
+</project>
+

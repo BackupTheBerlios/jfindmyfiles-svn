@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE attributes PUBLIC "-//NetBeans//DTD DefaultAttributes 1.0//EN" "http://www.netbeans.org/dtds/attributes-1_0.dtd">
+<attributes version="1.0">
+    <fileobject name="SeparatorBeforeCut.instance">
+        <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+        <attr name="position" intvalue="250"/>
+    </fileobject>
+    <fileobject name="format">
+        <attr name="position" intvalue="3750"/>
+    </fileobject>
+    <fileobject name="generate-fold-popup">
+        <attr name="position" intvalue="4050"/>
+    </fileobject>
+    <fileobject name="org-netbeans-modules-languages-features-GoToDeclarationAction.instance">
+        <attr name="position" intvalue="5500"/>
+    </fileobject>
+    <fileobject name="run_script.instance">
+        <attr name="instanceClass" stringvalue="org.netbeans.modules.languages.features.GenericAction"/>
+        <attr name="instanceCreate" serialvalue="aced0005737200356f72672e6e65746265616e732e6d6f64756c65732e6c616e6775616765732e66656174757265732e416374696f6e43726561746f72d0b3a3aff1053f8c0200015b0006706172616d737400135b4c6a6176612f6c616e672f4f626a6563743b7870757200135b4c6a6176612e6c616e672e4f626a6563743b90ce589f1073296c02000078700000000374000352756e74003f6f72672e6e65746265616e732e6d6f64756c65732e6c616e6775616765732e6a6176617363726970742e4a6176615363726970742e706572666f726d52756e74003f6f72672e6e65746265616e732e6d6f64756c65732e6c616e6775616765732e6a6176617363726970742e4a6176615363726970742e656e61626c656452756e"/>
+        <attr name="position" intvalue="2000"/>
+    </fileobject>
+</attributes>

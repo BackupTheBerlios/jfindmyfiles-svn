@@ -1,0 +1,14 @@
+-1207755539029
+Line above is identifying hash key, do not edit!
+Below is metadata about folder lookup cache, for debugging purposes.
+Thu Apr 17 18:38:48 BST 2008	C:\Documents and Settings\Administrador\Os meus documentos\ESTG 2sem\Projecto\JFindMyFiles\spikes\Fedd\feedreader\build\cluster\modules\de-berlios-jfindmyfiles-feedreader.jar
+Mon Mar 10 16:18:13 GMT 2008	C:\Programas\NetBeans 6.0.1\platform7\modules\org-netbeans-api-progress.jar
+Mon Mar 10 16:18:13 GMT 2008	C:\Programas\NetBeans 6.0.1\platform7\modules\org-netbeans-core-output2.jar
+Mon Mar 10 16:18:13 GMT 2008	C:\Programas\NetBeans 6.0.1\platform7\modules\org-netbeans-core-ui.jar
+Mon Mar 10 16:18:13 GMT 2008	C:\Programas\NetBeans 6.0.1\platform7\modules\org-netbeans-core-windows.jar
+Mon Mar 10 16:18:14 GMT 2008	C:\Programas\NetBeans 6.0.1\platform7\modules\org-netbeans-core.jar
+Mon Mar 10 16:18:11 GMT 2008	C:\Programas\NetBeans 6.0.1\platform7\modules\org-netbeans-modules-autoupdate-ui.jar
+Mon Mar 10 16:18:12 GMT 2008	C:\Programas\NetBeans 6.0.1\platform7\modules\org-netbeans-modules-favorites.jar
+Mon Mar 10 16:18:11 GMT 2008	C:\Programas\NetBeans 6.0.1\platform7\modules\org-netbeans-modules-options-api.jar
+Mon Mar 10 16:18:11 GMT 2008	C:\Programas\NetBeans 6.0.1\platform7\modules\org-netbeans-modules-options-keymap.jar
+Mon Mar 10 16:18:12 GMT 2008	C:\Programas\NetBeans 6.0.1\platform7\modules\org-netbeans-modules-settings.jar

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module codename="de.berlios.jfindmyfiles.lerdiscos">
+    <module_version install_time="1208455912953" last="true" origin="installer" specification_version="1.0">
+        <file crc="2010974926" name="config/Modules/de-berlios-jfindmyfiles-lerdiscos.xml"/>
+        <file crc="1201006452" name="modules/de-berlios-jfindmyfiles-lerdiscos.jar"/>
+    </module_version>
+</module>

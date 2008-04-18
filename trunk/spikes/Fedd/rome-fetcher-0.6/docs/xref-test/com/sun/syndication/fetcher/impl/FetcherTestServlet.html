@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" /><title>FetcherTestServlet xref</title>
+<link type="text/css" rel="stylesheet" href="../../../../../stylesheet.css" />
+</head>
+<body>
+<pre>
+
+<a name="1" href="#1">1</a>   <em class="comment">/*</em>
+<a name="2" href="#2">2</a>   <em class="comment"> * Copyright 2004 Sun Microsystems, Inc.</em>
+<a name="3" href="#3">3</a>   <em class="comment"> *</em>
+<a name="4" href="#4">4</a>   <em class="comment"> * Licensed under the Apache License, Version 2.0 (the "License");</em>
+<a name="5" href="#5">5</a>   <em class="comment"> * you may not use this file except in compliance with the License.</em>
+<a name="6" href="#6">6</a>   <em class="comment"> * You may obtain a copy of the License at</em>
+<a name="7" href="#7">7</a>   <em class="comment"> *</em>
+<a name="8" href="#8">8</a>   <em class="comment"> *     <a href="http://www.apache.org/licenses/LICENSE-2.0" target="alexandria_uri">http://www.apache.org/licenses/LICENSE-2.0</a></em>
+<a name="9" href="#9">9</a>   <em class="comment"> *</em>
+<a name="10" href="#10">10</a>  <em class="comment"> * Unless required by applicable law or agreed to in writing, software</em>
+<a name="11" href="#11">11</a>  <em class="comment"> * distributed under the License is distributed on an "AS IS" BASIS,</em>
+<a name="12" href="#12">12</a>  <em class="comment"> * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.</em>
+<a name="13" href="#13">13</a>  <em class="comment"> * See the License for the specific language governing permissions and</em>
+<a name="14" href="#14">14</a>  <em class="comment"> * limitations under the License.</em>
+<a name="15" href="#15">15</a>  <em class="comment"> *</em>
+<a name="16" href="#16">16</a>  <em class="comment"> */</em>
+<a name="17" href="#17">17</a>  <strong>package</strong> <a href="../../../../../com/sun/syndication/fetcher/impl/package-summary.html">com.sun.syndication.fetcher.impl</a>;
+<a name="18" href="#18">18</a>  
+<a name="19" href="#19">19</a>  <strong>import</strong> java.io.BufferedReader;
+<a name="20" href="#20">20</a>  <strong>import</strong> java.io.IOException;
+<a name="21" href="#21">21</a>  <strong>import</strong> java.io.InputStream;
+<a name="22" href="#22">22</a>  <strong>import</strong> java.io.InputStreamReader;
+<a name="23" href="#23">23</a>  <strong>import</strong> java.io.OutputStream;
+<a name="24" href="#24">24</a>  <strong>import</strong> java.io.OutputStreamWriter;
+<a name="25" href="#25">25</a>  <strong>import</strong> java.text.DateFormat;
+<a name="26" href="#26">26</a>  <strong>import</strong> java.text.ParseException;
+<a name="27" href="#27">27</a>  <strong>import</strong> java.text.SimpleDateFormat;
+<a name="28" href="#28">28</a>  <strong>import</strong> java.util.ArrayList;
+<a name="29" href="#29">29</a>  <strong>import</strong> java.util.List;
+<a name="30" href="#30">30</a>  <strong>import</strong> java.util.zip.GZIPOutputStream;
+<a name="31" href="#31">31</a>  
+<a name="32" href="#32">32</a>  <strong>import</strong> javax.servlet.ServletException;
+<a name="33" href="#33">33</a>  <strong>import</strong> javax.servlet.http.HttpServletRequest;
+<a name="34" href="#34">34</a>  <strong>import</strong> javax.servlet.http.HttpServletResponse;
+<a name="35" href="#35">35</a>  
+<a name="36" href="#36">36</a>  <strong>import</strong> com.sun.syndication.feed.synd.SyndContent;
+<a name="37" href="#37">37</a>  <strong>import</strong> com.sun.syndication.feed.synd.SyndContentImpl;
+<a name="38" href="#38">38</a>  <strong>import</strong> com.sun.syndication.feed.synd.SyndEntry;
+<a name="39" href="#39">39</a>  <strong>import</strong> com.sun.syndication.feed.synd.SyndEntryImpl;
+<a name="40" href="#40">40</a>  <strong>import</strong> com.sun.syndication.feed.synd.SyndFeed;
+<a name="41" href="#41">41</a>  <strong>import</strong> com.sun.syndication.feed.synd.SyndFeedImpl;
+<a name="42" href="#42">42</a>  <strong>import</strong> com.sun.syndication.io.FeedException;
+<a name="43" href="#43">43</a>  <strong>import</strong> com.sun.syndication.io.SyndFeedOutput;
+<a name="44" href="#44">44</a>  
+<a name="45" href="#45">45</a>  
+<a name="46" href="#46">46</a>  <strong>public</strong> <strong>class</strong> <a href="../../../../../com/sun/syndication/fetcher/impl/FetcherTestServlet.html">FetcherTestServlet</a> <strong>extends</strong> javax.servlet.http.HttpServlet {
+<a name="47" href="#47">47</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> String ETAG_1 = <span class="string">"ETAG-1"</span>;
+<a name="48" href="#48">48</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> String ETAG_2 = <span class="string">"ETAG-2"</span>;
+<a name="49" href="#49">49</a>      
+<a name="50" href="#50">50</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> String DELTA_FEED_TITLE = <span class="string">"Delta Encoded Feed"</span>;
+<a name="51" href="#51">51</a>      <strong>public</strong> <strong>static</strong> <strong>final</strong> String DELTA_FEED_ENTRY_TITLE = <span class="string">"Delta Encoded Feed Entry"</span>;
+<a name="52" href="#52">52</a>      
+<a name="53" href="#53">53</a>  	<em>/**<em>*</em></em>
+<a name="54" href="#54">54</a>  <em>	 * @throws IOException</em>
+<a name="55" href="#55">55</a>  <em>	 * @throws </em>
+<a name="56" href="#56">56</a>  <em>	 * @see javax.servlet.http.HttpServlet#doGet(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)</em>
+<a name="57" href="#57">57</a>  <em>	 */</em>
+<a name="58" href="#58">58</a>  	<strong>protected</strong> <strong>void</strong> doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+<a name="59" href="#59">59</a>  		
+<a name="60" href="#60">60</a>  		<strong>if</strong> (<span class="string">"TRUE"</span>.equalsIgnoreCase(request.getParameter(<span class="string">"redirect"</span>))) {
+<a name="61" href="#61">61</a>  			<em class="comment">//	testing redirection support			</em>
+<a name="62" href="#62">62</a>  			response.sendRedirect(request.getRequestURI());
+<a name="63" href="#63">63</a>  			<strong>return</strong>;
+<a name="64" href="#64">64</a>  		} <strong>else</strong> <strong>if</strong> (request.getParameter(<span class="string">"error"</span>) != <strong>null</strong>) {
+<a name="65" href="#65">65</a>  			<em class="comment">//response.sendError(HttpServletResponse.SC_NOT_FOUND);	</em>
+<a name="66" href="#66">66</a>  			<strong>int</strong> errorToThrow = Integer.parseInt(request.getParameter(<span class="string">"error"</span>));
+<a name="67" href="#67">67</a>  			response.sendError(errorToThrow);
+<a name="68" href="#68">68</a>  			<strong>return</strong>;
+<a name="69" href="#69">69</a>  		} <strong>else</strong> {
+<a name="70" href="#70">70</a>  			
+<a name="71" href="#71">71</a>  			<em class="comment">// We manually set the date headers using strings</em>
+<a name="72" href="#72">72</a>  			<em class="comment">// instead of the get/setDateHeader methods because</em>
+<a name="73" href="#73">73</a>  			<em class="comment">// those methods return longs, which has too much</em>
+<a name="74" href="#74">74</a>  			<em class="comment">// precision for the real date headers</em>
+<a name="75" href="#75">75</a>  			<em class="comment">// this is just a random date</em>
+<a name="76" href="#76">76</a>  			String lastModifiedDate = <span class="string">"Thu, 08 Jan 2009 23:06:39 GMT"</span>; 
+<a name="77" href="#77">77</a>  			String eTag = ETAG_1;
+<a name="78" href="#78">78</a>  			
+<a name="79" href="#79">79</a>  			<strong>if</strong> (<span class="string">"TRUE"</span>.equalsIgnoreCase(request.getParameter(<span class="string">"refreshfeed"</span>))) {
+<a name="80" href="#80">80</a>  				lastModifiedDate = <span class="string">"Fri, 09 Jan 2009 12:06:39 GMT"</span>;
+<a name="81" href="#81">81</a>  				eTag = ETAG_2; 
+<a name="82" href="#82">82</a>  			}
+<a name="83" href="#83">83</a>  			
+<a name="84" href="#84">84</a>  			<strong>boolean</strong> serveFeed = checkModified(request, lastModifiedDate, eTag) || (<span class="string">"TRUE"</span>.equalsIgnoreCase(request.getParameter(<span class="string">"deltaencode"</span>)));
+<a name="85" href="#85">85</a>  			<strong>boolean</strong> gzip = <span class="string">"TRUE"</span>.equalsIgnoreCase(request.getParameter(<span class="string">"gzipfeed"</span>));
+<a name="86" href="#86">86</a>  			
+<a name="87" href="#87">87</a>  			<strong>if</strong> (serveFeed) {
+<a name="88" href="#88">88</a>  			    String aimHeader = request.getHeader(<span class="string">"A-IM"</span>);
+<a name="89" href="#89">89</a>  			    <strong>boolean</strong> serveDeltaEncodedFeed = ((aimHeader != <strong>null</strong>) &amp;&amp; (aimHeader.indexOf(<span class="string">"feed"</span>) >=0) &amp;&amp; <span class="string">"TRUE"</span>.equalsIgnoreCase(request.getParameter(<span class="string">"deltaencode"</span>)));
+<a name="90" href="#90">90</a>  			    <strong>if</strong> (serveDeltaEncodedFeed) {
+<a name="91" href="#91">91</a>  			        <strong>try</strong> {
+<a name="92" href="#92">92</a>                          sendDeltaEncodedData(response, lastModifiedDate, request.getHeader(<span class="string">"If-None-Match"</span>), eTag, gzip);
+<a name="93" href="#93">93</a>                      } <strong>catch</strong> (FeedException e) {
+<a name="94" href="#94">94</a>                          <strong>throw</strong> <strong>new</strong> ServletException(e);
+<a name="95" href="#95">95</a>                      }
+<a name="96" href="#96">96</a>  			    } <strong>else</strong> {
+<a name="97" href="#97">97</a>  			        sendFeedData(response, lastModifiedDate, eTag, gzip);
+<a name="98" href="#98">98</a>  			    }
+<a name="99" href="#99">99</a>  				<strong>return</strong>;					
+<a name="100" href="#100">100</a> 			} <strong>else</strong> {
+<a name="101" href="#101">101</a> 				response.sendError(HttpServletResponse.SC_NOT_MODIFIED);
+<a name="102" href="#102">102</a> 				<strong>return</strong>;							
+<a name="103" href="#103">103</a> 			}
+<a name="104" href="#104">104</a> 		}							
+<a name="105" href="#105">105</a> 	}
+<a name="106" href="#106">106</a> 
+<a name="107" href="#107">107</a> 
+<a name="108" href="#108">108</a> 
+<a name="109" href="#109">109</a>     <strong>private</strong> <strong>boolean</strong> checkModified(HttpServletRequest request, String lastModifiedDate, String eTag) {
+<a name="110" href="#110">110</a> 		
+<a name="111" href="#111">111</a> 		String requestedETag = request.getHeader(<span class="string">"If-None-Match"</span>);			
+<a name="112" href="#112">112</a> 		String requestedLastModified = request.getHeader(<span class="string">"If-Modified-Since"</span>);
+<a name="113" href="#113">113</a> 		<strong>boolean</strong> modified = <strong>true</strong>;
+<a name="114" href="#114">114</a> 		<strong>boolean</strong> mustServer = false;			
+<a name="115" href="#115">115</a> 		<strong>if</strong> (requestedETag != <strong>null</strong>) {
+<a name="116" href="#116">116</a> 			<strong>if</strong> (eTag.equals(requestedETag)) {
+<a name="117" href="#117">117</a> 				modified = false;
+<a name="118" href="#118">118</a> 			} <strong>else</strong> {
+<a name="119" href="#119">119</a> 				modified = <strong>true</strong>;
+<a name="120" href="#120">120</a> 				mustServer = <strong>true</strong>;				
+<a name="121" href="#121">121</a> 			}
+<a name="122" href="#122">122</a> 		}
+<a name="123" href="#123">123</a> 		<strong>if</strong> (requestedLastMod<strong>if</strong>ied != <strong>null</strong>) {
+<a name="124" href="#124">124</a> 			<strong>if</strong> (lastMod<strong>if</strong>iedDate.equals(requestedLastMod<strong>if</strong>ied)) {
+<a name="125" href="#125">125</a> 				modified = false;
+<a name="126" href="#126">126</a> 			} <strong>else</strong> {
+<a name="127" href="#127">127</a> 				modified = <strong>true</strong>;
+<a name="128" href="#128">128</a> 				mustServer = <strong>true</strong>;					
+<a name="129" href="#129">129</a> 			}
+<a name="130" href="#130">130</a> 		}
+<a name="131" href="#131">131</a> 		<strong>boolean</strong> serveFeed = (modified || mustServer);
+<a name="132" href="#132">132</a> 		<strong>return</strong> serveFeed;
+<a name="133" href="#133">133</a> 	}
+<a name="134" href="#134">134</a> 
+<a name="135" href="#135">135</a> 	<em>/**<em>*</em></em>
+<a name="136" href="#136">136</a> <em>     * @param request</em>
+<a name="137" href="#137">137</a> <em>     * @param lastModifiedDate</em>
+<a name="138" href="#138">138</a> <em>     * @param tag</em>
+<a name="139" href="#139">139</a> <em>     * @param gzip</em>
+<a name="140" href="#140">140</a> <em>	 * @throws IOException</em>
+<a name="141" href="#141">141</a> <em>	 * @throws FeedException</em>
+<a name="142" href="#142">142</a> <em>     */</em>
+<a name="143" href="#143">143</a>     <strong>private</strong> <strong>void</strong> sendDeltaEncodedData(HttpServletResponse response, String lastModifiedDate, String requestedETag, String responseETag, <strong>boolean</strong> gzip) throws IOException, FeedException {
+<a name="144" href="#144">144</a>         <strong>if</strong> (ETAG_1.equals(requestedETag) || ETAG_2.equals(requestedETag)) {               
+<a name="145" href="#145">145</a> 		    OutputStream out = <strong>null</strong>;
+<a name="146" href="#146">146</a> 		    <strong>if</strong> (gzip) {
+<a name="147" href="#147">147</a> 		        response.setHeader(<span class="string">"Content-Encoding"</span>, <span class="string">"gzip"</span>);
+<a name="148" href="#148">148</a> 		        out = <strong>new</strong> GZIPOutputStream(response.getOutputStream());	        
+<a name="149" href="#149">149</a> 		    } <strong>else</strong> {
+<a name="150" href="#150">150</a> 		        out = response.getOutputStream();	        
+<a name="151" href="#151">151</a> 		    }
+<a name="152" href="#152">152</a> 		    
+<a name="153" href="#153">153</a> 			response.setContentType(<span class="string">"text/xml"</span>);
+<a name="154" href="#154">154</a> 			response.setStatus(226);
+<a name="155" href="#155">155</a> 			<strong>if</strong> (gzip) {
+<a name="156" href="#156">156</a> 			    response.setHeader(<span class="string">"IM"</span>, <span class="string">"feed, gzip"</span>);
+<a name="157" href="#157">157</a> 			} <strong>else</strong> {
+<a name="158" href="#158">158</a> 			    response.setHeader(<span class="string">"IM"</span>, <span class="string">"feed"</span>);
+<a name="159" href="#159">159</a> 			}
+<a name="160" href="#160">160</a> 			
+<a name="161" href="#161">161</a> 			<strong>if</strong> (responseETag != <strong>null</strong>) {
+<a name="162" href="#162">162</a> 				response.setHeader(<span class="string">"ETag"</span>, responseETag);
+<a name="163" href="#163">163</a> 			}		
+<a name="164" href="#164">164</a> 			<strong>if</strong> (lastMod<strong>if</strong>iedDate != <strong>null</strong>) {
+<a name="165" href="#165">165</a> 				response.setHeader(<span class="string">"Last-Modified"</span>, lastModifiedDate);
+<a name="166" href="#166">166</a> 			}		    
+<a name="167" href="#167">167</a> 		    
+<a name="168" href="#168">168</a> 	        SyndFeed feed = <strong>new</strong> SyndFeedImpl();
+<a name="169" href="#169">169</a> 	        feed.setFeedType(<span class="string">"atom_0.3"</span>);
+<a name="170" href="#170">170</a> 	
+<a name="171" href="#171">171</a> 	        feed.setTitle(DELTA_FEED_TITLE);        
+<a name="172" href="#172">172</a> 	        feed.setLink(<span class="string">"http://rome.dev.java.net"</span>);
+<a name="173" href="#173">173</a> 	        feed.setDescription(<span class="string">"This tests using rfc3229 delta encoding."</span>);
+<a name="174" href="#174">174</a> 	
+<a name="175" href="#175">175</a> 	        List entries = <strong>new</strong> ArrayList();
+<a name="176" href="#176">176</a> 	        SyndEntry entry;
+<a name="177" href="#177">177</a> 	        SyndContent description;
+<a name="178" href="#178">178</a> 	
+<a name="179" href="#179">179</a> 	        entry = <strong>new</strong> SyndEntryImpl();
+<a name="180" href="#180">180</a> 	        entry.setTitle(DELTA_FEED_ENTRY_TITLE);
+<a name="181" href="#181">181</a> 	        entry.setLink(<span class="string">"http://bobwyman.pubsub.com/main/2004/09/using_rfc3229_w.html"</span>);
+<a name="182" href="#182">182</a> 	        <strong>try</strong> {
+<a name="183" href="#183">183</a> 	            DateFormat dateParser = <strong>new</strong> SimpleDateFormat(<span class="string">"yyyy-MM-dd"</span>);
+<a name="184" href="#184">184</a> 	            entry.setPublishedDate(dateParser.parse(<span class="string">"2004-11-25"</span>));
+<a name="185" href="#185">185</a> 	        }
+<a name="186" href="#186">186</a> 	        <strong>catch</strong> (ParseException ex) {
+<a name="187" href="#187">187</a> 	            <em class="comment">// </em>
+<a name="188" href="#188">188</a> 	        }
+<a name="189" href="#189">189</a> 	        description = <strong>new</strong> SyndContentImpl();
+<a name="190" href="#190">190</a> 	        description.setType(<span class="string">"text/plain"</span>);
+<a name="191" href="#191">191</a> 	        description.setValue(<span class="string">"Test for RFC3229 Delta Encoding"</span>);	        
+<a name="192" href="#192">192</a> 	        entry.setDescription(description);	        
+<a name="193" href="#193">193</a> 	        entries.add(entry);
+<a name="194" href="#194">194</a> 	        
+<a name="195" href="#195">195</a> 	        feed.setEntries(entries);
+<a name="196" href="#196">196</a> 	        
+<a name="197" href="#197">197</a> 	        SyndFeedOutput output = <strong>new</strong> SyndFeedOutput();        
+<a name="198" href="#198">198</a> 	        output.output(feed, <strong>new</strong> OutputStreamWriter(out));
+<a name="199" href="#199">199</a>         } <strong>else</strong> {
+<a name="200" href="#200">200</a>             sendFeedData(response, lastModifiedDate, responseETag, gzip);
+<a name="201" href="#201">201</a>         }
+<a name="202" href="#202">202</a>     }    
+<a name="203" href="#203">203</a>     
+<a name="204" href="#204">204</a> 	<strong>private</strong> <strong>void</strong> sendFeedData(HttpServletResponse response, String lastModifiedDate, String eTag, <strong>boolean</strong> gzip) throws IOException {
+<a name="205" href="#205">205</a> 	    OutputStream out = <strong>null</strong>;
+<a name="206" href="#206">206</a> 	    <strong>if</strong> (gzip) {
+<a name="207" href="#207">207</a> 	        response.setHeader(<span class="string">"Content-Encoding"</span>, <span class="string">"gzip"</span>);
+<a name="208" href="#208">208</a> 	        out = <strong>new</strong> GZIPOutputStream(response.getOutputStream());	        
+<a name="209" href="#209">209</a> 	    } <strong>else</strong> {
+<a name="210" href="#210">210</a> 	        out = response.getOutputStream();
+<a name="211" href="#211">211</a> 	    }	    
+<a name="212" href="#212">212</a> 	    
+<a name="213" href="#213">213</a> 		response.setContentType(<span class="string">"text/xml"</span>);
+<a name="214" href="#214">214</a> 		<strong>if</strong> (eTag != <strong>null</strong>) {
+<a name="215" href="#215">215</a> 			response.setHeader(<span class="string">"ETag"</span>, eTag);
+<a name="216" href="#216">216</a> 		}		
+<a name="217" href="#217">217</a> 		<strong>if</strong> (lastMod<strong>if</strong>iedDate != <strong>null</strong>) {
+<a name="218" href="#218">218</a> 			response.setHeader(<span class="string">"Last-Modified"</span>, lastModifiedDate);
+<a name="219" href="#219">219</a> 		}
+<a name="220" href="#220">220</a> 		
+<a name="221" href="#221">221</a> 		InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream(<span class="string">"/atom_0.3.xml"</span>);
+<a name="222" href="#222">222</a> 		<strong>if</strong> (inputStream == <strong>null</strong>) {
+<a name="223" href="#223">223</a> 		    inputStream = <strong>this</strong>.getClass().getResourceAsStream(<span class="string">"/atom_0.3.xml"</span>);
+<a name="224" href="#224">224</a> 		}
+<a name="225" href="#225">225</a> 		
+<a name="226" href="#226">226</a> 		BufferedReader reader = <strong>new</strong> BufferedReader(<strong>new</strong> InputStreamReader(inputStream));
+<a name="227" href="#227">227</a> 		<strong>try</strong> {
+<a name="228" href="#228">228</a> 			String line;
+<a name="229" href="#229">229</a> 			<strong>while</strong> ((line = reader.readLine()) != <strong>null</strong>) {									
+<a name="230" href="#230">230</a> 			    out.write(line.getBytes());
+<a name="231" href="#231">231</a> 				line = <strong>null</strong>;
+<a name="232" href="#232">232</a> 			}
+<a name="233" href="#233">233</a> 		} <strong>finally</strong> {
+<a name="234" href="#234">234</a> 			<strong>if</strong> (reader != <strong>null</strong>) {
+<a name="235" href="#235">235</a> 			    reader.close();
+<a name="236" href="#236">236</a> 			}
+<a name="237" href="#237">237</a> 		}
+<a name="238" href="#238">238</a> 		
+<a name="239" href="#239">239</a> 		out.close();
+<a name="240" href="#240">240</a> 	}
+<a name="241" href="#241">241</a> }
+</pre>
+<hr/><div id="footer">This page was automatically generated by <a href="http://maven.apache.org/">Maven</a></div></body>
+</html>
+
