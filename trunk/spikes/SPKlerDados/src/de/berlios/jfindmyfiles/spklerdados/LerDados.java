@@ -38,6 +38,11 @@ public class LerDados extends javax.swing.JFrame {
                 (scrSize.height - mySize.height) / 2);
     }
     
+    private void test() {
+        for(java.io.File f : new java.io.File("").listFiles())
+            System.out.println();
+    }
+    
     private long calculateSize(File f) {
         long s = 0L;
         if(f.isFile()) {
