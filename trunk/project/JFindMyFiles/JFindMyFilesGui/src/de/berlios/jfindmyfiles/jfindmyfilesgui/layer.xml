@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.1//EN" "http://www.netbeans.org/dtds/filesystem-1_1.dtd">
+<filesystem>
+    <folder name="Actions">
+        <folder name="Window">
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-DetailsViewAction.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-NavigationTreeAction.instance"/>
+        </folder>
+    </folder>
+    <folder name="Menu">
+        <folder name="Window">
+            <file name="DetailsViewAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-DetailsViewAction.instance"/>
+            </file>
+            <file name="NavigationTreeAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-NavigationTreeAction.instance"/>
+            </file>
+        </folder>
+    </folder>
+    <folder name="Windows2">
+        <folder name="Components">
+            <file name="DetailsViewTopComponent.settings" url="DetailsViewTopComponentSettings.xml"/>
+            <file name="NavigationTreeTopComponent.settings" url="NavigationTreeTopComponentSettings.xml"/>
+        </folder>
+        <folder name="Modes">
+            <folder name="editor">
+                <file name="DetailsViewTopComponent.wstcref" url="DetailsViewTopComponentWstcref.xml"/>
+            </folder>
+            <folder name="leftSlidingSide">
+                <file name="NavigationTreeTopComponent.wstcref" url="NavigationTreeTopComponentWstcref.xml"/>
+            </folder>
+        </folder>
+    </folder>
+</filesystem>
