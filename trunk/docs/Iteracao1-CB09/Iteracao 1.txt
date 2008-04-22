@@ -1,3 +1,5 @@
+[INCOMPLETO]
+<==== Objectivos ==============================================================>
 Esta primeira iteração está condicionada por ter visto parte do seu tempo usado 
 para a reunião de planemento e pelo facto de ser o início de desenvolvimento 
 com um conjunto de tecnologias novas que levam à necessidade de um periodo de 
@@ -8,6 +10,11 @@ para avaliar a capacidade de atingir os objectivos bem como as dificuldades
 que podem existir.Aceita-se como sucesso da iteração código desenvolvido 
 apenas em spike solutions.
 
-Requisitos
-Dada um suporte para ler devem ser devolvidos os detalhes de todo o conteúdo 
-existente 
+<==== Documentos produzidos ===================================================>
+
+Spikes:
+	SKPCB09Tica	
+	SPKlerDados
+
+<==== Avaliação ===============================================================>
+[INCOMPLETO]

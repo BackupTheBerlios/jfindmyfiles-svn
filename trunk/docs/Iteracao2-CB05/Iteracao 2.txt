@@ -1,0 +1,41 @@
+[INCOMPLETO]
+<==== Objectivos ==============================================================>
+Determinar o modelo de dados e as funcionalidades base para a gestão e 
+organização da informação.
+Criar regras para a internacionalização da aplicação.
+
+
+[APENAS PARA ORIENTAÇÃO]
+- O programa tem de permitir criar catálogos, abrir catálogos, manter um registo 
+de catálogos recentes, fechar e guardar catálogos.
+- Os discos e pastas podem ser catalogados usando etiquetas, o sistema deve ser 
+independente das categorias e grupos de discos e permitir que o mesmo disco 
+tenha mais que uma categoria.
+[APENAS PARA ORIENTAÇÃO]
+
+<==== Documentos produzidos ===================================================>
+	Casos de Uso - Diagramas de casos de uso elaborados para esta iteração.	
+	DER.dia, DER.wmf - Diagrama entidade relacionamento que representa os dados
+	a guardar
+	
+	
+Spikes:
+	Prototipo - Protótipo de aplicação 
+
+
+<==== 
+Etiquetas e categorias não possuem diferenças práticas, catalogar por categorias 
+ou por etiquetas é a mesma situação, podemos considerar que categorias são um 
+caso especial de etiquetas. Nesse sentido será eliminada a organização por 
+categorias ficando apenas a organização por etiquetas.
+
+Um disco, elemento que pode ter associado vários ficheiros, corresponde a uma 
+drive ligada ao PC ou a uma localização na rede e pode conter ficheiros cujas 
+descrições serão importadas.
+Os discos podem ser agrupados em grupos de discos.
+
+Uma etiqueta é apenas um nome que representa uma forma de organizar determinado 
+disco ou grupo de discos.
+	
+<==== Avaliação ===============================================================>
+[INCOMPLETO]
