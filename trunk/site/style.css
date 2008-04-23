@@ -18,7 +18,7 @@ a:visited {
 
 #main_container {
 	width:720px;
-	border: #000000 1px solid;
+	/*border: #000000 1px solid;*/
 	margin: 0 auto;
 	background-color:#FEFEFE;
 }
@@ -70,6 +70,7 @@ p {
 	
 #content {
 	width:100%;
+	/*padding-left: 5px;*/
 }
 	
 #footer {
