@@ -1,4 +1,3 @@
-[INCOMPLETO]
 <==== Objectivos ==============================================================>
 Esta primeira iteração está condicionada por ter visto parte do seu tempo usado 
 para a reunião de planemento e pelo facto de ser o início de desenvolvimento 
@@ -7,14 +6,25 @@ adaptação.
 
 Para este iteração considera-se suficiente o desenvolvimento de código de teste
 para avaliar a capacidade de atingir os objectivos bem como as dificuldades 
-que podem existir.Aceita-se como sucesso da iteração código desenvolvido 
+que podem existir. Aceita-se como sucesso da iteração código desenvolvido 
 apenas em spike solutions.
 
-<==== Documentos produzidos ===================================================>
+Pretende-se conseguir ler o conteúdo de um dada pasta ou drive e obter algumas 
+informações básicas sobre os ficheiros existentes.
+Numa primeira fase não será necessário obter as informações de forma recursiva, 
+sendo que a leitura do primeiro nível de ficheiro é suficiente.
+Será necessário conseguir pelo menos obter as seguintes informações:
+	- lista de ficheiros existentes;
+	- tamanho dos ficheiros, incluíndo o tamanho das pastas existentes;
+	- datas de criação e modificção;
+	- atributos base de ficheiros;
+	- nomes e caminhos completos para os ficheiros.
 
+<==== Documentos produzidos ===================================================>
 Spikes:
-	SKPCB09Tica	
 	SPKlerDados
 
 <==== Avaliação ===============================================================>
-[INCOMPLETO]
+[INCOMPLETO: confirmar spikes usadas, colocar no servidor o código de spikes 
+em falta. Fazer avaliação e passar do papel para este ficheiro alguma 
+documentação perdida]

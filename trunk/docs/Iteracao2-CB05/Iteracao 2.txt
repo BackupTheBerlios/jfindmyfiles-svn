@@ -1,27 +1,35 @@
-[INCOMPLETO]
 <==== Objectivos ==============================================================>
 Determinar o modelo de dados e as funcionalidades base para a gestão e 
 organização da informação.
 Criar regras para a internacionalização da aplicação.
+Criar a estrutura da base de dados a usar e configurar um motor de bases de 
+dados para usar durante o processo de desenvolvimento.
+Desenvolver a interface com utilizador para garantir o acesso às 
+funcionalidades indicadas usando diagramas de casos de uso para documentar a 
+forma como a interface deverá ser desenvolvida.
 
-
-[APENAS PARA ORIENTAÇÃO]
-- O programa tem de permitir criar catálogos, abrir catálogos, manter um registo 
-de catálogos recentes, fechar e guardar catálogos.
-- Os discos e pastas podem ser catalogados usando etiquetas, o sistema deve ser 
-independente das categorias e grupos de discos e permitir que o mesmo disco 
-tenha mais que uma categoria.
-[APENAS PARA ORIENTAÇÃO]
+Será também incorporado o código da iteração anterior.
 
 <==== Documentos produzidos ===================================================>
-	Casos de Uso - Diagramas de casos de uso elaborados para esta iteração.	
-	DER.dia, DER.wmf - Diagrama entidade relacionamento que representa os dados
-	a guardar
-	
+Casos de Uso:
+	Diagrama 1 - Casos de uso referentes à iteração presente: catálogos e 
+		etiquetas;
+	Diagrama 2 - Casos de uso referentes à integração da iteração anterior: 
+		leitura de dados e obtenção de informação sobre ficheiros.
+	Diagrama 1.png e Diagrama 2.png - Ficheiros obtidos pela exportação dos 
+		diagramas correspondentes.
+
+Modelo de dados:
+	DER.dia - Diagrama Entidade Relacionamento em formato Dia;
+	DER.wmf - Imagem obtido por exportação do ficheiro DER.dia;
 	
 Spikes:
-	Prototipo - Protótipo de aplicação 
-
+	Prototipo - Protótipo de aplicação
+	? - Utilização de Hibernate para o mapeamento entre a estrutura da base de 
+		dados e os objectos usados.
+Outros documentos:
+	i18n.txt - Identificação do sistema usado para a internacionalização e das 
+		regras a seguir.
 
 <==== 
 Etiquetas e categorias não possuem diferenças práticas, catalogar por categorias 
@@ -32,10 +40,41 @@ categorias ficando apenas a organização por etiquetas.
 Um disco, elemento que pode ter associado vários ficheiros, corresponde a uma 
 drive ligada ao PC ou a uma localização na rede e pode conter ficheiros cujas 
 descrições serão importadas.
-Os discos podem ser agrupados em grupos de discos.
+Os discos podem ser agrupados em grupos de discos. Grupos de discos podem 
+conter outros grupos de discos.
 
 Uma etiqueta é apenas um nome que representa uma forma de organizar determinado 
 disco ou grupo de discos.
-	
+
+Qualquer catálogo possui pelo menos um grupo de discos com o nome atribuído ao 
+catálogo. Esse é o elemento raíz no qual todos os restantes elementos, sejam 
+outros grupos ou apenas discos, podem ser colocados.
+De um grupo de discos é necessário reter o nome, o número de discos associados, 
+a capacidade total oferecida pelos discos associados, o espaço livre total que 
+existe nos discos associados, o número total de pastas e de ficheiros, a lista 
+de etiquetas atribuídas a este grupo de discos e uma descrição para o grupo.
+De uma etiqueta importa guardar o nome.
+Os discos contêm a informação do nome atribuído ao volume pelo SO, o número 
+automático atribuído pelo programa, o tipo de suporte, se é DVD-ROM, CD-ROM, HDD, 
+etc., o número de série, um nome definido pelo utilizador, a localização física 
+do disco, as etiquetas a que pertence, o espaço livre e o espaço ocupado e uma 
+descrição.
+
+Os catálogos são guardados usando bases de dados relacionais, o nome do 
+catálogo é usado para o nome da base de dados.
+Será vantajoso usar uma tecnologia ORM para diminuir a distância entre os 
+objectos usados e a estrutura da base de dados bem como remover da equipa de 
+programadores as preocupações que o mapeamento entre objectos e tabelas 
+correspondentes impõe.
+Na criação de um novo catálogo será necessário pedir o nome a dar ao catálogo, 
+sendo que os dados de ligação à base de dados devem já estar preenchidos com 
+dados que tenham sido configurados anteriormente num painel de opções. No 
+entanto deverá ser possível alterar os mesmos dados.
+Para efectuar uma ligação à base de dados é necessário indicar o URL para a 
+ligação, o nome de utilizador e palavra-passe de acesso e o tipo de motor de 
+bases de dados a usar.
+
+Os casos de uso a desenvolver deverão ser baseados no protótico criado 
+anteriormente e na aplicação já existente, Where Is It.
+
 <==== Avaliação ===============================================================>
-[INCOMPLETO]

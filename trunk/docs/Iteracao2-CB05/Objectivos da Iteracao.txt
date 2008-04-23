@@ -1,9 +1,0 @@
-CB05: ST5, ST6, ST8
-- O programa tem de permitir criar catálogos, abrir catálogos, manter um registo 
-de catálogos recentes, fechar e guardar catálogos.
-- Os discos e pastas podem ser catalogados usando etiquetas, o sistema deve ser 
-independente das categorias e grupos de discos e permitir que o mesmo disco 
-tenha mais que uma categoria.
-- A aplicação deve permitir ser distribuida em mais que uma língua, deve ser 
-internacionalizável.
-<==============================================================================>
