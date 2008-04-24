@@ -18,6 +18,8 @@ Casos de Uso:
 		leitura de dados e obtenção de informação sobre ficheiros.
 	Diagrama 1.png e Diagrama 2.png - Ficheiros obtidos pela exportação dos 
 		diagramas correspondentes.
+	Report - Pasta com relatório de Casos de Uso onde se incluem a descrição 
+		dos casos e todas as informações que os caracterizam.
 
 Modelo de dados:
 	DER.dia - Diagrama Entidade Relacionamento em formato Dia;
@@ -76,5 +78,8 @@ bases de dados a usar.
 
 Os casos de uso a desenvolver deverão ser baseados no protótico criado 
 anteriormente e na aplicação já existente, Where Is It.
-
+O uso de casos de uso prende-se com o que estes podem oferecer como guias no 
+desenvolvimento, não serão consideradas descrições elaboradas dos casos de uso 
+e apenas serão valorizados os diagramas para que seja mais fácil manter um 
+registo das tarefas a executar.
 <==== Avaliação ===============================================================>

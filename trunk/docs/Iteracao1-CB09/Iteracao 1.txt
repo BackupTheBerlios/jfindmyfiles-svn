@@ -20,11 +20,14 @@ Será necessário conseguir pelo menos obter as seguintes informações:
 	- atributos base de ficheiros;
 	- nomes e caminhos completos para os ficheiros.
 
+Para comparar os dados lidos com os dados existentes actualmente numa pasta 
+serão simulados dados introduzidos manualmente para pastas de teste.
 <==== Documentos produzidos ===================================================>
 Spikes:
 	SPKlerDados
 
 <==== Avaliação ===============================================================>
+Embora se considere que a iteração foi bem sucessida
 [INCOMPLETO: confirmar spikes usadas, colocar no servidor o código de spikes 
 em falta. Fazer avaliação e passar do papel para este ficheiro alguma 
 documentação perdida]
