@@ -37,12 +37,7 @@ public class LerDados extends javax.swing.JFrame {
         setLocation((scrSize.width - mySize.width) / 2,
                 (scrSize.height - mySize.height) / 2);
     }
-    
-    private void test() {
-        for(java.io.File f : new java.io.File("").listFiles())
-            System.out.println();
-    }
-    
+       
     private long calculateSize(File f) {
         long s = 0L;
         if(f.isFile()) {
@@ -72,7 +67,6 @@ public class LerDados extends javax.swing.JFrame {
         aux.append("Pasta: " + (f.isDirectory() ? "Sim" : "Não") + "\n");
         String origemDetails = aux.toString();
         
-
         File[] list = f.listFiles();
         aux = new StringBuffer(list.length * 8);
         for (File r : list) {
