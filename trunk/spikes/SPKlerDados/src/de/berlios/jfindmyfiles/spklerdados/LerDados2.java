@@ -9,6 +9,7 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.io.File;
 import java.util.Hashtable;
+import java.util.Stack;
 import java.util.Vector;
 import javax.swing.JFileChooser;
 import javax.swing.UIManager;
@@ -36,36 +37,54 @@ public class LerDados2 extends javax.swing.JFrame {
         setLocation((scrSize.width - mySize.width) / 2,
                 (scrSize.height - mySize.height) / 2);
     }
+
+    private long iterativeCalc(File f) {
+        Stack<File> dados = new Stack<File>();
+        File f2;
+        long size = 0L;
+        dados.push(f);
+        while (!dados.empty()) {
+            f2 = dados.pop();
+            if (f2.isDirectory()) {
+                File[] list = f2.listFiles();
+                if (list != null) {
+                    for (int i = list.length; i-- > 0;) {
+                        if (list[i].isDirectory()) {
+                            dados.push(list[i]);
+                        } else {
+                            size += list[i].length();
+                        }
+                    }
+                }
+            }
+        }
+        return size;
+    }
+
     /**
-    long getSize(File f) {
-    //get the files in the directory
+    private long getSize(File f) {
     File inDir[] = f.litFiles();
-    //if inDir is null then it was a file
-    //so just return it's size
-    if (inDir == null)
+    if (inDir == null) {
     return f.getSize();
-    //go through each file calling this function to get it's size
-    //if it is a file it will only get as far as the above line and
-    //return it's size. If it is a directory it will run this loop
-    //to get the size of each file in that directory as well.
-    int size = 0;
-    for (int i = inDir.length; i-- > 0; )
+    }
+    long size = 0L;
+    for (int i = inDir.length; i-- > 0; ) {
     size += getSize(inDir[i]);
+     * }
     return size; 
     }
      */
+    /**Unusable code, makes little sense.
     private Hashtable<String, File> files;
-
     private void listAllFilesIntoHash(File f) {
-        if (f.isDirectory()) {
-            File[] some = f.listFiles();
-            for (int i = 0; i < some.length; i++) {
-                listAllFilesIntoHash(some[i]);
-            }
-        }
-        files.put(f.getParent(), f);
+    if (f.isDirectory()) {
+    File[] some = f.listFiles();
+    for (int i = 0; i < some.length; i++) {
+    listAllFilesIntoHash(some[i]);
     }
-
+    }
+    files.put(f.getParent(), f);
+    }*/
     private long calculateFolderSize(File f) {
         long s = 0L;
         if (f.isFile()) {
@@ -362,11 +381,12 @@ public class LerDados2 extends javax.swing.JFrame {
         JFileChooser jfc = new JFileChooser();
         jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            listAllFilesIntoHash(jfc.getSelectedFile());
+            //listAllFilesIntoHash(jfc.getSelectedFile());
+            jtaresults.setText(String.valueOf(iterativeCalc(jfc.getSelectedFile())));
         }
-        for(File f : files.values()) {
-            System.out.println(f.getAbsolutePath());
-        }
+    /*for(File f : files.values()) {
+    System.out.println(f.getAbsolutePath());
+    }*/
     }//GEN-LAST:event_jbtnSomethingActionPerformed
 
     /**
