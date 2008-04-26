@@ -18,16 +18,55 @@ Será necessário conseguir pelo menos obter as seguintes informações:
 	- tamanho dos ficheiros, incluíndo o tamanho das pastas existentes;
 	- datas de criação e modificção;
 	- atributos base de ficheiros;
-	- nomes e caminhos completos para os ficheiros.
+	- nomes e caminhos completos para os ficheiros;
+	- números identificadores dos suportes.
 
 Para comparar os dados lidos com os dados existentes actualmente numa pasta 
 serão simulados dados introduzidos manualmente para pastas de teste.
 <==== Documentos produzidos ===================================================>
 Spikes:
-	SPKlerDados
+	SPKlerDados - Contém as classes e métodos implementados para ler a estrutura 
+	de dados de um determinado suporte, listagem e escolha de drives de forma 
+	gráfica, bem como métodos de comparação de dados guardados com dados novos.
 
 <==== Avaliação ===============================================================>
-Embora se considere que a iteração foi bem sucessida
-[INCOMPLETO: confirmar spikes usadas, colocar no servidor o código de spikes 
-em falta. Fazer avaliação e passar do papel para este ficheiro alguma 
-documentação perdida]
+Embora se considere que a iteração foi bem sucessida foram detectadas várias 
+falhas no decorrer da iteração.
+Não existia conhecimento sobre a API, sobre as tecnologias de criação e 
+execução de testes de unidade e aceitação, necessários ao correcto implementar 
+do código. Dado que foram desenvolvidas em paralelo actividades de aprendizagem 
+e de aplicação dos conhecimentos adquiridos para desenvoler a iteração foi 
+verificado um atraso significativo que se propagará para a próxima iteração.
+
+No que toca a problemas detectados no desenvolvimento, os testes efectuados 
+verificaram que a linguagem usada não permite obter alguns dos dados, como 
+sejam os tempos de criação de ficheiros e números de identificação das drives.
+No primeiro caso, a data de criação dos ficheiros terá de ser algo que não será 
+guardado uma vez que nem todos os sistemas operativos mantêm essa informação no 
+ficheiro. O segundo caso poderá ser resolvido usando JNI caso se verifique 
+realmente necessário.
+
+Usar JNI obriga a criar código em linguagem C ou C++ que faça uso directo da 
+API do sistema operativo, o que implica a criação de tantas bibliotecas quantos 
+os sistemas operativos para nos quais a aplicação irá correr.
+Excepto os dados acima mencionados, foi possível obter todas as informações 
+indicadas nas user stories e consideradas relevantes pelos utilizadores.
+
+Na obtenção do tamanho de ficheiros foi detectado um contratempo: o tamanho de 
+uma pasta varia de sistema operativo para sistema operativo nunca sendo igual 
+ao tamanho de todo o seu conteúdo. Assim ao listar os ficheiros não se consegiu 
+obter de forma directa o tamanho de cada pasta.
+Como primeira abordagem foi desenvolvido um algoritmo recursivo que percorria 
+as pastas e ficheiros contidos e calculava assim o tamanho total existente na 
+pasta inicial. Além de não permitir de forma fácil obter o tamanho das pastas 
+contidas, apenas permitia obter o tamanho total da pasta raíz, este algoritmo 
+consumia demasiada memória, sendo recorrente a obtenção de excepções por falta 
+de memória durante a execução. Um pesquisa a uma pasta com pouco mais de uma 
+centena de ficheiros e pastas resultava no consumo total da memória disponível 
+por omissão à JVM(64MB), como se pode ver na imagem em anexo[TODO:INDICAR ANEXO]
+
+Foi desenvolvido um segundo algoritmo, desta vez iterativo, e recurrendo ao uso 
+de pilhas, que, mesmo na sua versão não optimizada, conseguia obter informações 
+em pastas com 43 mil ficheiros e mais de 4500 pastas.
+Este algoritmo permite também e de forma mais simples a obtenção de valores 
+intermédios para o tamanho de pastas contidas na pasta raíz.
