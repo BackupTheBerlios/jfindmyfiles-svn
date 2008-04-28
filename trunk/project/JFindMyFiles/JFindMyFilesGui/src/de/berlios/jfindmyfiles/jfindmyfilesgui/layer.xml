@@ -17,6 +17,9 @@
             </file>
         </folder>
     </folder>
+    <folder name="OptionsDialog">
+        <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-JfindmyfilesguiOptionsCategory.instance"/>
+    </folder>
     <folder name="Windows2">
         <folder name="Components">
             <file name="DetailsViewTopComponent.settings" url="DetailsViewTopComponentSettings.xml"/>
