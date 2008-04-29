@@ -1,5 +1,5 @@
 /*
- * AddNewDiscDialog.java
+ * NewCatalogDialog.java
  *
  * Created on 22 de Abril de 2008, 16:31
  */
@@ -10,10 +10,10 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui;
  *
  * @author  ei10635
  */
-public class AddNewDiscDialog extends javax.swing.JDialog {
+public class NewCatalogDialog extends javax.swing.JDialog {
     
-    /** Creates new form AddNewDiscDialog */
-    public AddNewDiscDialog(java.awt.Frame parent, boolean modal) {
+    /** Creates new form NewCatalogDialog */
+    public NewCatalogDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -47,11 +47,11 @@ public class AddNewDiscDialog extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(AddNewDiscDialog.class, "AddNewDiscDialog.jPanel1.border.title"))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jPanel1.border.title"))); // NOI18N
 
-        jLabel1.setText(org.openide.util.NbBundle.getMessage(AddNewDiscDialog.class, "AddNewDiscDialog.jLabel1.text")); // NOI18N
+        jLabel1.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jLabel1.text")); // NOI18N
 
-        jTextField1.setText(org.openide.util.NbBundle.getMessage(AddNewDiscDialog.class, "AddNewDiscDialog.jTextField1.text")); // NOI18N
+        jTextField1.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jTextField1.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -74,33 +74,33 @@ public class AddNewDiscDialog extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText(org.openide.util.NbBundle.getMessage(AddNewDiscDialog.class, "AddNewDiscDialog.jButton1.text")); // NOI18N
+        jButton1.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jButton1.text")); // NOI18N
 
-        jButton2.setText(org.openide.util.NbBundle.getMessage(AddNewDiscDialog.class, "AddNewDiscDialog.jButton2.text")); // NOI18N
+        jButton2.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jButton2.text")); // NOI18N
 
-        jButton3.setText(org.openide.util.NbBundle.getMessage(AddNewDiscDialog.class, "AddNewDiscDialog.jButton3.text")); // NOI18N
+        jButton3.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jButton3.text")); // NOI18N
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(AddNewDiscDialog.class, "AddNewDiscDialog.jPanel2.border.title"))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jPanel2.border.title"))); // NOI18N
 
-        jLabel2.setText(org.openide.util.NbBundle.getMessage(AddNewDiscDialog.class, "AddNewDiscDialog.jLabel2.text")); // NOI18N
+        jLabel2.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jLabel2.text")); // NOI18N
 
-        jTextField2.setText(org.openide.util.NbBundle.getMessage(AddNewDiscDialog.class, "AddNewDiscDialog.jTextField2.text")); // NOI18N
+        jTextField2.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jTextField2.text")); // NOI18N
 
-        jLabel3.setText(org.openide.util.NbBundle.getMessage(AddNewDiscDialog.class, "AddNewDiscDialog.jLabel3.text")); // NOI18N
+        jLabel3.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jLabel3.text")); // NOI18N
 
-        jTextField3.setText(org.openide.util.NbBundle.getMessage(AddNewDiscDialog.class, "AddNewDiscDialog.jTextField3.text")); // NOI18N
+        jTextField3.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jTextField3.text")); // NOI18N
 
-        jLabel4.setText(org.openide.util.NbBundle.getMessage(AddNewDiscDialog.class, "AddNewDiscDialog.jLabel4.text")); // NOI18N
+        jLabel4.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jLabel4.text")); // NOI18N
 
-        jFormattedTextField1.setText(org.openide.util.NbBundle.getMessage(AddNewDiscDialog.class, "AddNewDiscDialog.jFormattedTextField1.text")); // NOI18N
+        jFormattedTextField1.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jFormattedTextField1.text")); // NOI18N
 
-        jLabel5.setText(org.openide.util.NbBundle.getMessage(AddNewDiscDialog.class, "AddNewDiscDialog.jLabel5.text")); // NOI18N
+        jLabel5.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jLabel5.text")); // NOI18N
 
-        jLabel6.setText(org.openide.util.NbBundle.getMessage(AddNewDiscDialog.class, "AddNewDiscDialog.jLabel6.text")); // NOI18N
+        jLabel6.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jLabel6.text")); // NOI18N
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jPasswordField1.setText(org.openide.util.NbBundle.getMessage(AddNewDiscDialog.class, "AddNewDiscDialog.jPasswordField1.text")); // NOI18N
+        jPasswordField1.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jPasswordField1.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -194,7 +194,7 @@ public class AddNewDiscDialog extends javax.swing.JDialog {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AddNewDiscDialog dialog = new AddNewDiscDialog(new javax.swing.JFrame(), true);
+                NewCatalogDialog dialog = new NewCatalogDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     public void windowClosing(java.awt.event.WindowEvent e) {
                         System.exit(0);

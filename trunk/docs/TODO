@@ -4,3 +4,6 @@ Indicar na secção de controlo de versões que a metodologia usada anda de mãos
 dadas com um sistema de controlo de versões.
 - Na justificação da plataforma NB VS Eclipse RCP falta indicar o nome da revista.
 - Verificar o texto de avaliação de sistemas existentes.
+- Verificar suporte para UNC, Uniform Naming Convention 
+-> http://en.wikipedia.org/wiki/Path_%28computing%29#Uniform_Naming_Convention
+- Criar código para CRC
