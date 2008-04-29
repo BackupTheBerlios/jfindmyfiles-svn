@@ -2,12 +2,144 @@
 <!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.1//EN" "http://www.netbeans.org/dtds/filesystem-1_1.dtd">
 <filesystem>
     <folder name="Actions">
+        <folder name="Edit">
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDisk.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDiskGroup.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAssignDiskPicture.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionLendingDisks.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRenumberDisks.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionUpdateAllDisks.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionUpdateThisFolder.instance"/>
+        </folder>
+        <folder name="File">
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionClose.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionCloseAll.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionExport.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionImport.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionNewCatalog.instance"/>
+                <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpen.instance"/>
+        </folder>
+        <folder name="Search">
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionFindInThisDiskGroup.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionFindSelectFiles.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionSearchForItems.instance"/>
+        </folder>
+        <folder name="View">
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionCatalogsInfo.instance"/>
+        </folder>
         <folder name="Window">
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-DetailsViewAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-NavigationTreeAction.instance"/>
         </folder>
     </folder>
     <folder name="Menu">
+        <folder name="Edit">
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDisk.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDisk.instance"/>
+                <attr name="position" intvalue="800"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDiskGroup.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDiskGroup.instance"/>
+                <attr name="position" intvalue="850"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAssignDiskPicture.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAssignDiskPicture.instance"/>
+                <attr name="position" intvalue="1200"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionLendingDisks.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionLendingDisks.instance"/>
+                <attr name="position" intvalue="1425"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRenumberDisks.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRenumberDisks.instance"/>
+                <attr name="position" intvalue="1350"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionUpdateAllDisks.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionUpdateAllDisks.instance"/>
+                <attr name="position" intvalue="875"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionUpdateThisFolder.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionUpdateThisFolder.instance"/>
+                <attr name="position" intvalue="887"/>
+            </file>
+            <file name="org-netbeans-core-actions-JumpNextAction.shadow_hidden"/>
+            <file name="org-netbeans-core-actions-JumpPrevAction.shadow_hidden"/>
+            <file name="org-openide-actions-CopyAction.instance_hidden"/>
+            <file name="org-openide-actions-CutAction.instance_hidden"/>
+            <file name="org-openide-actions-DeleteAction.instance_hidden"/>
+            <file name="org-openide-actions-FindAction.instance_hidden"/>
+            <file name="org-openide-actions-PasteAction.instance_hidden"/>
+            <file name="org-openide-actions-RedoAction.instance_hidden"/>
+            <file name="org-openide-actions-ReplaceAction.instance_hidden"/>
+            <file name="org-openide-actions-UndoAction.instance_hidden"/>
+        </folder>
+        <folder name="File">
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionClose.shadow">
+                <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionClose.instance"/>
+                <attr name="position" intvalue="1850"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionCloseAll.shadow">
+                <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionCloseAll.instance"/>
+                <attr name="position" intvalue="1875"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionExport.shadow">
+                <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionExport.instance"/>
+                <attr name="position" intvalue="2375"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionImport.shadow">
+                <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionImport.instance"/>
+                <attr name="position" intvalue="2250"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionNewCatalog.shadow">
+                <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionNewCatalog.instance"/>
+                <attr name="position" intvalue="1300"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpen.shadow">
+                <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpen.instance"/>
+                <attr name="position" intvalue="1325"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-separatorAfter.instance">
+                <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                <attr name="position" intvalue="1350"/>
+            </file>
+        </folder>
+        <file name="GoTo_hidden"/>
+        <folder name="Search">
+            <attr name="SystemFileSystem.localizingBundle" stringvalue="org.netbeans.core.Bundle"/>
+            <attr name="position" intvalue="400"/>
+            <file name="SeparatorBeforeGoToLine.instance_hidden"/>
+            <file name="core-windows-SeparatorAfterRecentList.instance" url="core-windows-SeparatorAfterRecentList.instance">
+                <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                <attr name="position" intvalue="700"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionFindInThisDiskGroup.shadow">
+                <attr name="originalFile" stringvalue="Actions/Search/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionFindInThisDiskGroup.instance"/>
+                <attr name="position" intvalue="650"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionFindSelectFiles.shadow">
+                <attr name="originalFile" stringvalue="Actions/Search/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionFindSelectFiles.instance"/>
+                <attr name="position" intvalue="675"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionSearchForItems.shadow">
+                <attr name="originalFile" stringvalue="Actions/Search/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionSearchForItems.instance"/>
+                <attr name="position" intvalue="600"/>
+            </file>
+            <file name="org-netbeans-core-windows-actions-RecentViewListAction.shadow_hidden"/>
+            <file name="org-netbeans-modules-favorites-SelectInFavorites.shadow" url="org-netbeans-modules-favorites-SelectInFavorites.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/SelectDocumentNode/org-netbeans-modules-favorites-Select.instance"/>
+                <attr name="position" intvalue="2800"/>
+            </file>
+                <file name="org-openide-actions-GotoAction.shadow_hidden"/>
+        </folder>
+        <folder name="View">
+            <file name="Separator1.instance_hidden"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionCatalogsInfo.shadow">
+                <attr name="originalFile" stringvalue="Actions/View/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionCatalogsInfo.instance"/>
+                <attr name="position" intvalue="0"/>
+            </file>
+            <file name="org-netbeans-core-actions-HTMLViewAction.instance_hidden"/>
+            <file name="org-netbeans-core-actions-LogAction.instance_hidden"/>
+        </folder>
         <folder name="Window">
             <file name="DetailsViewAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-DetailsViewAction.instance"/>
@@ -19,6 +151,17 @@
     </folder>
     <folder name="OptionsDialog">
         <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-JfindmyfilesguiOptionsCategory.instance"/>
+    </folder>
+    <folder name="Shortcuts">
+        <file name="S-F.shadow">
+            <attr name="originalFile" stringvalue="Actions/Search/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionSearchForItems.instance"/>
+        </file>
+        <file name="S-N.shadow">
+            <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionNewCatalog.instance"/>
+        </file>
+            <file name="S-O.shadow">
+            <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpen.instance"/>
+        </file>
     </folder>
     <folder name="Windows2">
         <folder name="Components">
