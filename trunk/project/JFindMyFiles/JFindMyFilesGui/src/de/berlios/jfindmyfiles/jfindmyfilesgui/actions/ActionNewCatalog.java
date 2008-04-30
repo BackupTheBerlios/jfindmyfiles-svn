@@ -4,7 +4,7 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 
-import de.berlios.jfindmyfiles.jfindmyfilesgui.NewCatalogPanel;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.panels.NewCatalogPanel;
 import org.openide.DialogDescriptor;
 import org.openide.DialogDisplayer;
 import org.openide.util.HelpCtx;

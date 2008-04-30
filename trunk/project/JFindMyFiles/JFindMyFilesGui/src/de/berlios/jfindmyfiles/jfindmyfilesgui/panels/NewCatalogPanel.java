@@ -4,7 +4,7 @@
  * Created on 30 de Abril de 2008, 11:05
  */
 
-package de.berlios.jfindmyfiles.jfindmyfilesgui;
+package de.berlios.jfindmyfiles.jfindmyfilesgui.panels;
 
 /**
  *
@@ -40,11 +40,9 @@ public class NewCatalogPanel extends javax.swing.JPanel {
         jComboBox1 = new javax.swing.JComboBox();
         jPasswordField1 = new javax.swing.JPasswordField();
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Catálogo"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jPanel1.border.title"))); // NOI18N
 
         jLabel1.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jLabel1.text")); // NOI18N
-
-        jTextField1.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jTextField1.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -67,27 +65,19 @@ public class NewCatalogPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Servidor"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jPanel2.border.title"))); // NOI18N
 
         jLabel2.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jLabel2.text")); // NOI18N
 
-        jTextField2.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jTextField2.text")); // NOI18N
-
         jLabel3.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jLabel3.text")); // NOI18N
 
-        jTextField3.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jTextField3.text")); // NOI18N
-
         jLabel4.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jLabel4.text")); // NOI18N
-
-        jFormattedTextField1.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jFormattedTextField1.text")); // NOI18N
 
         jLabel5.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jLabel5.text")); // NOI18N
 
         jLabel6.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jLabel6.text")); // NOI18N
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jPasswordField1.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jPasswordField1.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

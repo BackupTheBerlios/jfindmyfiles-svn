@@ -3,7 +3,7 @@
  *
  * Created on 29 de Abril de 2008, 17:08
  */
-package de.berlios.jfindmyfiles.jfindmyfilesgui;
+package de.berlios.jfindmyfiles.jfindmyfilesgui.panels;
 
 import de.berlios.jfindmyfiles.catalog.model.CatalogEngine;
 import java.awt.event.ActionEvent;
@@ -67,8 +67,10 @@ public class NewDiskPanel extends javax.swing.JPanel {
     }
 
     private String[] listOpenCatalogs() {
-        List<String> opended = eng.openedCatalogs();
-        return opended.toArray(new String[opended.size()]);
+        /*List<String> opended = eng.openedCatalogs();
+        return opended.toArray(new String[opended.size()]);*/
+        //TODO: implement this
+        return new String[]{"A", "B"};
     }
 
     /** This method is called from within the constructor to
@@ -100,15 +102,11 @@ public class NewDiskPanel extends javax.swing.JPanel {
 
         jlblDiskNumber.setText(org.openide.util.NbBundle.getMessage(NewDiskPanel.class, "NewDiskPanel.jlblDiskNumber.text")); // NOI18N
 
-        jffDiskNumber.setText(org.openide.util.NbBundle.getMessage(NewDiskPanel.class, "NewDiskPanel.jffDiskNumber.text")); // NOI18N
-
         jlblDiskName.setText(org.openide.util.NbBundle.getMessage(NewDiskPanel.class, "NewDiskPanel.jlblDiskName.text")); // NOI18N
-
-        jtfDiskName.setText(org.openide.util.NbBundle.getMessage(NewDiskPanel.class, "NewDiskPanel.jtfDiskName.text")); // NOI18N
 
         jlblCatalog.setText(org.openide.util.NbBundle.getMessage(NewDiskPanel.class, "NewDiskPanel.jlblCatalog.text")); // NOI18N
 
-        jpScanningOptions.setBorder(javax.swing.BorderFactory.createTitledBorder("Options "));
+        jpScanningOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(NewDiskPanel.class, "NewDiskPanel.jpScanningOptions.border.title"))); // NOI18N
 
         jchkCalculateCRC.setText(org.openide.util.NbBundle.getMessage(NewDiskPanel.class, "NewDiskPanel.jchkCalculateCRC.text")); // NOI18N
 

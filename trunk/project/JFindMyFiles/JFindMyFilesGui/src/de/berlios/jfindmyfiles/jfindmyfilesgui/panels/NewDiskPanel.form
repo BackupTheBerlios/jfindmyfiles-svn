@@ -84,30 +84,20 @@
     <Component class="javax.swing.JLabel" name="jlblDiskNumber">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/Bundle.properties" key="NewDiskPanel.jlblDiskNumber.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/panels/Bundle.properties" key="NewDiskPanel.jlblDiskNumber.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JFormattedTextField" name="jffDiskNumber">
-      <Properties>
-        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/Bundle.properties" key="NewDiskPanel.jffDiskNumber.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-        </Property>
-      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jlblDiskName">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/Bundle.properties" key="NewDiskPanel.jlblDiskName.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/panels/Bundle.properties" key="NewDiskPanel.jlblDiskName.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfDiskName">
-      <Properties>
-        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/Bundle.properties" key="NewDiskPanel.jtfDiskName.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-        </Property>
-      </Properties>
     </Component>
     <Component class="javax.swing.JComboBox" name="jcbxCatalog">
       <Properties>
@@ -122,7 +112,7 @@
     <Component class="javax.swing.JLabel" name="jlblCatalog">
       <Properties>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/Bundle.properties" key="NewDiskPanel.jlblCatalog.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+          <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/panels/Bundle.properties" key="NewDiskPanel.jlblCatalog.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
     </Component>
@@ -130,7 +120,9 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="Options "/>
+            <TitledBorder title="Options ">
+              <ResourceString PropertyName="titleX" bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/panels/Bundle.properties" key="NewDiskPanel.jpScanningOptions.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+            </TitledBorder>
           </Border>
         </Property>
       </Properties>
@@ -173,28 +165,28 @@
         <Component class="javax.swing.JCheckBox" name="jchkCalculateCRC">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/Bundle.properties" key="NewDiskPanel.jchkCalculateCRC.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/panels/Bundle.properties" key="NewDiskPanel.jchkCalculateCRC.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jchkAskDescription">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/Bundle.properties" key="NewDiskPanel.jchkAskDescription.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/panels/Bundle.properties" key="NewDiskPanel.jchkAskDescription.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JCheckBox" name="jchkShowAgain">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/Bundle.properties" key="NewDiskPanel.jchkShowAgain.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/panels/Bundle.properties" key="NewDiskPanel.jchkShowAgain.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
             </Property>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jbtnSelectedPlugins">
           <Properties>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-              <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/Bundle.properties" key="NewDiskPanel.jbtnSelectedPlugins.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+              <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/panels/Bundle.properties" key="NewDiskPanel.jbtnSelectedPlugins.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
             </Property>
           </Properties>
         </Component>
