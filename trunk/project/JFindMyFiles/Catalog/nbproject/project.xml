@@ -6,7 +6,9 @@
             <code-name-base>de.berlios.jfindmyfiles.catalog</code-name-base>
             <suite-component/>
             <module-dependencies/>
-            <public-packages/>
+            <public-packages>
+                <package>de.berlios.jfindmyfiles.catalog.model</package>
+            </public-packages>
         </data>
     </configuration>
 </project>

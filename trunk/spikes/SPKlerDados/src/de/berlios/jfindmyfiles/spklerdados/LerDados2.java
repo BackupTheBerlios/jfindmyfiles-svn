@@ -12,6 +12,7 @@ import java.util.Hashtable;
 import java.util.Stack;
 import java.util.Vector;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
 /**
@@ -378,15 +379,19 @@ public class LerDados2 extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnCloseActionPerformed
 
     private void jbtnSomethingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSomethingActionPerformed
-        JFileChooser jfc = new JFileChooser();
+        /*JFileChooser jfc = new JFileChooser();
         jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             //listAllFilesIntoHash(jfc.getSelectedFile());
             jtaresults.setText(String.valueOf(iterativeCalc(jfc.getSelectedFile())));
-        }
+        }*/
     /*for(File f : files.values()) {
     System.out.println(f.getAbsolutePath());
+     * if(9
     }*/
+        
+        String mesg = (new File("C:\\").isDirectory()? "Sim" : "nao");
+        JOptionPane.showMessageDialog(this, mesg);
     }//GEN-LAST:event_jbtnSomethingActionPerformed
 
     /**

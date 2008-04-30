@@ -5,9 +5,12 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
+import de.berlios.jfindmyfiles.catalog.model.CatalogEngine;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileSystemView;
@@ -17,7 +20,9 @@ import javax.swing.filechooser.FileSystemView;
  * @author  ei10635
  */
 public class NewDiskPanel extends javax.swing.JPanel {
-
+    
+    private CatalogEngine eng;
+    
     /** Creates new form NewDiskPanel */
     public NewDiskPanel() {
         initComponents();
@@ -62,9 +67,8 @@ public class NewDiskPanel extends javax.swing.JPanel {
     }
 
     private String[] listOpenCatalogs() {
-        //TODO: get open catalog list and return a useful structure to be used 
-        //by a JComboBox
-        throw new UnsupportedOperationException("Not implemented yet");
+        List<String> opended = eng.openedCatalogs();
+        return opended.toArray(new String[opended.size()]);
     }
 
     /** This method is called from within the constructor to
@@ -82,7 +86,7 @@ public class NewDiskPanel extends javax.swing.JPanel {
         jffDiskNumber = new javax.swing.JFormattedTextField();
         jlblDiskName = new javax.swing.JLabel();
         jtfDiskName = new javax.swing.JTextField();
-        jcbxCatalog = new javax.swing.JComboBox();
+        jcbxCatalog = new JComboBox(listOpenCatalogs());
         jlblCatalog = new javax.swing.JLabel();
         jpScanningOptions = new javax.swing.JPanel();
         jchkCalculateCRC = new javax.swing.JCheckBox();
@@ -101,8 +105,6 @@ public class NewDiskPanel extends javax.swing.JPanel {
         jlblDiskName.setText(org.openide.util.NbBundle.getMessage(NewDiskPanel.class, "NewDiskPanel.jlblDiskName.text")); // NOI18N
 
         jtfDiskName.setText(org.openide.util.NbBundle.getMessage(NewDiskPanel.class, "NewDiskPanel.jtfDiskName.text")); // NOI18N
-
-        jcbxCatalog.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jlblCatalog.setText(org.openide.util.NbBundle.getMessage(NewDiskPanel.class, "NewDiskPanel.jlblCatalog.text")); // NOI18N
 

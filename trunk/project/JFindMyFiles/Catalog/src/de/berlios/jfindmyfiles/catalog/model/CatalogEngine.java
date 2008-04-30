@@ -5,6 +5,8 @@
 
 package de.berlios.jfindmyfiles.catalog.model;
 
+import java.util.List;
+
 /**
  *
  * @author ei10635
@@ -17,6 +19,7 @@ public class CatalogEngine {
         
     }
     
-    
-
+    public List<String> openedCatalogs() {
+        return null;
+    }
 }
