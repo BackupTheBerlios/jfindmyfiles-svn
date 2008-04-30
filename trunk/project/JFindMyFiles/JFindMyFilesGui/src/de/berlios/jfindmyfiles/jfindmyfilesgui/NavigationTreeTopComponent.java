@@ -7,6 +7,7 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
 import java.io.Serializable;
 import java.util.logging.Logger;
+import org.openide.explorer.ExplorerManager;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
@@ -15,7 +16,7 @@ import org.openide.windows.WindowManager;
 /**
  * Top component which displays something.
  */
-final class NavigationTreeTopComponent extends TopComponent {
+final class NavigationTreeTopComponent extends TopComponent implements ExplorerManager.Provider {
 
     private static NavigationTreeTopComponent instance;
     /** path to the icon used by the component and its open action */
@@ -115,5 +116,9 @@ final class NavigationTreeTopComponent extends TopComponent {
         public Object readResolve() {
             return NavigationTreeTopComponent.getDefault();
         }
+    }
+
+    public ExplorerManager getExplorerManager() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

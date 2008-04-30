@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+OpenIDE-Module: de.berlios.jfindmyfiles.exportengine
+OpenIDE-Module-Layer: de/berlios/jfindmyfiles/exportengine/layer.xml
+OpenIDE-Module-Localizing-Bundle: de/berlios/jfindmyfiles/exportengine/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
