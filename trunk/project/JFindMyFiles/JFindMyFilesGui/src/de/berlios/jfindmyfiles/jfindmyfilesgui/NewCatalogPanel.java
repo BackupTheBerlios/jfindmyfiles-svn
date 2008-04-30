@@ -1,7 +1,7 @@
 /*
- * NewCatalogDialog.java
+ * NewCatalogPanel.java
  *
- * Created on 22 de Abril de 2008, 16:31
+ * Created on 30 de Abril de 2008, 11:05
  */
 
 package de.berlios.jfindmyfiles.jfindmyfilesgui;
@@ -10,11 +10,10 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui;
  *
  * @author  ei10635
  */
-public class NewCatalogDialog extends javax.swing.JDialog {
+public class NewCatalogPanel extends javax.swing.JPanel {
     
-    /** Creates new form NewCatalogDialog */
-    public NewCatalogDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    /** Creates new form NewCatalogPanel */
+    public NewCatalogPanel() {
         initComponents();
     }
     
@@ -29,9 +28,6 @@ public class NewCatalogDialog extends javax.swing.JDialog {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jTextField2 = new javax.swing.JTextField();
@@ -44,14 +40,11 @@ public class NewCatalogDialog extends javax.swing.JDialog {
         jComboBox1 = new javax.swing.JComboBox();
         jPasswordField1 = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setResizable(false);
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Catálogo"));
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jPanel1.border.title"))); // NOI18N
+        jLabel1.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jLabel1.text")); // NOI18N
 
-        jLabel1.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jLabel1.text")); // NOI18N
-
-        jTextField1.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jTextField1.text")); // NOI18N
+        jTextField1.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jTextField1.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -74,33 +67,27 @@ public class NewCatalogDialog extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton1.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jButton1.text")); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Servidor"));
 
-        jButton2.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jButton2.text")); // NOI18N
+        jLabel2.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jLabel2.text")); // NOI18N
 
-        jButton3.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jButton3.text")); // NOI18N
+        jTextField2.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jTextField2.text")); // NOI18N
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jPanel2.border.title"))); // NOI18N
+        jLabel3.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jLabel3.text")); // NOI18N
 
-        jLabel2.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jLabel2.text")); // NOI18N
+        jTextField3.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jTextField3.text")); // NOI18N
 
-        jTextField2.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jTextField2.text")); // NOI18N
+        jLabel4.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jLabel4.text")); // NOI18N
 
-        jLabel3.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jLabel3.text")); // NOI18N
+        jFormattedTextField1.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jFormattedTextField1.text")); // NOI18N
 
-        jTextField3.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jTextField3.text")); // NOI18N
+        jLabel5.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jLabel5.text")); // NOI18N
 
-        jLabel4.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jLabel4.text")); // NOI18N
-
-        jFormattedTextField1.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jFormattedTextField1.text")); // NOI18N
-
-        jLabel5.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jLabel5.text")); // NOI18N
-
-        jLabel6.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jLabel6.text")); // NOI18N
+        jLabel6.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jLabel6.text")); // NOI18N
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jPasswordField1.setText(org.openide.util.NbBundle.getMessage(NewCatalogDialog.class, "NewCatalogDialog.jPasswordField1.text")); // NOI18N
+        jPasswordField1.setText(org.openide.util.NbBundle.getMessage(NewCatalogPanel.class, "NewCatalogPanel.jPasswordField1.text")); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -153,62 +140,29 @@ public class NewCatalogDialog extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                NewCatalogDialog dialog = new NewCatalogDialog(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JFormattedTextField jFormattedTextField1;
     private javax.swing.JLabel jLabel1;

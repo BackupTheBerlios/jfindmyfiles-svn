@@ -1,9 +1,8 @@
 /*
- * NewDiscJDialog.java
+ * NewDiskPanel.java
  *
- * Created on 29 de Abril de 2008, 14:18
+ * Created on 29 de Abril de 2008, 17:08
  */
-
 package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
 import java.awt.event.ActionEvent;
@@ -17,14 +16,13 @@ import javax.swing.filechooser.FileSystemView;
  *
  * @author  ei10635
  */
-public class NewDiscJDialog extends javax.swing.JDialog {
-    
-    /** Creates new form NewDiscJDialog */
-    public NewDiscJDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        initComponents();        
+public class NewDiskPanel extends javax.swing.JPanel {
+
+    /** Creates new form NewDiskPanel */
+    public NewDiskPanel() {
+        initComponents();
     }
-    
+
     /** Creates toggle buttons and adds them to the top panel. The buttons will 
      * have the icon given to the drive by the OS and the name provided by the 
      * absolute path.
@@ -35,11 +33,12 @@ public class NewDiscJDialog extends javax.swing.JDialog {
     private void createDriveButtons() {
         FileSystemView fsv = FileSystemView.getFileSystemView();
         File[] roots = File.listRoots();
-        
+
         JToggleButton toggle;
-        for(int i = 0; i < roots.length; i++) {      
+        for (int i = 0; i < roots.length; i++) {
             toggle = new JToggleButton(roots[i].getAbsolutePath(), fsv.getSystemIcon(roots[i]));
             toggle.setHorizontalTextPosition(SwingConstants.CENTER);
+            toggle.setVerticalTextPosition(SwingConstants.BOTTOM);
             toggle.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
@@ -49,25 +48,25 @@ public class NewDiscJDialog extends javax.swing.JDialog {
             jbtngrpDrives.add(toggle);
             jpButtons.add(toggle);
         }
-        
+
         jpButtons.validate();
     }
-    
+
     /** Provides the action for the toggle buttons with the drive names.
      * Gets the selected drive from the name of the selected button in the 
      * button group.
      */
-    private void toggleDriveAction() {     
+    private void toggleDriveAction() {
         //TODO: add suport for choosing the drive
         throw new UnsupportedOperationException("Not implemented yet");
     }
-    
+
     private String[] listOpenCatalogs() {
         //TODO: get open catalog list and return a useful structure to be used 
         //by a JComboBox
         throw new UnsupportedOperationException("Not implemented yet");
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -89,32 +88,33 @@ public class NewDiscJDialog extends javax.swing.JDialog {
         jchkCalculateCRC = new javax.swing.JCheckBox();
         jchkAskDescription = new javax.swing.JCheckBox();
         jchkShowAgain = new javax.swing.JCheckBox();
-        jbtnHelp = new javax.swing.JButton();
-        jbtnCancel = new javax.swing.JButton();
-        jbtnStart = new javax.swing.JButton();
         jbtnSelectedPlugins = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jpButtons.setPreferredSize(new java.awt.Dimension(10, 50));
+        jpButtons.setLayout(new javax.swing.BoxLayout(jpButtons, javax.swing.BoxLayout.LINE_AXIS));
 
-        jlblDiskNumber.setText(org.openide.util.NbBundle.getMessage(NewDiscJDialog.class, "NewDiscJDialog.jlblDiskNumber.text")); // NOI18N
+        jlblDiskNumber.setText(org.openide.util.NbBundle.getMessage(NewDiskPanel.class, "NewDiskPanel.jlblDiskNumber.text")); // NOI18N
 
-        jffDiskNumber.setText(org.openide.util.NbBundle.getMessage(NewDiscJDialog.class, "NewDiscJDialog.jffDiskNumber.text")); // NOI18N
+        jffDiskNumber.setText(org.openide.util.NbBundle.getMessage(NewDiskPanel.class, "NewDiskPanel.jffDiskNumber.text")); // NOI18N
 
-        jlblDiskName.setText(org.openide.util.NbBundle.getMessage(NewDiscJDialog.class, "NewDiscJDialog.jlblDiskName.text")); // NOI18N
+        jlblDiskName.setText(org.openide.util.NbBundle.getMessage(NewDiskPanel.class, "NewDiskPanel.jlblDiskName.text")); // NOI18N
 
-        jtfDiskName.setText(org.openide.util.NbBundle.getMessage(NewDiscJDialog.class, "NewDiscJDialog.jtfDiskName.text")); // NOI18N
+        jtfDiskName.setText(org.openide.util.NbBundle.getMessage(NewDiskPanel.class, "NewDiskPanel.jtfDiskName.text")); // NOI18N
 
         jcbxCatalog.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jlblCatalog.setText(org.openide.util.NbBundle.getMessage(NewDiscJDialog.class, "NewDiscJDialog.jlblCatalog.text")); // NOI18N
+        jlblCatalog.setText(org.openide.util.NbBundle.getMessage(NewDiskPanel.class, "NewDiskPanel.jlblCatalog.text")); // NOI18N
 
-        jpScanningOptions.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(NewDiscJDialog.class, "NewDiscJDialog.jpScanningOptions.border.title"))); // NOI18N
+        jpScanningOptions.setBorder(javax.swing.BorderFactory.createTitledBorder("Options "));
 
-        jchkCalculateCRC.setText(org.openide.util.NbBundle.getMessage(NewDiscJDialog.class, "NewDiscJDialog.jchkCalculateCRC.text")); // NOI18N
+        jchkCalculateCRC.setText(org.openide.util.NbBundle.getMessage(NewDiskPanel.class, "NewDiskPanel.jchkCalculateCRC.text")); // NOI18N
 
-        jchkAskDescription.setText(org.openide.util.NbBundle.getMessage(NewDiscJDialog.class, "NewDiscJDialog.jchkAskDescription.text")); // NOI18N
+        jchkAskDescription.setText(org.openide.util.NbBundle.getMessage(NewDiskPanel.class, "NewDiskPanel.jchkAskDescription.text")); // NOI18N
 
-        jchkShowAgain.setText(org.openide.util.NbBundle.getMessage(NewDiscJDialog.class, "NewDiscJDialog.jchkShowAgain.text")); // NOI18N
+        jchkShowAgain.setText(org.openide.util.NbBundle.getMessage(NewDiskPanel.class, "NewDiskPanel.jchkShowAgain.text")); // NOI18N
+
+        jbtnSelectedPlugins.setText(org.openide.util.NbBundle.getMessage(NewDiskPanel.class, "NewDiskPanel.jbtnSelectedPlugins.text")); // NOI18N
 
         javax.swing.GroupLayout jpScanningOptionsLayout = new javax.swing.GroupLayout(jpScanningOptions);
         jpScanningOptions.setLayout(jpScanningOptionsLayout);
@@ -125,93 +125,72 @@ public class NewDiscJDialog extends javax.swing.JDialog {
                 .addGroup(jpScanningOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jchkCalculateCRC)
                     .addComponent(jchkAskDescription)
-                    .addComponent(jchkShowAgain))
-                .addContainerGap(247, Short.MAX_VALUE))
+                    .addComponent(jchkShowAgain)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
+                    .addComponent(jbtnSelectedPlugins))
+                .addContainerGap())
         );
         jpScanningOptionsLayout.setVerticalGroup(
             jpScanningOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpScanningOptionsLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jchkCalculateCRC)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jchkAskDescription)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jchkShowAgain))
+                .addComponent(jchkShowAgain)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jbtnSelectedPlugins)
+                .addContainerGap())
         );
 
-        jbtnHelp.setText(org.openide.util.NbBundle.getMessage(NewDiscJDialog.class, "NewDiscJDialog.jbtnHelp.text")); // NOI18N
-
-        jbtnCancel.setText(org.openide.util.NbBundle.getMessage(NewDiscJDialog.class, "NewDiscJDialog.jbtnCancel.text")); // NOI18N
-
-        jbtnStart.setText(org.openide.util.NbBundle.getMessage(NewDiscJDialog.class, "NewDiscJDialog.jbtnStart.text")); // NOI18N
-
-        jbtnSelectedPlugins.setText(org.openide.util.NbBundle.getMessage(NewDiscJDialog.class, "NewDiscJDialog.jbtnSelectedPlugins.text")); // NOI18N
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpScanningOptions, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpButtons, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jpScanningOptions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpButtons, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 467, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jffDiskNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlblDiskNumber))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jtfDiskName, javax.swing.GroupLayout.DEFAULT_SIZE, 249, Short.MAX_VALUE)
-                            .addComponent(jlblDiskName))
+                            .addComponent(jlblDiskName)
+                            .addComponent(jtfDiskName, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlblCatalog)
-                            .addComponent(jcbxCatalog, 0, 135, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbtnSelectedPlugins)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, Short.MAX_VALUE)
-                        .addComponent(jbtnStart)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnCancel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnHelp)))
+                            .addComponent(jcbxCatalog, 0, 131, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jpButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jlblCatalog)
                     .addComponent(jlblDiskName)
-                    .addComponent(jlblDiskNumber))
+                    .addComponent(jlblDiskNumber)
+                    .addComponent(jlblCatalog))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jffDiskNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jtfDiskName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcbxCatalog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpScanningOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jbtnHelp)
-                    .addComponent(jbtnCancel)
-                    .addComponent(jbtnStart)
-                    .addComponent(jbtnSelectedPlugins))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addComponent(jpScanningOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
-        
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jbtnCancel;
-    private javax.swing.JButton jbtnHelp;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbtnSelectedPlugins;
-    private javax.swing.JButton jbtnStart;
     private javax.swing.ButtonGroup jbtngrpDrives;
     private javax.swing.JComboBox jcbxCatalog;
     private javax.swing.JCheckBox jchkAskDescription;
@@ -225,5 +204,4 @@ public class NewDiscJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jpScanningOptions;
     private javax.swing.JTextField jtfDiskName;
     // End of variables declaration//GEN-END:variables
-    
 }

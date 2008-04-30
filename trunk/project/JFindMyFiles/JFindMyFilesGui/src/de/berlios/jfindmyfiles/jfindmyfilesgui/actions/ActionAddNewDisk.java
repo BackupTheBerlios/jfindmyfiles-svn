@@ -4,6 +4,9 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 
+import de.berlios.jfindmyfiles.jfindmyfilesgui.NewDiskPanel;
+import org.openide.DialogDescriptor;
+import org.openide.DialogDisplayer;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
@@ -11,7 +14,10 @@ import org.openide.util.actions.CallableSystemAction;
 public final class ActionAddNewDisk extends CallableSystemAction {
 
     public void performAction() {
-    // TODO implement action body
+        //TODO: correctly implement action body
+        DialogDescriptor diagdisc = new DialogDescriptor(new NewDiskPanel(), "");
+        diagdisc.setModal(true);
+        DialogDisplayer.getDefault().notify(diagdisc);
     }
 
     public String getName() {

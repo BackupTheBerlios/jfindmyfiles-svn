@@ -275,6 +275,13 @@
             <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpen.instance"/>
         </file>
     </folder>
+    <folder name="Toolbars">
+        <folder name="Edit">
+            <file name="org-openide-actions-CopyAction.instance_hidden"/>
+            <file name="org-openide-actions-CutAction.instance_hidden"/>
+            <file name="org-openide-actions-PasteAction.instance_hidden"/>
+        </folder>
+    </folder>
     <folder name="Windows2">
         <folder name="Components">
             <file name="DetailsViewTopComponent.settings" url="DetailsViewTopComponentSettings.xml"/>
