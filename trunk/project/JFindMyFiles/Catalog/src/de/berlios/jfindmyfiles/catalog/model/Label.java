@@ -9,8 +9,8 @@ package de.berlios.jfindmyfiles.catalog.model;
  *
  * @author ei10635
  */
-public class GrupoDiscos {
+public class Label {
     
-    
+    private String name;
 
 }

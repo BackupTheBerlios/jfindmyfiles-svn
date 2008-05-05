@@ -6,21 +6,10 @@
 package de.berlios.jfindmyfiles.catalog;
 
 import de.berlios.jfindmyfiles.catalog.model.*;
-import java.util.List;
 
 /**
  *
  * @author ei10635
  */
 public class CatalogEngine {
-    
-    private CatalogInfo info;    
-    
-    public void addNewDisk(Suporte disk) {
-        
-    }
-    
-    public List<String> openedCatalogs() {
-        return null;
-    }
 }

@@ -5,15 +5,16 @@
 
 package de.berlios.jfindmyfiles.catalog.model;
 
-import java.awt.Image;
+import java.util.List;
 
 /**
  *
  * @author ei10635
  */
-public class Imagem {
+public class User {
     
-    private Long id;
-    private Image img;
+    private String firstname;
+    private String surname;
+    private List<Loan> loans;
 
 }

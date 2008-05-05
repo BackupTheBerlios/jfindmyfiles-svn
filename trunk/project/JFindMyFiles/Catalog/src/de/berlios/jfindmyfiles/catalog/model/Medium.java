@@ -9,9 +9,9 @@ package de.berlios.jfindmyfiles.catalog.model;
  *
  * @author ei10635
  */
-public class Som {
+public class Medium {
     
-    private Long id;
-    private byte[] sound;
+    private FileWrapper file;
+    private String description;
 
 }

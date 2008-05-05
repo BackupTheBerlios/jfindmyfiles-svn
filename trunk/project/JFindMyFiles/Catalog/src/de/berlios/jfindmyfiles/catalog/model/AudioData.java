@@ -3,12 +3,14 @@
  * and open the template in the editor.
  */
 
-package de.berlios.jfindmyfiles.catalog.model.dal;
+package de.berlios.jfindmyfiles.catalog.model;
 
 /**
  *
  * @author ei10635
  */
-public class SuporteDAL {
+public class AudioData {
+    
+    private FileWrapper owner;
 
 }

@@ -5,13 +5,17 @@
 
 package de.berlios.jfindmyfiles.catalog.model;
 
+import java.util.Date;
+
 /**
  *
  * @author ei10635
  */
-public class Etiqueta {
+public class Loan {
     
-    private Long id;
-    private String nome;
+    private Date loaned;
+    private Date returned;
+    private User loanee;
+    private Medium medium;
 
 }
