@@ -3,8 +3,9 @@
  * and open the template in the editor.
  */
 
-package de.berlios.jfindmyfiles.catalog.model;
+package de.berlios.jfindmyfiles.catalog;
 
+import de.berlios.jfindmyfiles.catalog.model.*;
 import java.util.List;
 
 /**

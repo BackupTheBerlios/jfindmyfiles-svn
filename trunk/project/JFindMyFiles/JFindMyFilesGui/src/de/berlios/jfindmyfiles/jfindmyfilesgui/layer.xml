@@ -259,7 +259,7 @@
         </folder>
     </folder>
     <folder name="OptionsDialog">
-        <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-JfindmyfilesguiOptionsCategory.instance"/>
+        <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-JFindMyFilesGuiNetWOptsCategory.instance"/>
     </folder>
     <folder name="Shortcuts">
         <file name="D-I.shadow">

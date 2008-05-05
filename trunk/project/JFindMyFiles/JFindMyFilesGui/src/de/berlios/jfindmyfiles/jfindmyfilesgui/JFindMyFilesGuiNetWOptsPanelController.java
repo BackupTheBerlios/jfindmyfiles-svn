@@ -11,9 +11,9 @@ import org.netbeans.spi.options.OptionsPanelController;
 import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
 
-final class JfindmyfilesguiOptionsPanelController extends OptionsPanelController {
+final class JFindMyFilesGuiNetWOptsPanelController extends OptionsPanelController {
 
-    private JfindmyfilesguiPanel panel;
+    private JFindMyFilesGuiNetWOptsPanel panel;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     private boolean changed;
 
@@ -55,9 +55,9 @@ final class JfindmyfilesguiOptionsPanelController extends OptionsPanelController
         pcs.removePropertyChangeListener(l);
     }
 
-    private JfindmyfilesguiPanel getPanel() {
+    private JFindMyFilesGuiNetWOptsPanel getPanel() {
         if (panel == null) {
-            panel = new JfindmyfilesguiPanel(this);
+            panel = new JFindMyFilesGuiNetWOptsPanel(this);
         }
         return panel;
     }
