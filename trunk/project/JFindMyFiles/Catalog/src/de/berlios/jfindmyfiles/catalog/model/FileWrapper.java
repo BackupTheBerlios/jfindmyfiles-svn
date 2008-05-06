@@ -13,6 +13,7 @@ import java.util.List;
  */
 public class FileWrapper {
     
+    private Long id;
     private Medium disk;
     private long size;
     private boolean file;
@@ -24,5 +25,109 @@ public class FileWrapper {
     private List<Label> label;
     private List<FileWrapper> children;
     private FileWrapper parent;
-    private String description;    
+    private String description;     
+
+    public String getAbsolutePath() {
+        return absolutePath;
+    }
+
+    public void setAbsolutePath(String absolutePath) {
+        this.absolutePath = absolutePath;
+    }
+
+    private List<FileWrapper> getChildren() {
+        return children;
+    }
+
+    private void setChildren(List<FileWrapper> children) {
+        this.children = children;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Medium getDisk() {
+        return disk;
+    }
+
+    public void setDisk(Medium disk) {
+        this.disk = disk;
+    }
+
+    public boolean isFile() {
+        return file;
+    }
+
+    public void setFile(boolean file) {
+        this.file = file;
+    }
+
+    public boolean isFolder() {
+        return folder;
+    }
+
+    public void setFolder(boolean folder) {
+        this.folder = folder;
+    }
+
+    public boolean isHidden() {
+        return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    private void setId(Long id) {
+        this.id = id;
+    }
+
+    private List<Label> getLabel() {
+        return label;
+    }
+
+    private void setLabel(List<Label> label) {
+        this.label = label;
+    }
+
+    public long getLastModified() {
+        return lastModified;
+    }
+
+    public void setLastModified(long lastModified) {
+        this.lastModified = lastModified;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public FileWrapper getParent() {
+        return parent;
+    }
+
+    public void setParent(FileWrapper parent) {
+        this.parent = parent;
+    }
+
+    public long getSize() {
+        return size;
+    }
+
+    public void setSize(long size) {
+        this.size = size;
+    }   
 }
