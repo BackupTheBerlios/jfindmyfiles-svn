@@ -18,6 +18,12 @@ public class NewCatalogDlg extends javax.swing.JDialog {
         initComponents();
     }
     
+    public void showCentered() {
+        setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
+                getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
+        setVisible(true);
+    }    
+    
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -176,24 +182,7 @@ public class NewCatalogDlg extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                NewCatalogDlg dialog = new NewCatalogDlg(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
-            }
-        });
-    }
-    
+        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

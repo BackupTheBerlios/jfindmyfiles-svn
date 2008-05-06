@@ -4,14 +4,20 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 
+import de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs.NewCatalogDlg;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
+import org.openide.windows.WindowManager;
 
 public final class ActionNewCatalog extends CallableSystemAction {
 
     public void performAction() {
-        //TODO: correctly implement action body
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new NewCatalogDlg(WindowManager.getDefault().getMainWindow(), true).showCentered();
+            }
+        });
     }
 
     public String getName() {

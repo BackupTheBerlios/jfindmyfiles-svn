@@ -13,6 +13,7 @@ import org.openide.util.Utilities;
 
 public final class JFindMyFilesGuiNetWOptsCategory extends OptionsCategory {
 
+    @Override
     public Icon getIcon() {
         return new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x32/options-server-config.png"));
     }

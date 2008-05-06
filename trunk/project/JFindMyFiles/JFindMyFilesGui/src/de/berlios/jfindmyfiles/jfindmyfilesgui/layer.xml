@@ -30,7 +30,7 @@
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionSearchForItems.instance"/>
         </folder>
         <folder name="View">
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionCatalogsInfo.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionCatalogProperties.instance"/>
         </folder>
         <folder name="Window">
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-DetailsViewAction.instance"/>
@@ -219,7 +219,7 @@
         <folder name="View">
             <file name="Separator1.instance_hidden"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionCatalogsInfo.shadow">
-                <attr name="originalFile" stringvalue="Actions/View/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionCatalogsInfo.instance"/>
+                <attr name="originalFile" stringvalue="Actions/View/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionCatalogProperties.instance"/>
                 <attr name="position" intvalue="0"/>
             </file>
             <file name="org-netbeans-core-actions-HTMLViewAction.instance_hidden"/>

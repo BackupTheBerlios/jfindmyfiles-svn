@@ -8,14 +8,14 @@ import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
 
-public final class ActionCatalogsInfo extends CallableSystemAction {
+public final class ActionCatalogProperties extends CallableSystemAction {
 
     public void performAction() {
     // TODO implement action body
     }
 
     public String getName() {
-        return NbBundle.getMessage(ActionCatalogsInfo.class, "CTL_ActionCatalogsInfo");
+        return NbBundle.getMessage(ActionCatalogProperties.class, "CTL_ActionCatalogProperties");
     }
 
     @Override
