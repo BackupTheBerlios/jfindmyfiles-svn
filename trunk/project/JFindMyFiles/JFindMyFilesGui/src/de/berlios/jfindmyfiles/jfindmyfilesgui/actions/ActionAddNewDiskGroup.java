@@ -4,6 +4,7 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
@@ -11,7 +12,8 @@ import org.openide.util.actions.CallableSystemAction;
 public final class ActionAddNewDiskGroup extends CallableSystemAction {
 
     public void performAction() {
-    // TODO implement action body
+        CatalogEngine engine = new CatalogEngine();
+        engine.runtest(true);
     }
 
     public String getName() {

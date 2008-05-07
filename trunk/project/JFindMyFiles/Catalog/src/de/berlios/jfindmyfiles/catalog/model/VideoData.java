@@ -12,6 +12,7 @@ public class VideoData {
 
     private Long id;
     private FileWrapper owner;
+    private byte[] data;
 
     public Long getId() {
         return id;
@@ -27,5 +28,13 @@ public class VideoData {
 
     public void setOwner(FileWrapper owner) {
         this.owner = owner;
+    }
+    
+    public byte[] getData() {
+        return data;
+    }
+    
+    public void setData(byte[] data) {
+        this.data = data;
     }
 }

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Medium.hbm.xml
+    Created on : 6 de Maio de 2008, 15:47
+    Author     : ei10635
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+'PUBLIC:-//Hibernate/Hibernate Mapping DTD 3.0//EN' 
+'http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd'>
+
+<hibernate-mapping>
+    <class name="de.berlios.jfindmyfiles.catalog.model.Medium" table="TBL_MEDIUM">
+        <id name="id" column="MEDIUM_ID">
+            <generator class="native"/>
+        </id>
+        <property name="file"/>
+        <property name="description"/>
+        
+    </class>
+</hibernate-mapping>

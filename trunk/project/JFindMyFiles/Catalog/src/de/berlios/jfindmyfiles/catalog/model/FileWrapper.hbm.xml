@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : FileWrapper.hbm.xml
+    Created on : 6 de Maio de 2008, 15:46
+    Author     : ei10635
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+'PUBLIC:-//Hibernate/Hibernate Mapping DTD 3.0//EN' 
+'http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd'>
+
+<hibernate-mapping>
+    <class name="de.berlios.jfindmyfiles.catalog.model.FileWrapper" table="TBL_FILE">
+        <id name="id" column="FILE_ID">
+            <generator class="native"/>
+        </id>
+        <property name="disk"/>
+        <property name="size"/>
+        <property name="file"/>
+        <property name="folder"/>
+        <property name="name"/>
+        <property name="absolutePath"/>
+        <property name="hidden"/>
+        <property name="lastModified"/>
+        <property name="labels"/>
+        <property name="children"/>
+        <property name="parent"/>
+        <property name="description"/>
+    </class>
+</hibernate-mapping>

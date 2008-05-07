@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Label.hbm.xml
+    Created on : 6 de Maio de 2008, 15:47
+    Author     : ei10635
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+    'PUBLIC:-//Hibernate/Hibernate Mapping DTD 3.0//EN' 
+    'http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd'>
+    
+<hibernate-mapping>
+    <class name="de.berlios.jfindmyfiles.catalog.model.Label" table="TBL_LABEL">
+        <id name="id" column="LABEL_ID">
+            <generator class="native"/>
+        </id>
+        <property name="name"/>
+    </class>
+</hibernate-mapping>

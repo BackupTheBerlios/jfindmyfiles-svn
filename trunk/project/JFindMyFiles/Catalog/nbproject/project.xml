@@ -7,7 +7,7 @@
             <suite-component/>
             <module-dependencies>
                 <dependency>
-                    <code-name-base>hibernate</code-name-base>
+                    <code-name-base>de.berlios.jfindmyfiles.persistence</code-name-base>
                     <build-prerequisite/>
                     <compile-dependency/>
                     <run-dependency>
@@ -16,6 +16,7 @@
                 </dependency>
             </module-dependencies>
             <public-packages>
+                <package>de.berlios.jfindmyfiles.catalog</package>
                 <package>de.berlios.jfindmyfiles.catalog.model</package>
             </public-packages>
         </data>

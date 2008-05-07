@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    Document   : Loan.hbm.xml
+    Created on : 6 de Maio de 2008, 15:47
+    Author     : ei10635
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-mapping PUBLIC 
+'PUBLIC:-//Hibernate/Hibernate Mapping DTD 3.0//EN' 
+'http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd'>
+
+<hibernate-mapping>
+    <class name="de.berlios.jfindmyfiles.catalog.model.Loan" table="TBL_LOAN">
+        <id name="id" column="LOAN_ID">
+            <generator class="native"/>
+        </id>
+        <property name="loaned"/>
+        <property name="returned"/>
+        <property name="loanee"/>
+        <property name="medium"/>
+    </class>
+</hibernate-mapping>

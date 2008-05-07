@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module: de.berlios.jfindmyfiles.jdbcdrivers
+OpenIDE-Module-Localizing-Bundle: de/berlios/jfindmyfiles/jdbcdrivers/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+

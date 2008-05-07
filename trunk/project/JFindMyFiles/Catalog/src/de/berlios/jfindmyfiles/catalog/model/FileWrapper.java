@@ -22,7 +22,7 @@ public class FileWrapper {
     private String absolutePath;
     private boolean hidden;
     private long lastModified;
-    private List<Label> label;
+    private List<Label> labels;
     private List<FileWrapper> children;
     private FileWrapper parent;
     private String description;     
@@ -92,11 +92,11 @@ public class FileWrapper {
     }
 
     private List<Label> getLabel() {
-        return label;
+        return labels;
     }
 
-    private void setLabel(List<Label> label) {
-        this.label = label;
+    private void setLabel(List<Label> labels) {
+        this.labels = labels;
     }
 
     public long getLastModified() {

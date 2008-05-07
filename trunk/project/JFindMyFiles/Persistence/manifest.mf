@@ -1,0 +1,5 @@
+Manifest-Version: 1.0
+OpenIDE-Module: de.berlios.jfindmyfiles.persistence
+OpenIDE-Module-Localizing-Bundle: de/berlios/jfindmyfiles/persistence/Bundle.properties
+OpenIDE-Module-Specification-Version: 1.0
+
