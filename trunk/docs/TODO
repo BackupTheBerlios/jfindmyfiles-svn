@@ -7,6 +7,7 @@ dadas com um sistema de controlo de versões.
 - Verificar suporte para UNC, Uniform Naming Convention 
 -> http://en.wikipedia.org/wiki/Path_%28computing%29#Uniform_Naming_Convention
 - Criar código para CRC
+- Configurar logger
 
 http://www.xylax.net/hibernate/onetomany.html
 http://www.hibernate.org/hib_docs/v3/reference/en/html_single/#mapping
