@@ -5,7 +5,7 @@
 
 package de.berlios.jfindmyfiles.catalog.entities;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -22,10 +22,12 @@ public class FileWrapper {
     private String absolutePath;
     private boolean hidden;
     private long lastModified;
-    private List<Label> labels;
-    private List<FileWrapper> children;
+    private Set children;
     private FileWrapper parent;
-    private String description;     
+    private String description;
+    private ImageData image;
+    private VideoData video;
+    private AudioData audio;
 
     public String getAbsolutePath() {
         return absolutePath;
@@ -34,12 +36,20 @@ public class FileWrapper {
     public void setAbsolutePath(String absolutePath) {
         this.absolutePath = absolutePath;
     }
+    
+    public AudioData getAudio() {
+        return audio;
+    }
+    
+    public void setAudio(AudioData audio) {
+        this.audio = audio;
+    }
 
-    private List<FileWrapper> getChildren() {
+    private Set getChildren() {
         return children;
     }
 
-    private void setChildren(List<FileWrapper> children) {
+    private void setChildren(Set children) {
         this.children = children;
     }
 
@@ -90,15 +100,15 @@ public class FileWrapper {
     private void setId(Long id) {
         this.id = id;
     }
-
-    private List<Label> getLabel() {
-        return labels;
+    
+    public ImageData getImage() {
+        return image;
     }
 
-    private void setLabel(List<Label> labels) {
-        this.labels = labels;
+    public void setImage(ImageData image) {
+        this.image = image;
     }
-
+    
     public long getLastModified() {
         return lastModified;
     }
@@ -129,5 +139,13 @@ public class FileWrapper {
 
     public void setSize(long size) {
         this.size = size;
-    }   
+    }
+    
+    public VideoData getVideo() {
+        return video;
+    }
+    
+    public void setVideo(VideoData video) {
+        this.video = video;
+    }
 }

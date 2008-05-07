@@ -16,6 +16,8 @@ public class Media {
     private Long id;
     private Set files;
     private String description;
+    private Set labels;
+    private Type type;
     
     public String getDescription() {
         return description;
@@ -39,6 +41,22 @@ public class Media {
 
     private void setId(Long id) {
         this.id = id;
+    }
+    
+    private Set getLabels() {
+        return labels;
+    }
+    
+    private void setLabels(Set labels) {
+        this.labels = labels;
+    }
+    
+    public Type getType() {
+        return type;
+    }
+    
+    public void setType(Type type) {
+        this.type = type;
     }
 
 }

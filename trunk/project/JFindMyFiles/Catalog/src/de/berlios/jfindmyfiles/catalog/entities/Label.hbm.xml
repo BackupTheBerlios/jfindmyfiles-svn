@@ -18,5 +18,9 @@
             <generator class="native"/>
         </id>
         <property name="name"/>
+        <set name="media" table="TBL_MEDIA_LABEL" inverse="true">
+            <key column="LABEL_ID"/>
+            <many-to-many column="MEDIA_ID" class="de.berlios.jfindmyfiles.catalog.entities.Media"/>
+        </set>
     </class>
 </hibernate-mapping>

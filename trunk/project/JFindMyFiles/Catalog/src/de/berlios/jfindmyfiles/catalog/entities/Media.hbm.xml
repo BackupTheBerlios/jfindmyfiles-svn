@@ -17,7 +17,16 @@
         <id name="id" column="MEDIA_ID">
             <generator class="native"/>
         </id>
+        
         <property name="description"/>
+        
+        <set name="labels" table="TBL_MEDIA_LABEL">
+            <key column="MEDIA_ID"/>
+            <many-to-many column="LABEL_ID" class="de.berlios.jfindmyfiles.catalog.entities.Label"/>
+        </set>
+        
+        <many-to-one name="type" class="de.berlios.jfindmyfiles.catalog.entities.Type" column="TYPE_ID" not-null="true"/>
+        
         <!-- TODO: other properties -->        
     </class>
 </hibernate-mapping>

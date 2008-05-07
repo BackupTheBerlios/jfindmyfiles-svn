@@ -17,7 +17,10 @@
         <id name="id" column="IMAGE_ID">
             <generator class="native"/>
         </id>
-        <!-- <property name="owner"/> -->
-        <property name="data"/>        
+
+        <property name="data"/>
+        
+        <many-to-one name="owner" column="FILE_ID" unique="true" not-null="true"/>
+
     </class>
 </hibernate-mapping>

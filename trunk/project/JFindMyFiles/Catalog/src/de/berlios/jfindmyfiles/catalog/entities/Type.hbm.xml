@@ -9,14 +9,21 @@
 -->
 
 <!DOCTYPE hibernate-mapping PUBLIC 
-    'PUBLIC:-//Hibernate/Hibernate Mapping DTD 3.0//EN' 
-    'http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd'>
+'PUBLIC:-//Hibernate/Hibernate Mapping DTD 3.0//EN' 
+'http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd'>
     
 <hibernate-mapping>
-    <class name="de.berlios.jfindmyfiles.catalog.entities.Type" table="TBL_MEDIUM_TYPE">
+    <class name="de.berlios.jfindmyfiles.catalog.entities.Type" table="TBL_TYPE">
         <id name="id" column="TYPE_ID">
             <generator class="native"/>
         </id>
+        
         <property name="name"/>
+        
+        <set name="media" table="TBL_MEDIA">
+            <key column="MEDIA_ID"/>
+            <one-to-many  class="de.berlios.jfindmyfiles.catalog.entities.Media"/>
+        </set>
+        
     </class>
 </hibernate-mapping>

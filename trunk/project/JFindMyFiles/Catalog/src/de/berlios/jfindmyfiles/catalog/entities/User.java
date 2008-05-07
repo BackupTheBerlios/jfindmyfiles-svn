@@ -34,11 +34,11 @@ public class User {
         this.id = id;
     }
 
-    private Set<Loan> getLoans() {
+    private Set getLoans() {
         return loans;
     }
 
-    private void setLoans(Set<Loan> loans) {
+    private void setLoans(Set loans) {
         this.loans = loans;
     }
 

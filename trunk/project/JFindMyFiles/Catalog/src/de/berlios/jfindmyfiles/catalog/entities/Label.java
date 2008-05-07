@@ -4,6 +4,8 @@
  */
 package de.berlios.jfindmyfiles.catalog.entities;
 
+import java.util.Set;
+
 /**
  *
  * @author ei10635
@@ -12,6 +14,7 @@ public class Label {
 
     private Long id;
     private String name;
+    private Set media;
 
     public Long getId() {
         return id;
@@ -19,6 +22,14 @@ public class Label {
 
     private void setId(Long id) {
         this.id = id;
+    }
+    
+    private Set getMedia() {
+        return media;
+    }
+    
+    private void setMedia(Set media) {
+        this.media = media;
     }
 
     public String getName() {

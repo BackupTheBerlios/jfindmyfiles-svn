@@ -4,7 +4,6 @@
  */
 package de.berlios.jfindmyfiles.catalog.entities;
 
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -16,8 +15,7 @@ public class DiskGroup {
     private Long id;
     private String name;
     private String description;
-    private Set<DiskGroup> groups;
-    private List<FileWrapper> files;
+    private Set groups;
     
     public String getDescription() {
         return description;
@@ -27,19 +25,11 @@ public class DiskGroup {
         this.description = description;
     }
 
-    private List<FileWrapper> getFiles() {
-        return files;
-    }
-
-    private void setFiles(List<FileWrapper> files) {
-        this.files = files;
-    }
-
-    private Set<DiskGroup> getGroups() {
+    private Set getGroups() {
         return groups;
     }
 
-    private void setGroups(Set<DiskGroup> groups) {
+    private void setGroups(Set groups) {
         this.groups = groups;
     }
 

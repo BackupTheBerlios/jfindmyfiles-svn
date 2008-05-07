@@ -17,7 +17,7 @@ public class Loan {
     private Date loaned;
     private Date returned;
     private User loanee;
-    private Media medium;
+    private Media media;
     
     public Long getId() {
         return id;
@@ -44,11 +44,11 @@ public class Loan {
     }
 
     public Media getMedium() {
-        return medium;
+        return media;
     }
 
-    public void setMedium(Media medium) {
-        this.medium = medium;
+    public void setMedium(Media media) {
+        this.media = media;
     }
 
     public Date getReturned() {

@@ -18,8 +18,8 @@
             <generator class="native"/>
         </id>
         <property name="name"/>
-        <!-- <property name="description"/>
-        <property name="groups"/>
-        <property name="files"/> -->
+        <property name="description"/>
+        
+        <!-- <property name="groups"/> mapeamento recursivo-->
     </class>
 </hibernate-mapping>
