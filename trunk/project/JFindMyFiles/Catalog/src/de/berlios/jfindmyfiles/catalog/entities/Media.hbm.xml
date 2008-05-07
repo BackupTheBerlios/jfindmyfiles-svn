@@ -13,12 +13,11 @@
 'http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd'>
 
 <hibernate-mapping>
-    <class name="de.berlios.jfindmyfiles.catalog.model.Medium" table="TBL_MEDIUM">
-        <id name="id" column="MEDIUM_ID">
+    <class name="de.berlios.jfindmyfiles.catalog.entities.Media" table="TBL_MEDIA">
+        <id name="id" column="MEDIA_ID">
             <generator class="native"/>
         </id>
-        <property name="file"/>
         <property name="description"/>
-        
+        <!-- TODO: other properties -->        
     </class>
 </hibernate-mapping>

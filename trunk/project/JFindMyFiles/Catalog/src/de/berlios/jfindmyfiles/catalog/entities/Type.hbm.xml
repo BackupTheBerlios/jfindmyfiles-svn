@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-    Document   : ImageData.hbm.xml
-    Created on : 6 de Maio de 2008, 15:46
+    Document   : Type.hbm.xml
+    Created on : 6 de Maio de 2008, 15:37
     Author     : ei10635
     Description:
         Purpose of the document follows.
@@ -13,11 +13,10 @@
     'http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd'>
     
 <hibernate-mapping>
-    <class name="de.berlios.jfindmyfiles.catalog.model.ImageData" table="TBL_IMAGE">
-        <id name="id" column="IMAGE_ID">
+    <class name="de.berlios.jfindmyfiles.catalog.entities.Type" table="TBL_MEDIUM_TYPE">
+        <id name="id" column="TYPE_ID">
             <generator class="native"/>
         </id>
-        <property name="owner"/>
-        <property name="data"/>        
+        <property name="name"/>
     </class>
 </hibernate-mapping>

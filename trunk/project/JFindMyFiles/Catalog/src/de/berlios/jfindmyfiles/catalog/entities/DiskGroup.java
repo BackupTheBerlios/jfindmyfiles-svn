@@ -2,9 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.berlios.jfindmyfiles.catalog.model;
+package de.berlios.jfindmyfiles.catalog.entities;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -15,7 +16,7 @@ public class DiskGroup {
     private Long id;
     private String name;
     private String description;
-    private List<DiskGroup> groups;
+    private Set<DiskGroup> groups;
     private List<FileWrapper> files;
     
     public String getDescription() {
@@ -34,11 +35,11 @@ public class DiskGroup {
         this.files = files;
     }
 
-    private List<DiskGroup> getGroups() {
+    private Set<DiskGroup> getGroups() {
         return groups;
     }
 
-    private void setGroups(List<DiskGroup> groups) {
+    private void setGroups(Set<DiskGroup> groups) {
         this.groups = groups;
     }
 

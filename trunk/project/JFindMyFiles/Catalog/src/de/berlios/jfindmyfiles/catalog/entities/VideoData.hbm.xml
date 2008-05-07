@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-    Document   : Type.hbm.xml
-    Created on : 6 de Maio de 2008, 15:37
+    Document   : VideoData.hbm.xml
+    Created on : 6 de Maio de 2008, 15:47
     Author     : ei10635
     Description:
         Purpose of the document follows.
@@ -13,10 +13,11 @@
     'http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd'>
     
 <hibernate-mapping>
-    <class name="de.berlios.jfindmyfiles.catalog.model.Type" table="TBL_MEDIUM_TYPE">
-        <id name="id" column="TYPE_ID">
+    <class name="de.berlios.jfindmyfiles.catalog.entities.VideoData" table="TBL_VIDEO">
+        <id name="id" column="VIDEO_ID">
             <generator class="native"/>
         </id>
-        <property name="name"/>
+        <!-- <property name="owner"/> -->
+        <property name="data"/>
     </class>
 </hibernate-mapping>

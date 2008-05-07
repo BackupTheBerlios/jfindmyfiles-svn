@@ -13,11 +13,11 @@
 'http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd'>
 
 <hibernate-mapping>
-    <class name="de.berlios.jfindmyfiles.catalog.model.FileWrapper" table="TBL_FILE">
+    <class name="de.berlios.jfindmyfiles.catalog.entities.FileWrapper" table="TBL_FILE">
         <id name="id" column="FILE_ID">
             <generator class="native"/>
         </id>
-        <property name="disk"/>
+        <!-- <property name="disk"/>
         <property name="size"/>
         <property name="file"/>
         <property name="folder"/>
@@ -28,6 +28,6 @@
         <property name="labels"/>
         <property name="children"/>
         <property name="parent"/>
-        <property name="description"/>
+        <property name="description"/> -->
     </class>
 </hibernate-mapping>

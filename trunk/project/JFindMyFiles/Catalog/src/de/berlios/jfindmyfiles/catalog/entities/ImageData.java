@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package de.berlios.jfindmyfiles.catalog.model;
+package de.berlios.jfindmyfiles.catalog.entities;
 
 /**
  *

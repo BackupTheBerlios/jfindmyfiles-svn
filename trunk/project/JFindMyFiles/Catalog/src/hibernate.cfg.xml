@@ -46,16 +46,16 @@
         <property name="hbm2ddl.auto">create</property>
 
         <!-- <mapping resource="events/Event.hbm.xml"/> -->
-        <mapping resource="de/berlios/jfindmyfiles/catalog/model/AudioData.hbm.xml"/>
-        <mapping resource="de/berlios/jfindmyfiles/catalog/model/DiskGroup.hbm.xml"/>
-        <mapping resource="de/berlios/jfindmyfiles/catalog/model/FileWrapper.hbm.xml"/>
-        <mapping resource="de/berlios/jfindmyfiles/catalog/model/ImageData.hbm.xml"/>
-        <mapping resource="de/berlios/jfindmyfiles/catalog/model/Label.hbm.xml"/>
-        <mapping resource="de/berlios/jfindmyfiles/catalog/model/Loan.hbm.xml"/>
-        <mapping resource="de/berlios/jfindmyfiles/catalog/model/Medium.hbm.xml"/>
-        <mapping resource="de/berlios/jfindmyfiles/catalog/model/Type.hbm.xml"/>
-        <mapping resource="de/berlios/jfindmyfiles/catalog/model/User.hbm.xml"/>
-        <mapping resource="de/berlios/jfindmyfiles/catalog/model/VideoData.hbm.xml"/>        
+        <!-- <mapping resource="de/berlios/jfindmyfiles/catalog/entities/AudioData.hbm.xml"/>
+        <mapping resource="de/berlios/jfindmyfiles/catalog/entities/DiskGroup.hbm.xml"/>
+        <mapping resource="de/berlios/jfindmyfiles/catalog/entities/FileWrapper.hbm.xml"/>
+        <mapping resource="de/berlios/jfindmyfiles/catalog/entities/ImageData.hbm.xml"/>
+        <mapping resource="de/berlios/jfindmyfiles/catalog/entities/Label.hbm.xml"/> -->
+        <mapping resource="de/berlios/jfindmyfiles/catalog/entities/Loan.hbm.xml"/>
+        <mapping resource="de/berlios/jfindmyfiles/catalog/entities/Media.hbm.xml"/>
+        <!-- <mapping resource="de/berlios/jfindmyfiles/catalog/entities/Type.hbm.xml"/> -->
+        <mapping resource="de/berlios/jfindmyfiles/catalog/entities/User.hbm.xml"/>
+        <!-- <mapping resource="de/berlios/jfindmyfiles/catalog/entities/VideoData.hbm.xml"/>    -->    
     </session-factory>
 
 </hibernate-configuration>

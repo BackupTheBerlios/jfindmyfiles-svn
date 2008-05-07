@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package de.berlios.jfindmyfiles.catalog.model;
+package de.berlios.jfindmyfiles.catalog.entities;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
 public class FileWrapper {
     
     private Long id;
-    private Medium disk;
+    private Media disk;
     private long size;
     private boolean file;
     private boolean folder;
@@ -51,11 +51,11 @@ public class FileWrapper {
         this.description = description;
     }
 
-    public Medium getDisk() {
+    public Media getDisk() {
         return disk;
     }
 
-    public void setDisk(Medium disk) {
+    public void setDisk(Media disk) {
         this.disk = disk;
     }
 

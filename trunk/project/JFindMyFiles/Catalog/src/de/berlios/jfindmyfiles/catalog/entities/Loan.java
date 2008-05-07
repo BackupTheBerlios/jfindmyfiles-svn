@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package de.berlios.jfindmyfiles.catalog.model;
+package de.berlios.jfindmyfiles.catalog.entities;
 
 import java.util.Date;
 
@@ -17,7 +17,7 @@ public class Loan {
     private Date loaned;
     private Date returned;
     private User loanee;
-    private Medium medium;
+    private Media medium;
     
     public Long getId() {
         return id;
@@ -43,11 +43,11 @@ public class Loan {
         this.loanee = loanee;
     }
 
-    public Medium getMedium() {
+    public Media getMedium() {
         return medium;
     }
 
-    public void setMedium(Medium medium) {
+    public void setMedium(Media medium) {
         this.medium = medium;
     }
 
@@ -57,6 +57,11 @@ public class Loan {
 
     public void setReturned(Date returned) {
         this.returned = returned;
+    }
+    
+    public boolean equals(Object obj) {
+        //TODO: implement equals into all objects
+        return false;
     }
 
 }

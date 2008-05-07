@@ -13,13 +13,13 @@
 'http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd'>
 
 <hibernate-mapping>
-    <class name="de.berlios.jfindmyfiles.catalog.model.DiskGroup" table="TBL_DISK_GROUP">
+    <class name="de.berlios.jfindmyfiles.catalog.entities.DiskGroup" table="TBL_DISK_GROUP">
         <id name="id" column="GROUP_ID">
             <generator class="native"/>
         </id>
         <property name="name"/>
-        <property name="description"/>
+        <!-- <property name="description"/>
         <property name="groups"/>
-        <property name="files"/>
+        <property name="files"/> -->
     </class>
 </hibernate-mapping>

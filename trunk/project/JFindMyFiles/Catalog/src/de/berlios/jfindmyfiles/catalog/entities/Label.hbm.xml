@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <!--
-    Document   : VideoData.hbm.xml
+    Document   : Label.hbm.xml
     Created on : 6 de Maio de 2008, 15:47
     Author     : ei10635
     Description:
@@ -13,11 +13,10 @@
     'http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd'>
     
 <hibernate-mapping>
-    <class name="de.berlios.jfindmyfiles.catalog.model.VideoData" table="TBL_VIDEO">
-        <id name="id" column="VIDEO_ID">
+    <class name="de.berlios.jfindmyfiles.catalog.entities.Label" table="TBL_LABEL">
+        <id name="id" column="LABEL_ID">
             <generator class="native"/>
         </id>
-        <property name="owner"/>
-        <property name="data"/>
+        <property name="name"/>
     </class>
 </hibernate-mapping>

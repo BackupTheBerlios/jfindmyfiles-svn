@@ -3,9 +3,9 @@
  * and open the template in the editor.
  */
 
-package de.berlios.jfindmyfiles.catalog.model;
+package de.berlios.jfindmyfiles.catalog.entities;
 
-import java.util.List;
+import java.util.Set;
 
 /**
  *
@@ -16,7 +16,7 @@ public class User {
     private Long id;
     private String firstname;
     private String surname;
-    private List<Loan> loans;
+    private Set loans;
 
     public String getFirstname() {
         return firstname;
@@ -34,11 +34,11 @@ public class User {
         this.id = id;
     }
 
-    private List<Loan> getLoans() {
+    private Set<Loan> getLoans() {
         return loans;
     }
 
-    private void setLoans(List<Loan> loans) {
+    private void setLoans(Set<Loan> loans) {
         this.loans = loans;
     }
 

@@ -2,23 +2,22 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
-package de.berlios.jfindmyfiles.catalog.model;
+package de.berlios.jfindmyfiles.catalog.entities;
 
 /**
  *
  * @author ei10635
  */
-public class Type {
+public class Label {
 
-    private long id;
+    private Long id;
     private String name;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    private void setId(long id) {
+    private void setId(Long id) {
         this.id = id;
     }
 
@@ -29,5 +28,8 @@ public class Type {
     public void setName(String name) {
         this.name = name;
     }
-
+    
+    public String toString() {
+        return id + " " + name;
+    }
 }

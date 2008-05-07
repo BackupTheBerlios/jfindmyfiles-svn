@@ -2,18 +2,19 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package de.berlios.jfindmyfiles.catalog.model;
+
+package de.berlios.jfindmyfiles.catalog.entities;
 
 /**
  *
  * @author ei10635
  */
-public class VideoData {
-
+public class AudioData {
+    
     private Long id;
     private FileWrapper owner;
     private byte[] data;
-
+    
     public Long getId() {
         return id;
     }
@@ -37,4 +38,5 @@ public class VideoData {
     public void setData(byte[] data) {
         this.data = data;
     }
+
 }

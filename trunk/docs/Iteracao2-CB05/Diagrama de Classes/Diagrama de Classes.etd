@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE XMI SYSTEM "C:\Documents and Settings\ei10635\.netbeans\6.0\.uml\config\UML_2.0EMBT.dtd"> --><XMI xmlns:UML="omg.org/UML/1.4" xmi.version="2.0"> <XMI.header> <XMI.metamodel xmi.name="UML" xmi.version="1.4"/> <XMI.documentation> <XMI.exporter> Embarcadero's Describe </XMI.exporter> <XMI.exporterVersion> 6.0 </XMI.exporterVersion> </XMI.documentation> </XMI.header> <XMI.content> <UML:Project xmi.id="DCE.EF72B0EA-755C-D925-ABD4-1472E2BF2F86" mode="Design" defaultLanguage="UML" projVersion="6.1.4.837" name="Diagrama de Classes"><UML:Element.ownedElement>
+
+<UML:Class xmi.id="DCE.20335DCB-2B81-B63D-F9D1-6ACA3E588014" name="Loan" owner="DCE.EF72B0EA-755C-D925-ABD4-1472E2BF2F86"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Class>
+<UML:Class xmi.id="DCE.21C435E2-58FD-2C08-57ED-752AEA37F848" name="Label" owner="DCE.EF72B0EA-755C-D925-ABD4-1472E2BF2F86"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Class>
+<UML:Class xmi.id="DCE.732EADE8-666B-2194-BD62-707D0FE746A5" name="FileWrapper" owner="DCE.EF72B0EA-755C-D925-ABD4-1472E2BF2F86"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Class>
+<UML:Class xmi.id="DCE.2A6211B0-FE3F-0126-B952-B7615612CB12" name="DiskGroup" owner="DCE.EF72B0EA-755C-D925-ABD4-1472E2BF2F86"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Class>
+<UML:Class xmi.id="DCE.5F7AA292-F194-81C2-4110-10D7DD253C72" name="ImageData" owner="DCE.EF72B0EA-755C-D925-ABD4-1472E2BF2F86"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Class>
+<UML:Class xmi.id="DCE.48F3150F-57D8-5A8D-317E-A1B7EE3F618B" name="user" owner="DCE.EF72B0EA-755C-D925-ABD4-1472E2BF2F86"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Class>
+<UML:Class xmi.id="DCE.046EB9B2-1ACF-A303-00A0-F32F15BB25B6" name="AudioData" owner="DCE.EF72B0EA-755C-D925-ABD4-1472E2BF2F86"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Class>
+<UML:Class xmi.id="DCE.5F94B700-AFC2-7F7C-1B24-8B223015B7E3" name="Media" owner="DCE.EF72B0EA-755C-D925-ABD4-1472E2BF2F86"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Class>
+<UML:Class xmi.id="DCE.FE598856-591C-0810-FE7D-D15E0FF66DE5" name="Type" owner="DCE.EF72B0EA-755C-D925-ABD4-1472E2BF2F86"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Class>
+<UML:Class xmi.id="DCE.80B6A4DC-A4A6-12D5-774B-6A5D0E178390" name="VideoData" owner="DCE.EF72B0EA-755C-D925-ABD4-1472E2BF2F86"><UML:Element.presentation>
+
+
+</UML:Element.presentation></UML:Class></UML:Element.ownedElement></UML:Project></XMI.content> </XMI>

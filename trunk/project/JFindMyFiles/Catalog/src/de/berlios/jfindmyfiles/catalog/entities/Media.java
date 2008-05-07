@@ -3,16 +3,18 @@
  * and open the template in the editor.
  */
 
-package de.berlios.jfindmyfiles.catalog.model;
+package de.berlios.jfindmyfiles.catalog.entities;
+
+import java.util.Set;
 
 /**
  *
  * @author ei10635
  */
-public class Medium {
+public class Media {
     
     private Long id;
-    private FileWrapper file;
+    private Set files;
     private String description;
     
     public String getDescription() {
@@ -23,12 +25,12 @@ public class Medium {
         this.description = description;
     }
 
-    public FileWrapper getFile() {
-        return file;
+    private Set getFiles() {
+        return files;
     }
 
-    public void setFile(FileWrapper file) {
-        this.file = file;
+    private void setFiles(Set files) {
+        this.files = files;
     }
 
     public Long getId() {
