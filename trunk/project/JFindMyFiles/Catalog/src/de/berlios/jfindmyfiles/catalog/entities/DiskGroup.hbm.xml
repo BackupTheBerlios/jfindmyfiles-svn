@@ -20,6 +20,12 @@
         <property name="name"/>
         <property name="description"/>
         
-        <!-- <property name="groups"/> mapeamento recursivo-->
+        <set name="groups" inverse="true" lazy="true">
+            <key column="PARENT_ID"/>
+            <one-to-many class="de.berlios.jfindmyfiles.catalog.entities.DiskGroup"/>
+        </set>
+
+        <many-to-one name="parent" column="PARENT_ID" class="de.berlios.jfindmyfiles.catalog.entities.DiskGroup"/>
+        
     </class>
 </hibernate-mapping>

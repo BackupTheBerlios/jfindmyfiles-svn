@@ -16,6 +16,7 @@ public class DiskGroup {
     private String name;
     private String description;
     private Set groups;
+    private DiskGroup parent;
     
     public String getDescription() {
         return description;
@@ -47,5 +48,13 @@ public class DiskGroup {
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public DiskGroup getParent() {
+        return parent;
+    }
+    
+    public void setParent(DiskGroup parent) {
+        this.parent = parent;
     }
 }

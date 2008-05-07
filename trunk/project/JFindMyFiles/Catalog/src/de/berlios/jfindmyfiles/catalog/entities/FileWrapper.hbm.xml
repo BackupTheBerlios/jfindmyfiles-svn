@@ -33,8 +33,13 @@
         <one-to-one name="video" class="de.berlios.jfindmyfiles.catalog.entities.VideoData" property-ref="owner"/>
         <one-to-one name="audio" class="de.berlios.jfindmyfiles.catalog.entities.AudioData" property-ref="owner"/>
                 
-        <!-- <property name="children"/> Mapeamento recursivo? -->
-        <!-- <property name="parent" /> Mapeamento recursivo? -->
+                
+        <set name="children" inverse="true" lazy="true">
+            <key column="PARENT_ID"/>
+            <one-to-many class="de.berlios.jfindmyfiles.catalog.entities.FileWrapper"/>
+        </set>
+
+        <many-to-one name="parent" column="PARENT_ID" class="de.berlios.jfindmyfiles.catalog.entities.FileWrapper"/>
         
     </class>
 </hibernate-mapping>
