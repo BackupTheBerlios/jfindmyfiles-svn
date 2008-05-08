@@ -14,6 +14,10 @@ public final class ActionAddNewDiskGroup extends CallableSystemAction {
     public void performAction() {
         CatalogEngine engine = new CatalogEngine();
         engine.runtest(true);
+        
+        for(Object u : engine.getUsers()) {
+            System.out.println(">>>>>>>>>>>>>>>>>>" + u);
+        }
     }
 
     public String getName() {

@@ -7,9 +7,8 @@ package de.berlios.jfindmyfiles.catalog;
 import de.berlios.jfindmyfiles.catalog.entities.*;
 import de.berlios.jfindmyfiles.catalog.utils.ConnectionManager;
 import java.io.File;
-import java.util.Set;
+import java.util.List;
 import java.util.Stack;
-import java.util.zip.CRC32;
 import org.hibernate.Session;
 
 /**
@@ -17,127 +16,148 @@ import org.hibernate.Session;
  * @author ei10635
  */
 public class CatalogEngine {
-    
-    private static int count = 0;
+
+    Session hSession;
+
+    public CatalogEngine() {
+        //hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+    }
 
     public void runtest(boolean store) {
-        Session session = ConnectionManager.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
+        hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+        hSession.beginTransaction();
 
-        Label l = new Label();
-        l.setName("uma label" + ++count);
-        session.save(l);
+        User u1 = new User();
+        u1.setFirstname("user");
+        u1.setSurname("1");
+        hSession.save(u1);
 
-        session.getTransaction().commit();
-        ConnectionManager.getSessionFactory().close();
+        User u2 = new User();
+        u2.setFirstname("user");
+        u2.setSurname("2");
+        hSession.save(u2);
+
+        User u3 = new User();
+        u3.setFirstname("user");
+        u3.setSurname("3");
+        hSession.save(u3);
+
+
+        User u4 = new User();
+        u4.setFirstname("user");
+        u4.setSurname("4");
+        hSession.save(u4);
+
+        User u5 = new User();
+        u5.setFirstname("user");
+        u5.setSurname("5");
+        hSession.save(u5);
+        hSession.getTransaction().commit();
     }
-    
-    public void addDiskGroup(String name, String description, DiskGroup parent) {      
+
+    public void addDiskGroup(String name, String description, DiskGroup parent) {
     }
-    
-    public void addLabel(String name) {        
+
+    public void addLabel(String name) {
     }
-    
-    public void removeLabel(Label label) {        
+
+    public void removeLabel(Label label) {
     }
-    
-    public void addUser(String firstname, String surname) {        
+
+    public void addUser(String firstname, String surname) {
     }
-    
-    public void removeUser(User user) {        
+
+    public void removeUser(User user) {
     }
-    
-    public Set getLabels() {
-        return null;
+
+    public List getLabels() {//TODO: validate session states
+        hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+        hSession.beginTransaction();
+        List rs = hSession.createQuery("from User").list();
+        hSession.getTransaction().commit();
+        return rs;
     }
-    
-    public Set getUsers() {
-        return null;
+
+    public List getUsers() {//TODO: validate session states
+        hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+        hSession.beginTransaction();
+        List rs = hSession.createQuery("from User").list();
+        hSession.getTransaction().commit();
+        return rs;
     }
-    
-    public Set getDiskGroups() {
-        return null;
+
+    public List getDiskGroups() {//TODO: validate session states
+        hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+        hSession.beginTransaction();
+        List rs = hSession.createQuery("from DiskGRoup").list();
+        hSession.getTransaction().commit();
+        return rs;
     }
-    
-    public void readDisk(File file) {
-    }
-    
-    private long calculateFileSize(File f) {
-        Stack<File> dados = new Stack<File>();
-        File temp;
-        long size = 0L;
-        dados.push(f);
-        while (!dados.empty()) {
-            temp = dados.pop();
-            if (temp.isDirectory()) {
-                File[] list = temp.listFiles();
-                if (list != null) {
-                    for (int i = list.length; i-- > 0;) {
-                        if (list[i].isDirectory()) {
-                            dados.push(list[i]);
-                        } else {
-                            size += list[i].length();
-                        }
+
+    public void readDisk(File file, Media container) {
+        Stack<File> directories = new Stack<File>();
+        File current, listing[];
+        long totalSize = 0L, childSize = 0L;
+        FileWrapper fw, child;
+        int z;
+
+        if (file.isDirectory()) {//NOTE: this protections may be dropped
+            fw = new FileWrapper(file.getName(),
+                    file.getAbsolutePath(), 0, file.isFile(), file.isHidden(),
+                    file.lastModified(), container, null);
+
+            if ((listing = file.listFiles()) != null) {
+                for (z = listing.length; z-- > 0;) {
+                    if (listing[z].isDirectory()) {
+                        directories.push(listing[z]);
+                    } else {
+                        totalSize += listing[z].length();
+                        fw.addChild(new FileWrapper(listing[z].getName(),
+                                listing[z].getAbsolutePath(),
+                                listing[z].length(), listing[z].isFile(),
+                                listing[z].isHidden(),
+                                listing[z].lastModified(), container, fw));
                     }
                 }
             }
-        }
-        return size;
-    }
-    /*    
-    private void pesquisar(String origem) {
-        File f = new File(origem);
-        long totalSize = 0L;
-        StringBuffer aux = new StringBuffer(700);
-        String tempo;
-        long tmp6 = 0L, tmp7 = 0L;
-        if (jchkListFirst.isSelected()) {
-            long tmp1 = System.currentTimeMillis();
-            totalSize = calculateFolderSizeListFirst(f);
-            long tmp2 = System.currentTimeMillis();
-            tempo = "Tempo 1: " + tmp1 + "/" + tmp2 + ": " + (tmp2 - tmp1);
-        } else {
-            long tmp1 = System.currentTimeMillis();
-            totalSize = calculateFolderSize(f);
-            long tmp2 = System.currentTimeMillis();
-            tempo = "Tempo 1: " + tmp1 + "/" + tmp2 + ": " + (tmp2 - tmp1);
-        }
 
+            while (!directories.empty()) {
+                current = directories.pop();
+                childSize = 0;
+                child = new FileWrapper(current.getName(),
+                        current.getAbsolutePath(), 0, current.isFile(),
+                        current.isHidden(), current.lastModified(),
+                        container, null);
 
-        aux.append("Nome: " + f.getName() + "\n");
-        aux.append("Caminho: " + f.getPath() + "\n");
-        aux.append("Caminho absoluto: " + f.getAbsolutePath() + "\n");
-        aux.append("Tamanho: " + totalSize + " bytes\n");
-        aux.append("Modificado em: " + f.lastModified() + "\n");
-        aux.append("--------------------------\n\n");
-
-        if (!jchkSizeOnly.isSelected()) {
-            Vector<File> list = new Vector<File>(100);
-
-            tmp6 = System.currentTimeMillis();
-            listAllFiles(f, list);
-            for (File f2 : list) {
-                aux.append("Nome: " + f2.getName() + "\n");
-                aux.append("Caminho: " + f2.getPath() + "\n");
-                aux.append("Caminho absoluto: " + f2.getAbsolutePath() + "\n");
-                if (!f2.isDirectory()) {
-                    aux.append("Tamanho: " + f2.length() + " bytes\n");
-                    aux.append("Extensão: " + findExtension(f2) + "\n");
+                if ((listing = current.listFiles()) != null) {
+                    for (z = listing.length; z-- > 0;) {
+                        if (listing[z].isDirectory()) {
+                            directories.push(listing[z]);
+                        } else {
+                            childSize += listing[z].length();
+                            child.addChild(new FileWrapper(listing[z].getName(),
+                                    listing[z].getAbsolutePath(),
+                                    listing[z].length(), listing[z].isFile(),
+                                    listing[z].isHidden(),
+                                    listing[z].lastModified(), container, fw));
+                        }
+                    }
                 }
-                aux.append("Modificado em: " + f2.lastModified() + "\n");
-                aux.append("Oculto: " + (f2.isHidden() ? "Sim" : "Não") + "\n");
-                aux.append("--------------------------\n\n");
+                child.setSize(childSize);
             }
-            tmp7 = System.currentTimeMillis();
+            fw.setSize(totalSize);
         }
-        aux.append("Tempos:\n");
-        aux.append(tempo + "\n");
-        aux.append("Tempo 2: " + tmp6 + "-" + tmp7 + ": " + (tmp7 - tmp6) + "\n");
+    }
 
-        //Get user info:
-        aux.append("Java: " + System.getProperty("java.vendor") + " " + System.getProperty("java.vm.name") + " " + System.getProperty("java.specification.version") + "(" + System.getProperty("java.version") + " " + System.getProperty("java.vm.version") + ")\n");
-        aux.append("SO: " + System.getProperty("os.name") + " " + System.getProperty("os.arch") + " " + System.getProperty("os.version") + "\n");
-        jtaresults.setText(aux.toString());
-
-    }*/    
+    /**
+     * In overriding the finalize method we try to garantee that data is 
+     * flushed and all resources are released.
+     */
+    @Override
+    public void finalize() {
+        if (hSession != null && hSession.isOpen()) {
+            //hSession.flush();hSession.clear();
+            hSession.close();
+        }
+    }
 }

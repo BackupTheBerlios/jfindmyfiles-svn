@@ -28,10 +28,10 @@ public class Reader {
         return reader;
     }
     
-    public List<Ficheiro> read(File parent) {
+    public List<File> read(File parent) {
         //TODO: correctly read folders and file info.
         Stack<File> dados = new Stack<File>();
-        ArrayList<Ficheiro> fileList = new ArrayList<Ficheiro>();
+        ArrayList<File> fileList = new ArrayList<File>();
         File f2 = parent;
         long size = 0L;
         do {
