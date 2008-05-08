@@ -29,11 +29,43 @@ public class CatalogEngine {
         ConnectionManager.getSessionFactory().close();
     }
     
+    public void addDiskGroup(String name, String description, DiskGroup parent) {
+        
+    }
+    
+    public void addLabel(String name) {
+        
+    }
+    
+    public void removeLabel(Long id) {
+        
+    }
+    
+    public void removeLabel(Label label) {
+        
+    }
+    
+    public void addUser(String firstname, String surname) {
+        
+    }
+    
+    public void removeUser(Long id) {
+        
+    }
+    
+    public void removeUser(User user) {
+        
+    }
+    
     public Set getLabels() {
         return null;
     }
     
     public Set getUsers() {
+        return null;
+    }
+    
+    public Set getDiskGroups() {
         return null;
     }
 }

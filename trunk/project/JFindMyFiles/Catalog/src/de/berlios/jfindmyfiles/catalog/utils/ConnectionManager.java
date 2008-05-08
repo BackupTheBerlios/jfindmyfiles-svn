@@ -20,7 +20,8 @@ public class ConnectionManager {
         try {
             // Create the SessionFactory from hibernate.cfg.xml
             //TODO: correctly define config file
-            sessionFactory = new Configuration().configure("de/berlios/jfindmyfiles/catalog/utils/hibernate.cfg.xml").buildSessionFactory();
+            //sessionFactory = new Configuration().configure("de/berlios/jfindmyfiles/catalog/utils/hibernate.mysql.cfg.xml").buildSessionFactory();
+            sessionFactory = new Configuration().configure("de/berlios/jfindmyfiles/catalog/utils/hibernate.hsqldb.cfg.xml").buildSessionFactory();
         } catch (Throwable ex) {
             // Make sure you log the exception, as it might be swallowed
             System.err.println("Initial SessionFactory creation failed." + ex);

@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!--
+    Document   : hibernate.cfg.xml
+    Created on : 6 de Maio de 2008, 15:55
+    Author     : ei10635
+    Description:
+        Purpose of the document follows.
+-->
+
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+
+    <session-factory>
+
+        <!-- Database connection settings -->       
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="connection.url">jdbc:mysql://67.207.139.234:3306/jfindmyfilesdb</property>
+        <property name="connection.username">jfindmyfilesuser</property>
+        <property name="connection.password">Jf1ndmYf1l3z!</property>
+
+        <!-- JDBC connection pool (use the built-in) -->
+        <property name="connection.pool_size">1</property>
+
+        <!-- SQL dialect -->
+        <property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+        <!-- Enable Hibernate's automatic session context management -->
+        <property name="current_session_context_class">thread</property>
+
+        <!-- Disable the second-level cache  -->
+        <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
+
+        <!-- Echo all executed SQL to stdout -->
+        <property name="show_sql">true</property>
+
+        <!-- Drop and re-create the database schema on startup -->
+        <property name="hbm2ddl.auto">create</property>
+
+        <mapping resource="de/berlios/jfindmyfiles/catalog/entities/AudioData.hbm.xml"/>
+        <mapping resource="de/berlios/jfindmyfiles/catalog/entities/DiskGroup.hbm.xml"/>
+        <mapping resource="de/berlios/jfindmyfiles/catalog/entities/FileWrapper.hbm.xml"/> 
+        <mapping resource="de/berlios/jfindmyfiles/catalog/entities/ImageData.hbm.xml"/>
+        <mapping resource="de/berlios/jfindmyfiles/catalog/entities/Label.hbm.xml"/>
+        <mapping resource="de/berlios/jfindmyfiles/catalog/entities/Loan.hbm.xml"/>
+        <mapping resource="de/berlios/jfindmyfiles/catalog/entities/Media.hbm.xml"/>
+        <mapping resource="de/berlios/jfindmyfiles/catalog/entities/Type.hbm.xml"/>
+        <mapping resource="de/berlios/jfindmyfiles/catalog/entities/User.hbm.xml"/>
+        <mapping resource="de/berlios/jfindmyfiles/catalog/entities/VideoData.hbm.xml"/>
+    </session-factory>
+
+</hibernate-configuration>
