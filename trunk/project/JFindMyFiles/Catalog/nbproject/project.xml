@@ -17,7 +17,7 @@
             </module-dependencies>
             <public-packages>
                 <package>de.berlios.jfindmyfiles.catalog</package>
-                <package>de.berlios.jfindmyfiles.catalog.model</package>
+                <package>de.berlios.jfindmyfiles.catalog.entities</package>
             </public-packages>
         </data>
     </configuration>

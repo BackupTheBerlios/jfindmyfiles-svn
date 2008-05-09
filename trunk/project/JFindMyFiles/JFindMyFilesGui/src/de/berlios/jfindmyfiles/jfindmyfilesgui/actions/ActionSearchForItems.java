@@ -4,14 +4,20 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 
+import de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs.SearchDlg;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
+import org.openide.windows.WindowManager;
 
 public final class ActionSearchForItems extends CallableSystemAction {
 
     public void performAction() {
-    // TODO implement action body
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new SearchDlg(WindowManager.getDefault().getMainWindow(), true).showCentered();
+            }
+        });
     }
 
     public String getName() {

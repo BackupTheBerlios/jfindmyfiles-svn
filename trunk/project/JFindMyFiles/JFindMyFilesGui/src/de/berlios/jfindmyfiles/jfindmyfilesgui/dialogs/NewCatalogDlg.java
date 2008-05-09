@@ -22,7 +22,31 @@ public class NewCatalogDlg extends javax.swing.JDialog {
         setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
                 getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
         setVisible(true);
-    }    
+    }
+    
+    /**
+     * Enables or disables the various components that refer to the remote 
+     * database's settings.
+     * 
+     * @param state true/false for activating and deactivating the components.
+     */
+    private void serverOptionsStateChanged(boolean state) {
+        jpDatabaseSettings.setEnabled(state);
+        //Labels
+        jlblDatabase.setEnabled(state);
+        jlblHostname.setEnabled(state);
+        jlblPassword.setEnabled(state);
+        jlblPassword.setEnabled(state);
+        jlblPort.setEnabled(state);
+        jlblUsername.setEnabled(state);
+        
+        //Inputs
+        jtfHostname.setEnabled(state);
+        jtfName.setEnabled(state);
+        jtfUsername.setEnabled(state);
+        jpfPassword.setEnabled(state);
+        jffPort.setEnabled(state);
+    }
     
     /** This method is called from within the constructor to
      * initialize the form.
@@ -46,7 +70,7 @@ public class NewCatalogDlg extends javax.swing.JDialog {
         jbtnHelp = new javax.swing.JButton();
         jbtnCancel = new javax.swing.JButton();
         jbtnCreate = new javax.swing.JButton();
-        jCheckBox1 = new javax.swing.JCheckBox();
+        jchkUserinternalDB = new javax.swing.JCheckBox();
         jtfName = new javax.swing.JTextField();
         jlblName = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -57,24 +81,39 @@ public class NewCatalogDlg extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jpDatabaseSettings.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.jpDatabaseSettings.border.title"))); // NOI18N
+        jpDatabaseSettings.setEnabled(false);
 
         jlblHostname.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.jlblHostname.text")); // NOI18N
+        jlblHostname.setEnabled(false);
+
+        jtfHostname.setAutoscrolls(false);
+        jtfHostname.setEnabled(false);
 
         jlblUsername.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.jlblUsername.text")); // NOI18N
+        jlblUsername.setEnabled(false);
+
+        jtfUsername.setEnabled(false);
 
         jlblPort.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.jlblPort.text")); // NOI18N
+        jlblPort.setEnabled(false);
 
         try {
             jffPort.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        jffPort.setEnabled(false);
 
         jlblPassword.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.jlblPassword.text")); // NOI18N
+        jlblPassword.setEnabled(false);
 
         jlblDatabase.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.jlblDatabase.text")); // NOI18N
+        jlblDatabase.setEnabled(false);
 
         jcbxDatabase.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Firebird", "PostgreSQL", "MsSQL", "MySQL" }));
+        jcbxDatabase.setEnabled(false);
+
+        jpfPassword.setEnabled(false);
 
         javax.swing.GroupLayout jpDatabaseSettingsLayout = new javax.swing.GroupLayout(jpDatabaseSettings);
         jpDatabaseSettings.setLayout(jpDatabaseSettingsLayout);
@@ -148,8 +187,13 @@ public class NewCatalogDlg extends javax.swing.JDialog {
             }
         });
 
-        jCheckBox1.setSelected(true);
-        jCheckBox1.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.jCheckBox1.text")); // NOI18N
+        jchkUserinternalDB.setSelected(true);
+        jchkUserinternalDB.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.jchkUserinternalDB.text")); // NOI18N
+        jchkUserinternalDB.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jchkUserinternalDBStateChanged(evt);
+            }
+        });
 
         jlblName.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.jlblName.text")); // NOI18N
 
@@ -171,7 +215,7 @@ public class NewCatalogDlg extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jtfName, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jCheckBox1)
+                        .addComponent(jchkUserinternalDB)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
@@ -201,7 +245,7 @@ public class NewCatalogDlg extends javax.swing.JDialog {
                     .addComponent(jtfName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jCheckBox1)
+                    .addComponent(jchkUserinternalDB)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -233,15 +277,19 @@ private void jbtnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_jbtnHelpActionPerformed
+
+private void jchkUserinternalDBStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jchkUserinternalDBStateChanged
+    serverOptionsStateChanged(!jchkUserinternalDB.isSelected());
+}//GEN-LAST:event_jchkUserinternalDBStateChanged
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbtnBrowse;
     private javax.swing.JButton jbtnCancel;
     private javax.swing.JButton jbtnCreate;
     private javax.swing.JButton jbtnHelp;
     private javax.swing.JComboBox jcbxDatabase;
+    private javax.swing.JCheckBox jchkUserinternalDB;
     private javax.swing.JFormattedTextField jffPort;
     private javax.swing.JLabel jlblDatabase;
     private javax.swing.JLabel jlblDestination;

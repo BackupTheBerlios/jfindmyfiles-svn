@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JPopupMenu;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileSystemView;
@@ -18,11 +20,12 @@ import javax.swing.filechooser.FileSystemView;
  * @author  ei10635
  */
 public class NewDiskDlg extends javax.swing.JDialog {
-    
+     
     /** Creates new form NewDiskDlg */
     public NewDiskDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+         //TODO: get the available plugins and create the popup menu
     }
     
     public void showCentered() {
@@ -86,6 +89,9 @@ public class NewDiskDlg extends javax.swing.JDialog {
     private void initComponents() {
 
         jbtngrpDrives = new javax.swing.ButtonGroup();
+        jpopPlugins = new javax.swing.JPopupMenu();
+        jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
+        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         jPanel1 = new javax.swing.JPanel();
         jpButtons = new javax.swing.JPanel();
         createDriveButtons();
@@ -104,6 +110,14 @@ public class NewDiskDlg extends javax.swing.JDialog {
         jbtnHelp = new javax.swing.JButton();
         jbtnCancel = new javax.swing.JButton();
         jbtnScan = new javax.swing.JButton();
+
+        jCheckBoxMenuItem2.setSelected(true);
+        jCheckBoxMenuItem2.setText(org.openide.util.NbBundle.getMessage(NewDiskDlg.class, "NewDiskDlg.jCheckBoxMenuItem2.text")); // NOI18N
+        jpopPlugins.add(jCheckBoxMenuItem2);
+
+        jCheckBoxMenuItem1.setSelected(true);
+        jCheckBoxMenuItem1.setText(org.openide.util.NbBundle.getMessage(NewDiskDlg.class, "NewDiskDlg.jCheckBoxMenuItem1.text")); // NOI18N
+        jpopPlugins.add(jCheckBoxMenuItem1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -126,7 +140,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
 
         jchkShowAgain.setText(org.openide.util.NbBundle.getMessage(NewDiskDlg.class, "NewDiskDlg.jchkShowAgain.text")); // NOI18N
 
-        jtbSelectedPlugins.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/show-plugins.png"))); // NOI18N
+        jtbSelectedPlugins.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/btn-show-plugins.png"))); // NOI18N
         jtbSelectedPlugins.setText(org.openide.util.NbBundle.getMessage(NewDiskDlg.class, "NewDiskDlg.jtbSelectedPlugins.text")); // NOI18N
         jtbSelectedPlugins.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jtbSelectedPlugins.addActionListener(new java.awt.event.ActionListener() {
@@ -204,7 +218,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
                     .addComponent(jtfDiskName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcbxCatalog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpScanningOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jpScanningOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jbtnHelp.setText(org.openide.util.NbBundle.getMessage(NewDiskDlg.class, "NewDiskDlg.jbtnHelp.text")); // NOI18N
@@ -262,6 +276,16 @@ public class NewDiskDlg extends javax.swing.JDialog {
 
 private void jtbSelectedPluginsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtbSelectedPluginsActionPerformed
     //TODO:
+    if(jtbSelectedPlugins.isSelected()) {
+    jpopPlugins.setLocation(getParent().getX() + this.getX() 
+            + jtbSelectedPlugins.getX() + jtbSelectedPlugins.getWidth(), 
+            getParent().getY() + this.getY()  + jtbSelectedPlugins.getY() 
+            + jtbSelectedPlugins.getHeight() + 48);
+    jpopPlugins.setVisible(true);
+    } else {
+        jpopPlugins.setVisible(false);
+    }
+    
 }//GEN-LAST:event_jtbSelectedPluginsActionPerformed
 
 private void jbtnScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnScanActionPerformed
@@ -269,14 +293,17 @@ private void jbtnScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jbtnScanActionPerformed
 
 private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
-// TODO add your handling code here:
+    jpopPlugins.setVisible(false);
+    dispose();
 }//GEN-LAST:event_jbtnCancelActionPerformed
 
 private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
-// TODO add your handling code here:
+// TODO: help code
 }//GEN-LAST:event_jbtnHelpActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
+    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbtnCancel;
@@ -293,6 +320,7 @@ private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JLabel jlblDiskNumber;
     private javax.swing.JPanel jpButtons;
     private javax.swing.JPanel jpScanningOptions;
+    private javax.swing.JPopupMenu jpopPlugins;
     private javax.swing.JToggleButton jtbSelectedPlugins;
     private javax.swing.JTextField jtfDiskName;
     // End of variables declaration//GEN-END:variables
