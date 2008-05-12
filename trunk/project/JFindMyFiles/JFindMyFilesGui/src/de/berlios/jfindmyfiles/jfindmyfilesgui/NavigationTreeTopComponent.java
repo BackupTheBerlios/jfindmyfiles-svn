@@ -19,6 +19,7 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
+import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.DiskNode;
 import java.awt.BorderLayout;
 import java.io.Serializable;
 import java.util.logging.Logger;
@@ -56,6 +57,7 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
         add(view, BorderLayout.CENTER);
         view.setRootVisible(true);
 
+        manager.setRootContext(new DiskNode());
         //Code from the feed reader example, needs to be rewritten
         /*try {
             //manager.setRootContext(new RssNode.RootRssNode());

@@ -1,3 +1,4 @@
+<?xml version='1.0' encoding='utf-8'?>
 <!--
  *  Copyright (C) 2008  Patrícia Monteiro e Sérgio Lopes
  *
@@ -17,17 +18,7 @@
  *  along with JFindMyFiles.  If not, see 
  * <http://www.gnu.org/licenses/gpl.html>.
  -->
-<?xml version='1.0' encoding='utf-8'?>
-
-<!--
-    Document   : hibernate.cfg.xml
-    Created on : 6 de Maio de 2008, 15:55
-    Author     : ei10635
-    Description:
-        Purpose of the document follows.
--->
-
-<!DOCTYPE hibernate-configuration PUBLIC
+ <!DOCTYPE hibernate-configuration PUBLIC
         "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
+/**
  *  Copyright (C) 2008  Patrícia Monteiro e Sérgio Lopes
  *
  *  This file is part of JFindMyFiles.
@@ -17,23 +16,21 @@
  *  You should have received a copy of the GNU General Public License
  *  along with JFindMyFiles.  If not, see 
  * <http://www.gnu.org/licenses/gpl.html>.
- -->
-<!DOCTYPE hibernate-mapping PUBLIC 
-'PUBLIC:-//Hibernate/Hibernate Mapping DTD 3.0//EN' 
-'http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd'>
+ */
 
-<hibernate-mapping>
-    <class name="de.berlios.jfindmyfiles.catalog.entities.User" table="TBL_USER">
-        <id name="id" column="USER_ID">
-            <generator class="native"/>
-        </id>
-        <property name="firstname"/>
-        <property name="surname"/>
-        <!-- <property name="loans" class=/> -->
-        
-        <set name="loans" table="TBL_LOAN">
-            <key column="LOAN_ID"/>
-            <one-to-many class="de.berlios.jfindmyfiles.catalog.entities.Loan"/>
-        </set>
-    </class>
-</hibernate-mapping>
+package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
+
+import org.openide.nodes.AbstractNode;
+import org.openide.nodes.Children;
+
+/**
+ *
+ * @author knitter
+ */
+public class DiskGroupNode extends AbstractNode {
+    
+    public DiskGroupNode() {
+        super(Children.LEAF);
+    }
+
+}
