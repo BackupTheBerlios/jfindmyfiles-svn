@@ -131,7 +131,7 @@
                       <Component id="jcbxCatalog" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jpScanningOptions" min="-2" max="-2" attributes="0"/>
+                  <Component id="jpScanningOptions" min="-2" pref="180" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>

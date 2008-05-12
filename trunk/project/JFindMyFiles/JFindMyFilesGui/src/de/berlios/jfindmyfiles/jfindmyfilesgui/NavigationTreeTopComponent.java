@@ -1,34 +1,71 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ *  Copyright (C) 2008  Patrícia Monteiro e Sérgio Lopes
+ *
+ *  This file is part of JFindMyFiles.
+ *
+ *  JFindMyFiles is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 2 of the License, or
+ *  (at your option) any later version.
+ *
+ *  JFindMyFiles is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with JFindMyFiles.  If not, see 
+ * <http://www.gnu.org/licenses/gpl.html>.
  */
-
 package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
+import java.awt.BorderLayout;
 import java.io.Serializable;
 import java.util.logging.Logger;
 import org.openide.explorer.ExplorerManager;
+import org.openide.explorer.view.BeanTreeView;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 //import org.openide.util.Utilities;
 
 /**
- * Top component which displays something.
+ * Top component which displays an explorer like tree with currently opened 
+ * catalogs and all stored information.
  */
 final class NavigationTreeTopComponent extends TopComponent implements ExplorerManager.Provider {
 
+    /* Components added to show nodes */
+    private final ExplorerManager manager = new ExplorerManager();
+    private final BeanTreeView view = new BeanTreeView();
     private static NavigationTreeTopComponent instance;
     /** path to the icon used by the component and its open action */
 //    static final String ICON_PATH = "SET/PATH/TO/ICON/HERE";
-
     private static final String PREFERRED_ID = "NavigationTreeTopComponent";
 
     private NavigationTreeTopComponent() {
-        initComponents();
+        //initComponents();
+        myInitComponents();
         setName(NbBundle.getMessage(NavigationTreeTopComponent.class, "CTL_NavigationTreeTopComponent"));
         setToolTipText(NbBundle.getMessage(NavigationTreeTopComponent.class, "HINT_NavigationTreeTopComponent"));
-//        setIcon(Utilities.loadImage(ICON_PATH, true));
+//        setIcon(Utilities.loadImage(ICON_PATH, true));   
+    }
+
+    private void myInitComponents() {
+        setLayout(new BorderLayout());
+        add(view, BorderLayout.CENTER);
+        view.setRootVisible(true);
+
+        //Code from the feed reader example, needs to be rewritten
+        /*try {
+            //manager.setRootContext(new RssNode.RootRssNode());
+        } catch (DataObjectNotFoundException ex) {
+            ErrorManager.getDefault().notify(ex);
+        }
+        
+        ActionMap map = getActionMap();
+        map.put("delete", ExplorerUtils.actionDelete(manager, true));
+        associateLookup(ExplorerUtils.createLookup(manager, map));*/
     }
 
     /** This method is called from within the constructor to
@@ -52,6 +89,7 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
     /**
      * Gets default instance. Do not use directly: reserved for *.settings files only,
      * i.e. deserialization routines; otherwise you could get a non-deserialized instance.
@@ -90,12 +128,12 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
 
     @Override
     public void componentOpened() {
-    // TODO add custom code on component opening
+        // TODO add custom code on component opening
     }
 
     @Override
     public void componentClosed() {
-    // TODO add custom code on component closing
+        // TODO add custom code on component closing
     }
 
     /** replaces this in object stream */
@@ -119,6 +157,6 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
     }
 
     public ExplorerManager getExplorerManager() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return manager;
     }
 }
