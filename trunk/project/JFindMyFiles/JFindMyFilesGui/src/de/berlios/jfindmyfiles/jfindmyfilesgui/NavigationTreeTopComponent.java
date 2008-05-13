@@ -28,6 +28,7 @@ import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.view.BeanTreeView;
 import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
+import org.openide.util.lookup.Lookups;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 //import org.openide.util.Utilities;
@@ -52,9 +53,8 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
         setName(NbBundle.getMessage(NavigationTreeTopComponent.class, "CTL_NavigationTreeTopComponent"));
         setToolTipText(NbBundle.getMessage(NavigationTreeTopComponent.class, "HINT_NavigationTreeTopComponent"));
 //        setIcon(Utilities.loadImage(ICON_PATH, true));
-        System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>FOUND:" + Lookup.getDefault().lookup(CatalogEngine.class));
-        System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        Lookup lu = Lookups.forPath("/CatalogEngine");
+        CatalogEngine en = lu.lookup(CatalogEngine.class);
     }
 
     private void myInitComponents() {
