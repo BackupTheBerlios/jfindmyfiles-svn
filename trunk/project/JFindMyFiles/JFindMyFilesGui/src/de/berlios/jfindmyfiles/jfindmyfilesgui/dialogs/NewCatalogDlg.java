@@ -20,10 +20,6 @@
 
 package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
-/**
- *
- * @author  ei10635
- */
 public class NewCatalogDlg extends javax.swing.JDialog {
     
     /** Creates new form NewCatalogDlg */
@@ -93,6 +89,7 @@ public class NewCatalogDlg extends javax.swing.JDialog {
         jtfDestination = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.title")); // NOI18N
 
         jpDatabaseSettings.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.jpDatabaseSettings.border.title"))); // NOI18N
         jpDatabaseSettings.setEnabled(false);
@@ -250,6 +247,9 @@ public class NewCatalogDlg extends javax.swing.JDialog {
                         .addComponent(jbtnHelp)))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jbtnCancel, jbtnCreate, jbtnHelp});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -285,11 +285,11 @@ private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_jbtnCancelActionPerformed
 
 private void jbtnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCreateActionPerformed
-// TODO add your handling code here:
+     //TODO:
 }//GEN-LAST:event_jbtnCreateActionPerformed
 
 private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
-// TODO add your handling code here:
+    //TODO:
 }//GEN-LAST:event_jbtnHelpActionPerformed
 
 private void jchkUserinternalDBStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jchkUserinternalDBStateChanged

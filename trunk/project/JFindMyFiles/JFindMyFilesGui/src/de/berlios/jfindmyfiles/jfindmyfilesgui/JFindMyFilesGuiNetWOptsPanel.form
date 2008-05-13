@@ -15,122 +15,13 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jlblDBPass" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlblDBUser" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlblAddress" alignment="0" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlblServerType" alignment="0" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="jtfAddress" pref="287" max="32767" attributes="0"/>
-                      <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
-                      <Component id="jlblDBPort" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jffDBPort" min="-2" pref="62" max="-2" attributes="0"/>
-                      <EmptySpace min="10" pref="10" max="10" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jtfDBUser" alignment="0" pref="165" max="32767" attributes="2"/>
-                          <Component id="jpfDbPass" alignment="0" pref="165" max="32767" attributes="2"/>
-                          <Component id="jcbxServerType" alignment="0" pref="165" max="32767" attributes="2"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="262" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-          </Group>
+          <EmptySpace min="0" pref="545" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jlblAddress" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jffDBPort" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jlblDBPort" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jtfAddress" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jlblDBUser" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jtfDBUser" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jlblDBPass" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jpfDbPass" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jlblServerType" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="jcbxServerType" alignment="3" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
+          <EmptySpace min="0" pref="197" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
-  <SubComponents>
-    <Component class="javax.swing.JLabel" name="jlblAddress">
-      <Properties>
-        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/Bundle.properties" key="JFindMyFilesGuiNetWOptsPanel.jlblAddress.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JTextField" name="jtfAddress">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlblDBPort">
-      <Properties>
-        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/Bundle.properties" key="JFindMyFilesGuiNetWOptsPanel.jlblDBPort.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JFormattedTextField" name="jffDBPort">
-    </Component>
-    <Component class="javax.swing.JTextField" name="jtfDBUser">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlblDBUser">
-      <Properties>
-        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/Bundle.properties" key="JFindMyFilesGuiNetWOptsPanel.jlblDBUser.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlblDBPass">
-      <Properties>
-        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/Bundle.properties" key="JFindMyFilesGuiNetWOptsPanel.jlblDBPass.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JPasswordField" name="jpfDbPass">
-    </Component>
-    <Component class="javax.swing.JLabel" name="jlblServerType">
-      <Properties>
-        <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
-          <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/Bundle.properties" key="JFindMyFilesGuiNetWOptsPanel.jlblServerType.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-        </Property>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JComboBox" name="jcbxServerType">
-      <Properties>
-        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="4">
-            <StringItem index="0" value="Item 1"/>
-            <StringItem index="1" value="Item 2"/>
-            <StringItem index="2" value="Item 3"/>
-            <StringItem index="3" value="Item 4"/>
-          </StringArray>
-        </Property>
-      </Properties>
-    </Component>
-  </SubComponents>
 </Form>

@@ -19,12 +19,14 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.DiskNode;
 import java.awt.BorderLayout;
 import java.io.Serializable;
 import java.util.logging.Logger;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.view.BeanTreeView;
+import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
@@ -49,7 +51,10 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
         myInitComponents();
         setName(NbBundle.getMessage(NavigationTreeTopComponent.class, "CTL_NavigationTreeTopComponent"));
         setToolTipText(NbBundle.getMessage(NavigationTreeTopComponent.class, "HINT_NavigationTreeTopComponent"));
-//        setIcon(Utilities.loadImage(ICON_PATH, true));   
+//        setIcon(Utilities.loadImage(ICON_PATH, true));
+        System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>FOUND:" + Lookup.getDefault().lookup(CatalogEngine.class));
+        System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
     }
 
     private void myInitComponents() {
@@ -58,16 +63,16 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
         view.setRootVisible(true);
 
         manager.setRootContext(new DiskNode());
-        //Code from the feed reader example, needs to be rewritten
+    //Code from the feed reader example, needs to be rewritten
         /*try {
-            //manager.setRootContext(new RssNode.RootRssNode());
-        } catch (DataObjectNotFoundException ex) {
-            ErrorManager.getDefault().notify(ex);
-        }
-        
-        ActionMap map = getActionMap();
-        map.put("delete", ExplorerUtils.actionDelete(manager, true));
-        associateLookup(ExplorerUtils.createLookup(manager, map));*/
+    //manager.setRootContext(new RssNode.RootRssNode());
+    } catch (DataObjectNotFoundException ex) {
+    ErrorManager.getDefault().notify(ex);
+    }
+    
+    ActionMap map = getActionMap();
+    map.put("delete", ExplorerUtils.actionDelete(manager, true));
+    associateLookup(ExplorerUtils.createLookup(manager, map));*/
     }
 
     /** This method is called from within the constructor to

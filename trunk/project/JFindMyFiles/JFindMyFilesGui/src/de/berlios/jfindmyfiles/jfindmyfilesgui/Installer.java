@@ -19,7 +19,9 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
+import javax.swing.JOptionPane;
 import org.openide.modules.ModuleInstall;
+import org.openide.windows.WindowManager;
 
 /**
  * Manages a module's lifecycle. Remember that an installer is optional and
@@ -29,13 +31,18 @@ public class Installer extends ModuleInstall {
 
     /*@Override
     public void restored() {
-        // By default, do nothing.
-        // Put your startup code here.
+    // By default, do nothing.
+    // Put your startup code here.
     }*/
-    
     @Override
     public boolean closing() {
-        //TODO: request user option if set in settings pane.
+        /*//TODO: add resource bundle call and show text. Maybe ask the user to 
+         * disable this option
+        return JOptionPane.OK_OPTION ==
+                JOptionPane.showConfirmDialog(
+                WindowManager.getDefault().getMainWindow(), "", "",
+                JOptionPane.YES_NO_CANCEL_OPTION);
+         */
         return super.closing();
     }
 }

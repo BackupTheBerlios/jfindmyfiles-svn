@@ -38,79 +38,15 @@ final class JFindMyFilesGuiNetWOptsPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jlblAddress = new javax.swing.JLabel();
-        jtfAddress = new javax.swing.JTextField();
-        jlblDBPort = new javax.swing.JLabel();
-        jffDBPort = new javax.swing.JFormattedTextField();
-        jtfDBUser = new javax.swing.JTextField();
-        jlblDBUser = new javax.swing.JLabel();
-        jlblDBPass = new javax.swing.JLabel();
-        jpfDbPass = new javax.swing.JPasswordField();
-        jlblServerType = new javax.swing.JLabel();
-        jcbxServerType = new javax.swing.JComboBox();
-
-        org.openide.awt.Mnemonics.setLocalizedText(jlblAddress, org.openide.util.NbBundle.getMessage(JFindMyFilesGuiNetWOptsPanel.class, "JFindMyFilesGuiNetWOptsPanel.jlblAddress.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(jlblDBPort, org.openide.util.NbBundle.getMessage(JFindMyFilesGuiNetWOptsPanel.class, "JFindMyFilesGuiNetWOptsPanel.jlblDBPort.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(jlblDBUser, org.openide.util.NbBundle.getMessage(JFindMyFilesGuiNetWOptsPanel.class, "JFindMyFilesGuiNetWOptsPanel.jlblDBUser.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(jlblDBPass, org.openide.util.NbBundle.getMessage(JFindMyFilesGuiNetWOptsPanel.class, "JFindMyFilesGuiNetWOptsPanel.jlblDBPass.text")); // NOI18N
-
-        org.openide.awt.Mnemonics.setLocalizedText(jlblServerType, org.openide.util.NbBundle.getMessage(JFindMyFilesGuiNetWOptsPanel.class, "JFindMyFilesGuiNetWOptsPanel.jlblServerType.text")); // NOI18N
-
-        jcbxServerType.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jlblDBPass)
-                    .add(jlblDBUser)
-                    .add(jlblAddress)
-                    .add(jlblServerType))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(layout.createSequentialGroup()
-                        .add(jtfAddress, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 287, Short.MAX_VALUE)
-                        .add(18, 18, 18)
-                        .add(jlblDBPort)
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jffDBPort, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 62, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                        .add(10, 10, 10))
-                    .add(layout.createSequentialGroup()
-                        .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, jtfDBUser, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, jpfDbPass, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE)
-                            .add(org.jdesktop.layout.GroupLayout.LEADING, jcbxServerType, 0, 149, Short.MAX_VALUE))
-                        .add(262, 262, 262)))
-                .addContainerGap())
+            .add(0, 545, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(layout.createSequentialGroup()
-                .addContainerGap()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jlblAddress)
-                    .add(jffDBPort, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jlblDBPort)
-                    .add(jtfAddress, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jlblDBUser)
-                    .add(jtfDBUser, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jlblDBPass)
-                    .add(jpfDbPass, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jlblServerType)
-                    .add(jcbxServerType, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .add(0, 197, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     void load() {
@@ -139,15 +75,5 @@ final class JFindMyFilesGuiNetWOptsPanel extends javax.swing.JPanel {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox jcbxServerType;
-    private javax.swing.JFormattedTextField jffDBPort;
-    private javax.swing.JLabel jlblAddress;
-    private javax.swing.JLabel jlblDBPass;
-    private javax.swing.JLabel jlblDBPort;
-    private javax.swing.JLabel jlblDBUser;
-    private javax.swing.JLabel jlblServerType;
-    private javax.swing.JPasswordField jpfDbPass;
-    private javax.swing.JTextField jtfAddress;
-    private javax.swing.JTextField jtfDBUser;
     // End of variables declaration//GEN-END:variables
 }

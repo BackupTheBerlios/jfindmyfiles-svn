@@ -131,7 +131,7 @@
                       <Component id="jcbxCatalog" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jpScanningOptions" min="-2" pref="180" max="-2" attributes="0"/>
+                  <Component id="jpScanningOptions" min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -255,9 +255,6 @@
             </Component>
             <Component class="javax.swing.JToggleButton" name="jtbSelectedPlugins">
               <Properties>
-                <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/btn-show-plugins.png"/>
-                </Property>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/dialogs/Bundle.properties" key="NewDiskDlg.jtbSelectedPlugins.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </Property>
@@ -266,6 +263,9 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jtbSelectedPluginsActionPerformed"/>
               </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_InitCodePre" type="java.lang.String" value="jtbSelectedPlugins.setIcon(new ImageIcon(Utilities.loadImage(&quot;/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/button-show-plugins.png&quot;)));"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

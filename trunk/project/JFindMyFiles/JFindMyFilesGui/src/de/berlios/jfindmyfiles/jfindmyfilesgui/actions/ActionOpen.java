@@ -19,14 +19,20 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 
+import de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs.OpenCatalogDlg;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
+import org.openide.windows.WindowManager;
 
 public final class ActionOpen extends CallableSystemAction {
 
     public void performAction() {
-    // TODO implement action body
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new OpenCatalogDlg(WindowManager.getDefault().getMainWindow(), true).showCentered();
+            }
+        });
     }
 
     public String getName() {
@@ -36,9 +42,12 @@ public final class ActionOpen extends CallableSystemAction {
     @Override
     protected void initialize() {
         super.initialize();
-        // see org.openide.util.actions.SystemAction.iconResource() Javadoc for more details
-        putValue("noIconInMenu", Boolean.TRUE);
     }
+    
+    @Override
+    protected String iconResource() {
+        return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/menu-open.png";
+    }    
 
     public HelpCtx getHelpCtx() {
         return HelpCtx.DEFAULT_HELP;

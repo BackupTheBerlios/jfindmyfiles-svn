@@ -42,8 +42,11 @@ public final class ActionExport extends CallableSystemAction {
     @Override
     protected void initialize() {
         super.initialize();
-        // see org.openide.util.actions.SystemAction.iconResource() Javadoc for more details
-        putValue("noIconInMenu", Boolean.TRUE);
+    }
+    
+    @Override
+    protected String iconResource() {
+        return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/menu-export.png";
     }
 
     public HelpCtx getHelpCtx() {

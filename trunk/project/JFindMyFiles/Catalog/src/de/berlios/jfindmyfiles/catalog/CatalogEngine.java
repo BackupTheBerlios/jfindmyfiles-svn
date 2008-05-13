@@ -38,7 +38,7 @@ public class CatalogEngine {
         //hSession = ConnectionManager.getSessionFactory().getCurrentSession();
     }
 
-    public void runtest(boolean store) {
+    public void runtest(boolean store) {//TODO: remove
         hSession = ConnectionManager.getSessionFactory().getCurrentSession();
         hSession.beginTransaction();
 
@@ -71,18 +71,57 @@ public class CatalogEngine {
     }
 
     public void addDiskGroup(String name, String description, DiskGroup parent) {
+        hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+        hSession.beginTransaction();
+        DiskGroup dg = new DiskGroup();
+        dg.setName(name);
+        dg.setDescription(description);
+        dg.setParent(parent);
+        hSession.save(dg);
+        hSession.getTransaction().commit();          
     }
 
     public void addLabel(String name) {
+        hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+        hSession.beginTransaction();
+        Label l = new Label();
+        l.setName(name);
+        hSession.save(l);
+        hSession.getTransaction().commit();        
     }
 
     public void removeLabel(Label label) {
+        hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+        hSession.beginTransaction();
+        List result = hSession.createQuery("from Label where id=" + label.getId()).list();
+        if(result.size() != 1) {
+            ;//TODO: show error, invalid state
+        }
+        Label rem = (Label)result.get(0);//TODO: verify this
+        hSession.delete(rem);
+        hSession.getTransaction().commit();          
     }
 
     public void addUser(String firstname, String surname) {
+        hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+        hSession.beginTransaction();
+        User u = new User();
+        u.setFirstname(firstname);
+        u.setSurname(surname);
+        hSession.save(u);
+        hSession.getTransaction().commit();          
     }
 
     public void removeUser(User user) {
+        hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+        hSession.beginTransaction();
+        List result = hSession.createQuery("from Label where id=" + user.getId()).list();
+        if(result.size() != 1) {
+            ;//TODO: show error, invalid state
+        }
+        User rem = (User)result.get(0);//TODO: verify this
+        hSession.delete(rem);
+        hSession.getTransaction().commit();        
     }
 
     public List getLabels() {//TODO: validate session states

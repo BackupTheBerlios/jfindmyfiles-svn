@@ -23,12 +23,14 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileSystemView;
+import org.openide.util.Utilities;
 /**
  *
  * @author  ei10635
@@ -154,7 +156,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
 
         jchkShowAgain.setText(org.openide.util.NbBundle.getMessage(NewDiskDlg.class, "NewDiskDlg.jchkShowAgain.text")); // NOI18N
 
-        jtbSelectedPlugins.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/btn-show-plugins.png"))); // NOI18N
+        jtbSelectedPlugins.setIcon(new ImageIcon(Utilities.loadImage("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/button-show-plugins.png")));
         jtbSelectedPlugins.setText(org.openide.util.NbBundle.getMessage(NewDiskDlg.class, "NewDiskDlg.jtbSelectedPlugins.text")); // NOI18N
         jtbSelectedPlugins.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jtbSelectedPlugins.addActionListener(new java.awt.event.ActionListener() {
