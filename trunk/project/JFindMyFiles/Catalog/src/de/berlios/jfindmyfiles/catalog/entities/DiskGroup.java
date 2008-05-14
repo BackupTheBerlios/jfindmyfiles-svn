@@ -116,7 +116,6 @@ public class DiskGroup {
 
     @Override
     public String toString() {
-        return super.toString() + " " + name + " " + description + " " +
-                parent.toString();
+        return name;
     }
 }

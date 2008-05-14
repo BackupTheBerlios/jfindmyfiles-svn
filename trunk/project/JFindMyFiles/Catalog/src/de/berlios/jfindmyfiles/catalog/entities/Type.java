@@ -92,7 +92,8 @@ public class Type {
         return hash;
     }
     
+    @Override
     public String toString() {
-        return super.toString() + " " + id + " " + name;
+        return name;
     }
 }

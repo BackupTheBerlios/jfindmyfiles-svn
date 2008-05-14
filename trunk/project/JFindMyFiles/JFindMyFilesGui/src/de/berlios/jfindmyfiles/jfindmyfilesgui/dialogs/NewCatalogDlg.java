@@ -20,11 +20,23 @@
 
 package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngine;
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import org.openide.util.Lookup;
+import org.openide.util.lookup.Lookups;
+
 public class NewCatalogDlg extends javax.swing.JDialog {
+    
+    private CatalogEngine eng;
+    private NewCatalogDlg me = this;
     
     /** Creates new form NewCatalogDlg */
     public NewCatalogDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        Lookup lu = Lookups.forPath("/CatalogEngine"); // NOI18N
+        eng = lu.lookup(CatalogEngine.class);        
         initComponents();
     }
     
@@ -211,6 +223,11 @@ public class NewCatalogDlg extends javax.swing.JDialog {
         jlblDestination.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.jlblDestination.text")); // NOI18N
 
         jbtnBrowse.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.jbtnBrowse.text")); // NOI18N
+        jbtnBrowse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnBrowseActionPerformed(evt);
+            }
+        });
 
         jtfDestination.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.jtfDestination.text")); // NOI18N
 
@@ -280,12 +297,20 @@ public class NewCatalogDlg extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
-    //TODO: clear fields
     dispose();
 }//GEN-LAST:event_jbtnCancelActionPerformed
 
 private void jbtnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCreateActionPerformed
-     //TODO:
+     if(eng != null) {
+         if(jchkUserinternalDB.isSelected()) {
+            eng.newCatalog(jtfName.getText().trim(), 
+                    jtfDestination.getText().trim());
+         } else {
+             eng.newCatalog(jtfName.getText().trim(), 
+                     jtfHostname.getText().trim(), jffPort.getText().trim(), 
+                     0, jtfUsername.getText().trim(), jpfPassword.getPassword().toString());
+         }         
+     }
 }//GEN-LAST:event_jbtnCreateActionPerformed
 
 private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
@@ -295,6 +320,17 @@ private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 private void jchkUserinternalDBStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jchkUserinternalDBStateChanged
     serverOptionsStateChanged(!jchkUserinternalDB.isSelected());
 }//GEN-LAST:event_jchkUserinternalDBStateChanged
+
+private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBrowseActionPerformed
+    JFileChooser jfc = new JFileChooser();
+    jfc.setCurrentDirectory(new File(System.getProperty("user.dir"))); // NOI18N
+    jfc.setDialogTitle("Choose a directory");//TODO: i18n
+    jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+    jfc.setMultiSelectionEnabled(false);
+    if(jfc.showOpenDialog(me) == JFileChooser.APPROVE_OPTION) {
+        jtfDestination.setText(jfc.getSelectedFile().getAbsolutePath());
+    }
+}//GEN-LAST:event_jbtnBrowseActionPerformed
         
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator jSeparator1;

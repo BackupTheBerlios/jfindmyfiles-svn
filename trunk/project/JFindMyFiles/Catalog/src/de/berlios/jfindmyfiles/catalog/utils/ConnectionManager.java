@@ -43,6 +43,10 @@ public class ConnectionManager {
             throw new ExceptionInInitializerError(ex);
         }
     }
+    
+    public void changeConfiguration() {
+        
+    }
 
     public static SessionFactory getSessionFactory() {
         return sessionFactory;

@@ -20,11 +20,11 @@
 
 package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
-final class JFindMyFilesGuiNetWOptsPanel extends javax.swing.JPanel {
+final class CatalogOptionsPanel extends javax.swing.JPanel {
 
-    private final JFindMyFilesGuiNetWOptsPanelController controller;
+    private final CatalogOptionsPanelController controller;
 
-    JFindMyFilesGuiNetWOptsPanel(JFindMyFilesGuiNetWOptsPanelController controller) {
+    CatalogOptionsPanel(CatalogOptionsPanelController controller) {
         this.controller = controller;
         initComponents();
         // TODO listen to changes in form fields and call controller.changed()
@@ -52,9 +52,9 @@ final class JFindMyFilesGuiNetWOptsPanel extends javax.swing.JPanel {
     void load() {
     // TODO read settings and initialize GUI
     // Example:        
-    // someCheckBox.setSelected(Preferences.userNodeForPackage(JFindMyFilesGuiNetWOptsPanel.class).getBoolean("someFlag", false));
+    // someCheckBox.setSelected(Preferences.userNodeForPackage(CatalogOptionsPanel.class).getBoolean("someFlag", false));
     // or for org.openide.util with API spec. version >= 7.4:
-    // someCheckBox.setSelected(NbPreferences.forModule(JFindMyFilesGuiNetWOptsPanel.class).getBoolean("someFlag", false));
+    // someCheckBox.setSelected(NbPreferences.forModule(CatalogOptionsPanel.class).getBoolean("someFlag", false));
     // or:
     // someTextField.setText(SomeSystemOption.getDefault().getSomeStringProperty());
     }
@@ -62,9 +62,9 @@ final class JFindMyFilesGuiNetWOptsPanel extends javax.swing.JPanel {
     void store() {
     // TODO store modified settings
     // Example:
-    // Preferences.userNodeForPackage(JFindMyFilesGuiNetWOptsPanel.class).putBoolean("someFlag", someCheckBox.isSelected());
+    // Preferences.userNodeForPackage(CatalogOptionsPanel.class).putBoolean("someFlag", someCheckBox.isSelected());
     // or for org.openide.util with API spec. version >= 7.4:
-    // NbPreferences.forModule(JFindMyFilesGuiNetWOptsPanel.class).putBoolean("someFlag", someCheckBox.isSelected());
+    // NbPreferences.forModule(CatalogOptionsPanel.class).putBoolean("someFlag", someCheckBox.isSelected());
     // or:
     // SomeSystemOption.getDefault().setSomeStringProperty(someTextField.getText());
     }

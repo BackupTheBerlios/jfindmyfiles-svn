@@ -131,7 +131,7 @@
                       <Component id="jcbxCatalog" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jpScanningOptions" min="-2" max="-2" attributes="0"/>
+                  <Component id="jpScanningOptions" min="-2" pref="180" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -176,7 +176,7 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBox(listOpenCatalogs());"/>
+            <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new JComboBox(listDiskGroups());"/>
           </AuxValues>
         </Component>
         <Component class="javax.swing.JLabel" name="jlblCatalog">

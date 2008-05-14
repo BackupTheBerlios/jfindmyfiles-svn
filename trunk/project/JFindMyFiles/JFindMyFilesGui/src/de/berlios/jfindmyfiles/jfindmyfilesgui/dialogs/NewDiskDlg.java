@@ -20,26 +20,39 @@
 
 package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngine;
+import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileSystemView;
+import org.openide.util.Lookup;
 import org.openide.util.Utilities;
+import org.openide.util.lookup.Lookups;
 /**
  *
  * @author  ei10635
  */
 public class NewDiskDlg extends javax.swing.JDialog {
-     
+    
+    private String currentSelectedPath;
+    private NewDiskDlg me = this;
+    private CatalogEngine eng;
+    
     /** Creates new form NewDiskDlg */
     public NewDiskDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        Lookup lu = Lookups.forPath("/CatalogEngine"); // NOI18N
+        eng = lu.lookup(CatalogEngine.class);
         initComponents();
          //TODO: get the available plugins and create the popup menu
     }
@@ -69,30 +82,46 @@ public class NewDiskDlg extends javax.swing.JDialog {
             toggle.addActionListener(new ActionListener() {
 
                 public void actionPerformed(ActionEvent e) {
-                    toggleDriveAction();//NOTE: will most likely be removed
+                    currentSelectedPath = ((JToggleButton)e.getSource()).getText();
                 }
             });
             jbtngrpDrives.add(toggle);
             jpButtons.add(toggle);
         }
+        toggle = new JToggleButton("..."); // NOI18N
+        toggle.setIcon(new ImageIcon(Utilities.loadImage("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x22/button-folder.png"))); // NOI18N
+        toggle.setHorizontalTextPosition(SwingConstants.CENTER);
+        toggle.setVerticalTextPosition(SwingConstants.BOTTOM);
+        toggle.addActionListener(new ActionListener() {
 
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser jfc = new JFileChooser(new File(System.getProperty("user.home")));
+                jfc.setDialogTitle("Select a folder to scan");//TODO: i18n
+                jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                jfc.setMultiSelectionEnabled(false);
+                if(jfc.showOpenDialog(me) == JFileChooser.APPROVE_OPTION) {
+                    File f = jfc.getSelectedFile();
+                    currentSelectedPath = f.getAbsolutePath();
+                    ((JToggleButton)e.getSource()).setText(f.getName());
+                }
+            }
+        });        
+        jpButtons.add(toggle);
+        
         jpButtons.validate();
     }
 
-    /** Provides the action for the toggle buttons with the drive names.
-     * Gets the selected drive from the name of the selected button in the 
-     * button group.
-     */
-    private void toggleDriveAction() {
-        //TODO: add suport for choosing the drive
-        throw new UnsupportedOperationException("Not implemented yet");
-    }
-
-    private String[] listOpenCatalogs() {
-        /*List<String> opended = eng.openedCatalogs();
-        return opended.toArray(new String[opended.size()]);*/
-        //TODO: implement this
-        return new String[]{"A", "B"};
+    private Object[] listDiskGroups() {
+        if(eng != null) {
+            List g = eng.getDiskGroups();
+            ArrayList ar = new ArrayList(g.size());
+            for(Object obj : g) {
+                ar.add(obj);
+            }
+            
+            return ar.toArray();
+        }
+        return new Object[]{};
     }    
     
     
@@ -115,7 +144,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
         jffDiskNumber = new javax.swing.JFormattedTextField();
         jlblDiskName = new javax.swing.JLabel();
         jtfDiskName = new javax.swing.JTextField();
-        jcbxCatalog = new JComboBox(listOpenCatalogs());
+        jcbxCatalog = new JComboBox(listDiskGroups());
         jlblCatalog = new javax.swing.JLabel();
         jpScanningOptions = new javax.swing.JPanel();
         jchkCalculateCRC = new javax.swing.JCheckBox();
@@ -234,7 +263,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
                     .addComponent(jtfDiskName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcbxCatalog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpScanningOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jpScanningOptions, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jbtnHelp.setText(org.openide.util.NbBundle.getMessage(NewDiskDlg.class, "NewDiskDlg.jbtnHelp.text")); // NOI18N
@@ -305,7 +334,9 @@ private void jtbSelectedPluginsActionPerformed(java.awt.event.ActionEvent evt) {
 }//GEN-LAST:event_jtbSelectedPluginsActionPerformed
 
 private void jbtnScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnScanActionPerformed
-// TODO add your handling code here:
+    if(eng != null) {
+        //TODO: eng.readDisk(new File(currentSelectedPath), (DiskGroup)jcbxCatalog.getSelectedItem());
+    }
 }//GEN-LAST:event_jbtnScanActionPerformed
 
 private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed

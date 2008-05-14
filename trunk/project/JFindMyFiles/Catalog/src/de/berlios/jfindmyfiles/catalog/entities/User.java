@@ -101,4 +101,9 @@ public class User {
         hash = 11 * hash + (this.surname != null ? this.surname.hashCode() : 0);
         return hash;
     }
+    
+    @Override
+    public String toString() {
+        return firstname + " " + surname;
+    }
 }

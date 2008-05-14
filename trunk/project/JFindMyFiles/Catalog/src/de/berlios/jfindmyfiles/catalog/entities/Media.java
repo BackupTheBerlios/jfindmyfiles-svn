@@ -124,6 +124,6 @@ public class Media {
     
     @Override
     public String toString() {
-        return super.toString() + " " + id + " " + name;
+        return name;
     }
 }

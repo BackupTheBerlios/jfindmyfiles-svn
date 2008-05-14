@@ -278,7 +278,8 @@
         </folder>
     </folder>
     <folder name="OptionsDialog">
-        <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-JFindMyFilesGuiNetWOptsCategory.instance"/>
+        <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-CatalogOptionsCategory.instance"/>
+        <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-PluginsOptionsCategory.instance"/>
     </folder>
     <folder name="Shortcuts">
         <file name="D-I.shadow">

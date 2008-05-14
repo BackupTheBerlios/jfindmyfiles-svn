@@ -26,7 +26,7 @@ import org.netbeans.spi.options.OptionsPanelController;
 import org.openide.util.NbBundle;
 import org.openide.util.Utilities;
 
-public final class JFindMyFilesGuiNetWOptsCategory extends OptionsCategory {
+public final class CatalogOptionsCategory extends OptionsCategory {
 
     @Override
     public Icon getIcon() {
@@ -34,14 +34,14 @@ public final class JFindMyFilesGuiNetWOptsCategory extends OptionsCategory {
     }
 
     public String getCategoryName() {
-        return NbBundle.getMessage(JFindMyFilesGuiNetWOptsCategory.class, "OptionsCategory_Name_Jfindmyfilesgui");
+        return NbBundle.getMessage(CatalogOptionsCategory.class, "CatalogOptionsCategory_Name");
     }
 
     public String getTitle() {
-        return NbBundle.getMessage(JFindMyFilesGuiNetWOptsCategory.class, "OptionsCategory_Title_Jfindmyfilesgui");
+        return NbBundle.getMessage(CatalogOptionsCategory.class, "CatalogOptionsCategory_Title");
     }
 
     public OptionsPanelController create() {
-        return new JFindMyFilesGuiNetWOptsPanelController();
+        return new CatalogOptionsPanelController();
     }
 }

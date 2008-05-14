@@ -316,6 +316,9 @@
           <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/dialogs/Bundle.properties" key="NewCatalogDlg.jbtnBrowse.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnBrowseActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="jtfDestination">
       <Properties>

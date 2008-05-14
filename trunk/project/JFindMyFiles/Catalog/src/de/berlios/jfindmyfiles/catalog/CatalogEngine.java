@@ -22,14 +22,11 @@ package de.berlios.jfindmyfiles.catalog;
 import de.berlios.jfindmyfiles.catalog.entities.*;
 import de.berlios.jfindmyfiles.catalog.utils.ConnectionManager;
 import java.io.File;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Stack;
 import org.hibernate.Session;
 
-/**
- *
- * @author ei10635
- */
 public class CatalogEngine {
 
     Session hSession;
@@ -38,6 +35,19 @@ public class CatalogEngine {
         //hSession = ConnectionManager.getSessionFactory().getCurrentSession();
     }
 
+    public void newCatalog(String name, String path) {
+        //TODO:
+    }
+    
+    public void newCatalog(String name, String url, String port, int dbType, 
+            String username, String password) {
+        //TODO:
+    }
+    
+    public void scan(String path) {
+        //TODO:
+    }
+    
     public void runtest(boolean store) {//TODO: remove
         hSession = ConnectionManager.getSessionFactory().getCurrentSession();
         hSession.beginTransaction();
@@ -141,21 +151,27 @@ public class CatalogEngine {
     }
 
     public List getDiskGroups() {//TODO: validate session states
-        hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+       /* hSession = ConnectionManager.getSessionFactory().getCurrentSession();
         hSession.beginTransaction();
         List rs = hSession.createQuery("from DiskGRoup").list();
         hSession.getTransaction().commit();
-        return rs;
+        return rs;*/
+        return new LinkedList();
     }
 
-    public void readDisk(File file, Media container) {
-        Stack<File> directories = new Stack<File>();
+    public void readDisk(File file, DiskGroup group, boolean isMedia) {
+        /*Stack<File> directories = new Stack<File>();
         File current, listing[];
         long totalSize = 0L, childSize = 0L;
         FileWrapper fw, child;
         int z;
+        /*Media container = null;
+        
+        if(isMedia) {
+            container = new Media();            
+        }*/
 
-        if (file.isDirectory()) {//NOTE: this protections may be dropped
+        /*if (file.isDirectory()) {//NOTE: this protections may be dropped
             fw = new FileWrapper(file.getName(),
                     file.getAbsolutePath(), 0, file.isFile(), file.isHidden(),
                     file.lastModified(), container, null);
@@ -200,7 +216,7 @@ public class CatalogEngine {
                 child.setSize(childSize);
             }
             fw.setSize(totalSize);
-        }
+        }*/
     }
 
     /**
@@ -210,7 +226,6 @@ public class CatalogEngine {
     @Override
     public void finalize() {
         if (hSession != null && hSession.isOpen()) {
-            //hSession.flush();hSession.clear();
             hSession.close();
         }
     }

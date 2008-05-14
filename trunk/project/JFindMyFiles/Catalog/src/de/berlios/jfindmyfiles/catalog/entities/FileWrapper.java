@@ -237,6 +237,6 @@ public class FileWrapper {
     
     @Override
     public String toString() {
-        return super.toString() + " " + absolutePath;
+        return name;
     }
 }
