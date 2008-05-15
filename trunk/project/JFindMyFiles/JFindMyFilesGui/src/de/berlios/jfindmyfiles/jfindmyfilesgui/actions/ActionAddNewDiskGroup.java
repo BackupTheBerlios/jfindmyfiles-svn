@@ -20,18 +20,25 @@
 package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
+import javax.swing.JOptionPane;
 import org.openide.util.HelpCtx;
+import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
+import org.openide.util.lookup.Lookups;
+import org.openide.windows.WindowManager;
 
 public final class ActionAddNewDiskGroup extends CallableSystemAction {
 
     public void performAction() {
-        CatalogEngine engine = new CatalogEngine();
-        engine.runtest(true);
-        
-        for(Object u : engine.getUsers()) {
-            System.out.println(">>>>>>>>>>>>>>>>>>" + u);
+        String name = JOptionPane.showInputDialog(WindowManager.getDefault().getMainWindow(), 
+                "Disk Group Name:", "New Disk Group", JOptionPane.QUESTION_MESSAGE); //TODO: i18n
+        if(name != null && !name.isEmpty()) {
+            Lookup lu = Lookups.forPath("/CatalogEngine");
+            CatalogEngine eng = lu.lookup(CatalogEngine.class);
+            if(eng != null) {
+                eng.addDiskGroup(name, "", null);//TODO: get selected node
+            }
         }
     }
 

@@ -19,7 +19,6 @@
  */
 package de.berlios.jfindmyfiles.catalog.entities;
 
-import java.security.acl.Owner;
 import java.util.Set;
 
 /**

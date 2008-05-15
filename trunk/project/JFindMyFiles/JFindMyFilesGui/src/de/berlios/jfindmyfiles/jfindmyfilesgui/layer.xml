@@ -278,6 +278,9 @@
         </folder>
     </folder>
     <folder name="OptionsDialog">
+        <folder name="Advanced">
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-MiscUserAdvancedOption.instance"/>
+        </folder>
         <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-CatalogOptionsCategory.instance"/>
         <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-PluginsOptionsCategory.instance"/>
     </folder>

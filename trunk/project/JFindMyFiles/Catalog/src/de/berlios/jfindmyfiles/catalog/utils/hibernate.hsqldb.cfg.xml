@@ -60,6 +60,7 @@
         <mapping resource="de/berlios/jfindmyfiles/catalog/entities/Type.hbm.xml"/>
         <mapping resource="de/berlios/jfindmyfiles/catalog/entities/User.hbm.xml"/>
         <mapping resource="de/berlios/jfindmyfiles/catalog/entities/VideoData.hbm.xml"/>
+        <mapping resource="de/berlios/jfindmyfiles/catalog/entities/CatalogProperties.hbm.xml"/>
     </session-factory>
 
 </hibernate-configuration>

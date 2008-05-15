@@ -20,6 +20,8 @@
 
 package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
+import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
+
 /**
  *
  * @author  knitter
@@ -31,7 +33,20 @@ public class SearchDlg extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
     }
-
+    
+    /** Creates a new form SeachDlg and changes the selected item in the 
+     * combobox that list disk groups to match the given group.
+     *
+     * @param parent
+     * @param modal
+     * @param group the group in which the search is to take place
+     */
+    public SearchDlg(java.awt.Frame parent, boolean modal, DiskGroup group) {
+        this(parent, modal);
+        jrdbDiskGroupOnly.setSelected(true);
+        jcbxDiskGroups.setSelectedItem(group);
+    }
+    
     public void showCentered() {
         setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
                 getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
@@ -46,23 +61,237 @@ public class SearchDlg extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btngrpScope = new javax.swing.ButtonGroup();
+        jpTopPanel = new javax.swing.JPanel();
+        jlbText = new javax.swing.JLabel();
+        jtfSearchText = new javax.swing.JTextField();
+        jbtnSearch = new javax.swing.JButton();
+        jpOptionsPanel = new javax.swing.JPanel();
+        jchkSearchInDesc = new javax.swing.JCheckBox();
+        jchkCaseSensitive = new javax.swing.JCheckBox();
+        jchkUseReGex = new javax.swing.JCheckBox();
+        jpScopePanel = new javax.swing.JPanel();
+        jcbxDiskGroups = new javax.swing.JComboBox();
+        jrdbEntireCatalog = new javax.swing.JRadioButton();
+        jrdbDiskGroupOnly = new javax.swing.JRadioButton();
+        jpResults = new javax.swing.JPanel();
+        jscrResults = new javax.swing.JScrollPane();
+        jlstResults = new javax.swing.JList();
+        jbtnClose = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jpTopPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jpTopPanel.border.title"))); // NOI18N
+
+        jlbText.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jlbText.text")); // NOI18N
+
+        jtfSearchText.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jtfSearchText.text")); // NOI18N
+
+        jbtnSearch.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jbtnSearch.text")); // NOI18N
+        jbtnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnSearchActionPerformed(evt);
+            }
+        });
+
+        jpOptionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jpOptionsPanel.border.title"))); // NOI18N
+
+        jchkSearchInDesc.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jchkSearchInDesc.text")); // NOI18N
+
+        jchkCaseSensitive.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jchkCaseSensitive.text")); // NOI18N
+
+        jchkUseReGex.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jchkUseReGex.text")); // NOI18N
+
+        javax.swing.GroupLayout jpOptionsPanelLayout = new javax.swing.GroupLayout(jpOptionsPanel);
+        jpOptionsPanel.setLayout(jpOptionsPanelLayout);
+        jpOptionsPanelLayout.setHorizontalGroup(
+            jpOptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpOptionsPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpOptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jchkSearchInDesc)
+                    .addComponent(jchkCaseSensitive)
+                    .addComponent(jchkUseReGex))
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+        jpOptionsPanelLayout.setVerticalGroup(
+            jpOptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpOptionsPanelLayout.createSequentialGroup()
+                .addComponent(jchkSearchInDesc)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jchkCaseSensitive)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jchkUseReGex)
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        jpScopePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jpScopePanel.border.title"))); // NOI18N
+
+        jcbxDiskGroups.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jcbxDiskGroups.setEnabled(false);
+
+        btngrpScope.add(jrdbEntireCatalog);
+        jrdbEntireCatalog.setSelected(true);
+        jrdbEntireCatalog.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jrdbEntireCatalog.text")); // NOI18N
+
+        btngrpScope.add(jrdbDiskGroupOnly);
+        jrdbDiskGroupOnly.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jrdbDiskGroupOnly.text")); // NOI18N
+        jrdbDiskGroupOnly.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jrdbDiskGroupOnlyStateChanged(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jpScopePanelLayout = new javax.swing.GroupLayout(jpScopePanel);
+        jpScopePanel.setLayout(jpScopePanelLayout);
+        jpScopePanelLayout.setHorizontalGroup(
+            jpScopePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpScopePanelLayout.createSequentialGroup()
+                .addGroup(jpScopePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpScopePanelLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(jcbxDiskGroups, 0, 198, Short.MAX_VALUE))
+                    .addGroup(jpScopePanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jrdbEntireCatalog))
+                    .addGroup(jpScopePanelLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jrdbDiskGroupOnly)))
+                .addContainerGap())
+        );
+        jpScopePanelLayout.setVerticalGroup(
+            jpScopePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpScopePanelLayout.createSequentialGroup()
+                .addComponent(jrdbEntireCatalog)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jrdbDiskGroupOnly)
+                .addGap(6, 6, 6)
+                .addComponent(jcbxDiskGroups, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jpTopPanelLayout = new javax.swing.GroupLayout(jpTopPanel);
+        jpTopPanel.setLayout(jpTopPanelLayout);
+        jpTopPanelLayout.setHorizontalGroup(
+            jpTopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpTopPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpTopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpTopPanelLayout.createSequentialGroup()
+                        .addComponent(jlbText)
+                        .addGap(18, 18, 18)
+                        .addComponent(jtfSearchText, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtnSearch))
+                    .addGroup(jpTopPanelLayout.createSequentialGroup()
+                        .addComponent(jpOptionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jpScopePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jpTopPanelLayout.setVerticalGroup(
+            jpTopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpTopPanelLayout.createSequentialGroup()
+                .addGroup(jpTopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jbtnSearch)
+                    .addComponent(jtfSearchText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlbText))
+                .addGap(11, 11, 11)
+                .addGroup(jpTopPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jpOptionsPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpScopePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jpTopPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jpOptionsPanel, jpScopePanel});
+
+        jpResults.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jpResults.border.title"))); // NOI18N
+
+        jscrResults.setViewportView(jlstResults);
+
+        javax.swing.GroupLayout jpResultsLayout = new javax.swing.GroupLayout(jpResults);
+        jpResults.setLayout(jpResultsLayout);
+        jpResultsLayout.setHorizontalGroup(
+            jpResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpResultsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jscrResults, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jpResultsLayout.setVerticalGroup(
+            jpResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpResultsLayout.createSequentialGroup()
+                .addComponent(jscrResults, javax.swing.GroupLayout.DEFAULT_SIZE, 245, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        jbtnClose.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jbtnClose.text")); // NOI18N
+        jbtnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnCloseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jpTopPanel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jpResults, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(499, Short.MAX_VALUE)
+                .addComponent(jbtnClose)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpTopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpResults, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtnClose)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+private void jrdbDiskGroupOnlyStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jrdbDiskGroupOnlyStateChanged
+    jcbxDiskGroups.setEnabled(jrdbDiskGroupOnly.isSelected());
+}//GEN-LAST:event_jrdbDiskGroupOnlyStateChanged
+
+private void jbtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSearchActionPerformed
+//TODO:
+}//GEN-LAST:event_jbtnSearchActionPerformed
+
+private void jbtnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCloseActionPerformed
+    dispose();
+}//GEN-LAST:event_jbtnCloseActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup btngrpScope;
+    private javax.swing.JButton jbtnClose;
+    private javax.swing.JButton jbtnSearch;
+    private javax.swing.JComboBox jcbxDiskGroups;
+    private javax.swing.JCheckBox jchkCaseSensitive;
+    private javax.swing.JCheckBox jchkSearchInDesc;
+    private javax.swing.JCheckBox jchkUseReGex;
+    private javax.swing.JLabel jlbText;
+    private javax.swing.JList jlstResults;
+    private javax.swing.JPanel jpOptionsPanel;
+    private javax.swing.JPanel jpResults;
+    private javax.swing.JPanel jpScopePanel;
+    private javax.swing.JPanel jpTopPanel;
+    private javax.swing.JRadioButton jrdbDiskGroupOnly;
+    private javax.swing.JRadioButton jrdbEntireCatalog;
+    private javax.swing.JScrollPane jscrResults;
+    private javax.swing.JTextField jtfSearchText;
     // End of variables declaration//GEN-END:variables
 
 }

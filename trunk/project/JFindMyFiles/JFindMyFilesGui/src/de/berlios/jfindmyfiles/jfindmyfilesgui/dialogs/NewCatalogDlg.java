@@ -17,7 +17,6 @@
  *  along with JFindMyFiles.  If not, see 
  * <http://www.gnu.org/licenses/gpl.html>.
  */
-
 package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
@@ -28,24 +27,83 @@ import org.openide.util.Lookup;
 import org.openide.util.lookup.Lookups;
 
 public class NewCatalogDlg extends javax.swing.JDialog {
-    
+
     private CatalogEngine eng;
     private NewCatalogDlg me = this;
-    
+
     /** Creates new form NewCatalogDlg */
     public NewCatalogDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         Lookup lu = Lookups.forPath("/CatalogEngine"); // NOI18N
-        eng = lu.lookup(CatalogEngine.class);        
+
+        eng = lu.lookup(CatalogEngine.class);
         initComponents();
+        jlbError.setVisible(false);
     }
-    
+
     public void showCentered() {
         setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
                 getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
         setVisible(true);
     }
-    
+
+    private boolean isDataValid() {
+        if (!jtfName.getText().isEmpty()) {
+            if (jchkUserinternalDB.isSelected()) {
+                return !jtfDestination.getText().isEmpty();
+            } else {
+                return !jtfHostname.getText().isEmpty() &&
+                        !jtfUsername.getText().isEmpty() &&
+                        !jffPort.getText().isEmpty();
+            }
+        }
+        return false;
+    }
+
+    private boolean validateWihtMessages() {
+        if (jtfName.getText().isEmpty()) {
+            jlbError.setText("* - Nome não pode ser vazio"); //TODO: i18n
+
+            jlbError.setVisible(true);
+            this.validate();
+            return false;
+        }
+        if (jchkUserinternalDB.isSelected()) {
+            if (jtfDestination.getText().isEmpty()) {
+                jlbError.setText("* - Destino não pode ser vazio"); //TODO: i18n
+
+                jlbError.setVisible(true);
+                this.validate();
+                return false;
+            }
+        } else {
+            if (jtfHostname.getText().isEmpty()) {
+                jlbError.setText("* - URL inválido"); //TODO: i18n
+
+                jlbError.setVisible(true);
+                this.validate();
+                return false;
+            } else if (jtfUsername.getText().isEmpty()) {
+                jlbError.setText("* - Username inválido"); //TODO: i18n
+
+                jlbError.setVisible(true);
+                this.validate();
+                return false;
+            } else if (jffPort.getText().isEmpty()) {
+                jlbError.setText("* - Porto inválido"); //TODO: i18n
+
+                jlbError.setVisible(true);
+                this.validate();
+                return false;
+            }
+        }
+        if (jlbError.isVisible()) {
+            jlbError.setVisible(false);
+            this.validate();
+        }
+        return true;
+    }
+
     /**
      * Enables or disables the various components that refer to the remote 
      * database's settings.
@@ -61,15 +119,15 @@ public class NewCatalogDlg extends javax.swing.JDialog {
         jlblPassword.setEnabled(state);
         jlblPort.setEnabled(state);
         jlblUsername.setEnabled(state);
-        
+
         //Inputs
         jtfHostname.setEnabled(state);
-        jtfName.setEnabled(state);
         jtfUsername.setEnabled(state);
         jpfPassword.setEnabled(state);
         jffPort.setEnabled(state);
+        jcbxDatabase.setEnabled(state);
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -99,6 +157,7 @@ public class NewCatalogDlg extends javax.swing.JDialog {
         jlblDestination = new javax.swing.JLabel();
         jbtnBrowse = new javax.swing.JButton();
         jtfDestination = new javax.swing.JTextField();
+        jlbError = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.title")); // NOI18N
@@ -231,6 +290,9 @@ public class NewCatalogDlg extends javax.swing.JDialog {
 
         jtfDestination.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.jtfDestination.text")); // NOI18N
 
+        jlbError.setForeground(javax.swing.UIManager.getDefaults().getColor("nb.errorForeground"));
+        jlbError.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.jlbError.text")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -249,19 +311,21 @@ public class NewCatalogDlg extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(jlbError, javax.swing.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbtnCreate)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbtnCancel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbtnHelp))
                             .addComponent(jpDatabaseSettings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jlblDestination)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jtfDestination, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jbtnBrowse))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jbtnCreate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnCancel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbtnHelp)))
+                                .addComponent(jbtnBrowse)))))
                 .addContainerGap())
         );
 
@@ -289,7 +353,8 @@ public class NewCatalogDlg extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jbtnHelp)
                     .addComponent(jbtnCancel)
-                    .addComponent(jbtnCreate))
+                    .addComponent(jbtnCreate)
+                    .addComponent(jlbError))
                 .addGap(14, 14, 14))
         );
 
@@ -301,16 +366,23 @@ private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_jbtnCancelActionPerformed
 
 private void jbtnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCreateActionPerformed
-     if(eng != null) {
-         if(jchkUserinternalDB.isSelected()) {
-            eng.newCatalog(jtfName.getText().trim(), 
-                    jtfDestination.getText().trim());
-         } else {
-             eng.newCatalog(jtfName.getText().trim(), 
-                     jtfHostname.getText().trim(), jffPort.getText().trim(), 
-                     0, jtfUsername.getText().trim(), jpfPassword.getPassword().toString());
-         }         
-     }
+    if (validateWihtMessages() && eng != null) {
+        String selectedname = (String) jcbxDatabase.getSelectedItem();
+
+//       if dbtype is selected to local return the CatalogEngine.LOCAL, if not 
+//       check to see what the selected value of the combobox is and return 
+//       the corresponding value.
+        final int dbtype = (jchkUserinternalDB.isSelected() ? CatalogEngine.LOCAL : (selectedname.equals("Firebird") ? CatalogEngine.FIREBIRD : (selectedname.equals("PostgreSQL") ? CatalogEngine.POSTGRESQL : (selectedname.equals("MsSQL") ? CatalogEngine.MSSQL : CatalogEngine.MYSQL))));
+
+        new Thread(new Runnable() {
+
+            public void run() {
+                eng.createCatalog(jtfName.getText().trim(), jtfHostname.getText().trim(), jffPort.getText().trim(),
+                        dbtype, jtfUsername.getText().trim(), jpfPassword.getPassword().toString());
+            }
+        }).start();
+        dispose();
+    }
 }//GEN-LAST:event_jbtnCreateActionPerformed
 
 private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
@@ -319,19 +391,23 @@ private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
 private void jchkUserinternalDBStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jchkUserinternalDBStateChanged
     serverOptionsStateChanged(!jchkUserinternalDB.isSelected());
+    jbtnBrowse.setEnabled(jchkUserinternalDB.isSelected());
+    jtfDestination.setEnabled(jchkUserinternalDB.isSelected());
 }//GEN-LAST:event_jchkUserinternalDBStateChanged
 
 private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBrowseActionPerformed
     JFileChooser jfc = new JFileChooser();
     jfc.setCurrentDirectory(new File(System.getProperty("user.dir"))); // NOI18N
+
     jfc.setDialogTitle("Choose a directory");//TODO: i18n
+
     jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
     jfc.setMultiSelectionEnabled(false);
-    if(jfc.showOpenDialog(me) == JFileChooser.APPROVE_OPTION) {
+    if (jfc.showOpenDialog(me) == JFileChooser.APPROVE_OPTION) {
         jtfDestination.setText(jfc.getSelectedFile().getAbsolutePath());
     }
 }//GEN-LAST:event_jbtnBrowseActionPerformed
-        
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbtnBrowse;
@@ -341,6 +417,7 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JComboBox jcbxDatabase;
     private javax.swing.JCheckBox jchkUserinternalDB;
     private javax.swing.JFormattedTextField jffPort;
+    private javax.swing.JLabel jlbError;
     private javax.swing.JLabel jlblDatabase;
     private javax.swing.JLabel jlblDestination;
     private javax.swing.JLabel jlblHostname;
@@ -355,5 +432,4 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JTextField jtfName;
     private javax.swing.JTextField jtfUsername;
     // End of variables declaration//GEN-END:variables
-    
 }

@@ -336,6 +336,7 @@ private void jtbSelectedPluginsActionPerformed(java.awt.event.ActionEvent evt) {
 private void jbtnScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnScanActionPerformed
     if(eng != null) {
         //TODO: eng.readDisk(new File(currentSelectedPath), (DiskGroup)jcbxCatalog.getSelectedItem());
+        eng.readDisk(new File(currentSelectedPath), null, false);
     }
 }//GEN-LAST:event_jbtnScanActionPerformed
 

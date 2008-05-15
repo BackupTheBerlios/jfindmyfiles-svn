@@ -1,5 +1,9 @@
 <==== Objectivos ==============================================================>
 
+CB03: ST17
+- O sistema de leitura de informações de ficheiro tem de permitir ser expandido 
+para ler ficheiros desconhecidos ou para que a forma como as informações são 
+lidas seja alterada.
 <==== Documentos produzidos ===================================================>
 
 Spikes:
