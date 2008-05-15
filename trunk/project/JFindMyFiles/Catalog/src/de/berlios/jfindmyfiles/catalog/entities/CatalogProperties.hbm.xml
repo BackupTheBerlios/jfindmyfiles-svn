@@ -29,5 +29,11 @@
         </id>
 
         <property name="name"/>
+        <property name="description"/>
+        <property name="totalSize"/>
+        <property name="diskNumber"/>
+        <property name="totalFiles"/>
+        <property name="totalFolders"/>
+        <property name="creationDate" type="date"/>
     </class>
 </hibernate-mapping>

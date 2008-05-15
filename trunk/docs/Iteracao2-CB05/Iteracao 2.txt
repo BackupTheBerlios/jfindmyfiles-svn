@@ -44,12 +44,16 @@ drive ligada ao PC ou a uma localização na rede e pode conter ficheiros cujas
 descrições serão importadas.
 Os discos podem ser agrupados em grupos de discos. Grupos de discos podem 
 conter outros grupos de discos.
+Existe também a possibilidade de catalogar pastas contindas em discos rígidos.
+Neste caso, estas pastas terão exactamente as mesmas características que um 
+disco pelo que podemos acrescentar que um disco pode ser, além de um suporte 
+físico, uma pasta contida num qualquer suporte físico.
 
 Uma etiqueta é apenas um nome que representa uma forma de organizar determinado 
 disco ou grupo de discos.
 
-Qualquer catálogo possui pelo menos um grupo de discos com o nome atribuído ao 
-catálogo. Esse é o elemento raíz no qual todos os restantes elementos, sejam 
+Um catálogo, ao ser apresentado, possuí como elemento raíz, um nó com o nome do 
+catálogo. Este é o elemento raíz no qual todos os restantes elementos, sejam 
 outros grupos ou apenas discos, podem ser colocados.
 De um grupo de discos é necessário reter o nome, o número de discos associados, 
 a capacidade total oferecida pelos discos associados, o espaço livre total que 

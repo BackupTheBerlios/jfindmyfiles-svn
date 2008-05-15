@@ -1,13 +1,16 @@
 <==== Objectivos ==============================================================>
+Desenhar uma API que permita obter algumas descrições fornecidas por classes 
+externas que implementem a API.
 
-CB03: ST17
-- O sistema de leitura de informações de ficheiro tem de permitir ser expandido 
-para ler ficheiros desconhecidos ou para que a forma como as informações são 
-lidas seja alterada.
 <==== Documentos produzidos ===================================================>
 
 Spikes:
 Outros documentos:
 
 <==== 
+Separada num módulo próprio, será criada uma API através do desenho de uma 
+interface que possa ser implementada por classes que pretendam adicionar 
+informação a ficheiros já conhecidos ou fornecer informação de novos tipos de 
+ficheiros.
+
 <==== Avaliação ===============================================================>

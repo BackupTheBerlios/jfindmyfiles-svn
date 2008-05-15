@@ -39,9 +39,10 @@ public class CatalogEngine {
     public static final int POSTGRESQL = 1;
     public static final int MSSQL = 2;
     public static final int MYSQL = 3;
-    public static final int LOCAL = 3;
-    private Session hSession;
+    public static final int LOCAL = 4;
     private SessionFactory sessionFactory;
+    
+    private CatalogProperties properties;
 
     /**
      * Empty construtor so that this class can be instanciated using reflection 
@@ -76,7 +77,7 @@ public class CatalogEngine {
                     .setProperty("hibernate.current_session_context_class", "thread")//Enable Hibernate's automatic session context management
                     .setProperty("hibernate.cache.provider_class", "org.hibernate.cache.NoCacheProvider")//Disable the second-level cache
                     .setProperty("hibernate.show_sql", "true")//Echo all executed SQL to stdout
-                    .setProperty("hibernate.hbm2ddl.auto", "create");//TODO: remove this line and replace with proper one
+                    .setProperty("hibernate.hbm2ddl.auto", "create-drop");//TODO: remove this line and replace with proper one
 
             switch (dbType) {
                 case FIREBIRD://TODO: change for FIREBIRD database engine
@@ -91,12 +92,11 @@ public class CatalogEngine {
                     break;
                 case POSTGRESQL://TODO: change for POSTGRESQL database engine
 
-                    cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
-                    cfg.setProperty("hibernate.connection.driver_class", "org.hsqldb.jdbcDriver");
-                    cfg.setProperty("hibernate.connection.url", "jdbc:hsqldb:file:" + dburl + "/" + dbname);
-                    cfg.setProperty("hibernate.connection.username", "sa");
+                    cfg.setProperty("hibernate.dialect", "o");
+                    cfg.setProperty("hibernate.connection.driver_class", "");
+                    cfg.setProperty("hibernate.connection.url", "");
+                    cfg.setProperty("hibernate.connection.username", "");
                     cfg.setProperty("hibernate.connection.password", password);
-                    cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
 
                     break;
                 case MYSQL:
@@ -115,48 +115,56 @@ public class CatalogEngine {
                     break;
                 case MSSQL://TODO: change for MSSQL database engine
 
-                    cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
-                    cfg.setProperty("hibernate.connection.driver_class", "org.hsqldb.jdbcDriver");
-                    cfg.setProperty("hibernate.connection.url", "jdbc:hsqldb:file:" + dburl + "/" + dbname);
-                    cfg.setProperty("hibernate.connection.username", "sa");
+                    cfg.setProperty("hibernate.dialect", "");
+                    cfg.setProperty("hibernate.connection.driver_class", "");
+                    cfg.setProperty("hibernate.connection.url", "");
+                    cfg.setProperty("hibernate.connection.username", "");
                     cfg.setProperty("hibernate.connection.password", password);
-                    cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
                     break;
                 default://If it's not a network database we can only use HSQLDB engine
 
                     cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
                     cfg.setProperty("hibernate.connection.driver_class", "org.hsqldb.jdbcDriver");
                     cfg.setProperty("hibernate.connection.url", "jdbc:hsqldb:file:" + dburl + "/" + dbname);
-                    cfg.setProperty("hibernate.connection.username", "sa");
-                    cfg.setProperty("hibernate.connection.password", password);
+                    cfg.setProperty("hibernate.connection.username", "sa");//Default user for every HSQLDB database
+                    cfg.setProperty("hibernate.connection.password", "");//HSQLDB has a user with no password
             }
+            
             sessionFactory = cfg.buildSessionFactory();
-        } catch (Throwable ex) {
+            
+        } catch (Throwable ex) {//TODO: proper logging
             // Make sure you log the exception, as it might be swallowed
-            System.err.println("Initial SessionFactory creation failed." + ex);
+            System.err.println("HIBERNATE: Initial SessionFactory creation failed." + ex);
             throw new ExceptionInInitializerError(ex);
         }
 
     }
 
-    public void openCatalog(String dbname, String dburl, String port,
-            String username, String password, int dbType) {
+    public void openCatalog(String dbname, String dburl, String port, int dbType,
+            String username, String password) {
+
+        recreateConnection(dbname, dburl, port, username, password, dbType);
+        
+        //Reading catalog properties
+        Session cSession = sessionFactory.getCurrentSession();
+        cSession.beginTransaction();
+        List result = cSession.createQuery("from CatalogProperties").list();
+        cSession.getTransaction().commit();
+        properties = (CatalogProperties)result.get(0);
+    }
+
+    public void createCatalog(String dbname, String dburl, String port, int dbType,
+            String username, String password) {
 
         recreateConnection(dbname, dburl, port, username, password, dbType);
 
-    }
-
-    public void createCatalog(String name, String url, String port, int dbType,
-            String username, String password) {
-
-        recreateConnection(name, url, port, username, password, dbType);
-
         Session cSession = sessionFactory.getCurrentSession();
-        cSession.beginTransaction();
-        CatalogProperties prop = new CatalogProperties();
-        prop.setName(name);
-        cSession.save(prop);
+        cSession.beginTransaction();//TODO: find correct settings to store
+        properties = new CatalogProperties();
+        properties.setName(dbname);
+        cSession.save(properties);
         cSession.getTransaction().commit();
+        cSession.close();
 
     //TODO: notify listeners
     }
@@ -167,29 +175,38 @@ public class CatalogEngine {
             sessionFactory = null;
         }
     }
+    
+    public CatalogProperties getProperties() {
+        return properties;
+    }
+    
+    public void setProperties(CatalogProperties props) {
+        //TODO: persist the object
+        this.properties = props;
+    }
 
     public void addDiskGroup(String name, String description, DiskGroup parent) {
-        hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+      /*  Session hSession = ConnectionManager.getSessionFactory().getCurrentSession();
         hSession.beginTransaction();
         DiskGroup dg = new DiskGroup();
         dg.setName(name);
         dg.setDescription(description);
         dg.setParent(parent);
         hSession.save(dg);
-        hSession.getTransaction().commit();
+        hSession.getTransaction().commit();*/
     }
 
     public void addLabel(String name) {
-        hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+        /*Session hSession = ConnectionManager.getSessionFactory().getCurrentSession();
         hSession.beginTransaction();
         Label l = new Label();
         l.setName(name);
         hSession.save(l);
-        hSession.getTransaction().commit();
+        hSession.getTransaction().commit();*/
     }
 
     public void removeLabel(Label label) {
-        hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+       /*Session  hSession = ConnectionManager.getSessionFactory().getCurrentSession();
         hSession.beginTransaction();
         List result = hSession.createQuery("from Label where id=" + label.getId()).list();
         if (result.size() != 1) {
@@ -199,21 +216,21 @@ public class CatalogEngine {
         Label rem = (Label) result.get(0);//TODO: verify this
 
         hSession.delete(rem);
-        hSession.getTransaction().commit();
+        hSession.getTransaction().commit();*/
     }
 
     public void addUser(String firstname, String surname) {
-        hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+        /*Session hSession = ConnectionManager.getSessionFactory().getCurrentSession();
         hSession.beginTransaction();
         User u = new User();
         u.setFirstname(firstname);
         u.setSurname(surname);
         hSession.save(u);
-        hSession.getTransaction().commit();
+        hSession.getTransaction().commit();*/
     }
 
     public void removeUser(User user) {
-        hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+        /*Session hSession = ConnectionManager.getSessionFactory().getCurrentSession();
         hSession.beginTransaction();
         List result = hSession.createQuery("from Label where id=" + user.getId()).list();
         if (result.size() != 1) {
@@ -223,25 +240,28 @@ public class CatalogEngine {
         User rem = (User) result.get(0);//TODO: verify this
 
         hSession.delete(rem);
-        hSession.getTransaction().commit();
+        hSession.getTransaction().commit();*/
     }
 
     public List getLabels() {//TODO: validate session states
-
-        hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+/*
+Session         hSession = ConnectionManager.getSessionFactory().getCurrentSession();
         hSession.beginTransaction();
         List rs = hSession.createQuery("from User").list();
         hSession.getTransaction().commit();
         return rs;
+        */
+                return null;
     }
 
     public List getUsers() {//TODO: validate session states
-
-        hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+/*
+     Session    hSession = ConnectionManager.getSessionFactory().getCurrentSession();
         hSession.beginTransaction();
         List rs = hSession.createQuery("from User").list();
         hSession.getTransaction().commit();
-        return rs;
+        return rs;*/
+                return null;
     }
 
     public List getDiskGroups() {//TODO: validate session states
@@ -319,8 +339,8 @@ public class CatalogEngine {
      */
     @Override
     public void finalize() {
-        if (hSession != null && hSession.isOpen()) {
-            hSession.close();
+        if (sessionFactory != null && !sessionFactory.isClosed()) {
+            sessionFactory.close();
         }
     }
 }

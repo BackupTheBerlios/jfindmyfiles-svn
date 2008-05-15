@@ -47,19 +47,6 @@ public class NewCatalogDlg extends javax.swing.JDialog {
         setVisible(true);
     }
 
-    private boolean isDataValid() {
-        if (!jtfName.getText().isEmpty()) {
-            if (jchkUserinternalDB.isSelected()) {
-                return !jtfDestination.getText().isEmpty();
-            } else {
-                return !jtfHostname.getText().isEmpty() &&
-                        !jtfUsername.getText().isEmpty() &&
-                        !jffPort.getText().isEmpty();
-            }
-        }
-        return false;
-    }
-
     private boolean validateWihtMessages() {
         if (jtfName.getText().isEmpty()) {
             jlbError.setText("* - Nome não pode ser vazio"); //TODO: i18n
@@ -355,7 +342,7 @@ public class NewCatalogDlg extends javax.swing.JDialog {
                     .addComponent(jbtnCancel)
                     .addComponent(jbtnCreate)
                     .addComponent(jlbError))
-                .addGap(14, 14, 14))
+                .addContainerGap())
         );
 
         pack();
@@ -369,18 +356,22 @@ private void jbtnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     if (validateWihtMessages() && eng != null) {
         String selectedname = (String) jcbxDatabase.getSelectedItem();
 
-//       if dbtype is selected to local return the CatalogEngine.LOCAL, if not 
-//       check to see what the selected value of the combobox is and return 
-//       the corresponding value.
+        // if dbtype is selected to local return the CatalogEngine.LOCAL, if not 
+        // check to see what the selected value of the combobox is and return 
+        // the corresponding value.
         final int dbtype = (jchkUserinternalDB.isSelected() ? CatalogEngine.LOCAL : (selectedname.equals("Firebird") ? CatalogEngine.FIREBIRD : (selectedname.equals("PostgreSQL") ? CatalogEngine.POSTGRESQL : (selectedname.equals("MsSQL") ? CatalogEngine.MSSQL : CatalogEngine.MYSQL))));
 
-        new Thread(new Runnable() {
+        //TODO: could a thread be used? If not, the final from above must be removed.
+        //new Thread(new Runnable() {
 
-            public void run() {
-                eng.createCatalog(jtfName.getText().trim(), jtfHostname.getText().trim(), jffPort.getText().trim(),
-                        dbtype, jtfUsername.getText().trim(), jpfPassword.getPassword().toString());
-            }
-        }).start();
+        // public void run() {
+        eng.createCatalog(jtfName.getText().trim(),
+                (jchkUserinternalDB.isSelected() ? jtfDestination.getText().trim() : jtfHostname.getText().trim()),
+                jffPort.getText().trim(), dbtype,
+                jtfUsername.getText().trim(),
+                jpfPassword.getPassword().toString());
+        //}
+        // }).start();
         dispose();
     }
 }//GEN-LAST:event_jbtnCreateActionPerformed

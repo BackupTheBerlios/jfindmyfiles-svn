@@ -12,7 +12,7 @@ apenas em spike solutions.
 Pretende-se conseguir ler o conteúdo de um dada pasta ou drive e obter algumas 
 informações básicas sobre os ficheiros existentes.
 Numa primeira fase não será necessário obter as informações de forma recursiva, 
-sendo que a leitura do primeiro nível de ficheiro é suficiente.
+sendo que a leitura do primeiro nível de ficheiros se considera é suficiente.
 Será necessário conseguir pelo menos obter as seguintes informações:
 	- lista de ficheiros existentes;
 	- tamanho dos ficheiros, incluíndo o tamanho das pastas existentes;
