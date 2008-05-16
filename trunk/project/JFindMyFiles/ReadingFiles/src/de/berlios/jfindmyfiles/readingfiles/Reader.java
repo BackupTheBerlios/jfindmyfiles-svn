@@ -20,25 +20,12 @@
 
 package de.berlios.jfindmyfiles.readingfiles;
 
-import de.berlios.jfindmyfiles.catalog.entities.AudioData;
-import de.berlios.jfindmyfiles.catalog.entities.ImageData;
-import de.berlios.jfindmyfiles.catalog.entities.VideoData;
+import java.io.File;
 
-
-/**
- *
- * @author ei10635
- */
 public interface Reader {
     
-    AudioData importAudioClip();
-    ImageData importImageThumb();
-    VideoData importVideoPreview();
-    String importTextDescription();
-    String importCustomExtension();
-    
-    void register(/*TODO:something*/);
-    void init();
-
-
+    String getName();
+    int getType();
+    void setController(Controller controller);
+    void read(File file);   
 }
