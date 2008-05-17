@@ -20,8 +20,10 @@
 
 package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 
+import java.awt.Image;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
+import org.openide.util.Utilities;
 
 /**
  *
@@ -32,5 +34,16 @@ public class DiskNode extends AbstractNode {
     public DiskNode() {
         super(Children.LEAF);
     }
+    
+    @Override
+    public Image getIcon(int type) {
+        //TODO: depending on the  type of media give the right icon
+        return Utilities.loadImage("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-drive-optical.png"); // NOI18N
+    }
+    
+    @Override
+    public Image getOpenedIcon(int type) {
+        return getIcon(type);
+    }    
 
 }

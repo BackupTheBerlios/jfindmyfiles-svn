@@ -19,8 +19,10 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 
+import java.awt.Image;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
+import org.openide.util.Utilities;
 
 /**
  *
@@ -30,6 +32,16 @@ public class CatalogNode extends AbstractNode {
     
     public CatalogNode() {
         super(Children.LEAF);
+    }
+    
+    @Override
+    public Image getIcon(int type) {
+        return Utilities.loadImage("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-catalog.png"); // NOI18N
+    }
+    
+    @Override
+    public Image getOpenedIcon(int type) {
+        return getIcon(type);
     }
 
 }

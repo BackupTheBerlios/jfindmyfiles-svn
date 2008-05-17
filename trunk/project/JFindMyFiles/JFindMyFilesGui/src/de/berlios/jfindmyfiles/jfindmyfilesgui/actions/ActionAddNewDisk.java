@@ -42,14 +42,12 @@ public final class ActionAddNewDisk extends CallableSystemAction {
     @Override
     protected void initialize() {
         super.initialize();
-        // see org.openide.util.actions.SystemAction.iconResource() Javadoc for more details
-        putValue("noIconInMenu", Boolean.TRUE);
     }
     
-    /*@Override
+    @Override
     protected String iconResource() {
-        return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-optical.png";
-    }*/
+        return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-drive-optical.png";
+    }
     
     public HelpCtx getHelpCtx() {
         return HelpCtx.DEFAULT_HELP;

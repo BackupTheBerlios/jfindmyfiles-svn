@@ -20,14 +20,10 @@
 package de.berlios.jfindmyfiles.catalog;
 
 import de.berlios.jfindmyfiles.catalog.entities.*;
-import de.berlios.jfindmyfiles.catalog.utils.ConnectionManager;
 import java.io.File;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Stack;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -42,7 +38,7 @@ public class CatalogEngine {
     public static final int LOCAL = 4;
     private SessionFactory sessionFactory;
     
-    private CatalogProperties properties;
+    private CatalogProperties properties = new CatalogProperties("teste", "<sem desc>", 50, 25, 500, 30, new Date()); //TODO: remove
 
     /**
      * Empty construtor so that this class can be instanciated using reflection 

@@ -22,7 +22,9 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.catalog.entities.CatalogProperties;
 import java.util.Date;
+import javax.swing.ImageIcon;
 import org.openide.util.Lookup;
+import org.openide.util.Utilities;
 import org.openide.util.lookup.Lookups;
 
 /**
@@ -33,6 +35,7 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
 
     private CatalogEngine eng;
     private CatalogProperties props;
+    private boolean alterado = false;
 
     /** Creates new form CatalogPropertiesDlg */
     public CatalogPropertiesDlg(java.awt.Frame parent, boolean modal) {
@@ -80,6 +83,7 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
         jlblCatalogName = new javax.swing.JLabel();
         jlblCreatedOn = new javax.swing.JLabel();
         jlblIcon = new javax.swing.JLabel();
+        jlblIcon.setIcon(new ImageIcon(Utilities.loadImage("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x32/icon-catalog.png"))); // NOI18N
         jSeparator2 = new javax.swing.JSeparator();
         jdcCreatedOn = new com.toedter.calendar.JDateChooser();
         jSeparator1 = new javax.swing.JSeparator();
@@ -108,10 +112,21 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
 
         jlblIcon.setText(org.openide.util.NbBundle.getMessage(CatalogPropertiesDlg.class, "CatalogPropertiesDlg.jlblIcon.text")); // NOI18N
 
+        jdcCreatedOn.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jdcCreatedOnPropertyChange(evt);
+            }
+        });
+
         jlblDescription.setText(org.openide.util.NbBundle.getMessage(CatalogPropertiesDlg.class, "CatalogPropertiesDlg.jlblDescription.text")); // NOI18N
 
         jtaDescription.setColumns(20);
         jtaDescription.setRows(5);
+        jtaDescription.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jtaDescriptionKeyTyped(evt);
+            }
+        });
         jscrDescription.setViewportView(jtaDescription);
 
         jlblTotalSize.setText(org.openide.util.NbBundle.getMessage(CatalogPropertiesDlg.class, "CatalogPropertiesDlg.jlblTotalSize.text")); // NOI18N
@@ -202,7 +217,7 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlblDescription)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscrDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
+                .addComponent(jscrDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -257,12 +272,28 @@ private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_jbtnCancelActionPerformed
 
 private void jbtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOKActionPerformed
-    if (eng != null && props != null) {
+    //TODO: is not setting the values
+    if (alterado && eng != null && props != null) {
+        alterado = false;
         props.setCreationDate(jdcCreatedOn.getDate());
         props.setDescription(jtaDescription.getText().trim());
         eng.setProperties(props);
     }
+    dispose();
 }//GEN-LAST:event_jbtnOKActionPerformed
+
+private void jtaDescriptionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtaDescriptionKeyTyped
+    //NOTE: this event is probably not the best one to use
+    alterado = true;
+}//GEN-LAST:event_jtaDescriptionKeyTyped
+
+private void jdcCreatedOnPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcCreatedOnPropertyChange
+    //NOTE: jcalenar component does no provide events for listning to date 
+    // changes.    
+    if(evt.getPropertyName().equals("date")) {
+        alterado = true;
+    }
+}//GEN-LAST:event_jdcCreatedOnPropertyChange
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator jSeparator1;
