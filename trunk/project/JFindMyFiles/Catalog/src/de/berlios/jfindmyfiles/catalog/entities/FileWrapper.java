@@ -29,25 +29,40 @@ import java.util.Set;
 public class FileWrapper {
 
     private Long id;
-    private Media disk;
-    private long size;
-    private boolean file;
-    private boolean folder;
+    //Base attributes
     private String name;
     private String absolutePath;
-    private boolean hidden;
     private long lastModified;
-    private Set children = new LinkedHashSet();
-    private FileWrapper parent;
     private String description;
+    private boolean hidden;
+    private long size;
+    private String extension;
     private ImageData image;
     private VideoData video;
     private AudioData audio;
+    //Helpers    
+    private boolean file;
+    private boolean folder;
+    //Attributes from relationships    
+    private Set children = new LinkedHashSet();
+    private FileWrapper parent;
+    private Media disk;
 
     public FileWrapper() {
-        //do nothing
+        //DO NOTHING
     }
 
+    /**
+     * 
+     * @param name
+     * @param absolutePath
+     * @param size
+     * @param file
+     * @param hidden
+     * @param lastModified
+     * @param disk
+     * @param parent
+     */
     public FileWrapper(String name, String absolutePath, long size,
             boolean file, boolean hidden, long lastModified, Media disk,
             FileWrapper parent) {
@@ -61,6 +76,10 @@ public class FileWrapper {
         this.parent = parent;
     }
 
+    /**
+     * 
+     * @param child
+     */
     public void addChild(FileWrapper child) {
         if (children == null) {
             children = new LinkedHashSet();
@@ -70,6 +89,10 @@ public class FileWrapper {
 
     }
 
+    /**
+     * 
+     * @param child
+     */
     public void removeChild(FileWrapper child) {
         if (children != null) {
             children.remove(child);
@@ -114,6 +137,14 @@ public class FileWrapper {
 
     public void setDisk(Media disk) {
         this.disk = disk;
+    }
+
+    public String getExtension() {
+        return extension;
+    }
+
+    public void setExtension(String extension) {
+        this.extension = extension;
     }
 
     public boolean isFile() {
@@ -207,10 +238,10 @@ public class FileWrapper {
      */
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) {
+        if (this == obj) {
             return true;
         }
-        
+
         if (!(obj instanceof FileWrapper)) {
             return false;
         }
@@ -218,7 +249,7 @@ public class FileWrapper {
         FileWrapper other = (FileWrapper) obj;
         return size == other.size && name.equals(other.name) && absolutePath.equals(other.absolutePath);
     }
-    
+
     //TODO: link for the equals method
     /**
      * HashCode for this object, excluding the id field.
@@ -234,7 +265,7 @@ public class FileWrapper {
         hash = 11 * hash + (this.absolutePath != null ? this.absolutePath.hashCode() : 0);
         return hash;
     }
-    
+
     @Override
     public String toString() {
         return name;

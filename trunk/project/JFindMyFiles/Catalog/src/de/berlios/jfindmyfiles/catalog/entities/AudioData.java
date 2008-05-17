@@ -29,6 +29,15 @@ public class AudioData {
     private FileWrapper owner;
     private byte[] data;
 
+    public AudioData() {
+        //DO NOTHING
+    }
+    
+    public AudioData(FileWrapper owner, byte[] data) {
+        this.owner = owner;
+        this.data = data;
+    }
+
     public Long getId() {
         return id;
     }

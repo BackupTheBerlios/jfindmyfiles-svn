@@ -28,8 +28,18 @@ import java.util.Set;
 public class Label {
 
     private Long id;
+    //Base attributes
     private String name;
+    //Attributes from relationships
     private Set media;
+    
+    public Label() {
+        //DO NOTHING
+    }
+    
+    public Label(String name) {
+        this.name = name;
+    }
 
     public Long getId() {
         return id;

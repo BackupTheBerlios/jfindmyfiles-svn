@@ -28,11 +28,49 @@ import java.util.Set;
 public class Media {
 
     private Long id;
+    //Base attributes
     private String name;
-    private Set files;
+    private long capacity;
+    private long lastModified;
     private String description;
+    private long freeSpace;
+    private String location;
+    //Attributes from relationships
+    private Set files;
     private Set labels;
+    //Helpers
     private Type type;
+
+    public Media() {
+        //DO NOTHING
+    }
+
+    public Media(String name, long capacity, long lastModified,
+            String description, long freeSpace, String location, Type type) {
+        this.name = name;
+        this.capacity = capacity;
+        this.lastModified = lastModified;
+        this.description = description;
+        this.freeSpace = freeSpace;
+        this.location = location;
+        this.type = type;
+    }
+    
+    public void increaseCapacity(long amount) {
+        capacity += amount;
+    }
+    
+    public void increaseFreeSpace(long amount) {
+        freeSpace += amount;
+    }
+    
+    public long getCapacity() {
+        return capacity;
+    }
+    
+    public void setCapacity(long capacity) {
+        this.capacity = capacity;
+    }
 
     public String getDescription() {
         return description;
@@ -49,6 +87,14 @@ public class Media {
     private void setFiles(Set files) {
         this.files = files;
     }
+    
+    public long getFreeSpace() {
+        return freeSpace;
+    }
+    
+    public void setFreeSpace(long freeSpace) {
+        this.freeSpace = freeSpace;
+    }
 
     public Long getId() {
         return id;
@@ -64,6 +110,22 @@ public class Media {
 
     private void setLabels(Set labels) {
         this.labels = labels;
+    }
+    
+    public long getLastModified() {
+        return lastModified;
+    }
+    
+    public void setLastModified(long lastModified) {
+        this.lastModified = lastModified;
+    }
+    
+    public String getLocation() {
+        return location;
+    }
+    
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getName() {
@@ -93,19 +155,18 @@ public class Media {
      */
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) {
+        if (this == obj) {
             return true;
         }
-        
+
         if (!(obj instanceof Media)) {
             return false;
         }
 
         Media other = (Media) obj;
-        return name.equals(other.name) && description.equals(other.description) 
-                && type.equals(other.type);
+        return name.equals(other.name) && description.equals(other.description) && type.equals(other.type);
     }
-    
+
     //TODO: link for the equals method
     /**
      * HashCode for this object, excluding the id field.
@@ -121,7 +182,7 @@ public class Media {
         hash = 31 * hash + (this.type != null ? this.type.hashCode() : 0);
         return hash;
     }
-    
+
     @Override
     public String toString() {
         return name;

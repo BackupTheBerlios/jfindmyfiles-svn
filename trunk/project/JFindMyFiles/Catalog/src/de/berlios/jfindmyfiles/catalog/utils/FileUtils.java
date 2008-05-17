@@ -44,8 +44,13 @@ public abstract class FileUtils {
     }
     
     public String fileCRC(File file) {
-        //TODO: implement
+        //TODO: implement!
         return new CRC32().toString();
+    }
+    
+    public String getIconFromExtension(String extension) {
+        //TODO: implement!
+        return "";
     }
 
 }

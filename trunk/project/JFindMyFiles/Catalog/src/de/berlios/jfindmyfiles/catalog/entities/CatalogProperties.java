@@ -22,7 +22,7 @@ public class CatalogProperties {
     private Date creationDate;
 
     public CatalogProperties() {
-        //do nothing;
+        //DO NOTHING
     }
 
     //TODO: confirm if it's really necessary
@@ -38,7 +38,23 @@ public class CatalogProperties {
         this.totalFolders = totalFolders;
         this.creationDate = creationDate;
     }
+    
+    public void increaseDiskNumber(int amount) {
+        diskNumber += amount;
+    }
+    
+    public void increaseTotalFiles(int amount) {
+        totalFiles += totalFiles;
+    }
+    
+    public void increaseTotalFolders(int amount) {
+        totalFolders += amount;
+    }
 
+    public void increaseTotalSize(long amount) {
+        totalSize += amount;
+    }   
+    
     public Date getCreationDate() {
         return creationDate;
     }
@@ -54,7 +70,7 @@ public class CatalogProperties {
     public void setDescription(String description) {
         this.description = description;
     }
-
+    
     public int getDiskNumber() {
         return diskNumber;
     }
@@ -79,6 +95,7 @@ public class CatalogProperties {
         this.name = name;
     }
 
+    
     public long getTotalFiles() {
         return totalFiles;
     }
@@ -86,7 +103,7 @@ public class CatalogProperties {
     public void setTotalFiles(long totalFiles) {
         this.totalFiles = totalFiles;
     }
-
+        
     public long getTotalFolders() {
         return totalFolders;
     }
@@ -94,7 +111,7 @@ public class CatalogProperties {
     public void setTotalFolders(long totalFolders) {
         this.totalFolders = totalFolders;
     }
-
+    
     public long getTotalSize() {
         return totalSize;
     }

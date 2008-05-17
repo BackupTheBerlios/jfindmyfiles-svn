@@ -28,10 +28,35 @@ import java.util.Set;
 public class DiskGroup {
 
     private Long id;
+    //Base attributes
     private String name;
     private String description;
+    private long capacity;
+    //Attributes from relationships
     private Set groups;
     private DiskGroup parent;
+
+    public DiskGroup() {
+        //DO NOTHING
+    }
+
+    public DiskGroup(String name, String description, long capacity) {
+        this.name = name;
+        this.description = description;
+        this.capacity = capacity;
+    }
+    
+    public void increaseCapacity(long amount) {
+        capacity += amount;
+    }
+    
+    public long getCapacity() {
+        return capacity;
+    }
+    
+    public void setCapacity(long capacity) {
+        this.capacity = capacity;
+    }
 
     public String getDescription() {
         return description;
@@ -84,10 +109,10 @@ public class DiskGroup {
      */
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) {
+        if (this == obj) {
             return true;
         }
-        
+
         if (!(obj instanceof DiskGroup)) {
             return false;
         }

@@ -32,6 +32,14 @@ public class Loan {
     private Date returned;
     private User loanee;
     private Media media;
+    
+    public Loan() {
+        //DO NOTHING
+    }
+    
+    public Loan(Date loaned) {
+        this.loaned = loaned;
+    }
 
     public Long getId() {
         return id;

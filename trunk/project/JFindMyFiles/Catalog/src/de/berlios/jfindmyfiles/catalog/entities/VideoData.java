@@ -29,6 +29,15 @@ public class VideoData {
     private FileWrapper owner;
     private byte[] data;
 
+    public VideoData() {
+        //DO NOTHING
+    }
+
+    public VideoData(FileWrapper owner, byte[] data) {
+        this.owner = owner;
+        this.data = data;
+    }
+
     public Long getId() {
         return id;
     }
@@ -44,15 +53,15 @@ public class VideoData {
     public void setOwner(FileWrapper owner) {
         this.owner = owner;
     }
-    
+
     public byte[] getData() {
         return data;
     }
-    
+
     public void setData(byte[] data) {
         this.data = data;
     }
-    
+
     /**
      * Equals method doesn't take into account the id of the object. Hibernate 
      * only gives an id to a new object when that object is persisted, it is 
@@ -64,17 +73,16 @@ public class VideoData {
      */
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) {
+        if (this == obj) {
             return true;
         }
-        
-        if(!(obj instanceof VideoData)) {
+
+        if (!(obj instanceof VideoData)) {
             return false;
         }
-        VideoData other = (VideoData)obj;
-        return owner.equals(other.owner) && data.length == other.data.length 
-                && data == other.data;
-                
+        VideoData other = (VideoData) obj;
+        return owner.equals(other.owner) && data.length == other.data.length && data == other.data;
+
     }
 
     //TODO: link for the equals method
@@ -91,9 +99,9 @@ public class VideoData {
         hash = 89 * hash + (this.data != null ? this.data.hashCode() : 0);
         return hash;
     }
-    
+
     @Override
     public String toString() {
         return super.toString() + " " + id + " " + data.length;
-    }    
+    }
 }

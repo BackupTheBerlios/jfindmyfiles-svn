@@ -28,6 +28,15 @@ public class ImageData {
     private Long id;
     private FileWrapper owner;
     private byte[] data;
+    
+    public ImageData() {
+        //DO NOTHING
+    }
+    
+    public ImageData(FileWrapper owner, byte[] data) {
+        this.owner = owner;
+        this.data = data;
+    }
 
     public Long getId() {
         return id;

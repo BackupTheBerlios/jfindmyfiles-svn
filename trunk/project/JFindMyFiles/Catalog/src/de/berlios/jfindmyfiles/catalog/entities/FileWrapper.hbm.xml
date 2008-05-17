@@ -29,13 +29,15 @@
         </id>
         
         <property name="name"/>
-        <property name="size"/>
-        <property name="file"/>
-        <property name="folder"/>
         <property name="absolutePath"/>
-        <property name="hidden"/>
         <property name="lastModified"/>
         <property name="description"/>  
+        <property name="hidden"/>
+        <property name="size"/>
+        <property name="extension"/>
+
+        <property name="file"/>
+        <property name="folder"/>
         
         <many-to-one name="disk" class="de.berlios.jfindmyfiles.catalog.entities.Media" column="MEDIA_ID" not-null="true"/>
         

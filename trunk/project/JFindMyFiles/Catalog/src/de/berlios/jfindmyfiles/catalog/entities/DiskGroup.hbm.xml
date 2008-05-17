@@ -29,6 +29,7 @@
         </id>
         <property name="name"/>
         <property name="description"/>
+        <property name="capacity"/>
         
         <set name="groups" inverse="true" lazy="true">
             <key column="PARENT_ID"/>

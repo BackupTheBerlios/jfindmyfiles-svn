@@ -31,6 +31,15 @@ public class User {
     private String firstname;
     private String surname;
     private Set loans;
+    
+    public User() {
+        //DO NOTHING
+    }
+    
+    public User(String firstname, String surname) {
+        this.firstname = firstname;
+        this.surname = surname;
+    }
 
     public String getFirstname() {
         return firstname;
