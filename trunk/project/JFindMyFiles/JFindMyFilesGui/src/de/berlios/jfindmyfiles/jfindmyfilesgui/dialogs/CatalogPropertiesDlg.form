@@ -150,7 +150,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jlblDescription" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jscrDescription" pref="140" max="32767" attributes="0"/>
+                  <Component id="jscrDescription" pref="138" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>

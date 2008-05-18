@@ -58,15 +58,17 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
         if (eng != null) {
             Date temp;
             props = eng.getProperties();
-            jlblCatalogName.setText(props.getName());
-            if ((temp = props.getCreationDate()) != null) {
-                jdcCreatedOn.setDate(temp);
+            if (props != null) {
+                jlblCatalogName.setText(props.getName());
+                if ((temp = props.getCreationDate()) != null) {
+                    jdcCreatedOn.setDate(temp);
+                }
+                jtaDescription.setText(props.getDescription());
+                jlblNrDisksValue.setText(String.valueOf(props.getDiskNumber()));
+                jlblNrFilesValue.setText(String.valueOf(props.getTotalFiles()));
+                jlblNrFoldersValue.setText(String.valueOf(props.getTotalFolders()));
+                jlblTotalSizeValue.setText(String.valueOf(props.getTotalSize()));
             }
-            jtaDescription.setText(props.getDescription());
-            jlblNrDisksValue.setText(String.valueOf(props.getDiskNumber()));
-            jlblNrFilesValue.setText(String.valueOf(props.getTotalFiles()));
-            jlblNrFoldersValue.setText(String.valueOf(props.getTotalFolders()));
-            jlblTotalSizeValue.setText(String.valueOf(props.getTotalSize()));
         }
     }
 
@@ -290,7 +292,7 @@ private void jtaDescriptionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
 private void jdcCreatedOnPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcCreatedOnPropertyChange
     //NOTE: jcalenar component does no provide events for listning to date 
     // changes.    
-    if(evt.getPropertyName().equals("date")) {
+    if (evt.getPropertyName().equals("date")) {
         alterado = true;
     }
 }//GEN-LAST:event_jdcCreatedOnPropertyChange

@@ -37,8 +37,8 @@ public class CatalogEngine {
     public static final int MYSQL = 3;
     public static final int LOCAL = 4;
     private SessionFactory sessionFactory;
-    
-    private CatalogProperties properties = new CatalogProperties("teste", "<sem desc>", 50, 25, 500, 30, new Date()); //TODO: remove
+    private CatalogProperties properties;// = new CatalogProperties("teste", "<sem desc>", 50, 25, 500, 30, new Date()); //TODO: remove
+    private Configuration hConfig;
 
     /**
      * Empty construtor so that this class can be instanciated using reflection 
@@ -52,12 +52,12 @@ public class CatalogEngine {
     private void recreateConnection(String dbname, String dburl, String port,
             String username, String password, int dbType) {
 
-        closeCatalog();
+        //closeCatalog();
         try {
             /*Configuration cfg = new Configuration().configure("de/berlios" +
             "/jfindmyfiles/catalog/utils/hibernate.hsqldb.cfg.xml");*/
 
-            Configuration cfg = new Configuration()//Configuration object
+            hConfig = new Configuration()//Configuration object
                     .addClass(de.berlios.jfindmyfiles.catalog.entities.AudioData.class)//Add AudioData class
                     .addClass(de.berlios.jfindmyfiles.catalog.entities.DiskGroup.class)//Add DiskGroup class
                     .addClass(de.berlios.jfindmyfiles.catalog.entities.FileWrapper.class)//Add FileWrapper class
@@ -71,28 +71,30 @@ public class CatalogEngine {
                     .addClass(de.berlios.jfindmyfiles.catalog.entities.CatalogProperties.class)//Add CatalogProperties class
                     .setProperty("hibernate.connection.pool_size", "1")//JDBC connection pool (use the built-in)
                     .setProperty("hibernate.current_session_context_class", "thread")//Enable Hibernate's automatic session context management
+                    .setProperty("hibernate.transaction.factory_class", "org.hibernate.transaction.JDBCTransactionFactory")//Who manages the transaction
                     .setProperty("hibernate.cache.provider_class", "org.hibernate.cache.NoCacheProvider")//Disable the second-level cache
                     .setProperty("hibernate.show_sql", "true")//Echo all executed SQL to stdout
-                    .setProperty("hibernate.hbm2ddl.auto", "create-drop");//TODO: remove this line and replace with proper one
+                    .setProperty("hibernate.hbm2ddl.auto", "create")//TODO: remove this line and replace with proper one
+                    .setProperty("hibernate.connection.autocommit", "false");//Setting autocommit to false
 
             switch (dbType) {
                 case FIREBIRD://TODO: change for FIREBIRD database engine
 
-                    cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
-                    cfg.setProperty("hibernate.connection.driver_class", "org.hsqldb.jdbcDriver");
-                    cfg.setProperty("hibernate.connection.url", "jdbc:hsqldb:file:" + dburl + "/" + dbname);
-                    cfg.setProperty("hibernate.connection.username", "sa");
-                    cfg.setProperty("hibernate.connection.password", password);
-                    cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
+                    hConfig.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
+                    hConfig.setProperty("hibernate.connection.driver_class", "org.hsqldb.jdbcDriver");
+                    hConfig.setProperty("hibernate.connection.url", "jdbc:hsqldb:file:" + dburl + "/" + dbname);
+                    hConfig.setProperty("hibernate.connection.username", "sa");
+                    hConfig.setProperty("hibernate.connection.password", password);
+                    hConfig.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
 
                     break;
                 case POSTGRESQL://TODO: change for POSTGRESQL database engine
 
-                    cfg.setProperty("hibernate.dialect", "o");
-                    cfg.setProperty("hibernate.connection.driver_class", "");
-                    cfg.setProperty("hibernate.connection.url", "");
-                    cfg.setProperty("hibernate.connection.username", "");
-                    cfg.setProperty("hibernate.connection.password", password);
+                    hConfig.setProperty("hibernate.dialect", "o");
+                    hConfig.setProperty("hibernate.connection.driver_class", "");
+                    hConfig.setProperty("hibernate.connection.url", "");
+                    hConfig.setProperty("hibernate.connection.username", "");
+                    hConfig.setProperty("hibernate.connection.password", password);
 
                     break;
                 case MYSQL:
@@ -103,86 +105,119 @@ public class CatalogEngine {
                     dburl = "67.207.139.234";
                     port = "3306";
 
-                    cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
-                    cfg.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
-                    cfg.setProperty("hibernate.connection.url", "jdbc:mysql://" + dburl + ":" + port + "/" + dbname);
-                    cfg.setProperty("hibernate.connection.username", username);
-                    cfg.setProperty("hibernate.connection.password", password);
+                    hConfig.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
+                    hConfig.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
+                    hConfig.setProperty("hibernate.connection.url", "jdbc:mysql://" + dburl + ":" + port + "/" + dbname);
+                    hConfig.setProperty("hibernate.connection.username", username);
+                    hConfig.setProperty("hibernate.connection.password", password);
                     break;
                 case MSSQL://TODO: change for MSSQL database engine
 
-                    cfg.setProperty("hibernate.dialect", "");
-                    cfg.setProperty("hibernate.connection.driver_class", "");
-                    cfg.setProperty("hibernate.connection.url", "");
-                    cfg.setProperty("hibernate.connection.username", "");
-                    cfg.setProperty("hibernate.connection.password", password);
+                    hConfig.setProperty("hibernate.dialect", "");
+                    hConfig.setProperty("hibernate.connection.driver_class", "");
+                    hConfig.setProperty("hibernate.connection.url", "");
+                    hConfig.setProperty("hibernate.connection.username", "");
+                    hConfig.setProperty("hibernate.connection.password", password);
                     break;
                 default://If it's not a network database we can only use HSQLDB engine
 
-                    cfg.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
-                    cfg.setProperty("hibernate.connection.driver_class", "org.hsqldb.jdbcDriver");
-                    cfg.setProperty("hibernate.connection.url", "jdbc:hsqldb:file:" + dburl + "/" + dbname);
-                    cfg.setProperty("hibernate.connection.username", "sa");//Default user for every HSQLDB database
-                    cfg.setProperty("hibernate.connection.password", "");//HSQLDB has a user with no password
+                    hConfig.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
+                    hConfig.setProperty("hibernate.connection.driver_class", "org.hsqldb.jdbcDriver");
+                    hConfig.setProperty("hibernate.connection.url", "jdbc:hsqldb:file:" + dburl + "/" + dbname);
+                    hConfig.setProperty("hibernate.connection.username", "sa");//Default user for every HSQLDB database
+
+                    hConfig.setProperty("hibernate.connection.password", "");//HSQLDB has a user with no password
+
             }
-            
-            sessionFactory = cfg.buildSessionFactory();
-            
+
+            sessionFactory = hConfig.buildSessionFactory();
+
         } catch (Throwable ex) {//TODO: proper logging
             // Make sure you log the exception, as it might be swallowed
+
             System.err.println("HIBERNATE: Initial SessionFactory creation failed." + ex);
             throw new ExceptionInInitializerError(ex);
         }
 
     }
+    
+    private void restoreSessionFactory() {
+        sessionFactory = hConfig.buildSessionFactory();
+    }
 
+    /**
+     * 
+     * @param dbname
+     * @param dburl
+     * @param port
+     * @param dbType
+     * @param username
+     * @param password
+     */
     public void openCatalog(String dbname, String dburl, String port, int dbType,
             String username, String password) {
 
         recreateConnection(dbname, dburl, port, username, password, dbType);
-        
+
         //Reading catalog properties
         Session cSession = sessionFactory.getCurrentSession();
         cSession.beginTransaction();
         List result = cSession.createQuery("from CatalogProperties").list();
         cSession.getTransaction().commit();
-        properties = (CatalogProperties)result.get(0);
+        properties = (CatalogProperties) result.get(0);
     }
 
+    /**
+     * 
+     * @param dbname
+     * @param dburl
+     * @param port
+     * @param dbType
+     * @param username
+     * @param password
+     */
     public void createCatalog(String dbname, String dburl, String port, int dbType,
             String username, String password) {
 
         recreateConnection(dbname, dburl, port, username, password, dbType);
 
+        //Create and save catalog properties
         Session cSession = sessionFactory.getCurrentSession();
-        cSession.beginTransaction();//TODO: find correct settings to store
+        cSession.beginTransaction();
         properties = new CatalogProperties();
         properties.setName(dbname);
+        properties.setCreationDate(new Date());
         cSession.save(properties);
         cSession.getTransaction().commit();
-        cSession.close();
-
     //TODO: notify listeners
     }
 
+    /**
+     * 
+     */
     public void closeCatalog() {
         if (sessionFactory != null) {
             sessionFactory.close();
             sessionFactory = null;
         }
     }
-    
+
     public CatalogProperties getProperties() {
         return properties;
     }
-    
+
     public void setProperties(CatalogProperties props) {
-        //TODO: persist the object
-        this.properties = props;
+        /*this.properties = props;
+
+        Session cSession = sessionFactory.openSession();//getCurrentSession();
+        cSession.beginTransaction();
+        cSession.save(properties);
+        cSession.getTransaction().commit();
+        cSession.close();*/
     }
 
     public void addDiskGroup(String name, String description, DiskGroup parent) {
-      /*  Session hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+        /*  Session hSession = ConnectionManager.getSessionFactory().getCurrentSession();
         hSession.beginTransaction();
         DiskGroup dg = new DiskGroup();
         dg.setName(name);
@@ -202,15 +237,15 @@ public class CatalogEngine {
     }
 
     public void removeLabel(Label label) {
-       /*Session  hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+        /*Session  hSession = ConnectionManager.getSessionFactory().getCurrentSession();
         hSession.beginTransaction();
         List result = hSession.createQuery("from Label where id=" + label.getId()).list();
         if (result.size() != 1) {
-            ;//TODO: show error, invalid state
-
+        ;//TODO: show error, invalid state
+        
         }
         Label rem = (Label) result.get(0);//TODO: verify this
-
+        
         hSession.delete(rem);
         hSession.getTransaction().commit();*/
     }
@@ -230,43 +265,45 @@ public class CatalogEngine {
         hSession.beginTransaction();
         List result = hSession.createQuery("from Label where id=" + user.getId()).list();
         if (result.size() != 1) {
-            ;//TODO: show error, invalid state
-
+        ;//TODO: show error, invalid state
+        
         }
         User rem = (User) result.get(0);//TODO: verify this
-
+        
         hSession.delete(rem);
         hSession.getTransaction().commit();*/
     }
 
     public List getLabels() {//TODO: validate session states
 /*
-Session         hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+        Session         hSession = ConnectionManager.getSessionFactory().getCurrentSession();
         hSession.beginTransaction();
         List rs = hSession.createQuery("from User").list();
         hSession.getTransaction().commit();
         return rs;
-        */
-                return null;
+         */
+        return null;
     }
 
     public List getUsers() {//TODO: validate session states
 /*
-     Session    hSession = ConnectionManager.getSessionFactory().getCurrentSession();
+        Session    hSession = ConnectionManager.getSessionFactory().getCurrentSession();
         hSession.beginTransaction();
         List rs = hSession.createQuery("from User").list();
         hSession.getTransaction().commit();
         return rs;*/
-                return null;
+        return null;
     }
 
     public List getDiskGroups() {//TODO: validate session states
-       /* hSession = ConnectionManager.getSessionFactory().getCurrentSession();
-        hSession.beginTransaction();
-        List rs = hSession.createQuery("from DiskGRoup").list();
-        hSession.getTransaction().commit();
-        return rs;*/
-        return new LinkedList();
+        if(sessionFactory == null) {
+            restoreSessionFactory();
+        }
+        Session cSession = sessionFactory.getCurrentSession();
+        cSession.beginTransaction();
+        List rs = cSession.createQuery("from DiskGroup").list();
+        cSession.getTransaction().commit();
+        return rs;
     }
 
     public void readDisk(File file, DiskGroup group, boolean isMedia) {

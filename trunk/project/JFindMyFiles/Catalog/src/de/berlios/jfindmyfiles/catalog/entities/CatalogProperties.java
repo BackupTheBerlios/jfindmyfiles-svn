@@ -136,13 +136,8 @@ public class CatalogProperties {
         }
 
         CatalogProperties other = (CatalogProperties) obj;
-        return this.name.equals(other.name) &&
-                this.description.equals(other.description) &&
-                this.totalSize == other.totalSize &&
-                this.diskNumber == other.diskNumber &&
-                this.totalFiles == other.totalFiles &&
-                this.totalFolders == other.totalFolders;
-    //NOTE: ignoring creation date
+        //All attributes are ignored, except for the name
+        return this.name.equals(other.name);
     }
 
     //TODO: link for the equals method
