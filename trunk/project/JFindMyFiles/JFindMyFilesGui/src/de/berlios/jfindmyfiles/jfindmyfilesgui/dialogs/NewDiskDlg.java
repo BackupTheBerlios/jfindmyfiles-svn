@@ -36,7 +36,6 @@ import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileSystemView;
 import org.openide.util.Lookup;
 import org.openide.util.Utilities;
-import org.openide.util.lookup.Lookups;
 
 /**
  *
@@ -51,11 +50,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
     /** Creates new form NewDiskDlg */
     public NewDiskDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        Lookup lu = Lookups.forPath("/CatalogEngine"); // NOI18N
-
-        eng = lu.lookup(CatalogEngine.class);
-        System.err.println("####################################################" + eng.counting);
-        System.err.println("####################################################" + eng);
+        eng = Lookup.getDefault().lookup(CatalogEngine.class);
         initComponents();
     //TODO: get the available plugins and create the popup menu
     }

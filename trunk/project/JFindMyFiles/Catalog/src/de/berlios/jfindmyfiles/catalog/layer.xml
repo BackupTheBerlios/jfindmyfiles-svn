@@ -20,9 +20,9 @@
  -->
 <!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.1//EN" "http://www.netbeans.org/dtds/filesystem-1_1.dtd">
 <filesystem>
-    <folder name="CatalogEngine">
+<!--    <folder name="CatalogEngine">
         <file name="de-berlios-jfindmyfiles-catalog-CatalogEngine.instance">
             <attr name="instanceClass" stringvalue="de.berlios.jfindmyfiles.catalog.CatalogEngine"/>
         </file>
-    </folder>
+    </folder> -->
 </filesystem>

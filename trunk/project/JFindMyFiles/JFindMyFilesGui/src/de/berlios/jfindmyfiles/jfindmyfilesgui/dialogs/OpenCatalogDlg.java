@@ -35,9 +35,9 @@ public class OpenCatalogDlg extends javax.swing.JDialog {
     public OpenCatalogDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        Lookup lu = Lookups.forPath("/CatalogEngine"); // NOI18N
+        /*Lookup lu = Lookups.forPath("/CatalogEngine"); // NOI18N
 
-        eng = lu.lookup(CatalogEngine.class);
+        eng = lu.lookup(CatalogEngine.class);*/
         initComponents();
         jlbError.setVisible(false);        
     }

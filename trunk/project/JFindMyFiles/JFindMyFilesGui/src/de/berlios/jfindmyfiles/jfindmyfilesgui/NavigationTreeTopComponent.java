@@ -54,8 +54,8 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
         setName(NbBundle.getMessage(NavigationTreeTopComponent.class, "CTL_NavigationTreeTopComponent"));
         setToolTipText(NbBundle.getMessage(NavigationTreeTopComponent.class, "HINT_NavigationTreeTopComponent"));
 //        setIcon(Utilities.loadImage(ICON_PATH, true));
-        Lookup lu = Lookups.forPath("/CatalogEngine");
-        CatalogEngine en = lu.lookup(CatalogEngine.class);
+        //Lookup lu = Lookups.forPath("/CatalogEngine");
+        //CatalogEngine en = lu.lookup(CatalogEngine.class);
     }
 
     private void myInitComponents() {

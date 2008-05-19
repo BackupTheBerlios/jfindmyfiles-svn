@@ -39,8 +39,8 @@ public class CatalogEngine {
     private SessionFactory sessionFactory;
     private CatalogProperties properties;// = new CatalogProperties("teste", "<sem desc>", 50, 25, 500, 30, new Date()); //TODO: remove
     private Configuration hConfig;
-
     public static int counting = 0;
+
     /**
      * Empty construtor so that this class can be instanciated using reflection 
      * by the netbeans platform.
@@ -142,10 +142,6 @@ public class CatalogEngine {
         }
 
     }
-    
-    private void restoreSessionFactory() {
-        sessionFactory = hConfig.buildSessionFactory();
-    }
 
     /**
      * 
@@ -164,9 +160,7 @@ public class CatalogEngine {
         //Reading catalog properties
         Session cSession = sessionFactory.getCurrentSession();
         cSession.beginTransaction();
-        List result = cSession.createQuery("from CatalogProperties").list();
-        cSession.getTransaction().commit();
-        properties = (CatalogProperties) result.get(0);
+        properties = (CatalogProperties) cSession.createQuery("from CatalogProperties").uniqueResult();
     }
 
     /**
@@ -208,15 +202,20 @@ public class CatalogEngine {
         return properties;
     }
 
-    public void setProperties(CatalogProperties props) {
-        /*this.properties = props;
-
-        Session cSession = sessionFactory.openSession();//getCurrentSession();
+    public void updateProperties() {
+        Session cSession = sessionFactory.getCurrentSession();
         cSession.beginTransaction();
-        cSession.save(properties);
+        cSession.update(properties);
         cSession.getTransaction().commit();
-        cSession.close();*/
     }
+
+/*    public void updateProperties(CatalogProperties props) {
+        properties = props;
+        Session cSession = sessionFactory.getCurrentSession();
+        cSession.beginTransaction();
+        cSession.merge(properties);
+        cSession.getTransaction().commit();
+    }*/
 
     public void addDiskGroup(String name, String description, DiskGroup parent) {
         /*  Session hSession = ConnectionManager.getSessionFactory().getCurrentSession();
@@ -288,19 +287,15 @@ public class CatalogEngine {
     }
 
     public List getUsers() {//TODO: validate session states
-/*
-        Session    hSession = ConnectionManager.getSessionFactory().getCurrentSession();
-        hSession.beginTransaction();
-        List rs = hSession.createQuery("from User").list();
-        hSession.getTransaction().commit();
-        return rs;*/
-        return null;
+
+        Session cSession = sessionFactory.getCurrentSession();
+        cSession.beginTransaction();
+        List rs = cSession.createQuery("from User").list();
+        cSession.getTransaction().commit();
+        return rs;
     }
 
-    public List getDiskGroups() {//TODO: validate session states
-        if(sessionFactory == null) {
-            restoreSessionFactory();
-        }
+    public List getDiskGroups() {
         Session cSession = sessionFactory.getCurrentSession();
         cSession.beginTransaction();
         List rs = cSession.createQuery("from DiskGroup").list();

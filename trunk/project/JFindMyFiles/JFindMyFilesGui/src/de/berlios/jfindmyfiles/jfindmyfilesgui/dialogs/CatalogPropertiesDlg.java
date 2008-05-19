@@ -25,7 +25,6 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import org.openide.util.Lookup;
 import org.openide.util.Utilities;
-import org.openide.util.lookup.Lookups;
 
 /**
  *
@@ -42,11 +41,7 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        Lookup lu = Lookups.forPath("/CatalogEngine");
-        eng = (CatalogEngine) lu.lookup(CatalogEngine.class);
-        System.err.println("####################################################" + eng.counting);
-        System.err.println("####################################################" + eng);
-
+        eng = Lookup.getDefault().lookup(CatalogEngine.class);
         fillIn();
     }
 
@@ -276,12 +271,12 @@ private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_jbtnCancelActionPerformed
 
 private void jbtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOKActionPerformed
-    //TODO: is not setting the values
+    //TODO: better control over detached object
     if (alterado && eng != null && props != null) {
         alterado = false;
         props.setCreationDate(jdcCreatedOn.getDate());
         props.setDescription(jtaDescription.getText().trim());
-        eng.setProperties(props);
+        eng.updateProperties();
     }
     dispose();
 }//GEN-LAST:event_jbtnOKActionPerformed

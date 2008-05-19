@@ -34,11 +34,8 @@ public class NewCatalogDlg extends javax.swing.JDialog {
     /** Creates new form NewCatalogDlg */
     public NewCatalogDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        Lookup lu = Lookups.forPath("/CatalogEngine"); // NOI18N
 
-        eng = lu.lookup(CatalogEngine.class);
-        System.err.println("####################################################" + eng.counting);
-        System.err.println("####################################################" + eng);
+        eng = Lookup.getDefault().lookup(CatalogEngine.class);
         initComponents();
         jlbError.setVisible(false);
     }
