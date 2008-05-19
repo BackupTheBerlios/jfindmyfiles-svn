@@ -63,7 +63,7 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
         add(view, BorderLayout.CENTER);
         view.setRootVisible(true);
 
-        manager.setRootContext(new CatalogNode());
+        //manager.setRootContext(new CatalogNode());
     //Code from the feed reader example, needs to be rewritten
         /*try {
     //manager.setRootContext(new RssNode.RootRssNode());

@@ -1,0 +1,13 @@
+<==== Objectivos ==============================================================>
+CB02: ST14, ST15
+- Quero que as opções mais comuns apareçam numa barra acima da lista de ficheiros.
+- Deve existir um menu na árvore com a lista de categorias/grupo de discos/etiquetas 
+com opções de pesquisa, introdução de descrições, alteração do nome, 
+exportação e importação.
+<==== Documentos produzidos ===================================================>
+
+Spikes:
+Outros documentos:
+
+<==== 
+<==== Avaliação ===============================================================>

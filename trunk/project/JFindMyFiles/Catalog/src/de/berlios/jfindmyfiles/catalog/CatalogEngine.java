@@ -22,7 +22,6 @@ package de.berlios.jfindmyfiles.catalog;
 import de.berlios.jfindmyfiles.catalog.entities.*;
 import java.io.File;
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -37,17 +36,13 @@ public class CatalogEngine {
     public static final int MYSQL = 3;
     public static final int LOCAL = 4;
     private SessionFactory sessionFactory;
-    private CatalogProperties properties;// = new CatalogProperties("teste", "<sem desc>", 50, 25, 500, 30, new Date()); //TODO: remove
-    private Configuration hConfig;
-    public static int counting = 0;
+    private CatalogProperties properties;
 
     /**
      * Empty construtor so that this class can be instanciated using reflection 
      * by the netbeans platform.
      */
     public CatalogEngine() {
-        //do nothing
-        counting++;
     }
 
     //TODO: error management
@@ -59,7 +54,7 @@ public class CatalogEngine {
             /*Configuration cfg = new Configuration().configure("de/berlios" +
             "/jfindmyfiles/catalog/utils/hibernate.hsqldb.cfg.xml");*/
 
-            hConfig = new Configuration()//Configuration object
+            Configuration hConfig = new Configuration()//Configuration object
                     .addClass(de.berlios.jfindmyfiles.catalog.entities.AudioData.class)//Add AudioData class
                     .addClass(de.berlios.jfindmyfiles.catalog.entities.DiskGroup.class)//Add DiskGroup class
                     .addClass(de.berlios.jfindmyfiles.catalog.entities.FileWrapper.class)//Add FileWrapper class
@@ -161,6 +156,7 @@ public class CatalogEngine {
         Session cSession = sessionFactory.getCurrentSession();
         cSession.beginTransaction();
         properties = (CatalogProperties) cSession.createQuery("from CatalogProperties").uniqueResult();
+        cSession.getTransaction().commit();
     }
 
     /**
@@ -201,6 +197,16 @@ public class CatalogEngine {
     public CatalogProperties getProperties() {
         return properties;
     }
+    
+    public void updateProperties(String description, Date creationDate) {
+        Session cSession = sessionFactory.getCurrentSession();
+        cSession.beginTransaction();
+        properties = (CatalogProperties) cSession.createQuery("from CatalogProperties").uniqueResult();
+        properties.setCreationDate(creationDate);
+        properties.setDescription(description);
+        cSession.merge(properties);
+        cSession.getTransaction().commit();
+    }
 
     public void updateProperties() {
         Session cSession = sessionFactory.getCurrentSession();
@@ -209,85 +215,61 @@ public class CatalogEngine {
         cSession.getTransaction().commit();
     }
 
-/*    public void updateProperties(CatalogProperties props) {
-        properties = props;
+    public void addDiskGroup(String name, String description, DiskGroup parent) {
         Session cSession = sessionFactory.getCurrentSession();
         cSession.beginTransaction();
-        cSession.merge(properties);
-        cSession.getTransaction().commit();
-    }*/
-
-    public void addDiskGroup(String name, String description, DiskGroup parent) {
-        /*  Session hSession = ConnectionManager.getSessionFactory().getCurrentSession();
-        hSession.beginTransaction();
         DiskGroup dg = new DiskGroup();
         dg.setName(name);
         dg.setDescription(description);
         dg.setParent(parent);
-        hSession.save(dg);
-        hSession.getTransaction().commit();*/
+        cSession.save(dg);
+        cSession.getTransaction().commit();
     }
 
     public void addLabel(String name) {
-        /*Session hSession = ConnectionManager.getSessionFactory().getCurrentSession();
-        hSession.beginTransaction();
+        Session cSession = sessionFactory.getCurrentSession();
+        cSession.beginTransaction();
         Label l = new Label();
         l.setName(name);
-        hSession.save(l);
-        hSession.getTransaction().commit();*/
+        cSession.save(l);
+        cSession.getTransaction().commit();
     }
 
     public void removeLabel(Label label) {
-        /*Session  hSession = ConnectionManager.getSessionFactory().getCurrentSession();
-        hSession.beginTransaction();
-        List result = hSession.createQuery("from Label where id=" + label.getId()).list();
-        if (result.size() != 1) {
-        ;//TODO: show error, invalid state
-        
-        }
-        Label rem = (Label) result.get(0);//TODO: verify this
-        
-        hSession.delete(rem);
-        hSession.getTransaction().commit();*/
+        Session  cSession = sessionFactory.getCurrentSession();
+        cSession.beginTransaction();
+        Label l = (Label)cSession.createQuery("from Label where id=" + label.getId()).uniqueResult();
+        cSession.delete(l);
+        cSession.getTransaction().commit();
     }
 
     public void addUser(String firstname, String surname) {
-        /*Session hSession = ConnectionManager.getSessionFactory().getCurrentSession();
-        hSession.beginTransaction();
+        Session  cSession = sessionFactory.getCurrentSession();
+        cSession.beginTransaction();
         User u = new User();
         u.setFirstname(firstname);
         u.setSurname(surname);
-        hSession.save(u);
-        hSession.getTransaction().commit();*/
+        cSession.save(u);
+        cSession.getTransaction().commit();
     }
 
     public void removeUser(User user) {
-        /*Session hSession = ConnectionManager.getSessionFactory().getCurrentSession();
-        hSession.beginTransaction();
-        List result = hSession.createQuery("from Label where id=" + user.getId()).list();
-        if (result.size() != 1) {
-        ;//TODO: show error, invalid state
-        
-        }
-        User rem = (User) result.get(0);//TODO: verify this
-        
-        hSession.delete(rem);
-        hSession.getTransaction().commit();*/
+        Session  cSession = sessionFactory.getCurrentSession();
+        cSession.beginTransaction();
+        User u = (User) cSession.createQuery("from Label where id=" + user.getId()).uniqueResult();     
+        cSession.delete(u);
+        cSession.getTransaction().commit();
     }
 
-    public List getLabels() {//TODO: validate session states
-/*
-        Session         hSession = ConnectionManager.getSessionFactory().getCurrentSession();
-        hSession.beginTransaction();
-        List rs = hSession.createQuery("from User").list();
-        hSession.getTransaction().commit();
+    public List getLabels() {
+        Session  cSession = sessionFactory.getCurrentSession();
+        cSession.beginTransaction();
+        List rs = cSession.createQuery("from User").list();
+        cSession.getTransaction().commit();
         return rs;
-         */
-        return null;
     }
 
-    public List getUsers() {//TODO: validate session states
-
+    public List getUsers() {
         Session cSession = sessionFactory.getCurrentSession();
         cSession.beginTransaction();
         List rs = cSession.createQuery("from User").list();

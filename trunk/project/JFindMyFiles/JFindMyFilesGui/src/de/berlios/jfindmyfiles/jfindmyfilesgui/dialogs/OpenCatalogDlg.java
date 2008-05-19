@@ -17,7 +17,6 @@
  *  along with JFindMyFiles.  If not, see 
  * <http://www.gnu.org/licenses/gpl.html>.
  */
-
 package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
@@ -27,21 +26,21 @@ import org.openide.util.Lookup;
 import org.openide.util.lookup.Lookups;
 
 public class OpenCatalogDlg extends javax.swing.JDialog {
-    
+
     private CatalogEngine eng;
     private OpenCatalogDlg me = this;
-    
+
     /** Creates new form NewCatalogDlg */
     public OpenCatalogDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         /*Lookup lu = Lookups.forPath("/CatalogEngine"); // NOI18N
-
+        
         eng = lu.lookup(CatalogEngine.class);*/
         initComponents();
-        jlbError.setVisible(false);        
+        jlbError.setVisible(false);
     }
-    
+
     public void showCentered() {
         setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
                 getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
@@ -49,13 +48,14 @@ public class OpenCatalogDlg extends javax.swing.JDialog {
     }
 
     private boolean validateWihtMessages() {
-        if (jtfName.getText().isEmpty()) {
+        if (!jchkUserinternalDB.isSelected() && jtfName.getText().isEmpty()) {
             jlbError.setText("* - Nome não pode ser vazio"); //TODO: i18n
 
             jlbError.setVisible(true);
             this.validate();
             return false;
         }
+
         if (jchkUserinternalDB.isSelected()) {
             if (jtfDestination.getText().isEmpty()) {
                 jlbError.setText("* - Destino não pode ser vazio"); //TODO: i18n
@@ -90,8 +90,8 @@ public class OpenCatalogDlg extends javax.swing.JDialog {
             this.validate();
         }
         return true;
-    }    
-    
+    }
+
     /**
      * Enables or disables the various components that refer to the remote 
      * database's settings.
@@ -107,7 +107,7 @@ public class OpenCatalogDlg extends javax.swing.JDialog {
         jlblPassword.setEnabled(state);
         jlblPort.setEnabled(state);
         jlblUsername.setEnabled(state);
-        
+
         //Inputs
         jtfHostname.setEnabled(state);
         jtfName.setEnabled(state);
@@ -115,7 +115,7 @@ public class OpenCatalogDlg extends javax.swing.JDialog {
         jpfPassword.setEnabled(state);
         jffPort.setEnabled(state);
     }
-    
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -265,6 +265,8 @@ public class OpenCatalogDlg extends javax.swing.JDialog {
             }
         });
 
+        jtfName.setEnabled(false);
+
         jlblName.setText(org.openide.util.NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.jlblName.text")); // NOI18N
 
         jlblDestination.setText(org.openide.util.NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.jlblDestination.text")); // NOI18N
@@ -360,19 +362,13 @@ private void jbtnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         // if dbtype is selected to local return the CatalogEngine.LOCAL, if not 
         // check to see what the selected value of the combobox is and return 
         // the corresponding value.
-        final int dbtype = (jchkUserinternalDB.isSelected() ? CatalogEngine.LOCAL : (selectedname.equals("Firebird") ? CatalogEngine.FIREBIRD : (selectedname.equals("PostgreSQL") ? CatalogEngine.POSTGRESQL : (selectedname.equals("MsSQL") ? CatalogEngine.MSSQL : CatalogEngine.MYSQL))));
+        int dbtype = (jchkUserinternalDB.isSelected() ? CatalogEngine.LOCAL : (selectedname.equals("Firebird") ? CatalogEngine.FIREBIRD : (selectedname.equals("PostgreSQL") ? CatalogEngine.POSTGRESQL : (selectedname.equals("MsSQL") ? CatalogEngine.MSSQL : CatalogEngine.MYSQL))));
 
-        //TODO: could a thread be used? If not, the final from above must be removed.
-        //new Thread(new Runnable() {
-
-        // public void run() {
         eng.openCatalog(jtfName.getText().trim(),
                 (jchkUserinternalDB.isSelected() ? jtfDestination.getText().trim() : jtfHostname.getText().trim()),
                 jffPort.getText().trim(), dbtype,
                 jtfUsername.getText().trim(),
                 jpfPassword.getPassword().toString());
-        //}
-        // }).start();
         dispose();
     }
 }//GEN-LAST:event_jbtnOpenActionPerformed
@@ -383,7 +379,7 @@ private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
 private void jchkUserinternalDBStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jchkUserinternalDBStateChanged
     serverOptionsStateChanged(!jchkUserinternalDB.isSelected());
-        jbtnBrowse.setEnabled(jchkUserinternalDB.isSelected());
+    jbtnBrowse.setEnabled(jchkUserinternalDB.isSelected());
     jtfDestination.setEnabled(jchkUserinternalDB.isSelected());
 }//GEN-LAST:event_jchkUserinternalDBStateChanged
 
@@ -398,8 +394,8 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     if (jfc.showOpenDialog(me) == JFileChooser.APPROVE_OPTION) {
         jtfDestination.setText(jfc.getSelectedFile().getAbsolutePath());
     }
+    //TODO: open file based on containnig folder
 }//GEN-LAST:event_jbtnBrowseActionPerformed
-        
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbtnBrowse;
@@ -424,5 +420,4 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JTextField jtfName;
     private javax.swing.JTextField jtfUsername;
     // End of variables declaration//GEN-END:variables
-    
 }
