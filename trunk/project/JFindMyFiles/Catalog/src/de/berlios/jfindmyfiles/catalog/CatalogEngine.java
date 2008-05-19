@@ -40,12 +40,14 @@ public class CatalogEngine {
     private CatalogProperties properties;// = new CatalogProperties("teste", "<sem desc>", 50, 25, 500, 30, new Date()); //TODO: remove
     private Configuration hConfig;
 
+    public static int counting = 0;
     /**
      * Empty construtor so that this class can be instanciated using reflection 
      * by the netbeans platform.
      */
     public CatalogEngine() {
         //do nothing
+        counting++;
     }
 
     //TODO: error management

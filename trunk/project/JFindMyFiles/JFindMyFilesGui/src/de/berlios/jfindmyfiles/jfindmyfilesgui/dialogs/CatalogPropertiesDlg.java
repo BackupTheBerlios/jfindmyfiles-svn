@@ -44,6 +44,8 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
 
         Lookup lu = Lookups.forPath("/CatalogEngine");
         eng = (CatalogEngine) lu.lookup(CatalogEngine.class);
+        System.err.println("####################################################" + eng.counting);
+        System.err.println("####################################################" + eng);
 
         fillIn();
     }

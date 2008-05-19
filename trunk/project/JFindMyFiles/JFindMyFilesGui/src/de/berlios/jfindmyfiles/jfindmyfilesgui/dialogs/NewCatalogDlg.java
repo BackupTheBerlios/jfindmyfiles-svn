@@ -37,6 +37,8 @@ public class NewCatalogDlg extends javax.swing.JDialog {
         Lookup lu = Lookups.forPath("/CatalogEngine"); // NOI18N
 
         eng = lu.lookup(CatalogEngine.class);
+        System.err.println("####################################################" + eng.counting);
+        System.err.println("####################################################" + eng);
         initComponents();
         jlbError.setVisible(false);
     }
