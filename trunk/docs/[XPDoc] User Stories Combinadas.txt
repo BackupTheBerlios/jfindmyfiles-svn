@@ -1,24 +1,21 @@
-CB01: ST22, ST23:
+CB01: ST21, ST22:
 - O programa deve oferecer um sistema de gestão de saídas. Deve permitir gerir um 
 conjunto de utilizadores e os empréstimos feitos a esses utilizadores.
 - Deve ser possível adicionar, remover e editar os dados de utilizadores, bem como 
 ver os empréstimos actuais e passados feitos a esse utilizador.
 
-CB02: ST14, ST15
+CB02: ST13, ST14
 - Quero que as opções mais comuns apareçam numa barra acima da lista de ficheiros.
 - Deve existir um menu na árvore com a lista de categorias/grupo de discos/etiquetas 
 com opções de pesquisa, introdução de descrições, alteração do nome, 
 exportação e importação.
 
-CB03: ST17
+CB03: ST16
 - O sistema de leitura de informações de ficheiro tem de permitir ser expandido 
 para ler ficheiros desconhecidos ou para que a forma como as informações são 
 lidas seja alterada.
 
-CB04: ST3, ST4, ST13, ST16, ST7, ST19, ST20
-- As pastas lidas devem poder ser organizadas por categorias, devem também poder 
-ser agrupadas em grupos de discos.
-- Quando se trata de um disco amovível deve existir a possibilidade de guardar a 
+CB04: ST3, ST12, ST15, ST6, ST18, ST19- Quando se trata de um disco amovível deve existir a possibilidade de guardar a 
 localização física do disco.
 - Preciso encontrar um ficheiro no catálogo, para isso quero escolher a categoria, 
 grupo de discos, ou todo o catálogo para restringir a pesquisa.
@@ -29,7 +26,7 @@ regulares.
 ficar preso a apenas um tipo de base de dados.
 - Deve ser possível procurar ficheiros duplicados, o nome não deve ser limitação.
 
-CB05: ST5, ST6, ST8
+CB05: ST4, ST5, ST7
 - O programa tem de permitir criar catálogos, abrir catálogos, manter um registo 
 de catálogos recentes, fechar e guardar catálogos.
 - Os discos e pastas podem ser catalogados usando etiquetas, o sistema deve ser 
@@ -38,24 +35,24 @@ tenha mais que uma categoria.
 - A aplicação deve permitir ser distribuida em mais que uma língua, deve ser 
 internacionalizável.
 
-CB06: ST12
+CB06: ST11
 - Quero exportar um catálogo completo ou um subconjunto para um conjunto de 
 ficheiros HTML que possam ser colocados on-line ou distribuídos livremente.
 Devem existir personalizações de aspecto que se possam aplicar aos ficheiros 
 criados.
 
-CB07: ST10, ST11
+CB07: ST9, ST10
 - Opções para permitir exportar os dados existentes para outros formatos, 
 principalmente para formatos portáveis como XML e CSV.
 - Opções para importar dados de outras bases de dados criadas anteriormente com o 
 programa e de outros formatos providenciados por programas  concorrentes.
 
-CB08: ST9
+CB08: ST8
 - Sistema de estatísticas que mostre dados relevantes sobre os ficheiros 
 existentes como o número de ficheiros de determinado tipo, o tamanho médio dos 
 ficheiros catalogados, o tamanho total ocupado, etc..
 
-CB09: ST1, ST21
+CB09: ST1, ST20
 - O programa tem de permitir que se possa indicar a pasta a ler e tem de ler o 
 conteúdo dessa pasta e guardar as informações dos ficheiros.
 - Deve ser possível comparar a informação guardada de um disco ou pasta com o seu 

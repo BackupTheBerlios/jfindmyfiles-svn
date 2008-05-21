@@ -82,7 +82,7 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
         jlblCatalogName = new javax.swing.JLabel();
         jlblCreatedOn = new javax.swing.JLabel();
         jlblIcon = new javax.swing.JLabel();
-        jlblIcon.setIcon(new ImageIcon(Utilities.loadImage("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x32/icon-catalog.png"))); // NOI18N
+        jlblIcon.setIcon(new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x32/icon-catalog.png"))); // NOI18N
         jSeparator2 = new javax.swing.JSeparator();
         jdcCreatedOn = new com.toedter.calendar.JDateChooser();
         jSeparator1 = new javax.swing.JSeparator();
@@ -216,7 +216,7 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlblDescription)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscrDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                .addComponent(jscrDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -288,7 +288,7 @@ private void jtaDescriptionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
 
 private void jdcCreatedOnPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcCreatedOnPropertyChange
     //NOTE: jcalenar component does no provide events for listning to date 
-    // changes.    
+    // changes  
     if (evt.getPropertyName().equals("date")) {
         alterado = true;
     }

@@ -86,4 +86,23 @@ O uso de casos de uso prende-se com o que estes podem oferecer como guias no
 desenvolvimento, não serão consideradas descrições elaboradas dos casos de uso 
 e apenas serão valorizados os diagramas para que seja mais fácil manter um 
 registo das tarefas a executar.
+
+Será necessário desenhar interfaces que permitam gerir catálogos - criar, 
+abrir, manter registo de catálogos recentes, fechar e guardar catálogos.
+É necessário criar os seguintes elementes de interação com o utilizador:
+- Janelas de Diálogo:
+	- NewDiskDlg - Janela de diálogo que permite ler novos suportes.
+	- NewCatalogDlg - Janela de diálogo que permite criar novos catálogos
+	- OpenCatalogDlg - Janela de diálogo que permite abrir catálogos 
+		existentes.
+	- CatalogPropertiesDlg - Janela de diálogo que permite ver as 
+		propriedades do catálogo e editar a data de criação e a 
+		descrição.
+- Menus:
+- Paineis a integrar no sistema de janelas da plataforma:
+	- CatalogOptionsPanel - Painel com as apções a usar na criação de novos 
+		catálogos e abertura de catálogos existentes.
+	- NavigationTreeTopComponent - Componente que permite navegar nos 
+		elementos que compoem um catálogo. Mostra os dados existentes 
+		num catálogo na forma de uma árvore.
 <==== Avaliação ===============================================================>

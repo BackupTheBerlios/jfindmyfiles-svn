@@ -360,17 +360,16 @@ private void jbtnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         // the corresponding value.
         final int dbtype = (jchkUserinternalDB.isSelected() ? CatalogEngine.LOCAL : (selectedname.equals("Firebird") ? CatalogEngine.FIREBIRD : (selectedname.equals("PostgreSQL") ? CatalogEngine.POSTGRESQL : (selectedname.equals("MsSQL") ? CatalogEngine.MSSQL : CatalogEngine.MYSQL))));
 
-        //TODO: could a thread be used? If not, the final from above must be removed.
-        //new Thread(new Runnable() {
+        new Thread(new Runnable() {
 
-        // public void run() {
-        eng.createCatalog(jtfName.getText().trim(),
-                (jchkUserinternalDB.isSelected() ? jtfDestination.getText().trim() : jtfHostname.getText().trim()),
-                jffPort.getText().trim(), dbtype,
-                jtfUsername.getText().trim(),
-                jpfPassword.getPassword().toString());
-        //}
-        // }).start();
+            public void run() {
+                eng.createCatalog(jtfName.getText().trim(),
+                        (jchkUserinternalDB.isSelected() ? jtfDestination.getText().trim() : jtfHostname.getText().trim()),
+                        jffPort.getText().trim(), dbtype,
+                        jtfUsername.getText().trim(),
+                        jpfPassword.getPassword().toString());
+            }
+        }).start();
         dispose();
     }
 }//GEN-LAST:event_jbtnCreateActionPerformed

@@ -19,10 +19,15 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import java.awt.Image;
+import java.util.List;
 import org.openide.nodes.AbstractNode;
+import org.openide.nodes.ChildFactory;
 import org.openide.nodes.Children;
+import org.openide.util.Lookup;
 import org.openide.util.Utilities;
+import org.openide.util.actions.SystemAction;
 
 /**
  *
@@ -30,18 +35,26 @@ import org.openide.util.Utilities;
  */
 public class CatalogNode extends AbstractNode {
     
-    public CatalogNode() {
-        super(Children.LEAF);
+    public CatalogNode() {              
+        //super(Children.create(new CatalogChildNodesFactory(), true));
+        super(Children.LEAF);//TODO: populate child nodes
+        CatalogEngine eng = Lookup.getDefault().lookup(CatalogEngine.class);
+        setName(eng.getProperties().getName());
     }
     
     @Override
     public Image getIcon(int type) {
-        return Utilities.loadImage("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-catalog.png"); // NOI18N
+        return Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-catalog.png"); // NOI18N
     }
     
     @Override
     public Image getOpenedIcon(int type) {
         return getIcon(type);
     }
-
+    
+    @Override
+    public SystemAction[] getActions(boolean bool) {
+        return null;
+    }
+    
 }

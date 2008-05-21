@@ -30,15 +30,21 @@
 
         <!-- Enable Hibernate's automatic session context management -->
         <property name="current_session_context_class">thread</property>
+        
+        <!-- Who manages the transaction -->
+        <property name="transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
 
         <!-- Disable the second-level cache  -->
         <property name="cache.provider_class">org.hibernate.cache.NoCacheProvider</property>
 
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
+
+        <!-- Setting autocommit to false -->
+        <property name="connection.autocommit">false</property>
         
         <!-- //TODO: remove this line and replace with proper one -->
-        <property name="hbm2ddl.auto">create</property>
+        <!-- <property name="hbm2ddl.auto">create</property> -->
 
         <mapping resource="de/berlios/jfindmyfiles/catalog/entities/AudioData.hbm.xml"/>
         <mapping resource="de/berlios/jfindmyfiles/catalog/entities/DiskGroup.hbm.xml"/>

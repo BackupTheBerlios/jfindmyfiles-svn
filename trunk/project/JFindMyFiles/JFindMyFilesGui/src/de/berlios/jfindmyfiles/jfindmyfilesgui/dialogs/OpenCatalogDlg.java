@@ -23,7 +23,6 @@ import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import java.io.File;
 import javax.swing.JFileChooser;
 import org.openide.util.Lookup;
-import org.openide.util.lookup.Lookups;
 
 public class OpenCatalogDlg extends javax.swing.JDialog {
 
@@ -33,10 +32,7 @@ public class OpenCatalogDlg extends javax.swing.JDialog {
     /** Creates new form NewCatalogDlg */
     public OpenCatalogDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
-        initComponents();
-        /*Lookup lu = Lookups.forPath("/CatalogEngine"); // NOI18N
-        
-        eng = lu.lookup(CatalogEngine.class);*/
+        eng = Lookup.getDefault().lookup(CatalogEngine.class);
         initComponents();
         jlbError.setVisible(false);
     }
@@ -45,6 +41,16 @@ public class OpenCatalogDlg extends javax.swing.JDialog {
         setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
                 getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
         setVisible(true);
+    }
+
+    private String findCatalogName(File folder) {
+        File[] list = folder.listFiles();
+        for (File f : list) {
+            if (f.getName().contains(".log")) {
+                return f.getName().substring(0, f.getName().lastIndexOf("."));
+            }
+        }
+        return "";
     }
 
     private boolean validateWihtMessages() {
@@ -110,7 +116,6 @@ public class OpenCatalogDlg extends javax.swing.JDialog {
 
         //Inputs
         jtfHostname.setEnabled(state);
-        jtfName.setEnabled(state);
         jtfUsername.setEnabled(state);
         jpfPassword.setEnabled(state);
         jffPort.setEnabled(state);
@@ -265,8 +270,6 @@ public class OpenCatalogDlg extends javax.swing.JDialog {
             }
         });
 
-        jtfName.setEnabled(false);
-
         jlblName.setText(org.openide.util.NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.jlblName.text")); // NOI18N
 
         jlblDestination.setText(org.openide.util.NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.jlblDestination.text")); // NOI18N
@@ -362,13 +365,20 @@ private void jbtnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         // if dbtype is selected to local return the CatalogEngine.LOCAL, if not 
         // check to see what the selected value of the combobox is and return 
         // the corresponding value.
-        int dbtype = (jchkUserinternalDB.isSelected() ? CatalogEngine.LOCAL : (selectedname.equals("Firebird") ? CatalogEngine.FIREBIRD : (selectedname.equals("PostgreSQL") ? CatalogEngine.POSTGRESQL : (selectedname.equals("MsSQL") ? CatalogEngine.MSSQL : CatalogEngine.MYSQL))));
+        final int dbtype = (jchkUserinternalDB.isSelected() ? CatalogEngine.LOCAL : (selectedname.equals("Firebird") ? CatalogEngine.FIREBIRD : (selectedname.equals("PostgreSQL") ? CatalogEngine.POSTGRESQL : (selectedname.equals("MsSQL") ? CatalogEngine.MSSQL : CatalogEngine.MYSQL))));
 
-        eng.openCatalog(jtfName.getText().trim(),
-                (jchkUserinternalDB.isSelected() ? jtfDestination.getText().trim() : jtfHostname.getText().trim()),
-                jffPort.getText().trim(), dbtype,
-                jtfUsername.getText().trim(),
-                jpfPassword.getPassword().toString());
+
+        //TODO: event notification
+        new Thread(new Runnable() {
+
+            public void run() {
+                eng.openCatalog(jtfName.getText().trim(),
+                        (jchkUserinternalDB.isSelected() ? jtfDestination.getText().trim() : jtfHostname.getText().trim()),
+                        jffPort.getText().trim(), dbtype,
+                        jtfUsername.getText().trim(),
+                        jpfPassword.getPassword().toString());
+            }
+        }).start();
         dispose();
     }
 }//GEN-LAST:event_jbtnOpenActionPerformed
@@ -393,8 +403,8 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     jfc.setMultiSelectionEnabled(false);
     if (jfc.showOpenDialog(me) == JFileChooser.APPROVE_OPTION) {
         jtfDestination.setText(jfc.getSelectedFile().getAbsolutePath());
+        jtfName.setText(findCatalogName(jfc.getSelectedFile()));
     }
-    //TODO: open file based on containnig folder
 }//GEN-LAST:event_jbtnBrowseActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator jSeparator1;

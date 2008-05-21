@@ -13,4 +13,5 @@ interface que possa ser implementada por classes que pretendam adicionar
 informação a ficheiros já conhecidos ou fornecer informação de novos tipos de 
 ficheiros.
 
+
 <==== Avaliação ===============================================================>

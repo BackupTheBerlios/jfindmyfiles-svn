@@ -37,7 +37,7 @@ public class DiskGroupNode extends AbstractNode {
     
     @Override
     public Image getIcon(int type) {
-        return Utilities.loadImage("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-disk-group.png"); // NOI18N
+        return Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-disk-group.png"); // NOI18N
     }
     
     @Override

@@ -38,7 +38,7 @@ public class DiskNode extends AbstractNode {
     @Override
     public Image getIcon(int type) {
         //TODO: depending on the  type of media give the right icon
-        return Utilities.loadImage("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-drive-optical.png"); // NOI18N
+        return Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-drive-optical.png"); // NOI18N
     }
     
     @Override

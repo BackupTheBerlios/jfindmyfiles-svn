@@ -7,92 +7,88 @@ Deve ser possível introduzir uma descrição para cada elemento através de uma
 janela que mostre as propriedades do ficheiro.
 
 ST3:
-As pastas lidas devem poder ser organizadas por categorias, devem também poder 
-ser agrupadas em grupos de discos.
-
-ST4:
 Quando se trata de um disco amovível deve existir a possibilidade de guardar a 
 localização física do disco.
 
-ST5:
+ST4:
 O programa tem de permitir criar catálogos, abrir catálogos, manter um registo 
 de catálogos recentes, fechar e guardar catálogos.
 
-ST6:
+ST5:
 Os discos e pastas podem ser catalogados usando etiquetas, o sistema deve ser 
 independente das categorias e grupos de discos e permitir que o mesmo disco 
 tenha mais que uma categoria.
 
-ST7:
+ST6:
 Preciso encontrar um ficheiro no catálogo, para isso quero escolher a categoria, 
 grupo de discos, ou todo o catálogo para restringir a pesquisa.
 
-ST8:
+ST7:
 A aplicação deve permitir ser distribuida em mais que uma língua, deve ser 
 internacionalizável.
 
-ST9:
+ST8:
 Sistema de estatísticas que mostre dados relevantes sobre os ficheiros 
 existentes como o número de ficheiros de determinado tipo, o tamanho médio dos 
 ficheiros catalogados, o tamanho total ocupado, etc..
 
-ST10:
+ST9:
 Opções para permitir exportar os dados existentes para outros formatos, 
 principalmente para formatos portáveis como XML e CSV.
 
-ST11:
+ST10:
 Opções para importar dados de outras bases de dados criadas anteriormente com o 
 programa e de outros formatos providenciados por programas  concorrentes.
 
-ST12:
+ST11:
 Quero exportar um catálogo completo ou um subconjunto para um conjunto de 
 ficheiros HTML que possam ser colocados on-line ou distribuídos livremente.
 Devem existir personalizações de aspecto que se possam aplicar aos ficheiros 
 criados.
 
-ST13:
+ST12:
 A pesquisa de ficheiros deve conter opções para pesquisar usando expressões 
 regulares.
 
-ST14:
+ST13:
 Quero que as opções mais comuns apareçam numa barra acima da lista de ficheiros.
 
-ST15:
+ST14:
 Deve existir um menu na árvore com a lista de categorias/grupo de discos/etiquetas 
 com opções de pesquisa, introdução de descrições, alteração do nome, 
 exportação e importação.
  
-ST16:
+ST15:
 Se a localização do ficheiro estiver acessível deve ser possível abri-la.
 
-ST17:
+ST16:
 O sistema de leitura de informações de ficheiro tem de permitir ser expandido 
 para ler ficheiros desconhecidos ou para que a forma como as informações são 
 lidas seja alterada.
 
-ST18:
+ST17:
 Deve ser possível configurar os plugins que estão activos, tanto numa janela de 
 opções como na altura em que se vai ler os discos ou pastas.
 
-ST19:
+ST18:
 Deve ser possível usar base de dados local ou remota, e o programa não pode 
 ficar preso a apenas um tipo de base de dados.
 
-ST20:
+ST19:
 Deve ser possível procurar ficheiros duplicados, o nome não deve ser limitação.
 
-ST21:
+ST20:
 Deve ser possível comparar a informação guardada de um disco ou pasta com o seu 
 conteúdo actual, caso o disco ou pasta estejam disponíveis ao programa.
 
-ST22:
+ST21:
 O programa deve oferecer um sistema de gestão de saídas. Deve permitir gerir um 
 conjunto de utilizadores e os empréstimos feitos a esses utilizadores.
 
-ST23:
+ST22:
 Deve ser possível adicionar, remover e editar os dados de utilizadores, bem como 
 ver os empréstimos actuais e passados feitos a esse utilizador.
 
-ST24:
+ST23:
 A aplicação deverá correr em qualquer sistema operativo, desde Windows XP/Vista, 
 Linux a Mac OS X.

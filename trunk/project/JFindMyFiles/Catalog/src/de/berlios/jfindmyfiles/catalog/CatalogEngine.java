@@ -23,6 +23,7 @@ import de.berlios.jfindmyfiles.catalog.entities.*;
 import java.io.File;
 import java.util.Date;
 import java.util.List;
+import java.util.Vector;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -37,6 +38,8 @@ public class CatalogEngine {
     public static final int LOCAL = 4;
     private SessionFactory sessionFactory;
     private CatalogProperties properties;
+    
+    private Vector<CatalogEngineListener> listeners;
 
     /**
      * Empty construtor so that this class can be instanciated using reflection 
@@ -47,32 +50,20 @@ public class CatalogEngine {
 
     //TODO: error management
     private void recreateConnection(String dbname, String dburl, String port,
-            String username, String password, int dbType) {
+            String username, String password, int dbType, boolean open) {
 
-        //closeCatalog();
+        //TODO: closeCatalog();
+        
+        String strategy = "create";
         try {
-            /*Configuration cfg = new Configuration().configure("de/berlios" +
-            "/jfindmyfiles/catalog/utils/hibernate.hsqldb.cfg.xml");*/
-
-            Configuration hConfig = new Configuration()//Configuration object
-                    .addClass(de.berlios.jfindmyfiles.catalog.entities.AudioData.class)//Add AudioData class
-                    .addClass(de.berlios.jfindmyfiles.catalog.entities.DiskGroup.class)//Add DiskGroup class
-                    .addClass(de.berlios.jfindmyfiles.catalog.entities.FileWrapper.class)//Add FileWrapper class
-                    .addClass(de.berlios.jfindmyfiles.catalog.entities.ImageData.class)//Add ImageData class
-                    .addClass(de.berlios.jfindmyfiles.catalog.entities.Label.class)//Add Label class
-                    .addClass(de.berlios.jfindmyfiles.catalog.entities.Loan.class)//Add Loan class
-                    .addClass(de.berlios.jfindmyfiles.catalog.entities.Media.class)//Add Media class
-                    .addClass(de.berlios.jfindmyfiles.catalog.entities.Type.class)//Add Type class
-                    .addClass(de.berlios.jfindmyfiles.catalog.entities.User.class)//Add User class
-                    .addClass(de.berlios.jfindmyfiles.catalog.entities.VideoData.class)//Add VideoData class
-                    .addClass(de.berlios.jfindmyfiles.catalog.entities.CatalogProperties.class)//Add CatalogProperties class
-                    .setProperty("hibernate.connection.pool_size", "1")//JDBC connection pool (use the built-in)
-                    .setProperty("hibernate.current_session_context_class", "thread")//Enable Hibernate's automatic session context management
-                    .setProperty("hibernate.transaction.factory_class", "org.hibernate.transaction.JDBCTransactionFactory")//Who manages the transaction
-                    .setProperty("hibernate.cache.provider_class", "org.hibernate.cache.NoCacheProvider")//Disable the second-level cache
-                    .setProperty("hibernate.show_sql", "true")//Echo all executed SQL to stdout
-                    .setProperty("hibernate.hbm2ddl.auto", "create")//TODO: remove this line and replace with proper one
-                    .setProperty("hibernate.connection.autocommit", "false");//Setting autocommit to false
+            Configuration hConfig = new Configuration().configure("de/berlios" +
+            "/jfindmyfiles/catalog/utils/hibernate.general.cfg.xml");
+            
+            if(open) {
+                strategy = "update";
+            }
+            //Creation strategy
+            hConfig.setProperty("hibernate.hbm2ddl.auto", strategy);
 
             switch (dbType) {
                 case FIREBIRD://TODO: change for FIREBIRD database engine
@@ -130,8 +121,6 @@ public class CatalogEngine {
             sessionFactory = hConfig.buildSessionFactory();
 
         } catch (Throwable ex) {//TODO: proper logging
-            // Make sure you log the exception, as it might be swallowed
-
             System.err.println("HIBERNATE: Initial SessionFactory creation failed." + ex);
             throw new ExceptionInInitializerError(ex);
         }
@@ -150,7 +139,7 @@ public class CatalogEngine {
     public void openCatalog(String dbname, String dburl, String port, int dbType,
             String username, String password) {
 
-        recreateConnection(dbname, dburl, port, username, password, dbType);
+        recreateConnection(dbname, dburl, port, username, password, dbType, true);
 
         //Reading catalog properties
         Session cSession = sessionFactory.getCurrentSession();
@@ -171,7 +160,7 @@ public class CatalogEngine {
     public void createCatalog(String dbname, String dburl, String port, int dbType,
             String username, String password) {
 
-        recreateConnection(dbname, dburl, port, username, password, dbType);
+        recreateConnection(dbname, dburl, port, username, password, dbType, false);
 
         //Create and save catalog properties
         Session cSession = sessionFactory.getCurrentSession();
@@ -181,7 +170,8 @@ public class CatalogEngine {
         properties.setCreationDate(new Date());
         cSession.save(properties);
         cSession.getTransaction().commit();
-    //TODO: notify listeners
+        //TODO: notify listeners
+        fireCatalogCreated();
     }
 
     /**
@@ -345,6 +335,21 @@ public class CatalogEngine {
         }*/
     }
 
+    //NOTE: TEMP CODE!
+    public void addListener(CatalogEngineListener l) {
+        if(listeners == null) {
+            listeners = new Vector<CatalogEngineListener>();
+        }
+        listeners.add(l);
+    }
+    
+    private void fireCatalogCreated() {
+        if(listeners != null) {
+            for(CatalogEngineListener l : listeners) {
+                l.catalogCreated();
+            }
+        }
+    }
     /**
      * In overriding the finalize method we try to garantee that data is 
      * flushed and all resources are released.

@@ -20,6 +20,7 @@
 package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
+import de.berlios.jfindmyfiles.catalog.CatalogEngineListener;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.CatalogNode;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.DiskNode;
 import java.awt.BorderLayout;
@@ -38,7 +39,7 @@ import org.openide.windows.WindowManager;
  * Top component which displays an explorer like tree with currently opened 
  * catalogs and all stored information.
  */
-final class NavigationTreeTopComponent extends TopComponent implements ExplorerManager.Provider {
+final class NavigationTreeTopComponent extends TopComponent implements ExplorerManager.Provider, CatalogEngineListener {
 
     /* Components added to show nodes */
     private final ExplorerManager manager = new ExplorerManager();
@@ -47,6 +48,9 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
     /** path to the icon used by the component and its open action */
 //    static final String ICON_PATH = "SET/PATH/TO/ICON/HERE";
     private static final String PREFERRED_ID = "NavigationTreeTopComponent";
+    
+    //
+    private CatalogEngine eng;
 
     private NavigationTreeTopComponent() {
         //initComponents();
@@ -54,16 +58,15 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
         setName(NbBundle.getMessage(NavigationTreeTopComponent.class, "CTL_NavigationTreeTopComponent"));
         setToolTipText(NbBundle.getMessage(NavigationTreeTopComponent.class, "HINT_NavigationTreeTopComponent"));
 //        setIcon(Utilities.loadImage(ICON_PATH, true));
-        //Lookup lu = Lookups.forPath("/CatalogEngine");
-        //CatalogEngine en = lu.lookup(CatalogEngine.class);
+        eng = Lookup.getDefault().lookup(CatalogEngine.class);
+        eng.addListener(this);
     }
 
     private void myInitComponents() {
         setLayout(new BorderLayout());
         add(view, BorderLayout.CENTER);
         view.setRootVisible(true);
-
-        //manager.setRootContext(new CatalogNode());
+      //manager.setRootContext(new CatalogNode());
     //Code from the feed reader example, needs to be rewritten
         /*try {
     //manager.setRootContext(new RssNode.RootRssNode());
@@ -166,5 +169,33 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
 
     public ExplorerManager getExplorerManager() {
         return manager;
+    }
+
+    public void catalogCreated() {
+        manager.setRootContext(new CatalogNode());
+    }
+
+    public void catalogOpened() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void diskGroupAdded() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void diskGroupRemoved() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void diskGroupRenamed() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void diskAdded() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void diskRemoved() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
