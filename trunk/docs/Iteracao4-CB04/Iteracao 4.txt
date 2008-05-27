@@ -1,0 +1,22 @@
+<==== Objectivos ==============================================================>
+Acrescentar ao modelo de dados a informação necessária para permitir guardar a 
+localização física de um disco, quando se trate de um suporte amovível.
+Implementar mecanismos de pesquisa que permitam encontrar os dados pretendidos, 
+usando expressões regulares na pesquisa e permitindo definir o âmbito da 
+pesquisa.
+Implementar suporte para abrir os ficheiros e/ou a localização de um ficheiro 
+cujo suporte esteja disponível.
+Implementar elementos de interface gráfica e módulos que permitam escolher o 
+tipo de motor de base de dados a usar para guardar o catálogo.
+Implementar um sistema que permita identificar ficheiros duplicados no catálogo.
+
+<==== Documentos produzidos ===================================================>
+
+Spikes:
+Outros documentos:
+
+<==== 
+
+
+
+<==== Avaliação ===============================================================>
