@@ -30,7 +30,7 @@
         
         <property name="name"/>
         
-        <set name="media" table="TBL_MEDIA">
+        <set name="media" table="TBL_MEDIA" lazy="false">
             <key column="MEDIA_ID"/>
             <one-to-many  class="de.berlios.jfindmyfiles.catalog.entities.Media"/>
         </set>

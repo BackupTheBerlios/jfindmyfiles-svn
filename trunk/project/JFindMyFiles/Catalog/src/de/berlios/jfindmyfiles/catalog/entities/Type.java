@@ -19,6 +19,7 @@
  */
 package de.berlios.jfindmyfiles.catalog.entities;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -30,13 +31,26 @@ public class Type {
     private long id;
     private String name;
     private Set media;
-    
+
     public Type() {
         //DO NOTHING
-    }            
-    
+    }
+
     public Type(String name) {
         this.name = name;
+    }
+
+    public void addMedia(Media media) {
+        if (this.media == null) {
+            this.media = new LinkedHashSet();
+        }
+        this.media.add(media);
+    }
+
+    public void removeMedia(Media media) {
+        if (this.media != null) {
+            this.media.remove(media);
+        }
     }
 
     public long getId() {
@@ -85,7 +99,6 @@ public class Type {
         Type other = (Type) obj;
         return name.equals(other.name);
     }
-    
     //TODO: link for the equals method
     /**
      * HashCode for this object, excluding the id field.
@@ -99,7 +112,7 @@ public class Type {
         hash = 61 * hash + (this.name != null ? this.name.hashCode() : 0);
         return hash;
     }
-    
+
     @Override
     public String toString() {
         return name;

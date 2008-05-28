@@ -19,6 +19,7 @@
  */
 package de.berlios.jfindmyfiles.catalog.entities;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -31,14 +32,27 @@ public class User {
     private String firstname;
     private String surname;
     private Set loans;
-    
+
     public User() {
         //DO NOTHING
     }
-    
+
     public User(String firstname, String surname) {
         this.firstname = firstname;
         this.surname = surname;
+    }
+
+    public void addLoan(Loan loan) {
+        if (loans == null) {
+            loans = new LinkedHashSet();
+        }
+        loans.add(loan);
+    }
+
+    public void removeLoan(Loan loan) {
+        if (loans != null) {
+            loans.remove(loan);
+        }
     }
 
     public String getFirstname() {
@@ -110,7 +124,7 @@ public class User {
         hash = 11 * hash + (this.surname != null ? this.surname.hashCode() : 0);
         return hash;
     }
-    
+
     @Override
     public String toString() {
         return firstname + " " + surname;

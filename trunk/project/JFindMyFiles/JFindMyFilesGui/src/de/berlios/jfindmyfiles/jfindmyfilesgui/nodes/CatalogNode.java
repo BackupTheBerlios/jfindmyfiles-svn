@@ -25,6 +25,7 @@ import java.util.List;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.ChildFactory;
 import org.openide.nodes.Children;
+import org.openide.nodes.Node;
 import org.openide.util.Lookup;
 import org.openide.util.Utilities;
 import org.openide.util.actions.SystemAction;
@@ -35,9 +36,10 @@ import org.openide.util.actions.SystemAction;
  */
 public class CatalogNode extends AbstractNode {
     
-    public CatalogNode(String name) {              
+    public CatalogNode(String name, boolean created) {              
         //super(Children.create(new CatalogChildNodesFactory(), true));
-        super(Children.LEAF);//TODO: populate child nodes
+        //super(Children.LEAF);//TODO: populate child nodes
+        super(created ? Children.LEAF : new CatalogChildren(null));
         CatalogEngine eng = Lookup.getDefault().lookup(CatalogEngine.class);
         setName(eng.getProperties().getName());
     }
@@ -54,7 +56,6 @@ public class CatalogNode extends AbstractNode {
     
     @Override
     public SystemAction[] getActions(boolean bool) {
-        return null;
-    }
-    
+        return new SystemAction[]{};
+    }   
 }

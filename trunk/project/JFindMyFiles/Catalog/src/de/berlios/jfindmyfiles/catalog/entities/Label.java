@@ -19,6 +19,7 @@
  */
 package de.berlios.jfindmyfiles.catalog.entities;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -32,13 +33,26 @@ public class Label {
     private String name;
     //Attributes from relationships
     private Set media;
-    
+
     public Label() {
         //DO NOTHING
     }
-    
+
     public Label(String name) {
         this.name = name;
+    }
+
+    public void addMedia(Media media) {
+        if (this.media == null) {
+            this.media = new LinkedHashSet();
+        }
+        this.media.add(media);
+    }
+
+    public void removeMedia(Media media) {
+        if (this.media != null) {
+            this.media.remove(media);
+        }
     }
 
     public Long getId() {
@@ -76,10 +90,10 @@ public class Label {
      */
     @Override
     public boolean equals(Object obj) {
-        if(this == obj) {
+        if (this == obj) {
             return true;
         }
-        
+
         if (!(obj instanceof Label)) {
             return false;
         }

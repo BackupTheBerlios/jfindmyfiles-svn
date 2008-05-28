@@ -38,7 +38,7 @@ caso especial de etiquetas. Nesse sentido será eliminada a organização por
 categorias ficando apenas a organização por etiquetas.
 
 Um disco, elemento que pode ter associado vários ficheiros, corresponde a uma 
-drive ligada ao PC ou a uma localização na rede e pode conter ficheiros cujas 
+drive ligada ao PC ou numa localização na rede e pode conter ficheiros cujas 
 descrições serão importadas.
 Os discos podem ser agrupados em grupos de discos. Grupos de discos podem 
 conter outros grupos de discos.

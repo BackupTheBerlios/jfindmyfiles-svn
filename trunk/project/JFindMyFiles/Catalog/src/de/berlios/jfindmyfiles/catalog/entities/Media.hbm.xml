@@ -36,11 +36,11 @@
         <property name="freeSpace"/>
         <property name="location"/>
         
-        <set name="labels" table="TBL_MEDIA_LABEL">
+        <set name="labels" table="TBL_MEDIA_LABEL" lazy="false">
             <key column="MEDIA_ID"/>
             <many-to-many column="LABEL_ID" class="de.berlios.jfindmyfiles.catalog.entities.Label"/>
         </set>
-        
+        <!-- <many-to-one name="group" column="DISK_ID" class="de.berlios.jfindmyfiles.catalog.entities.DiskGroup"/> -->
         <many-to-one name="type" class="de.berlios.jfindmyfiles.catalog.entities.Type" column="TYPE_ID" not-null="true"/>
         
         <!-- TODO: other properties -->        

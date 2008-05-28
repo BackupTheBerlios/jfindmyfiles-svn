@@ -36,7 +36,7 @@ public class CatalogEngine {
     public static final int MSSQL = 2;
     public static final int MYSQL = 3;
     public static final int LOCAL = 4;
-    private SessionFactory sessionFactory;
+    public SessionFactory sessionFactory;
     private CatalogProperties properties;
     private Vector<CatalogEngineListener> listeners;
 
@@ -145,6 +145,7 @@ public class CatalogEngine {
         cSession.beginTransaction();
         properties = (CatalogProperties) cSession.createQuery("from CatalogProperties").uniqueResult();
         cSession.getTransaction().commit();
+        fireCatalogOpened(new CatalogEngineEvent(dbname, null, null, null, null));
     }
 
     /**
@@ -355,6 +356,14 @@ public class CatalogEngine {
             }
         }
     }
+    
+    private void fireCatalogOpened(CatalogEngineEvent evt) {
+        if (listeners != null) {
+            for (CatalogEngineListener l : listeners) {
+                l.catalogOpened(evt);
+            }
+        }
+    }    
 
     /**
      * In overriding the finalize method we try to garantee that data is 

@@ -19,6 +19,7 @@
  */
 package de.berlios.jfindmyfiles.catalog.entities;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -38,6 +39,7 @@ public class Media {
     //Attributes from relationships
     private Set files;
     private Set labels;
+    private DiskGroup group;
     //Helpers
     private Type type;
 
@@ -46,28 +48,57 @@ public class Media {
     }
 
     public Media(String name, long capacity, long lastModified,
-            String description, long freeSpace, String location, Type type) {
+            String description, long freeSpace, String location,
+            DiskGroup group, Type type) {
+
         this.name = name;
         this.capacity = capacity;
         this.lastModified = lastModified;
         this.description = description;
         this.freeSpace = freeSpace;
         this.location = location;
+        this.group = group;
         this.type = type;
     }
-    
+
+    public void addFile(FileWrapper file) {
+        if (files == null) {
+            files = new LinkedHashSet();
+        }
+        files.add(files);
+    }
+
+    public void removeMedia(FileWrapper file) {
+        if (files != null) {
+            files.remove(file);
+        }
+    }
+
+    public void addLabel(Label label) {
+        if (labels == null) {
+            labels = new LinkedHashSet();
+        }
+        labels.add(label);
+    }
+
+    public void removeMedia(Label label) {
+        if (labels != null) {
+            labels.remove(label);
+        }
+    }
+
     public void increaseCapacity(long amount) {
         capacity += amount;
     }
-    
+
     public void increaseFreeSpace(long amount) {
         freeSpace += amount;
     }
-    
+
     public long getCapacity() {
         return capacity;
     }
-    
+
     public void setCapacity(long capacity) {
         this.capacity = capacity;
     }
@@ -87,13 +118,21 @@ public class Media {
     private void setFiles(Set files) {
         this.files = files;
     }
-    
+
     public long getFreeSpace() {
         return freeSpace;
     }
-    
+
     public void setFreeSpace(long freeSpace) {
         this.freeSpace = freeSpace;
+    }
+
+    public DiskGroup getGroup() {
+        return group;
+    }
+
+    public void setGroup(DiskGroup group) {
+        this.group = group;
     }
 
     public Long getId() {
@@ -111,19 +150,19 @@ public class Media {
     private void setLabels(Set labels) {
         this.labels = labels;
     }
-    
+
     public long getLastModified() {
         return lastModified;
     }
-    
+
     public void setLastModified(long lastModified) {
         this.lastModified = lastModified;
     }
-    
+
     public String getLocation() {
         return location;
     }
-    
+
     public void setLocation(String location) {
         this.location = location;
     }

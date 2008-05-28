@@ -20,6 +20,7 @@
 
 package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 
+import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
 import java.awt.Image;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
@@ -31,8 +32,9 @@ import org.openide.util.Utilities;
  */
 public class DiskGroupNode extends AbstractNode {
     
-    public DiskGroupNode() {
+    public DiskGroupNode(DiskGroup group) {
         super(Children.LEAF);
+        setName(group.getName());
     }
     
     @Override

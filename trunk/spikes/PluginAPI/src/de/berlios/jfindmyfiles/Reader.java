@@ -18,33 +18,14 @@
  * <http://www.gnu.org/licenses/gpl.html>.
  */
 
-package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
+package de.berlios.jfindmyfiles;
 
-import de.berlios.jfindmyfiles.catalog.entities.Media;
-import java.awt.Image;
-import org.openide.nodes.AbstractNode;
-import org.openide.nodes.Children;
-import org.openide.util.Utilities;
+import java.io.File;
 
-/**
- *
- * @author knitter
- */
-public class DiskNode extends AbstractNode {
+public interface Reader {
     
-    public DiskNode(Media media) {
-        super(Children.LEAF);
-    }
-    
-    @Override
-    public Image getIcon(int type) {
-        //TODO: depending on the  type of media give the right icon
-        return Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-drive-optical.png"); // NOI18N
-    }
-    
-    @Override
-    public Image getOpenedIcon(int type) {
-        return getIcon(type);
-    }    
-
+    String getName();
+    int getType();
+    void setController(Controller controller);
+    void read(File file);   
 }

@@ -19,6 +19,7 @@
  */
 package de.berlios.jfindmyfiles.catalog.entities;
 
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 /**
@@ -35,6 +36,7 @@ public class DiskGroup {
     //Attributes from relationships
     private Set groups;
     private DiskGroup parent;
+    private Set disks;
 
     public DiskGroup() {
         //DO NOTHING
@@ -45,15 +47,41 @@ public class DiskGroup {
         this.description = description;
         this.capacity = capacity;
     }
-    
+
+    public void addGroup(DiskGroup child) {
+        if (groups == null) {
+            groups = new LinkedHashSet();
+        }
+        groups.add(child);
+    }
+
+    public void removeGroup(DiskGroup child) {
+        if (groups != null) {
+            groups.remove(child);
+        }
+    }
+
+    public void addDisk(Media media) {
+        if (disks == null) {
+            disks = new LinkedHashSet();
+        }
+        disks.add(media);
+    }
+
+    public void removeDisk(Media media) {
+        if (disks != null) {
+            disks.add(media);
+        }
+    }
+
     public void increaseCapacity(long amount) {
         capacity += amount;
     }
-    
+
     public long getCapacity() {
         return capacity;
     }
-    
+
     public void setCapacity(long capacity) {
         this.capacity = capacity;
     }
@@ -64,6 +92,14 @@ public class DiskGroup {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    private Set getDisks() {
+        return disks;
+    }
+
+    private void setDisks(Set disks) {
+        this.disks = disks;
     }
 
     private Set getGroups() {
