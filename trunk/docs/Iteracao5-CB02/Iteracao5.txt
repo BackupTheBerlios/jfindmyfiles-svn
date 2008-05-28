@@ -3,9 +3,6 @@ Alterar a interface com o utilizador de forma a tornar a interacção mais fáci
 Criar menus de contexto a serem usados nos nós que representam os dados e que 
 contenham opções significativas consoante o estado da aplicação.
 <==== Documentos produzidos ===================================================>
-
-Spikes:
-Outros documentos:
-
+Nenhum
 <==== 
 <==== Avaliação ===============================================================>

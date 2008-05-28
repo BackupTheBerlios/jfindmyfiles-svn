@@ -1,0 +1,17 @@
+<==== Objectivos ==============================================================>
+Criar interfaces com o utilizador e um módulo para implementar os métodos de 
+exportar e importar dados.
+Criar sistema que permita ligar a uma base de dados criada anteriormente e 
+importar os dados para a base de dados corrente.
+<==== Documentos produzidos ===================================================>
+
+Spikes:
+	SimpleExport
+Outros documentos:
+	exemplo.xml
+	exemplo.csv
+	exemplo.xls
+	exemplo.ods
+
+<==== 
+<==== Avaliação ===============================================================>

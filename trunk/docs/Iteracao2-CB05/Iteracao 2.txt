@@ -27,8 +27,6 @@ Modelo de dados:
 	
 Spikes:
 	Prototipo - Protótipo de aplicação
-	? - Utilização de Hibernate para o mapeamento entre a estrutura da base de 
-		dados e os objectos usados.
 Outros documentos:
 	i18n.txt - Identificação do sistema usado para a internacionalização e das 
 		regras a seguir.
@@ -106,3 +104,59 @@ abrir, manter registo de catálogos recentes, fechar e guardar catálogos.
 		elementos que compoem um catálogo. Mostra os dados existentes 
 		num catálogo na forma de uma árvore.
 <==== Avaliação ===============================================================>
+Esta iteração passou o tempo previsto por duas semanas. Foram encontradas 
+várias dificuldades na correcta implementação dos métodos e objectos para que 
+fosse possível à componete visual ter acesso aos dados a mostrar.
+Incorporar um sistema de persistência, como o Hibernate, na plataforma netbeans 
+provou também ser um desafio maior que esperado. Não foram encontrados 
+tutoriais ou outra documentação sobre o assunto e consultada a lista de 
+discussão descobriu-se que muito poucos programadores tinha implementado ou 
+estavam a implementar uma solução de software que envolvesse a integração de um 
+sistema de persistência que usasse como apoio um motor de bases de dados 
+relacionais ou  mesmo que usasse um sistema ORM para efectuar o mapeamento 
+entre os objectos e as tabelas da base de dados.
+
+Como principais problemas, no que toca à integração do mecanismo 
+de persistência na plataforma, surgiram: a dificuldade inicial de criar as 
+dependências correctas para que os diferentes módulos pudessem comunidar, as 
+combinações das bibliotecas necessárias provocaram alguns conflitos; a 
+dificuldade de garantir a correcta configuração da camada ORM através do uso de 
+ficheiros XML e de configuração programática; a dificuldade em determinar um 
+nível de isolamento que permitisse ao Hibernate trabalhar correctamente. Dado 
+que não estamos a criar uma aplicação empresarial que use um qualquer servidor 
+aplicacional não pudemos usar o sistema de transições do Java, Java Transition 
+API (JTA), não tendo assim o controlo de transições e o nível de isolamento 
+oferecido por esse tipo de servidores. Para desenvolvimento futuro deverá ser 
+considerada a possibilidade de, embora não usando um servidor aplicacional, 
+conseguir usar o sistema de transacções do Java, JTA.
+
+(...)
+- falar da dificuldade em criar nós.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

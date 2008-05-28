@@ -5,13 +5,16 @@ externas que implementem a API.
 <==== Documentos produzidos ===================================================>
 
 Spikes:
+	PluginAPI - spike com a implementação da possivel API numa aplicação Java 
+	normal. Permite verificar os métodos de obtenção de dados e a possibiliade 
+	de extender os dados padrão a novos dados e/ou novos ficheiros.
 Outros documentos:
+	DecricaoAPI - documento com a descrição da API e principais ideias por 
+	detrás da mesma.
 
 <==== 
 Separada num módulo próprio, será criada uma API através do desenho de uma 
 interface que possa ser implementada por classes que pretendam adicionar 
 informação a ficheiros já conhecidos ou fornecer informação de novos tipos de 
 ficheiros.
-
-
 <==== Avaliação ===============================================================>

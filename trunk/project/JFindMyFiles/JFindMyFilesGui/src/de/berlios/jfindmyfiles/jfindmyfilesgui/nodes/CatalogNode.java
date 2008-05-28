@@ -35,7 +35,7 @@ import org.openide.util.actions.SystemAction;
  */
 public class CatalogNode extends AbstractNode {
     
-    public CatalogNode() {              
+    public CatalogNode(String name) {              
         //super(Children.create(new CatalogChildNodesFactory(), true));
         super(Children.LEAF);//TODO: populate child nodes
         CatalogEngine eng = Lookup.getDefault().lookup(CatalogEngine.class);

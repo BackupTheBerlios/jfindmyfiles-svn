@@ -11,11 +11,11 @@ package de.berlios.jfindmyfiles.catalog;
  */
 public interface CatalogEngineListener {
     
-    void catalogCreated();
-    void catalogOpened();
-    void diskGroupAdded();
-    void diskGroupRemoved();
-    void diskGroupRenamed();
-    void diskAdded();
-    void diskRemoved();
+    void catalogCreated(CatalogEngineEvent evt);
+    void catalogOpened(CatalogEngineEvent evt);
+    void diskGroupAdded(CatalogEngineEvent evt);
+    void diskGroupRemoved(CatalogEngineEvent evt);
+    void diskGroupRenamed(CatalogEngineEvent evt);
+    void diskAdded(CatalogEngineEvent evt);
+    void diskRemoved(CatalogEngineEvent evt);
 }

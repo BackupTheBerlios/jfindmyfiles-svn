@@ -38,7 +38,6 @@ public class CatalogEngine {
     public static final int LOCAL = 4;
     private SessionFactory sessionFactory;
     private CatalogProperties properties;
-    
     private Vector<CatalogEngineListener> listeners;
 
     /**
@@ -53,13 +52,13 @@ public class CatalogEngine {
             String username, String password, int dbType, boolean open) {
 
         //TODO: closeCatalog();
-        
+
         String strategy = "create";
         try {
             Configuration hConfig = new Configuration().configure("de/berlios" +
-            "/jfindmyfiles/catalog/utils/hibernate.general.cfg.xml");
-            
-            if(open) {
+                    "/jfindmyfiles/catalog/utils/hibernate.general.cfg.xml");
+
+            if (open) {
                 strategy = "update";
             }
             //Creation strategy
@@ -171,7 +170,7 @@ public class CatalogEngine {
         cSession.save(properties);
         cSession.getTransaction().commit();
         //TODO: notify listeners
-        fireCatalogCreated();
+        fireCatalogCreated(new CatalogEngineEvent(dbname, null, null, null, null));
     }
 
     /**
@@ -187,7 +186,7 @@ public class CatalogEngine {
     public CatalogProperties getProperties() {
         return properties;
     }
-    
+
     public void updateProperties(String description, Date creationDate) {
         Session cSession = sessionFactory.getCurrentSession();
         cSession.beginTransaction();
@@ -226,15 +225,15 @@ public class CatalogEngine {
     }
 
     public void removeLabel(Label label) {
-        Session  cSession = sessionFactory.getCurrentSession();
+        Session cSession = sessionFactory.getCurrentSession();
         cSession.beginTransaction();
-        Label l = (Label)cSession.createQuery("from Label where id=" + label.getId()).uniqueResult();
+        Label l = (Label) cSession.createQuery("from Label where id=" + label.getId()).uniqueResult();
         cSession.delete(l);
         cSession.getTransaction().commit();
     }
 
     public void addUser(String firstname, String surname) {
-        Session  cSession = sessionFactory.getCurrentSession();
+        Session cSession = sessionFactory.getCurrentSession();
         cSession.beginTransaction();
         User u = new User();
         u.setFirstname(firstname);
@@ -244,15 +243,15 @@ public class CatalogEngine {
     }
 
     public void removeUser(User user) {
-        Session  cSession = sessionFactory.getCurrentSession();
+        Session cSession = sessionFactory.getCurrentSession();
         cSession.beginTransaction();
-        User u = (User) cSession.createQuery("from Label where id=" + user.getId()).uniqueResult();     
+        User u = (User) cSession.createQuery("from Label where id=" + user.getId()).uniqueResult();
         cSession.delete(u);
         cSession.getTransaction().commit();
     }
 
     public List getLabels() {
-        Session  cSession = sessionFactory.getCurrentSession();
+        Session cSession = sessionFactory.getCurrentSession();
         cSession.beginTransaction();
         List rs = cSession.createQuery("from User").list();
         cSession.getTransaction().commit();
@@ -335,21 +334,28 @@ public class CatalogEngine {
         }*/
     }
 
+    public void exportCatalog() {
+    }
+
+    public void importCatalog() {
+    }
+
     //NOTE: TEMP CODE!
     public void addListener(CatalogEngineListener l) {
-        if(listeners == null) {
+        if (listeners == null) {
             listeners = new Vector<CatalogEngineListener>();
         }
         listeners.add(l);
     }
-    
-    private void fireCatalogCreated() {
-        if(listeners != null) {
-            for(CatalogEngineListener l : listeners) {
-                l.catalogCreated();
+
+    private void fireCatalogCreated(CatalogEngineEvent evt) {
+        if (listeners != null) {
+            for (CatalogEngineListener l : listeners) {
+                l.catalogCreated(evt);
             }
         }
     }
+
     /**
      * In overriding the finalize method we try to garantee that data is 
      * flushed and all resources are released.

@@ -20,6 +20,7 @@
 package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
+import de.berlios.jfindmyfiles.catalog.CatalogEngineEvent;
 import de.berlios.jfindmyfiles.catalog.CatalogEngineListener;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.CatalogNode;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.DiskNode;
@@ -171,31 +172,31 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
         return manager;
     }
 
-    public void catalogCreated() {
-        manager.setRootContext(new CatalogNode());
+    public void catalogCreated(CatalogEngineEvent evt) {
+        manager.setRootContext(new CatalogNode(evt.getName()));
     }
 
-    public void catalogOpened() {
+    public void catalogOpened(CatalogEngineEvent evt) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void diskGroupAdded() {
+    public void diskGroupAdded(CatalogEngineEvent evt) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void diskGroupRemoved() {
+    public void diskGroupRemoved(CatalogEngineEvent evt) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void diskGroupRenamed() {
+    public void diskGroupRenamed(CatalogEngineEvent evt) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void diskAdded() {
+    public void diskAdded(CatalogEngineEvent evt) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    public void diskRemoved() {
+    public void diskRemoved(CatalogEngineEvent evt) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
