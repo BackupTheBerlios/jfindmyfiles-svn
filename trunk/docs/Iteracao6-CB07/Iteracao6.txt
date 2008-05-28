@@ -14,4 +14,34 @@ Outros documentos:
 	exemplo.ods
 
 <==== 
+Dos vários formatos para os quais poderia ser possível exportar dados do 
+sistema, os mais relevantes serão os formatos que permitam interoperabilidade 
+com outras aplicações e sistemas. Assim serão considerados os formatos: XML, que 
+pelas suas caracteristicas, nomeadamente por ser um formato de texto legível e 
+portável para qualquer outra plataforma, bem como de fácil leitura por sistemas 
+informáticos de forma a que os dados possam ser importados ou transformados 
+facilmente, se apresenta como uma escolha natural; CSV, um formato largamente 
+utilizado e suportado e que permite a fácil importação por folhas de cálculo;
+XLS e ODS, os formatos de folhas de cálculo do MS Excel e do OpenOffice Calc. 
+Estes últimos para que seja fácil a importação e tratamento de dados usando 
+dois dos programas presentes em maior número em computadores pessoais.
+
+Tanto o formato XLS como o ODS vão exigir o uso de bibliotecas externas para a 
+exportação de dados. A implementação deste formato no sistema de exportação é 
+considerada de baixa relevância pelo que será implementada no final da iteração, 
+caso seja possível.
+A não implementação da funcionalidade de exportação para estes dois formatos 
+não será considerada como ponto negativo na iteração.
+
+O sistema permitirá importar dados de ficheiros XML, exportados anteriormente e 
+de outras bases de dados criadas.
+
+Das aplicações analizadas no início do desenvolvimento, deverão ser escolhidas 
+as que se considerem mais relevantes, e criar a possibilidade de importar dados 
+desses sistemas.
+Na escolha dos sistemas deverão ser tidos em conta os seguintes critérios:
+	- Licença da aplicação;
+	- Proximidade dos campos guardados, quantos mais campos em comum existirem 
+	mais possibilidade terá a aplicação de ser escolhida;
+	- Quantidade de informação perdida ou se efectuada a importação;
 <==== Avaliação ===============================================================>

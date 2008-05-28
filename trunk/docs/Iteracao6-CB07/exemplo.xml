@@ -1,0 +1,80 @@
+
+<catalog id="">
+    <name></name>
+    <creation-date></creation-date>
+    <description></description>
+    <total-size></total-size>
+    <disk-number></disk-number>
+    <total-folders></total-folders>
+    <file-list>
+        <file id="">
+            <name></name>
+            <absolute-path></absolute-path>
+            <last-modified></last-modified>
+            <description></description>
+            <hidden><!-- true/false -->
+            </hidden>
+            <size></size>
+            <extension></extension>
+            <image-thumb></image-thumb>
+            <video-preview></video-preview>
+            <audio-clip></audio-clip>
+            <is-file></is-file>
+            <children><!-- file items -->
+            </children>
+            <parent-id></parent-id>
+            <media-id></media-id>
+        </file>
+    </file-list>
+    <label-list>
+        <label id="">
+            <name></name>
+        </label>
+    </label-list>
+    <group-list>
+        <group id="">
+            <name></name>
+            <description></description>
+            <capacity></capacity>
+            <groups><!-- ids separdos por ponto e virgula -->
+            </groups>
+            <parent-id></parent-id>
+        </group>
+    </group-list>
+    <loan-list>
+        <loan id="">
+            <date-loaned></date-loaned>
+            <date-returned></date-returned>
+            <user-id></user-id>
+            <media-id></media-id>
+        </loan>
+    </loan-list>
+    <media-list>
+        <media id="">
+            <name></name>
+            <capacity></capacity>
+            <last-modified></last-modified>
+            <description></description>
+            <free-space></free-space>
+            <location></location>
+            <files><!-- ids separdos por ponto e virgula -->
+            </files>
+            <labels><!-- ids separdos por ponto e virgula -->
+            </labels>
+            <type-id></type-id>
+        </media>
+    </media-list>
+    <type-list>
+        <type id="">
+            <name></name>
+        </type>
+    </type-list>
+    <user-list>
+        <user id="">
+            <first-name></first-name>
+            <loans><!-- ids separdos por ponto e virgula -->
+            </loans>
+            <surname></surname>
+        </user>
+    </user-list>
+</catalog>
