@@ -31,6 +31,5 @@
         <property name="data"/>
         
         <many-to-one name="owner" column="FILE_ID" unique="true" not-null="true"/>
-
     </class>
 </hibernate-mapping>

@@ -29,7 +29,9 @@
         </id>
         <property name="loaned" type="date"/>
         <property name="returned" type="date"/>
-        <!-- TODO:<property name="media"/> -->
-        <many-to-one name="loanee" class="de.berlios.jfindmyfiles.catalog.entities.User" column="USER_ID"/>          
+        
+        <many-to-one name="media" class="de.berlios.jfindmyfiles.catalog.entities.Media" column="MEDIA_ID" not-null="true"/>
+        
+        <many-to-one name="loanee" column="USER_ID" class="de.berlios.jfindmyfiles.catalog.entities.User" not-null="true"/>          
     </class>
 </hibernate-mapping>

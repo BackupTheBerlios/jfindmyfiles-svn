@@ -30,7 +30,6 @@ public class Type {
 
     private long id;
     private String name;
-    private Set media;
 
     public Type() {
         //DO NOTHING
@@ -40,33 +39,12 @@ public class Type {
         this.name = name;
     }
 
-    public void addMedia(Media media) {
-        if (this.media == null) {
-            this.media = new LinkedHashSet();
-        }
-        this.media.add(media);
-    }
-
-    public void removeMedia(Media media) {
-        if (this.media != null) {
-            this.media.remove(media);
-        }
-    }
-
     public long getId() {
         return id;
     }
 
     private void setId(long id) {
         this.id = id;
-    }
-
-    private Set getMedia() {
-        return media;
-    }
-
-    private void setMedia(Set media) {
-        this.media = media;
     }
 
     public String getName() {

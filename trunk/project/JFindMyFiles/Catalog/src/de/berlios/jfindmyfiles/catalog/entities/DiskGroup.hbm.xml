@@ -31,17 +31,11 @@
         <property name="description"/>
         <property name="capacity"/>
         
-        <set name="groups" inverse="true" lazy="true"> <!-- lazy="true" -->
+        <set name="groups" inverse="true">
             <key column="PARENT_ID"/>
             <one-to-many class="de.berlios.jfindmyfiles.catalog.entities.DiskGroup"/>
         </set>
 
-        <many-to-one name="parent" column="PARENT_ID" class="de.berlios.jfindmyfiles.catalog.entities.DiskGroup"/>
-        
-        <!-- <set name="disks" table="TBL_MEDIA" inverse="true" lazy="false"> --> <!-- lazy="true" -->
-            <!-- <key column="DISK_ID"/>
-            <one-to-many  class="de.berlios.jfindmyfiles.catalog.entities.Media"/>
-        </set> -->
-        
+        <many-to-one name="parent" column="PARENT_ID" class="de.berlios.jfindmyfiles.catalog.entities.DiskGroup"/>       
     </class>
 </hibernate-mapping>

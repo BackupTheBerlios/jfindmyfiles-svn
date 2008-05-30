@@ -40,13 +40,12 @@
         <property name="folder"/>
         
         <many-to-one name="disk" class="de.berlios.jfindmyfiles.catalog.entities.Media" column="MEDIA_ID" not-null="true"/>
-        
+           
         <one-to-one name="image" class="de.berlios.jfindmyfiles.catalog.entities.ImageData" property-ref="owner"/>
         <one-to-one name="video" class="de.berlios.jfindmyfiles.catalog.entities.VideoData" property-ref="owner"/>
-        <one-to-one name="audio" class="de.berlios.jfindmyfiles.catalog.entities.AudioData" property-ref="owner"/>
-                
-                
-        <set name="children" inverse="true" lazy="true">
+        <one-to-one name="audio" class="de.berlios.jfindmyfiles.catalog.entities.AudioData" property-ref="owner"/>              
+               
+        <set name="children" inverse="true">
             <key column="PARENT_ID"/>
             <one-to-many class="de.berlios.jfindmyfiles.catalog.entities.FileWrapper"/>
         </set>

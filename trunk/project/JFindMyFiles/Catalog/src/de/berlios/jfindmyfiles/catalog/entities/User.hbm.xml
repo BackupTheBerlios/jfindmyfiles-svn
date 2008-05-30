@@ -29,9 +29,8 @@
         </id>
         <property name="firstname"/>
         <property name="surname"/>
-        <!-- <property name="loans" class=/> -->
         
-        <set name="loans" table="TBL_LOAN">
+        <set name="loans" table="TBL_LOAN" inverse="true">
             <key column="LOAN_ID"/>
             <one-to-many class="de.berlios.jfindmyfiles.catalog.entities.Loan"/>
         </set>

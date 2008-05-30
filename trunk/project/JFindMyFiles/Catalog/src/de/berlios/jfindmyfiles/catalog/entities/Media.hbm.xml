@@ -36,13 +36,26 @@
         <property name="freeSpace"/>
         <property name="location"/>
         
-        <set name="labels" table="TBL_MEDIA_LABEL" lazy="false">
+        <set name="loans" table="TBL_LOANS" inverse="true">
+            <key column="MEDIA_ID"/>
+            <one-to-many class="de.berlios.jfindmyfiles.catalog.entities.Loan"/>
+        </set>
+        
+        <set name="labels" table="TBL_MEDIA_LABEL">
             <key column="MEDIA_ID"/>
             <many-to-many column="LABEL_ID" class="de.berlios.jfindmyfiles.catalog.entities.Label"/>
         </set>
-        <!-- <many-to-one name="group" column="DISK_ID" class="de.berlios.jfindmyfiles.catalog.entities.DiskGroup"/> -->
-        <many-to-one name="type" class="de.berlios.jfindmyfiles.catalog.entities.Type" column="TYPE_ID" not-null="true"/>
         
-        <!-- TODO: other properties -->        
+        <set name="files" inverse="true">
+            <key column="MEDIA_ID"/>
+            <one-to-many class="de.berlios.jfindmyfiles.catalog.entities.FileWrapper"/>
+        </set>
+        
+        <join table="TBL_GROUP_MEDIA" optional="true">
+            <key column="MEDIA_ID" unique="true"/>
+            <many-to-one name="group" column="GROUP_ID" class="de.berlios.jfindmyfiles.catalog.entities.DiskGroup" not-null="true"/>
+        </join>
+        
+        <many-to-one name="type" class="de.berlios.jfindmyfiles.catalog.entities.Type" column="TYPE_ID" not-null="true"/>
     </class>
 </hibernate-mapping>

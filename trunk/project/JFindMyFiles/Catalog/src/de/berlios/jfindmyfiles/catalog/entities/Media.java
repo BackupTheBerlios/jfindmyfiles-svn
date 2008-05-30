@@ -40,7 +40,7 @@ public class Media {
     private Set files;
     private Set labels;
     private DiskGroup group;
-    //Helpers
+    private Set loans;
     private Type type;
 
     public Media() {
@@ -68,7 +68,7 @@ public class Media {
         files.add(files);
     }
 
-    public void removeMedia(FileWrapper file) {
+    public void removeFile(FileWrapper file) {
         if (files != null) {
             files.remove(file);
         }
@@ -81,9 +81,22 @@ public class Media {
         labels.add(label);
     }
 
-    public void removeMedia(Label label) {
+    public void removeLabel(Label label) {
         if (labels != null) {
             labels.remove(label);
+        }
+    }
+    
+    public void addLoan(Loan loan) {
+        if (loans == null) {
+            loans = new LinkedHashSet();
+        }
+        loans.add(loan);
+    }
+
+    public void removeLoan(Loan loan) {
+        if (loans != null) {
+            loans.remove(loan);
         }
     }
 
@@ -149,6 +162,14 @@ public class Media {
 
     private void setLabels(Set labels) {
         this.labels = labels;
+    }
+    
+    private Set getLoans() {
+        return loans;
+    }
+    
+    private void setLoans(Set loans) {
+        this.loans = loans;
     }
 
     public long getLastModified() {

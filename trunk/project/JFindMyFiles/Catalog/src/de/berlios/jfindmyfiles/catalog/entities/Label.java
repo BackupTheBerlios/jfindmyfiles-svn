@@ -19,9 +19,6 @@
  */
 package de.berlios.jfindmyfiles.catalog.entities;
 
-import java.util.LinkedHashSet;
-import java.util.Set;
-
 /**
  *
  * @author ei10635
@@ -31,8 +28,6 @@ public class Label {
     private Long id;
     //Base attributes
     private String name;
-    //Attributes from relationships
-    private Set media;
 
     public Label() {
         //DO NOTHING
@@ -42,33 +37,12 @@ public class Label {
         this.name = name;
     }
 
-    public void addMedia(Media media) {
-        if (this.media == null) {
-            this.media = new LinkedHashSet();
-        }
-        this.media.add(media);
-    }
-
-    public void removeMedia(Media media) {
-        if (this.media != null) {
-            this.media.remove(media);
-        }
-    }
-
     public Long getId() {
         return id;
     }
 
     private void setId(Long id) {
         this.id = id;
-    }
-
-    private Set getMedia() {
-        return media;
-    }
-
-    private void setMedia(Set media) {
-        this.media = media;
     }
 
     public String getName() {
