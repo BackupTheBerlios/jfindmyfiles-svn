@@ -36,6 +36,11 @@
             <one-to-many class="de.berlios.jfindmyfiles.catalog.entities.DiskGroup"/>
         </set>
 
-        <many-to-one name="parent" column="PARENT_ID" class="de.berlios.jfindmyfiles.catalog.entities.DiskGroup"/>       
+        <many-to-one name="parent" column="PARENT_ID" class="de.berlios.jfindmyfiles.catalog.entities.DiskGroup"/>
+        
+        <set name="disks" table="TBL_GROUP_MEDIA">
+            <key column="GROUP_ID"/>
+            <many-to-many column="MEDIA_ID" unique="true" class="de.berlios.jfindmyfiles.catalog.entities.Media"/>
+        </set>
     </class>
 </hibernate-mapping>

@@ -65,11 +65,11 @@ public class Loan {
         this.loanee = loanee;
     }
 
-    public Media getMedium() {
+    public Media getMedia() {
         return media;
     }
 
-    public void setMedium(Media media) {
+    public void setMedia(Media media) {
         this.media = media;
     }
 

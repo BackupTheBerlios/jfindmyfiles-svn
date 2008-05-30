@@ -21,7 +21,6 @@
 <!DOCTYPE hibernate-mapping PUBLIC 
 'PUBLIC:-//Hibernate/Hibernate Mapping DTD 3.0//EN' 
 'http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd'>
-
 <hibernate-mapping>
     <class name="de.berlios.jfindmyfiles.catalog.entities.Loan" table="TBL_LOAN">
         <id name="id" column="LOAN_ID">
@@ -29,9 +28,7 @@
         </id>
         <property name="loaned" type="date"/>
         <property name="returned" type="date"/>
-        
         <many-to-one name="media" class="de.berlios.jfindmyfiles.catalog.entities.Media" column="MEDIA_ID" not-null="true"/>
-        
-        <many-to-one name="loanee" column="USER_ID" class="de.berlios.jfindmyfiles.catalog.entities.User" not-null="true"/>          
+        <many-to-one name="loanee" column="USER_ID" class="de.berlios.jfindmyfiles.catalog.entities.User" not-null="true"/>
     </class>
 </hibernate-mapping>
