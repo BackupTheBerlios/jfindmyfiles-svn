@@ -30,6 +30,7 @@ Spikes:
 Outros documentos:
 	i18n.txt - Identificação do sistema usado para a internacionalização e das 
 		regras a seguir.
+	TestingDB - Pasta com uma base de dados usada nos testes.
 
 <==== 
 Etiquetas e categorias não possuem diferenças práticas, catalogar por categorias 
