@@ -27,9 +27,13 @@ import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.DiskNode;
 import java.awt.BorderLayout;
 import java.io.Serializable;
 import java.util.logging.Logger;
+import javax.swing.ActionMap;
 import org.openide.explorer.ExplorerManager;
+import org.openide.explorer.ExplorerUtils;
 import org.openide.explorer.view.BeanTreeView;
 import org.openide.util.Lookup;
+import org.openide.util.LookupEvent;
+import org.openide.util.LookupListener;
 import org.openide.util.NbBundle;
 import org.openide.util.lookup.Lookups;
 import org.openide.windows.TopComponent;
@@ -73,11 +77,11 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
     //manager.setRootContext(new RssNode.RootRssNode());
     } catch (DataObjectNotFoundException ex) {
     ErrorManager.getDefault().notify(ex);
-    }
+    }*/
     
     ActionMap map = getActionMap();
-    map.put("delete", ExplorerUtils.actionDelete(manager, true));
-    associateLookup(ExplorerUtils.createLookup(manager, map));*/
+    //map.put("delete", ExplorerUtils.actionDelete(manager, true));
+    //associateLookup(ExplorerUtils.createLookup(manager, map));
     }
 
     /** This method is called from within the constructor to

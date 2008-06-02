@@ -24,7 +24,10 @@ import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
 import java.awt.Image;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
+import org.openide.util.Lookup;
 import org.openide.util.Utilities;
+import org.openide.util.actions.SystemAction;
+import org.openide.util.lookup.Lookups;
 
 /**
  *
@@ -32,8 +35,8 @@ import org.openide.util.Utilities;
  */
 public class DiskGroupNode extends AbstractNode {
     
-    public DiskGroupNode(DiskGroup group) {
-        super(Children.LEAF);
+    public DiskGroupNode(DiskGroup group, boolean leaf) {
+        super((leaf ? Children.LEAF : new DiskGroupChildren(group.getId())));
         setName(group.getName());
     }
     
@@ -45,6 +48,10 @@ public class DiskGroupNode extends AbstractNode {
     @Override
     public Image getOpenedIcon(int type) {
         return getIcon(type);
+    }
+    
+    @Override
+    public SystemAction[] getActions(boolean bool) {
+        return new SystemAction[]{};
     }    
-
 }

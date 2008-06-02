@@ -45,7 +45,7 @@
             <one-to-many class="de.berlios.jfindmyfiles.catalog.entities.FileWrapper"/>
         </set>
 
-        <many-to-one name="type" class="de.berlios.jfindmyfiles.catalog.entities.Type" column="TYPE_ID" not-null="true"/>
+        <many-to-one name="type" class="de.berlios.jfindmyfiles.catalog.entities.Type" column="TYPE_ID" not-null="true" lazy="false"/>
         
         <join table="TBL_GROUP_MEDIA" optional="true">
             <key column="MEDIA_ID"/>

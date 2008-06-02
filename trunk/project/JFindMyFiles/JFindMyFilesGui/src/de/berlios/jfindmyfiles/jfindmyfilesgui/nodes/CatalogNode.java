@@ -20,42 +20,66 @@
 package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionAddNewDisk;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionAddNewDiskGroup;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionClose;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionExport;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionImport;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionProperties;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionRenumberDisks;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionScanForDuplicates;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionSearchForItems;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionUpdateAllDisks;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
 import java.util.List;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.ChildFactory;
 import org.openide.nodes.Children;
 import org.openide.nodes.Node;
+import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
 import org.openide.util.Utilities;
 import org.openide.util.actions.SystemAction;
+import org.openide.util.lookup.Lookups;
 
 /**
  *
  * @author knitter
  */
 public class CatalogNode extends AbstractNode {
-    
-    public CatalogNode(String name, boolean created) {              
+
+    private SystemAction[] sysact;
+
+    public CatalogNode(String name, boolean created) {
         //super(Children.create(new CatalogChildNodesFactory(), true));
-        //super(Children.LEAF);//TODO: populate child nodes
+        //TODO: populate child nodes
         super(created ? Children.LEAF : new CatalogChildren(null));
+
         CatalogEngine eng = Lookup.getDefault().lookup(CatalogEngine.class);
         setName(eng.getProperties().getName());
+        
+        Lookup lo = Lookups.forPath("/Actions");//TODO: sort actions correctly and add separators
+        sysact = new SystemAction[]{lo.lookup(ActionProperties.class),
+                    lo.lookup(ActionRenumberDisks.class), lo.lookup(ActionScanForDuplicates.class),
+                    lo.lookup(ActionSearchForItems.class), lo.lookup(ActionUpdateAllDisks.class),
+                    lo.lookup(ActionAddNewDisk.class), lo.lookup(ActionAddNewDiskGroup.class),
+                    lo.lookup(ActionClose.class), lo.lookup(ActionExport.class), lo.lookup(ActionImport.class)
+                };
     }
-    
+
     @Override
     public Image getIcon(int type) {
         return Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-catalog.png"); // NOI18N
     }
-    
+
     @Override
     public Image getOpenedIcon(int type) {
         return getIcon(type);
     }
-    
+
     @Override
     public SystemAction[] getActions(boolean bool) {
-        return new SystemAction[]{};
-    }   
+        return sysact;
+    }
 }

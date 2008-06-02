@@ -45,6 +45,8 @@
         
         <!-- //TODO: remove this line and replace with proper one -->
         <!-- <property name="hbm2ddl.auto">create</property> -->
+        <!-- 
+        <property name="hibernate.connection.shutdown">true</property> -->
 
         <mapping resource="de/berlios/jfindmyfiles/catalog/entities/AudioData.hbm.xml"/>
         <mapping resource="de/berlios/jfindmyfiles/catalog/entities/DiskGroup.hbm.xml"/>

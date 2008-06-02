@@ -77,6 +77,7 @@ public class Type {
         Type other = (Type) obj;
         return name.equals(other.name);
     }
+    
     //TODO: link for the equals method
     /**
      * HashCode for this object, excluding the id field.

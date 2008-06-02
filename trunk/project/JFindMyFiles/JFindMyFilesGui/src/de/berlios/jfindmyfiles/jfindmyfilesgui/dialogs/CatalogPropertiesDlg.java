@@ -23,6 +23,8 @@ import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.catalog.entities.CatalogProperties;
 import java.util.Date;
 import javax.swing.ImageIcon;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import org.openide.util.Lookup;
 import org.openide.util.Utilities;
 
@@ -34,12 +36,27 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
 
     private CatalogEngine eng;
     private CatalogProperties props;
-    private boolean alterado = false;
+    private boolean changed = false;
 
     /** Creates new form CatalogPropertiesDlg */
     public CatalogPropertiesDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        jtaDescription.getDocument().addDocumentListener(new DocumentListener() {
+
+            public void insertUpdate(DocumentEvent e) {
+                changed = true;
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                changed = true;
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                changed = true;
+            }
+        });
 
         eng = Lookup.getDefault().lookup(CatalogEngine.class);
         fillIn();
@@ -121,11 +138,6 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
 
         jtaDescription.setColumns(20);
         jtaDescription.setRows(5);
-        jtaDescription.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jtaDescriptionKeyTyped(evt);
-            }
-        });
         jscrDescription.setViewportView(jtaDescription);
 
         jlblTotalSize.setText(org.openide.util.NbBundle.getMessage(CatalogPropertiesDlg.class, "CatalogPropertiesDlg.jlblTotalSize.text")); // NOI18N
@@ -272,8 +284,8 @@ private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
 private void jbtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOKActionPerformed
     //TODO: better control over detached object
-    if (alterado && eng != null && props != null) {
-        alterado = false;
+    if (changed && eng != null && props != null) {
+        changed = false;
         props.setCreationDate(jdcCreatedOn.getDate());
         props.setDescription(jtaDescription.getText().trim());
         eng.updateProperties();
@@ -281,16 +293,11 @@ private void jbtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     dispose();
 }//GEN-LAST:event_jbtnOKActionPerformed
 
-private void jtaDescriptionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtaDescriptionKeyTyped
-    //NOTE: this event is probably not the best one to use
-    alterado = true;
-}//GEN-LAST:event_jtaDescriptionKeyTyped
-
 private void jdcCreatedOnPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdcCreatedOnPropertyChange
     //NOTE: jcalenar component does no provide events for listning to date 
     // changes  
     if (evt.getPropertyName().equals("date")) {
-        alterado = true;
+        changed = true;
     }
 }//GEN-LAST:event_jdcCreatedOnPropertyChange
 

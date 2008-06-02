@@ -30,12 +30,12 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jlblName" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jtfName" pref="450" max="32767" attributes="0"/>
+                      <Component id="jtfName" pref="492" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jchkUserinternalDB" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jSeparator1" pref="334" max="32767" attributes="0"/>
+                      <Component id="jSeparator1" pref="394" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="12" pref="12" max="12" attributes="0"/>
@@ -44,7 +44,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jlblDestination" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jtfDestination" pref="393" max="32767" attributes="0"/>
+                              <Component id="jtfDestination" pref="416" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jbtnBrowse" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -124,7 +124,7 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jtfHostname" alignment="1" pref="278" max="32767" attributes="0"/>
+                              <Component id="jtfHostname" alignment="1" pref="343" max="32767" attributes="0"/>
                               <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
                                   <Component id="jpfPassword" alignment="0" max="32767" attributes="1"/>
                                   <Component id="jtfUsername" alignment="0" pref="141" max="32767" attributes="1"/>

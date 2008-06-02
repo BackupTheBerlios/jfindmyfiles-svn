@@ -21,6 +21,13 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
+import java.awt.Component;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.ListCellRenderer;
+import javax.swing.SwingConstants;
+import org.openide.util.Utilities;
 
 /**
  *
@@ -28,10 +35,20 @@ import java.awt.CardLayout;
  */
 public class ExportDlg extends javax.swing.JDialog {
 
+    /*private static final int EXPORT_CVS = 0;
+    private static final int EXPORT_HTML = 1;
+    private static final int EXPORT_ODS = 2;
+    private static final int EXPORT_XLS = 3;
+    private static final int EXPORT_XML = 4;
+    private static final int EXPORT_SQL = 5;*/
+    private Integer[] values = new Integer[]{0, 1, 2, 3, 4, 5};
+
     /** Creates new form ExportDlg */
     public ExportDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+
+        //TODO:
         jPanel1.setVisible(true);
         jPanel2.setVisible(false);
         this.add(jPanel2, BorderLayout.CENTER);
@@ -59,7 +76,7 @@ public class ExportDlg extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jList1 = new javax.swing.JList();
+        jlstExportTypes = new JList(values);
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
@@ -111,17 +128,16 @@ public class ExportDlg extends javax.swing.JDialog {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jPanel3.border.title"))); // NOI18N
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jList1.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+        jlstExportTypes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jlstExportTypes.setCellRenderer(new Renderer());
+        jlstExportTypes.setFixedCellHeight(62);
+        jlstExportTypes.setVisibleRowCount(6);
+        jlstExportTypes.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jList1ValueChanged(evt);
+                jlstExportTypesValueChanged(evt);
             }
         });
-        jScrollPane1.setViewportView(jList1);
+        jScrollPane1.setViewportView(jlstExportTypes);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -135,7 +151,7 @@ public class ExportDlg extends javax.swing.JDialog {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -150,14 +166,14 @@ public class ExportDlg extends javax.swing.JDialog {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(124, 124, 124)
                 .addComponent(jLabel3)
-                .addContainerGap(188, Short.MAX_VALUE))
+                .addContainerGap(250, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(170, 170, 170)
                 .addComponent(jLabel3)
-                .addContainerGap(202, Short.MAX_VALUE))
+                .addContainerGap(242, Short.MAX_VALUE))
         );
 
         jPanel4.add(jPanel5, "card2");
@@ -171,14 +187,14 @@ public class ExportDlg extends javax.swing.JDialog {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(122, 122, 122)
                 .addComponent(jLabel4)
-                .addContainerGap(190, Short.MAX_VALUE))
+                .addContainerGap(252, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(166, 166, 166)
                 .addComponent(jLabel4)
-                .addContainerGap(206, Short.MAX_VALUE))
+                .addContainerGap(246, Short.MAX_VALUE))
         );
 
         jPanel4.add(jPanel6, "card3");
@@ -214,7 +230,7 @@ public class ExportDlg extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -228,7 +244,7 @@ public class ExportDlg extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -241,15 +257,15 @@ public class ExportDlg extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
-    if(jList1.getSelectedIndex() == 0) {
-        CardLayout lay = (CardLayout)jPanel4.getLayout();
+private void jlstExportTypesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jlstExportTypesValueChanged
+    if (jlstExportTypes.getSelectedIndex() == 0) {
+        CardLayout lay = (CardLayout) jPanel4.getLayout();
         lay.first(jPanel4);
     } else {
-        CardLayout lay = (CardLayout)jPanel4.getLayout();
-        lay.last(jPanel4);        
+        CardLayout lay = (CardLayout) jPanel4.getLayout();
+        lay.last(jPanel4);
     }
-}//GEN-LAST:event_jList1ValueChanged
+}//GEN-LAST:event_jlstExportTypesValueChanged
 
 private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     dispose();
@@ -262,7 +278,6 @@ private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_jButton3ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -271,7 +286,6 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JList jList1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -279,5 +293,47 @@ private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList jlstExportTypes;
     // End of variables declaration//GEN-END:variables
+    
+    /**
+     * Renderer class for showing icons on the list of existing export options
+     */
+    private class Renderer extends JLabel implements ListCellRenderer {
+
+        private ImageIcon[] images;
+
+        public Renderer() {
+            images = new ImageIcon[]{
+                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-csv.png")),
+                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-html.png")),
+                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-ods.png")),
+                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-xls.png")),
+                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-xml.png")),
+                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-sql.png"))
+                    };
+
+            setOpaque(true);
+            setHorizontalAlignment(SwingConstants.CENTER);
+            setVerticalAlignment(SwingConstants.CENTER);
+        }
+
+        public Component getListCellRendererComponent(JList list, Object value,
+                int index, boolean isSelected, boolean cellHasFocus) {
+
+            int selectedIndex = ((Integer) value).intValue();
+
+            if (isSelected) {
+                setBackground(list.getSelectionBackground());
+                setForeground(list.getSelectionForeground());
+            } else {
+                setBackground(list.getBackground());
+                setForeground(list.getForeground());
+            }
+
+            setIcon(images[selectedIndex]);
+            setFont(list.getFont());
+            return this;
+        }
+    }
 }

@@ -2,6 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
@@ -18,22 +19,22 @@ import org.openide.util.Lookup;
  *
  * @author Knitter
  */
-public class CatalogChildren extends Children.Keys {
+public class DiskGroupChildren extends Children.Keys {
 
-    private CatalogNode parent;
+    private Long parentId;
     private List items;
     private CatalogEngine eng;
 
-    public CatalogChildren(CatalogNode parent) {
-        this.parent = parent;
+    public DiskGroupChildren(Long parentId) {
+        this.parentId = parentId;
         items = new LinkedList();
         eng = Lookup.getDefault().lookup(CatalogEngine.class);
         Session s = eng.sessionFactory.getCurrentSession();
         s.beginTransaction();
-        items.addAll(s.createQuery("from DiskGroup where parent.id is null").list());
-        items.addAll(s.createQuery("from Media where group.id is null").list());
+        items.addAll(s.createQuery("from DiskGroup group where group.parent.id = ?").setLong(0, parentId).list());
+        items.addAll(s.createQuery("from Media disk where disk.group.id = ?").setLong(0, parentId).list());
         s.getTransaction().commit();
-    }  
+    }
 
     @Override
     protected void addNotify() {
@@ -51,7 +52,6 @@ public class CatalogChildren extends Children.Keys {
             s.getTransaction().commit();
 
             DiskGroupNode gn = new DiskGroupNode((DiskGroup) key, rs.isEmpty());
-            
             return new Node[]{gn};
         }
         if (key instanceof Media) {
@@ -60,4 +60,5 @@ public class CatalogChildren extends Children.Keys {
         }
         return null;
     }
+
 }

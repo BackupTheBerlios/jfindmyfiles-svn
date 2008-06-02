@@ -154,7 +154,7 @@ public class DiskGroup {
         }
 
         DiskGroup other = (DiskGroup) obj;
-        return name.equals(other.name) && description.equals(other.description) && parent.equals(other.parent);
+        return name.equals(other.name) && description.equals(other.description);
     }
 
     //TODO: link for the equals method
@@ -170,7 +170,6 @@ public class DiskGroup {
         hash = 83 * hash + (this.name != null ? this.name.hashCode() : 0);
         hash = 83 * hash + (this.description != null ? this.description.hashCode()
                 : 0);
-        hash = 83 * hash + (this.parent != null ? this.parent.hashCode() : 0);
         return hash;
     }
 

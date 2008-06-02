@@ -25,6 +25,7 @@ import java.awt.Image;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
 import org.openide.util.Utilities;
+import org.openide.util.actions.SystemAction;
 
 /**
  *
@@ -34,6 +35,7 @@ public class DiskNode extends AbstractNode {
     
     public DiskNode(Media media) {
         super(Children.LEAF);
+        setName(media.getName());
     }
     
     @Override
@@ -45,6 +47,11 @@ public class DiskNode extends AbstractNode {
     @Override
     public Image getOpenedIcon(int type) {
         return getIcon(type);
+    }
+    
+    @Override
+    public SystemAction[] getActions(boolean bool) {
+        return new SystemAction[]{};
     }    
 
 }
