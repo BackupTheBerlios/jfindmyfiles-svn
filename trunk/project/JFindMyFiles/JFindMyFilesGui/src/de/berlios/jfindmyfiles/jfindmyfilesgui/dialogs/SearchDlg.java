@@ -22,12 +22,17 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
+import de.berlios.jfindmyfiles.catalog.entities.FileWrapper;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 import org.openide.util.Lookup;
 
 /**
@@ -38,12 +43,14 @@ public class SearchDlg extends javax.swing.JDialog {
 
     private CatalogEngine eng;
     private Vector<DiskGroup> groups;
+    private DefaultListModel listModel;
+    
     
     /** Creates new form SearchDlg */
     public SearchDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         eng = Lookup.getDefault().lookup(CatalogEngine.class);
-        populateDiskGroupBox();
+        obtainDiskGroupNames();
         initComponents();
         jpbProgress.setVisible(false);
     }
@@ -68,7 +75,7 @@ public class SearchDlg extends javax.swing.JDialog {
     }
     
     @SuppressWarnings("unchecked")
-    private void populateDiskGroupBox() {
+    private void obtainDiskGroupNames() {
         groups = new Vector<DiskGroup>();
         Session s = eng.sessionFactory.getCurrentSession();
         s.beginTransaction();
@@ -78,6 +85,7 @@ public class SearchDlg extends javax.swing.JDialog {
     
     @SuppressWarnings("unchecked")
     private void search() {
+        listModel.clear();
         boolean inDescriptions = jchkSearchInDesc.isSelected();
         boolean caseSensitive = jchkCaseSensitive.isSelected();
         boolean useRegular = jchkUseReGex.isSelected();
@@ -85,11 +93,24 @@ public class SearchDlg extends javax.swing.JDialog {
         List l = new LinkedList();
         Session s = eng.sessionFactory.getCurrentSession();
         s.beginTransaction();
-        l.addAll(s.createQuery("from FileWrapper file where file.name like %?%").list());
-        s.getTransaction().commit();
-        for(Object o : l) {
-            ((DefaultListModel)jlstResults.getModel()).addElement(o);
+        Criteria c = s.createCriteria(FileWrapper.class).add(Restrictions.ilike("name", jtfSearchText.getText().trim(), MatchMode.ANYWHERE));
+        //l.addAll(c.list());*/
+        /*l.addAll(s.createQuery("from FileWrapper file where file.name like '%:name%'").setString("name", jtfSearchText.getText().trim()).list());*/
+        
+        /*for(Object o : l) {
+            //System.err.println("FOUND: " + o);
+            listModel.addElement(o);
+        }*/
+       for(Object o : c.list()) {
+            //System.err.println("FOUND: " + o);
+            listModel.addElement(o);
         }
+        /*Iterator it = s.createQuery("from FileWrapper file where file.name like ?").setString(0, "%"
+                + jtfSearchText.getText().trim()+"%").iterate();
+        while(it.hasNext()) {
+            listModel.addElement(it.next());
+        }*/
+        s.getTransaction().commit();
         jpbProgress.setVisible(false);
     }
     /** This method is called from within the constructor to
@@ -247,6 +268,7 @@ public class SearchDlg extends javax.swing.JDialog {
 
         jpResults.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jpResults.border.title"))); // NOI18N
 
+        jlstResults.setModel(listModel = new DefaultListModel());
         jscrResults.setViewportView(jlstResults);
 
         javax.swing.GroupLayout jpResultsLayout = new javax.swing.GroupLayout(jpResults);
@@ -272,7 +294,9 @@ public class SearchDlg extends javax.swing.JDialog {
             }
         });
 
-        jpbProgress.setValue(50);
+        jpbProgress.setIndeterminate(true);
+        jpbProgress.setString(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jpbProgress.string")); // NOI18N
+        jpbProgress.setStringPainted(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -284,8 +308,8 @@ public class SearchDlg extends javax.swing.JDialog {
                     .addComponent(jpTopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jpResults, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jpbProgress, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
-                        .addGap(203, 203, 203)
+                        .addComponent(jpbProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, Short.MAX_VALUE)
                         .addComponent(jbtnClose)))
                 .addContainerGap())
         );

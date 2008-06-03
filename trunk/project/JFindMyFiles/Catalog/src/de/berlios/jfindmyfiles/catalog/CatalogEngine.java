@@ -114,7 +114,7 @@ public class CatalogEngine {
                     hConfig.setProperty("hibernate.connection.username", "sa");//Default user for every HSQLDB database
 
                     //Try to shutdown the database as soon as there all connections are gone
-                    hConfig.setProperty("hibernate.connection.shutdown", "true");
+                    //hConfig.setProperty("hibernate.connection.shutdown", "true");
                     
                     hConfig.setProperty("hibernate.connection.password", "");//HSQLDB has a user with no password
 
@@ -375,9 +375,6 @@ public class CatalogEngine {
     @Override
     public void finalize() {
         if (sessionFactory != null && !sessionFactory.isClosed()) {
-            Session s = sessionFactory.getCurrentSession();
-            s.beginTransaction();
-            //s.createSQLQuery("SHUTDOWN").
             sessionFactory.close();
         }
     }
