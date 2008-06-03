@@ -1,4 +1,4 @@
 Manifest-Version: 1.0
 OpenIDE-Module: de.berlios.jfindmyfiles.catalog
 OpenIDE-Module-Specification-Version: 1.0
-
+OpenIDE-Module-Localizing-Bundle: de/berlios/jfindmyfiles/catalog/Bundle.properties

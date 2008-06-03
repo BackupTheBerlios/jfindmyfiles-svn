@@ -20,7 +20,15 @@
 
 package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Vector;
+import javax.swing.DefaultListModel;
+import javax.swing.JComboBox;
+import org.hibernate.Session;
+import org.openide.util.Lookup;
 
 /**
  *
@@ -28,10 +36,16 @@ import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
  */
 public class SearchDlg extends javax.swing.JDialog {
 
+    private CatalogEngine eng;
+    private Vector<DiskGroup> groups;
+    
     /** Creates new form SearchDlg */
     public SearchDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        eng = Lookup.getDefault().lookup(CatalogEngine.class);
+        populateDiskGroupBox();
         initComponents();
+        jpbProgress.setVisible(false);
     }
     
     /** Creates a new form SeachDlg and changes the selected item in the 
@@ -51,7 +65,33 @@ public class SearchDlg extends javax.swing.JDialog {
         setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
                 getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
         setVisible(true);
-    }  
+    }
+    
+    @SuppressWarnings("unchecked")
+    private void populateDiskGroupBox() {
+        groups = new Vector<DiskGroup>();
+        Session s = eng.sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        groups.addAll(s.createQuery("from DiskGroup group order by group.name").list());
+        s.getTransaction().commit();
+    }
+    
+    @SuppressWarnings("unchecked")
+    private void search() {
+        boolean inDescriptions = jchkSearchInDesc.isSelected();
+        boolean caseSensitive = jchkCaseSensitive.isSelected();
+        boolean useRegular = jchkUseReGex.isSelected();
+        boolean scopeAll = jrdbEntireCatalog.isSelected();
+        List l = new LinkedList();
+        Session s = eng.sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        l.addAll(s.createQuery("from FileWrapper file where file.name like %?%").list());
+        s.getTransaction().commit();
+        for(Object o : l) {
+            ((DefaultListModel)jlstResults.getModel()).addElement(o);
+        }
+        jpbProgress.setVisible(false);
+    }
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -71,13 +111,14 @@ public class SearchDlg extends javax.swing.JDialog {
         jchkCaseSensitive = new javax.swing.JCheckBox();
         jchkUseReGex = new javax.swing.JCheckBox();
         jpScopePanel = new javax.swing.JPanel();
-        jcbxDiskGroups = new javax.swing.JComboBox();
+        jcbxDiskGroups = new JComboBox(groups);
         jrdbEntireCatalog = new javax.swing.JRadioButton();
         jrdbDiskGroupOnly = new javax.swing.JRadioButton();
         jpResults = new javax.swing.JPanel();
         jscrResults = new javax.swing.JScrollPane();
         jlstResults = new javax.swing.JList();
         jbtnClose = new javax.swing.JButton();
+        jpbProgress = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -112,7 +153,7 @@ public class SearchDlg extends javax.swing.JDialog {
                     .addComponent(jchkSearchInDesc)
                     .addComponent(jchkCaseSensitive)
                     .addComponent(jchkUseReGex))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
         jpOptionsPanelLayout.setVerticalGroup(
             jpOptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,7 +168,6 @@ public class SearchDlg extends javax.swing.JDialog {
 
         jpScopePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jpScopePanel.border.title"))); // NOI18N
 
-        jcbxDiskGroups.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jcbxDiskGroups.setEnabled(false);
 
         btngrpScope.add(jrdbEntireCatalog);
@@ -150,7 +190,7 @@ public class SearchDlg extends javax.swing.JDialog {
                 .addGroup(jpScopePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpScopePanelLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(jcbxDiskGroups, 0, 198, Short.MAX_VALUE))
+                        .addComponent(jcbxDiskGroups, 0, 218, Short.MAX_VALUE))
                     .addGroup(jpScopePanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jrdbEntireCatalog))
@@ -167,7 +207,7 @@ public class SearchDlg extends javax.swing.JDialog {
                 .addComponent(jrdbDiskGroupOnly)
                 .addGap(6, 6, 6)
                 .addComponent(jcbxDiskGroups, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jpTopPanelLayout = new javax.swing.GroupLayout(jpTopPanel);
@@ -215,7 +255,7 @@ public class SearchDlg extends javax.swing.JDialog {
             jpResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpResultsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jscrResults, javax.swing.GroupLayout.DEFAULT_SIZE, 498, Short.MAX_VALUE)
+                .addComponent(jscrResults, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpResultsLayout.setVerticalGroup(
@@ -232,6 +272,8 @@ public class SearchDlg extends javax.swing.JDialog {
             }
         });
 
+        jpbProgress.setValue(50);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -241,7 +283,10 @@ public class SearchDlg extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpTopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jpResults, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jbtnClose, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jpbProgress, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                        .addGap(203, 203, 203)
+                        .addComponent(jbtnClose)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -252,7 +297,9 @@ public class SearchDlg extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpResults, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtnClose)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtnClose)
+                    .addComponent(jpbProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -264,7 +311,13 @@ private void jrdbDiskGroupOnlyStateChanged(javax.swing.event.ChangeEvent evt) {/
 }//GEN-LAST:event_jrdbDiskGroupOnlyStateChanged
 
 private void jbtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSearchActionPerformed
-//TODO:
+    jpbProgress.setVisible(true);
+    new Thread(new Runnable() {
+
+            public void run() {
+                search();
+            }
+        }).start();
 }//GEN-LAST:event_jbtnSearchActionPerformed
 
 private void jbtnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCloseActionPerformed
@@ -285,6 +338,7 @@ private void jbtnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JPanel jpResults;
     private javax.swing.JPanel jpScopePanel;
     private javax.swing.JPanel jpTopPanel;
+    private javax.swing.JProgressBar jpbProgress;
     private javax.swing.JRadioButton jrdbDiskGroupOnly;
     private javax.swing.JRadioButton jrdbEntireCatalog;
     private javax.swing.JScrollPane jscrResults;
