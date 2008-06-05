@@ -112,6 +112,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
         jpButtons.validate();
     }
 
+    @SuppressWarnings("unchecked")
     private Object[] listDiskGroups() {
         if (eng != null) {
             List g = eng.getDiskGroups();

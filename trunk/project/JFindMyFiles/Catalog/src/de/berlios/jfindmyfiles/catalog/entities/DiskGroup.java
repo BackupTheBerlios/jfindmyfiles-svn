@@ -47,7 +47,8 @@ public class DiskGroup {
         this.description = description;
         this.capacity = capacity;
     }
-
+    
+    @SuppressWarnings("unchecked")
     public void addGroup(DiskGroup child) {
         if (groups == null) {
             groups = new LinkedHashSet();
@@ -61,6 +62,7 @@ public class DiskGroup {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public void addDisk(Media media) {
         if (disks == null) {
             disks = new LinkedHashSet();
@@ -68,6 +70,7 @@ public class DiskGroup {
         disks.add(media);
     }
 
+    @SuppressWarnings("unchecked")
     public void removeDisk(Media media) {
         if (disks != null) {
             disks.add(media);
@@ -145,6 +148,10 @@ public class DiskGroup {
      */
     @Override
     public boolean equals(Object obj) {
+        if(obj == null) {
+            return false;
+        }
+
         if (this == obj) {
             return true;
         }

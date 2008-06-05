@@ -6,9 +6,56 @@ dadas com um sistema de controlo de versões.
 - Verificar o texto de avaliação de sistemas existentes.
 - Verificar suporte para UNC, Uniform Naming Convention 
 -> http://en.wikipedia.org/wiki/Path_%28computing%29#Uniform_Naming_Convention
-- Criar código para CRC
 - Configurar logger
 
 http://www.xylax.net/hibernate/onetomany.html
 http://www.hibernate.org/hib_docs/v3/reference/en/html_single/#mapping
 http://www.hibernate.org/hib_docs/v3/reference/en/html/tutorial.html
+
+Iteração 2:
+	- ligar código de leitura para permitir ler os dados dos discos, implica uma base de API
+	- Fazer DER e modelo de dominio com base no esquema usado para o mapeamento
+	- Criar catálogo
+	- Abrir catálogo
+	- Fechar catálogo
+	- Guardar catálogo
+	- Manter registo de catálogos recentes
+	- NewDiskDlg - Janela de diálogo que permite ler novos suportes.
+	- NewCatalogDlg - Janela de diálogo que permite criar novos catálogos
+	- OpenCatalogDlg - Janela de diálogo que permite abrir catálogos existentes.
+- Menus:
+	- ?
+- Paineis a integrar no sistema de janelas da plataforma:
+	- CatalogOptionsPanel - Painel com as apções a usar na criação de novos catálogos e abertura de catálogos existentes.
+	
+Iteração 3:
+	- desenhar API
+
+Iteração 4:
+	- sistema de pesquisa que incorpore as opções de:
+		- pesquisa por case insensitive
+		- definição de scope de pesquisa
+		- pesquisar nas descrições
+		- usar expressões regulares
+	- opções para definir o tipo de base de dados através de um painel de opções
+	- opções para definir o tipo de base de dados na altura da criação
+	- opções para definir o tipo de base de dados na altura da abertura
+	- pesquisa de ficheiros duplicados em todo o catálogo
+	
+Iteração 5:
+	- menus de contexto sensíveis
+	- remodelação da interface
+
+Iteração 6:
+	- exportar dados para XML
+	- exportar dados para CSV
+	- importar dados de XML
+	- importar dados de outra base de dados
+	- importar dados de CSV
+	- exportar para XLS
+	- exportar para ODS
+	- importar dados de outras aplicações
+
+NOTAS:
+	Atenção ao nome dos paineis e componentes na internacionalização
+	Criar painel para escolher a língua?

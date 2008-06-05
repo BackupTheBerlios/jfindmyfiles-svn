@@ -42,6 +42,7 @@ public class User {
         this.surname = surname;
     }
 
+    @SuppressWarnings("unchecked")
     public void addLoan(Loan loan) {
         if (loans == null) {
             loans = new LinkedHashSet();
@@ -98,6 +99,10 @@ public class User {
      */
     @Override
     public boolean equals(Object obj) {
+        if(obj == null) {
+            return false;
+        }
+        
         if (this == obj) {
             return true;
         }

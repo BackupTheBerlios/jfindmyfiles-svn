@@ -17,7 +17,6 @@
  *  along with JFindMyFiles.  If not, see 
  * <http://www.gnu.org/licenses/gpl.html>.
  */
-
 package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
@@ -44,8 +43,7 @@ public class SearchDlg extends javax.swing.JDialog {
     private CatalogEngine eng;
     private Vector<DiskGroup> groups;
     private DefaultListModel listModel;
-    
-    
+
     /** Creates new form SearchDlg */
     public SearchDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -54,7 +52,7 @@ public class SearchDlg extends javax.swing.JDialog {
         initComponents();
         jpbProgress.setVisible(false);
     }
-    
+
     /** Creates a new form SeachDlg and changes the selected item in the 
      * combobox that list disk groups to match the given group.
      *
@@ -67,13 +65,13 @@ public class SearchDlg extends javax.swing.JDialog {
         jrdbDiskGroupOnly.setSelected(true);
         jcbxDiskGroups.setSelectedItem(group);
     }
-    
+
     public void showCentered() {
         setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
                 getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
         setVisible(true);
     }
-    
+
     @SuppressWarnings("unchecked")
     private void obtainDiskGroupNames() {
         groups = new Vector<DiskGroup>();
@@ -82,7 +80,7 @@ public class SearchDlg extends javax.swing.JDialog {
         groups.addAll(s.createQuery("from DiskGroup group order by group.name").list());
         s.getTransaction().commit();
     }
-    
+
     @SuppressWarnings("unchecked")
     private void search() {
         listModel.clear();
@@ -90,29 +88,18 @@ public class SearchDlg extends javax.swing.JDialog {
         boolean caseSensitive = jchkCaseSensitive.isSelected();
         boolean useRegular = jchkUseReGex.isSelected();
         boolean scopeAll = jrdbEntireCatalog.isSelected();
-        List l = new LinkedList();
+
+        //TODO: add other properties
         Session s = eng.sessionFactory.getCurrentSession();
         s.beginTransaction();
         Criteria c = s.createCriteria(FileWrapper.class).add(Restrictions.ilike("name", jtfSearchText.getText().trim(), MatchMode.ANYWHERE));
-        //l.addAll(c.list());*/
-        /*l.addAll(s.createQuery("from FileWrapper file where file.name like '%:name%'").setString("name", jtfSearchText.getText().trim()).list());*/
-        
-        /*for(Object o : l) {
-            //System.err.println("FOUND: " + o);
-            listModel.addElement(o);
-        }*/
-       for(Object o : c.list()) {
-            //System.err.println("FOUND: " + o);
+        for (Object o : c.list()) {
             listModel.addElement(o);
         }
-        /*Iterator it = s.createQuery("from FileWrapper file where file.name like ?").setString(0, "%"
-                + jtfSearchText.getText().trim()+"%").iterate();
-        while(it.hasNext()) {
-            listModel.addElement(it.next());
-        }*/
         s.getTransaction().commit();
         jpbProgress.setVisible(false);
     }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -269,6 +256,11 @@ public class SearchDlg extends javax.swing.JDialog {
         jpResults.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jpResults.border.title"))); // NOI18N
 
         jlstResults.setModel(listModel = new DefaultListModel());
+        jlstResults.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jlstResultsPropertyChange(evt);
+            }
+        });
         jscrResults.setViewportView(jlstResults);
 
         javax.swing.GroupLayout jpResultsLayout = new javax.swing.GroupLayout(jpResults);
@@ -336,9 +328,14 @@ private void jrdbDiskGroupOnlyStateChanged(javax.swing.event.ChangeEvent evt) {/
 
 private void jbtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSearchActionPerformed
     jpbProgress.setVisible(true);
-    new Thread(new Runnable() {
+    new Thread(new  
 
-            public void run() {
+          Runnable() {
+
+            
+        
+    
+public void run() {
                 search();
             }
         }).start();
@@ -348,6 +345,9 @@ private void jbtnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     dispose();
 }//GEN-LAST:event_jbtnCloseActionPerformed
 
+private void jlstResultsPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jlstResultsPropertyChange
+    System.err.println("SOME PROPERTY CHANGED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + evt.getPropertyName());
+}//GEN-LAST:event_jlstResultsPropertyChange
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btngrpScope;
     private javax.swing.JButton jbtnClose;
@@ -368,5 +368,4 @@ private void jbtnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JScrollPane jscrResults;
     private javax.swing.JTextField jtfSearchText;
     // End of variables declaration//GEN-END:variables
-
 }

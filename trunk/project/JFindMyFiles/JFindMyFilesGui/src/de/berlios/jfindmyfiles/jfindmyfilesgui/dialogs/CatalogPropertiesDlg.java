@@ -25,6 +25,7 @@ import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import org.hibernate.Session;
 import org.openide.util.Lookup;
 import org.openide.util.Utilities;
 
@@ -35,6 +36,7 @@ import org.openide.util.Utilities;
 public class CatalogPropertiesDlg extends javax.swing.JDialog {
 
     private CatalogEngine eng;
+    private Session s;
     private CatalogProperties props;
     private boolean changed = false;
 
@@ -42,7 +44,7 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
     public CatalogPropertiesDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        
+
         jtaDescription.getDocument().addDocumentListener(new DocumentListener() {
 
             public void insertUpdate(DocumentEvent e) {
@@ -69,21 +71,20 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
     }
 
     private void fillIn() {
-        if (eng != null) {
-            Date temp;
-            props = eng.getProperties();
-            if (props != null) {
-                jlblCatalogName.setText(props.getName());
-                if ((temp = props.getCreationDate()) != null) {
-                    jdcCreatedOn.setDate(temp);
-                }
-                jtaDescription.setText(props.getDescription());
-                jlblNrDisksValue.setText(String.valueOf(props.getDiskNumber()));
-                jlblNrFilesValue.setText(String.valueOf(props.getTotalFiles()));
-                jlblNrFoldersValue.setText(String.valueOf(props.getTotalFolders()));
-                jlblTotalSizeValue.setText(String.valueOf(props.getTotalSize()));
-            }
+        Date temp;
+        s = eng.sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        props = (CatalogProperties) s.createQuery("from CatalogProperties").uniqueResult();
+        jlblCatalogName.setText(props.getName());
+        if ((temp = props.getCreationDate()) != null) {
+            jdcCreatedOn.setDate(temp);
         }
+        jtaDescription.setText(props.getDescription());
+        jlblNrDisksValue.setText(String.valueOf(props.getDiskNumber()));
+        jlblNrFilesValue.setText(String.valueOf(props.getTotalFiles()));
+        jlblNrFoldersValue.setText(String.valueOf(props.getTotalFolders()));
+        jlblTotalSizeValue.setText(String.valueOf(props.getTotalSize()));
+
     }
 
     /** This method is called from within the constructor to
@@ -279,17 +280,18 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
+    s.getTransaction().commit();
     dispose();
 }//GEN-LAST:event_jbtnCancelActionPerformed
 
 private void jbtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOKActionPerformed
     //TODO: better control over detached object
-    if (changed && eng != null && props != null) {
+    if (changed) {
         changed = false;
         props.setCreationDate(jdcCreatedOn.getDate());
         props.setDescription(jtaDescription.getText().trim());
-        eng.updateProperties();
     }
+    s.getTransaction().commit();
     dispose();
 }//GEN-LAST:event_jbtnOKActionPerformed
 
@@ -300,7 +302,6 @@ private void jdcCreatedOnPropertyChange(java.beans.PropertyChangeEvent evt) {//G
         changed = true;
     }
 }//GEN-LAST:event_jdcCreatedOnPropertyChange
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;

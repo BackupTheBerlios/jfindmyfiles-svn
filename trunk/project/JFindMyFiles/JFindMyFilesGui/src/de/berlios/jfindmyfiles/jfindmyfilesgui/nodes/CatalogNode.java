@@ -29,7 +29,6 @@ import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionProperties;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionRenumberDisks;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionScanForDuplicates;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionSearchForItems;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionUpdateAllDisks;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.util.List;
@@ -62,9 +61,9 @@ public class CatalogNode extends AbstractNode {
         Lookup lo = Lookups.forPath("/Actions");//TODO: sort actions correctly and add separators
         sysact = new SystemAction[]{lo.lookup(ActionProperties.class),
                     lo.lookup(ActionRenumberDisks.class), lo.lookup(ActionScanForDuplicates.class),
-                    lo.lookup(ActionSearchForItems.class), lo.lookup(ActionUpdateAllDisks.class),
-                    lo.lookup(ActionAddNewDisk.class), lo.lookup(ActionAddNewDiskGroup.class),
-                    lo.lookup(ActionClose.class), lo.lookup(ActionExport.class), lo.lookup(ActionImport.class)
+                    lo.lookup(ActionSearchForItems.class), lo.lookup(ActionAddNewDisk.class), 
+                    lo.lookup(ActionAddNewDiskGroup.class), lo.lookup(ActionClose.class), 
+                    lo.lookup(ActionExport.class), lo.lookup(ActionImport.class)
                 };
     }
 

@@ -25,6 +25,7 @@ public class DiskGroupChildren extends Children.Keys {
     private List items;
     private CatalogEngine eng;
 
+    @SuppressWarnings("unchecked")
     public DiskGroupChildren(Long parentId) {
         this.parentId = parentId;
         items = new LinkedList();
@@ -37,12 +38,14 @@ public class DiskGroupChildren extends Children.Keys {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void addNotify() {
         List keys = items;
         setKeys(keys);
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected Node[] createNodes(Object key) {
         if (key instanceof DiskGroup) {
             Session s = eng.sessionFactory.getCurrentSession();

@@ -45,13 +45,13 @@ public class CatalogEngine {
      * by the netbeans platform.
      */
     public CatalogEngine() {
+        //DO NOTHING
     }
 
-    //TODO: error management
     private void recreateConnection(String dbname, String dburl, String port,
             String username, String password, int dbType, boolean open) {
 
-        //TODO: closeCatalog();
+        closeCatalog();
 
         String strategy = "create";
         try {
@@ -115,7 +115,7 @@ public class CatalogEngine {
 
                     //Try to shutdown the database as soon as there all connections are gone
                     //hConfig.setProperty("hibernate.connection.shutdown", "true");
-                    
+
                     hConfig.setProperty("hibernate.connection.password", "");//HSQLDB has a user with no password
 
             }
@@ -173,7 +173,6 @@ public class CatalogEngine {
         properties.setCreationDate(new Date());
         cSession.save(properties);
         cSession.getTransaction().commit();
-        //TODO: notify listeners
         fireCatalogCreated(new CatalogEngineEvent(dbname, null, null, null, null));
     }
 
@@ -184,28 +183,12 @@ public class CatalogEngine {
         if (sessionFactory != null) {
             sessionFactory.close();
             sessionFactory = null;
+            fireCatalogClosed(new CatalogEngineEvent(properties.getName(), null, null, null, null));
         }
     }
 
     public CatalogProperties getProperties() {
         return properties;
-    }
-
-    public void updateProperties(String description, Date creationDate) {
-        Session cSession = sessionFactory.getCurrentSession();
-        cSession.beginTransaction();
-        properties = (CatalogProperties) cSession.createQuery("from CatalogProperties").uniqueResult();
-        properties.setCreationDate(creationDate);
-        properties.setDescription(description);
-        cSession.merge(properties);
-        cSession.getTransaction().commit();
-    }
-
-    public void updateProperties() {
-        Session cSession = sessionFactory.getCurrentSession();
-        cSession.beginTransaction();
-        cSession.update(properties);
-        cSession.getTransaction().commit();
     }
 
     public void addDiskGroup(String name, String description, DiskGroup parent) {
@@ -359,14 +342,22 @@ public class CatalogEngine {
             }
         }
     }
-    
+
     private void fireCatalogOpened(CatalogEngineEvent evt) {
         if (listeners != null) {
             for (CatalogEngineListener l : listeners) {
                 l.catalogOpened(evt);
             }
         }
-    }    
+    }
+
+    private void fireCatalogClosed(CatalogEngineEvent evt) {
+        if (listeners != null) {
+            for (CatalogEngineListener l : listeners) {
+                l.catalogClosed(evt);
+            }
+        }
+    }
 
     /**
      * In overriding the finalize method we try to garantee that data is 

@@ -61,6 +61,7 @@ public class Media {
         this.type = type;
     }
 
+    @SuppressWarnings("unchecked")
     public void addFile(FileWrapper file) {
         if (files == null) {
             files = new LinkedHashSet();
@@ -74,6 +75,7 @@ public class Media {
         }
     }
 
+    @SuppressWarnings("unchecked")
     public void addLabel(Label label) {
         if (labels == null) {
             labels = new LinkedHashSet();
@@ -87,6 +89,7 @@ public class Media {
         }
     }
     
+    @SuppressWarnings("unchecked")
     public void addLoan(Loan loan) {
         if (loans == null) {
             loans = new LinkedHashSet();
@@ -215,6 +218,10 @@ public class Media {
      */
     @Override
     public boolean equals(Object obj) {
+        if(obj == null) {
+            return false;
+        }
+
         if (this == obj) {
             return true;
         }

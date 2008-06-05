@@ -21,6 +21,7 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
 import javax.swing.JOptionPane;
 import org.openide.modules.ModuleInstall;
+import org.openide.util.NbBundle;
 import org.openide.windows.WindowManager;
 
 /**
@@ -29,20 +30,12 @@ import org.openide.windows.WindowManager;
  */
 public class Installer extends ModuleInstall {
 
-    /*@Override
-    public void restored() {
-    // By default, do nothing.
-    // Put your startup code here.
-    }*/
     @Override
     public boolean closing() {
-        /*//TODO: add resource bundle call and show text. Maybe ask the user to 
-         * disable this option
         return JOptionPane.OK_OPTION ==
-                JOptionPane.showConfirmDialog(
-                WindowManager.getDefault().getMainWindow(), "", "",
+                JOptionPane.showConfirmDialog(WindowManager.getDefault().getMainWindow(), 
+                NbBundle.getMessage(CatalogOptionsCategory.class, "Installer.ClosingMessage"), 
+                NbBundle.getMessage(CatalogOptionsCategory.class, "Installer.ClosingTitle"),
                 JOptionPane.YES_NO_CANCEL_OPTION);
-         */
-        return super.closing();
     }
 }

@@ -183,7 +183,11 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
     public void catalogOpened(CatalogEngineEvent evt) {
         manager.setRootContext(new CatalogNode(evt.getName(), false));//TODO:
     }
-
+    
+    public void catalogClosed(CatalogEngineEvent evt) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
     public void diskGroupAdded(CatalogEngineEvent evt) {
         throw new UnsupportedOperationException("Not supported yet.");
     }

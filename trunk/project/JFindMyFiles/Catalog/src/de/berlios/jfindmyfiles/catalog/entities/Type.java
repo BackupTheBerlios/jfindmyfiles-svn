@@ -66,6 +66,10 @@ public class Type {
      */
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        
         if (this == obj) {
             return true;
         }
@@ -77,7 +81,6 @@ public class Type {
         Type other = (Type) obj;
         return name.equals(other.name);
     }
-    
     //TODO: link for the equals method
     /**
      * HashCode for this object, excluding the id field.

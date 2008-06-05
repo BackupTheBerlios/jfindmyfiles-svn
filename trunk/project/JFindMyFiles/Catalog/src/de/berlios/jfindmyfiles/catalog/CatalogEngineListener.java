@@ -13,6 +13,7 @@ public interface CatalogEngineListener {
     
     void catalogCreated(CatalogEngineEvent evt);
     void catalogOpened(CatalogEngineEvent evt);
+    void catalogClosed(CatalogEngineEvent evt);
     void diskGroupAdded(CatalogEngineEvent evt);
     void diskGroupRemoved(CatalogEngineEvent evt);
     void diskGroupRenamed(CatalogEngineEvent evt);
