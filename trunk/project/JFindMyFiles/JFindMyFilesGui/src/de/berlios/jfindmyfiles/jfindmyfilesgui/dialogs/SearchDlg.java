@@ -22,9 +22,6 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
 import de.berlios.jfindmyfiles.catalog.entities.FileWrapper;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Vector;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
@@ -84,16 +81,33 @@ public class SearchDlg extends javax.swing.JDialog {
     @SuppressWarnings("unchecked")
     private void search() {
         listModel.clear();
-        boolean inDescriptions = jchkSearchInDesc.isSelected();
-        boolean caseSensitive = jchkCaseSensitive.isSelected();
-        boolean useRegular = jchkUseReGex.isSelected();
-        boolean scopeAll = jrdbEntireCatalog.isSelected();
 
-        //TODO: add other properties
+        boolean inDescription = jchkSearchInDesc.isSelected();
+        boolean casein = jchkCaseSensitive.isSelected();
+        String sText = jtfSearchText.getText().trim();
         Session s = eng.sessionFactory.getCurrentSession();
         s.beginTransaction();
-        Criteria c = s.createCriteria(FileWrapper.class).add(Restrictions.ilike("name", jtfSearchText.getText().trim(), MatchMode.ANYWHERE));
-        for (Object o : c.list()) {
+        Criteria crit = s.createCriteria(FileWrapper.class);
+
+        if (casein && inDescription) {//Case insensitive and in description
+            crit.add(Restrictions.or(Restrictions.ilike("name", sText, MatchMode.ANYWHERE),
+                    Restrictions.ilike("description", sText, MatchMode.ANYWHERE)));
+        } else if (casein) { //only case insensitive
+            crit.add(Restrictions.ilike("name", sText, MatchMode.ANYWHERE));
+        } else { //only in description
+            crit.add(Restrictions.ilike("description", sText, MatchMode.ANYWHERE));
+        }
+
+        if (jchkUseReGex.isSelected()) {//NOTE: don't really know if this is necessary.
+            sText = sText.replaceAll("*", "%");
+        }
+
+        /*if (jrdbEntireCatalog.isSelected()) {
+            DiskGroup dg = (DiskGroup) jcbxDiskGroups.getSelectedItem();
+            crit.add(Restrictions.eq("disk.group", "" + dg));
+        }*/
+
+        for (Object o : crit.list()) {
             listModel.addElement(o);
         }
         s.getTransaction().commit();
@@ -256,11 +270,6 @@ public class SearchDlg extends javax.swing.JDialog {
         jpResults.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jpResults.border.title"))); // NOI18N
 
         jlstResults.setModel(listModel = new DefaultListModel());
-        jlstResults.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jlstResultsPropertyChange(evt);
-            }
-        });
         jscrResults.setViewportView(jlstResults);
 
         javax.swing.GroupLayout jpResultsLayout = new javax.swing.GroupLayout(jpResults);
@@ -328,26 +337,18 @@ private void jrdbDiskGroupOnlyStateChanged(javax.swing.event.ChangeEvent evt) {/
 
 private void jbtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSearchActionPerformed
     jpbProgress.setVisible(true);
-    new Thread(new  
+    new Thread(new Runnable() {
 
-          Runnable() {
-
-            
-        
-    
-public void run() {
-                search();
-            }
-        }).start();
+        public void run() {
+            search();
+        }
+    }).start();
 }//GEN-LAST:event_jbtnSearchActionPerformed
 
 private void jbtnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCloseActionPerformed
     dispose();
 }//GEN-LAST:event_jbtnCloseActionPerformed
 
-private void jlstResultsPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jlstResultsPropertyChange
-    System.err.println("SOME PROPERTY CHANGED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!" + evt.getPropertyName());
-}//GEN-LAST:event_jlstResultsPropertyChange
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btngrpScope;
     private javax.swing.JButton jbtnClose;
@@ -368,4 +369,4 @@ private void jlstResultsPropertyChange(java.beans.PropertyChangeEvent evt) {//GE
     private javax.swing.JScrollPane jscrResults;
     private javax.swing.JTextField jtfSearchText;
     // End of variables declaration//GEN-END:variables
-}
+    }

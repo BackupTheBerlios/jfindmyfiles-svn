@@ -23,28 +23,17 @@ Iteração 2:
 	- NewDiskDlg - Janela de diálogo que permite ler novos suportes.
 	- NewCatalogDlg - Janela de diálogo que permite criar novos catálogos
 	- OpenCatalogDlg - Janela de diálogo que permite abrir catálogos existentes.
-- Menus:
-	- ?
-- Paineis a integrar no sistema de janelas da plataforma:
-	- CatalogOptionsPanel - Painel com as apções a usar na criação de novos catálogos e abertura de catálogos existentes.
+- Menus:?
 	
 Iteração 3:
 	- desenhar API
 
 Iteração 4:
-	- sistema de pesquisa que incorpore as opções de:
-		- pesquisa por case insensitive
-		- definição de scope de pesquisa
-		- pesquisar nas descrições
-		- usar expressões regulares
-	- opções para definir o tipo de base de dados através de um painel de opções
-	- opções para definir o tipo de base de dados na altura da criação
-	- opções para definir o tipo de base de dados na altura da abertura
-	- pesquisa de ficheiros duplicados em todo o catálogo
+	- pesquisa de ficheiros duplicados em todo o catálogo - usar SHA-1 para verificar ficheiros
+	- falta ver o sql para pesquisa dentro de grupo
 	
 Iteração 5:
 	- menus de contexto sensíveis
-	- remodelação da interface
 
 Iteração 6:
 	- exportar dados para XML

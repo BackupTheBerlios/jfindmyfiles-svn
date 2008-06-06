@@ -248,7 +248,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlblCatalog)
-                            .addComponent(jcbxCatalog, 0, 131, Short.MAX_VALUE))))
+                            .addComponent(jcbxCatalog, 0, 143, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(

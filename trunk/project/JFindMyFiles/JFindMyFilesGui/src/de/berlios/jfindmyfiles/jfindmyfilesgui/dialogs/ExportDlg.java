@@ -74,17 +74,15 @@ public class ExportDlg extends javax.swing.JDialog {
         jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
+        jpExportType = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jlstExportTypes = new JList(values);
-        jPanel4 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jpExportOptions = new javax.swing.JPanel();
+        jpFileExport = new javax.swing.JPanel();
+        jpTemplateExport = new javax.swing.JPanel();
+        jbtnCancel = new javax.swing.JButton();
+        jbtnExport = new javax.swing.JButton();
+        jbtnHelp = new javax.swing.JButton();
 
         jLabel2.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jLabel2.text")); // NOI18N
 
@@ -126,7 +124,7 @@ public class ExportDlg extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jPanel3.border.title"))); // NOI18N
+        jpExportType.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jpExportType.border.title"))); // NOI18N
 
         jlstExportTypes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jlstExportTypes.setCellRenderer(new Renderer());
@@ -139,84 +137,72 @@ public class ExportDlg extends javax.swing.JDialog {
         });
         jScrollPane1.setViewportView(jlstExportTypes);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        javax.swing.GroupLayout jpExportTypeLayout = new javax.swing.GroupLayout(jpExportType);
+        jpExportType.setLayout(jpExportTypeLayout);
+        jpExportTypeLayout.setHorizontalGroup(
+            jpExportTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpExportTypeLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+        jpExportTypeLayout.setVerticalGroup(
+            jpExportTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpExportTypeLayout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jPanel4.setLayout(new java.awt.CardLayout());
+        jpExportOptions.setLayout(new java.awt.CardLayout());
 
-        jLabel3.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jLabel3.text")); // NOI18N
+        jpFileExport.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jpFileExport.border.title"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(124, 124, 124)
-                .addComponent(jLabel3)
-                .addContainerGap(250, Short.MAX_VALUE))
+        javax.swing.GroupLayout jpFileExportLayout = new javax.swing.GroupLayout(jpFileExport);
+        jpFileExport.setLayout(jpFileExportLayout);
+        jpFileExportLayout.setHorizontalGroup(
+            jpFileExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 392, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(jLabel3)
-                .addContainerGap(242, Short.MAX_VALUE))
+        jpFileExportLayout.setVerticalGroup(
+            jpFileExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 396, Short.MAX_VALUE)
         );
 
-        jPanel4.add(jPanel5, "card2");
+        jpExportOptions.add(jpFileExport, "card2");
 
-        jLabel4.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jLabel4.text")); // NOI18N
+        jpTemplateExport.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jpTemplateExport.border.title"))); // NOI18N
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(122, 122, 122)
-                .addComponent(jLabel4)
-                .addContainerGap(252, Short.MAX_VALUE))
+        javax.swing.GroupLayout jpTemplateExportLayout = new javax.swing.GroupLayout(jpTemplateExport);
+        jpTemplateExport.setLayout(jpTemplateExportLayout);
+        jpTemplateExportLayout.setHorizontalGroup(
+            jpTemplateExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 392, Short.MAX_VALUE)
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(166, 166, 166)
-                .addComponent(jLabel4)
-                .addContainerGap(246, Short.MAX_VALUE))
+        jpTemplateExportLayout.setVerticalGroup(
+            jpTemplateExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 396, Short.MAX_VALUE)
         );
 
-        jPanel4.add(jPanel6, "card3");
+        jpExportOptions.add(jpTemplateExport, "card3");
 
-        jButton1.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jButton1.text")); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jbtnCancel.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jbtnCancel.text")); // NOI18N
+        jbtnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jbtnCancelActionPerformed(evt);
             }
         });
 
-        jButton2.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jButton2.text")); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbtnExport.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jbtnExport.text")); // NOI18N
+        jbtnExport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbtnExportActionPerformed(evt);
             }
         });
 
-        jButton3.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jButton3.text")); // NOI18N
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jbtnHelp.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jbtnHelp.text")); // NOI18N
+        jbtnHelp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jbtnHelpActionPerformed(evt);
             }
         });
 
@@ -228,29 +214,32 @@ public class ExportDlg extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jpExportType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE))
+                        .addComponent(jpExportOptions, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(jbtnExport)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(jbtnCancel)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)))
+                        .addComponent(jbtnHelp)))
                 .addContainerGap())
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jbtnCancel, jbtnExport, jbtnHelp});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jpExportOptions, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                    .addComponent(jpExportType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jbtnHelp)
+                    .addComponent(jbtnCancel)
+                    .addComponent(jbtnExport))
                 .addContainerGap())
         );
 
@@ -259,41 +248,39 @@ public class ExportDlg extends javax.swing.JDialog {
 
 private void jlstExportTypesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jlstExportTypesValueChanged
     if (jlstExportTypes.getSelectedIndex() == 0) {
-        CardLayout lay = (CardLayout) jPanel4.getLayout();
-        lay.first(jPanel4);
+        CardLayout lay = (CardLayout) jpExportOptions.getLayout();
+        lay.first(jpExportOptions);
     } else {
-        CardLayout lay = (CardLayout) jPanel4.getLayout();
-        lay.last(jPanel4);
+        CardLayout lay = (CardLayout) jpExportOptions.getLayout();
+        lay.last(jpExportOptions);
     }
 }//GEN-LAST:event_jlstExportTypesValueChanged
 
-private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
     dispose();
-}//GEN-LAST:event_jButton1ActionPerformed
+}//GEN-LAST:event_jbtnCancelActionPerformed
 
-private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+private void jbtnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnExportActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_jButton2ActionPerformed
+}//GEN-LAST:event_jbtnExportActionPerformed
 
-private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
 // TODO add your handling code here:
-}//GEN-LAST:event_jButton3ActionPerformed
+}//GEN-LAST:event_jbtnHelpActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbtnCancel;
+    private javax.swing.JButton jbtnExport;
+    private javax.swing.JButton jbtnHelp;
     private javax.swing.JList jlstExportTypes;
+    private javax.swing.JPanel jpExportOptions;
+    private javax.swing.JPanel jpExportType;
+    private javax.swing.JPanel jpFileExport;
+    private javax.swing.JPanel jpTemplateExport;
     // End of variables declaration//GEN-END:variables
     
     /**

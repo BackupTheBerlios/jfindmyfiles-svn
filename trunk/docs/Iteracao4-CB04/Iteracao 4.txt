@@ -2,8 +2,9 @@
 Acrescentar ao modelo de dados a informação necessária para permitir guardar a 
 localização física de um disco, quando se trate de um suporte amovível.
 Implementar mecanismos de pesquisa que permitam encontrar os dados pretendidos, 
-usando expressões regulares na pesquisa e permitindo definir o âmbito da 
-pesquisa.
+usando expressões regulares na pesquisa, permitindo definir o âmbito e se a 
+pesquisa é efectuada também nas descrições e definir se se pretendem pesquisas 
+insensíveis a maíusculas ou minúsculas.
 Implementar suporte para abrir os ficheiros e/ou a localização de um ficheiro 
 cujo suporte esteja disponível.
 Implementar elementos de interface gráfica e módulos que permitam escolher o 
@@ -18,4 +19,10 @@ permitirá facilmente atingir os objectivos pretendidos para esta iteração.
 Dado que a mesma tecnologia permite o uso de SQL nas pesquisas, a versatilidade 
 da linguagem de pesquisa estrutura será uma mais valia caso se pretenda um 
 melhor controlo sobre o acesso aos dados.
+No entanto, o requisito de pesquisas com suporte para expressões regulares, é 
+limitado pela falta de suporte a esse tipo de pesquisas, tanto na linguagem SQL 
+como no sistema Hibernate. Assim considera-se o uso de apenas dois caracteres 
+como pertencentes a expressções regulares, o asterisco, *, e o ponto de 
+interrogação, ?.
+NOTA:::::: O sistema hibernate faz o mesmo que estes caracteres através do padarão de matching!!!!
 <==== Avaliação ===============================================================>
