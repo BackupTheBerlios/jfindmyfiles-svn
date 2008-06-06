@@ -25,12 +25,14 @@ import de.berlios.jfindmyfiles.catalog.CatalogEngineListener;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.CatalogNode;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.DiskNode;
 import java.awt.BorderLayout;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.logging.Logger;
 import javax.swing.ActionMap;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.ExplorerUtils;
 import org.openide.explorer.view.BeanTreeView;
+import org.openide.util.Exceptions;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
@@ -185,7 +187,11 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
     }
     
     public void catalogClosed(CatalogEngineEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            manager.getRootContext().destroy(); //TODO:
+        } catch (IOException ex) {
+            Exceptions.printStackTrace(ex);
+        }
     }
     
     public void diskGroupAdded(CatalogEngineEvent evt) {

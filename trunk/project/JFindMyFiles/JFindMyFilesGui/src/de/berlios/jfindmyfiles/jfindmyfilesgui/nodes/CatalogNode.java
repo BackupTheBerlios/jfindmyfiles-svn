@@ -31,6 +31,8 @@ import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionScanForDuplicates;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionSearchForItems;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.ChildFactory;
@@ -65,6 +67,10 @@ public class CatalogNode extends AbstractNode {
                     lo.lookup(ActionAddNewDiskGroup.class), lo.lookup(ActionClose.class), 
                     lo.lookup(ActionExport.class), lo.lookup(ActionImport.class)
                 };
+        
+        
+        //Collections.sort(sysact);
+        //Arrays.sort(sysact);
     }
 
     @Override

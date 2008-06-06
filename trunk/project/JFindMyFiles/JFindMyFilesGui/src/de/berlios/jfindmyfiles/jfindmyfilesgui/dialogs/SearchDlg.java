@@ -108,6 +108,7 @@ public class SearchDlg extends javax.swing.JDialog {
         }*/
 
         for (Object o : crit.list()) {
+            o.equals(null);
             listModel.addElement(o);
         }
         s.getTransaction().commit();
