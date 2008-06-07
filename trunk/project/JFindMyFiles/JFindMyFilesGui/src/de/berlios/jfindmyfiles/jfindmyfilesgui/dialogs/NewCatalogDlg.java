@@ -48,7 +48,7 @@ public class NewCatalogDlg extends javax.swing.JDialog {
 
     private boolean validateWihtMessages() {
         if (jtfName.getText().isEmpty()) {
-            jlbError.setText("* - Nome não pode ser vazio"); //TODO: i18n
+            jlbError.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.empyname")); //TODO: i18n
 
             jlbError.setVisible(true);
             this.validate();
@@ -56,7 +56,7 @@ public class NewCatalogDlg extends javax.swing.JDialog {
         }
         if (jchkUserinternalDB.isSelected()) {
             if (jtfDestination.getText().isEmpty()) {
-                jlbError.setText("* - Destino não pode ser vazio"); //TODO: i18n
+                jlbError.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.invaliddestination")); //TODO: i18n
 
                 jlbError.setVisible(true);
                 this.validate();
@@ -64,19 +64,19 @@ public class NewCatalogDlg extends javax.swing.JDialog {
             }
         } else {
             if (jtfHostname.getText().isEmpty()) {
-                jlbError.setText("* - URL inválido"); //TODO: i18n
+                jlbError.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.invalidurl")); //TODO: i18n
 
                 jlbError.setVisible(true);
                 this.validate();
                 return false;
             } else if (jtfUsername.getText().isEmpty()) {
-                jlbError.setText("* - Username inválido"); //TODO: i18n
+                jlbError.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.invalidusername")); //TODO: i18n
 
                 jlbError.setVisible(true);
                 this.validate();
                 return false;
             } else if (jffPort.getText().isEmpty()) {
-                jlbError.setText("* - Porto inválido"); //TODO: i18n
+                jlbError.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.invalidport")); // NOI18N
 
                 jlbError.setVisible(true);
                 this.validate();

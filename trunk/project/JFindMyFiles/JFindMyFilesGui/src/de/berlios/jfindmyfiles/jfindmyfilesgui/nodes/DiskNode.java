@@ -17,41 +17,47 @@
  *  along with JFindMyFiles.  If not, see 
  * <http://www.gnu.org/licenses/gpl.html>.
  */
-
 package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 
 import de.berlios.jfindmyfiles.catalog.entities.Media;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionSearchForItems;
 import java.awt.Image;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
+import org.openide.util.Lookup;
 import org.openide.util.Utilities;
 import org.openide.util.actions.SystemAction;
+import org.openide.util.lookup.Lookups;
 
 /**
  *
  * @author knitter
  */
 public class DiskNode extends AbstractNode {
-    
+
+    private SystemAction[] sysact;
+
     public DiskNode(Media media) {
         super(Children.LEAF);
         setName(media.getName());
+
+        Lookup lo = Lookups.forPath("/Actions");//TODO: sort actions correctly and add separators
+        sysact = new SystemAction[]{lo.lookup(ActionSearchForItems.class)};
     }
-    
+
     @Override
     public Image getIcon(int type) {
         //TODO: depending on the  type of media give the right icon
         return Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-drive-optical.png"); // NOI18N
     }
-    
+
     @Override
     public Image getOpenedIcon(int type) {
         return getIcon(type);
     }
-    
+
     @Override
     public SystemAction[] getActions(boolean bool) {
         return new SystemAction[]{};
-    }    
-
+    }
 }

@@ -96,7 +96,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
 
             public void actionPerformed(ActionEvent e) {
                 JFileChooser jfc = new JFileChooser(new File(System.getProperty("user.home")));
-                jfc.setDialogTitle("Select a folder to scan");//TODO: i18n
+                jfc.setDialogTitle(org.openide.util.NbBundle.getMessage(NewDiskDlg.class, "NewDiskDlg.toogle.text")); // NOI18N
 
                 jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                 jfc.setMultiSelectionEnabled(false);

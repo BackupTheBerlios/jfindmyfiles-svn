@@ -46,8 +46,8 @@ public class OpenCatalogDlg extends javax.swing.JDialog {
     private String findCatalogName(File folder) {
         File[] list = folder.listFiles();
         for (File f : list) {
-            if (f.getName().contains(".properties")) {
-                return f.getName().substring(0, f.getName().lastIndexOf("."));
+            if (f.getName().contains(".properties")) {// NOI18N
+                return f.getName().substring(0, f.getName().lastIndexOf("."));// NOI18N
             }
         }
         return "";
@@ -55,7 +55,7 @@ public class OpenCatalogDlg extends javax.swing.JDialog {
 
     private boolean validateWihtMessages() {
         if (!jchkUserinternalDB.isSelected() && jtfName.getText().isEmpty()) {
-            jlbError.setText("* - Nome não pode ser vazio"); //TODO: i18n
+            jlbError.setText(org.openide.util.NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.empyname")); // NOI18N
 
             jlbError.setVisible(true);
             this.validate();
@@ -64,7 +64,7 @@ public class OpenCatalogDlg extends javax.swing.JDialog {
 
         if (jchkUserinternalDB.isSelected()) {
             if (jtfDestination.getText().isEmpty()) {
-                jlbError.setText("* - Destino não pode ser vazio"); //TODO: i18n
+                jlbError.setText(org.openide.util.NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.invaliddestination")); // NOI18N
 
                 jlbError.setVisible(true);
                 this.validate();
@@ -72,19 +72,19 @@ public class OpenCatalogDlg extends javax.swing.JDialog {
             }
         } else {
             if (jtfHostname.getText().isEmpty()) {
-                jlbError.setText("* - URL inválido"); //TODO: i18n
+                jlbError.setText(org.openide.util.NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.invalidurl")); // NOI18N
 
                 jlbError.setVisible(true);
                 this.validate();
                 return false;
             } else if (jtfUsername.getText().isEmpty()) {
-                jlbError.setText("* - Username inválido"); //TODO: i18n
+                jlbError.setText(org.openide.util.NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.invalidusername")); // NOI18N
 
                 jlbError.setVisible(true);
                 this.validate();
                 return false;
             } else if (jffPort.getText().isEmpty()) {
-                jlbError.setText("* - Porto inválido"); //TODO: i18n
+                jlbError.setText(org.openide.util.NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.invalidport")); // NOI18N
 
                 jlbError.setVisible(true);
                 this.validate();

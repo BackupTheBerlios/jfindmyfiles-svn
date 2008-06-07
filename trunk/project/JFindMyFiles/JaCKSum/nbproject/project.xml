@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.apisupport.project</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/nb-module-project/3">
+            <code-name-base>jonelo.jacksum</code-name-base>
+            <suite-component/>
+            <module-dependencies/>
+            <public-packages>
+                <package>jonelo.jacksum</package>
+                <package>jonelo.jacksum.adapt.com.bitzi.util</package>
+                <package>jonelo.jacksum.adapt.gnu.crypto</package>
+                <package>jonelo.jacksum.adapt.gnu.crypto.hash</package>
+                <package>jonelo.jacksum.adapt.gnu.crypto.util</package>
+                <package>jonelo.jacksum.adapt.org.bouncycastle.crypto</package>
+                <package>jonelo.jacksum.adapt.org.bouncycastle.crypto.digests</package>
+                <package>jonelo.jacksum.adapt.org.bouncycastle.crypto.engines</package>
+                <package>jonelo.jacksum.adapt.org.bouncycastle.crypto.params</package>
+                <package>jonelo.jacksum.adapt.org.bouncycastle.util</package>
+                <package>jonelo.jacksum.algorithm</package>
+                <package>jonelo.jacksum.cli</package>
+                <package>jonelo.jacksum.ui</package>
+                <package>jonelo.jacksum.util</package>
+                <package>jonelo.sugar.util</package>
+            </public-packages>
+            <class-path-extension>
+                <runtime-relative-path>ext/jacksum.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/jacksum.jar</binary-origin>
+            </class-path-extension>
+        </data>
+    </configuration>
+</project>
