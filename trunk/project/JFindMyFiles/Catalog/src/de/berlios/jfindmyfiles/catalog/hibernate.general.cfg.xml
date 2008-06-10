@@ -42,10 +42,7 @@
 
         <!-- Setting autocommit to false -->
         <property name="connection.autocommit">false</property>
-        
-        <!-- //TODO: remove this line and replace with proper one -->
-        <!-- <property name="hbm2ddl.auto">create</property> -->
-        
+              
         <property name="connection.shutdown">true</property>
 
         <mapping resource="de/berlios/jfindmyfiles/catalog/entities/AudioData.hbm.xml"/>

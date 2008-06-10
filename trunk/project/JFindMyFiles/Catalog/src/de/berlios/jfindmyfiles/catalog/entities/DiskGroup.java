@@ -164,7 +164,6 @@ public class DiskGroup {
         return name.equals(other.name) && description.equals(other.description);
     }
 
-    //TODO: link for the equals method
     /**
      * HashCode for this object, excluding the id field.
      * @return integer representing the hashcode

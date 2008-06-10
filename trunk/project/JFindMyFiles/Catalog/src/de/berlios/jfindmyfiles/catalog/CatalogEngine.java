@@ -148,7 +148,7 @@ public class CatalogEngine {
         cSession.beginTransaction();
         properties = (CatalogProperties) cSession.createQuery("from CatalogProperties").uniqueResult();
         cSession.getTransaction().commit();
-        fireCatalogOpened(new CatalogEngineEvent(dbname, null, null, null, null));
+        fireCatalogOpened(new CatalogEngineEvent(this, dbname, null, null, null, null));
     }
 
     /**
@@ -173,7 +173,7 @@ public class CatalogEngine {
         properties.setCreationDate(new Date());
         cSession.save(properties);        
         cSession.getTransaction().commit();
-        fireCatalogCreated(new CatalogEngineEvent(dbname, null, null, null, null));
+        fireCatalogCreated(new CatalogEngineEvent(this, dbname, null, null, null, null));
     }
 
     /**
@@ -183,7 +183,7 @@ public class CatalogEngine {
         if (sessionFactory != null) {
             sessionFactory.close();
             sessionFactory = null;
-            fireCatalogClosed(new CatalogEngineEvent(properties.getName(), null, null, null, null));
+            fireCatalogClosed(new CatalogEngineEvent(this, properties.getName(), null, null, null, null));
         }
     }
 
@@ -261,22 +261,17 @@ public class CatalogEngine {
         return rs;
     }
 
-    public void readDisk(File file, DiskGroup group, boolean isMedia) {
-        //TODO: remove this method
-    }
-
-    public void exportCatalog() {
-    }
-
-    public void importCatalog() {
-    }
-
-    //NOTE: TEMP CODE!
     public void addListener(CatalogEngineListener l) {
         if (listeners == null) {
             listeners = new Vector<CatalogEngineListener>();
         }
         listeners.add(l);
+    }
+    
+    public void removeListener(CatalogEngineListener l) {
+        if(listeners != null) {
+            listeners.remove(l);
+        }
     }
 
     private void fireCatalogCreated(CatalogEngineEvent evt) {

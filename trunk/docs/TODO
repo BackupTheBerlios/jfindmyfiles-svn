@@ -13,7 +13,6 @@ http://www.hibernate.org/hib_docs/v3/reference/en/html_single/#mapping
 http://www.hibernate.org/hib_docs/v3/reference/en/html/tutorial.html
 
 Iteração 2:
-	- ligar código de leitura para permitir ler os dados dos discos, implica uma base de API
 	- Fazer DER e modelo de dominio com base no esquema usado para o mapeamento
 	- Abrir catálogo
 	- Fechar catálogo
@@ -42,7 +41,6 @@ Iteração 6:
 	- importar dados de outras aplicações
 
 TODOS:
-	Todos os eventos têm de extender de EventObject e todas as interfaces de listeners de EventListener
 	Proper logging
 NOTAS:
 	Atenção ao nome dos paineis e componentes na internacionalização

@@ -89,7 +89,6 @@ public class ImageData {
         return owner.equals(other.owner) && data.length == other.data.length && data == data;
     }
 
-    //TODO: link for the equals method
     /**
      * HashCode for this object, excluding the id field.
      * @return integer representing the hashcode

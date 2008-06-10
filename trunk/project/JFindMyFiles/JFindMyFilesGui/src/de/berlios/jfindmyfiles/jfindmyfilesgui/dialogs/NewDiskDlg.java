@@ -435,13 +435,12 @@ private void jchkShowAgainStateChanged(javax.swing.event.ChangeEvent evt) {//GEN
             Session s = eng.sessionFactory.getCurrentSession();
             s.beginTransaction();
             evt.getMedia().setDescription("");
-            s.getTransaction().commit();*/
-        /*}
-        if(!showAgain) {
-            dispose();
+            s.getTransaction().commit();
         }*/
         Lookup.getDefault().lookup(MediaReader.class).removeListener(this);
-        dispose();
+        if(!showAgain) {
+            dispose();
+        }
     }
 
     public void readingAborted(ReadingEvent evt) {

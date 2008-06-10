@@ -266,7 +266,6 @@ public class FileWrapper {
         return size == other.size && name.equals(other.name) && absolutePath.equals(other.absolutePath);
     }
 
-    //TODO: link for the equals method
     /**
      * HashCode for this object, excluding the id field.
      * @return integer representing the hashcode

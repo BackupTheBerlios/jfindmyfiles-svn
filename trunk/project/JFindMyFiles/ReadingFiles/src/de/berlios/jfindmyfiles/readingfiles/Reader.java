@@ -17,7 +17,6 @@
  *  along with JFindMyFiles.  If not, see 
  * <http://www.gnu.org/licenses/gpl.html>.
  */
-
 package de.berlios.jfindmyfiles.readingfiles;
 
 import java.io.File;

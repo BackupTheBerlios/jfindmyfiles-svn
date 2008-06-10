@@ -236,7 +236,6 @@ public class Media {
         return name.equals(other.name) && description.equals(other.description) && type.equals(other.type);
     }
 
-    //TODO: link for the equals method
     /**
      * HashCode for this object, excluding the id field.
      * @return integer representing the hashcode

@@ -89,7 +89,6 @@ public class AudioData {
         return owner.equals(other.owner) && data.length == other.data.length && data == other.data;
     }
 
-    //TODO: link for the equals method
     /**
      * HashCode for this object, excluding the id field.
      * @return integer representing the hashcode

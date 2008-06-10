@@ -21,35 +21,20 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import javax.swing.JOptionPane;
-import org.openide.DialogDisplayer;
-import org.openide.NotifyDescriptor;
 import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
-import org.openide.util.lookup.Lookups;
 import org.openide.windows.WindowManager;
 
 public final class ActionAddNewDiskGroup extends CallableSystemAction {
 
     public void performAction() {
-        //TODO: get input dialog again!
-        NotifyDescriptor.InputLine nd = new NotifyDescriptor.InputLine("Disk Group Name:", "New Disk Group", NotifyDescriptor.OK_CANCEL_OPTION, NotifyDescriptor.PLAIN_MESSAGE);//TODO: i18n
+        String name = JOptionPane.showInputDialog(WindowManager.getDefault().getMainWindow(), NbBundle.getMessage(ActionAddNewDiskGroup.class, "AddNewDiskGroupInputMessage"));
 
-        Object result = DialogDisplayer.getDefault().notify(nd);
-
-        if (result.equals(NotifyDescriptor.OK_OPTION)) {
-            String name = nd.getInputText();
-
-
-
-            if (name != null && !name.isEmpty()) {
-                Lookup lu = Lookups.forPath("/CatalogEngine");
-                CatalogEngine eng = lu.lookup(CatalogEngine.class);
-                if (eng != null) {
-                    eng.addDiskGroup(name, "", null);//TODO: get selected node
-                }
-            }
+        if (name != null && !name.isEmpty()) {
+            CatalogEngine eng = Lookup.getDefault().lookup(CatalogEngine.class);
+            eng.addDiskGroup(name, "", null);//TODO: get the correct group
         }
     }
 

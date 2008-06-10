@@ -111,7 +111,6 @@ public class Loan {
                 : (other.returned != null ? false : true));
     }
     
-    //TODO: link for the equals method
     /**
      * HashCode for this object, excluding the id field.
      * @return integer representing the hashcode

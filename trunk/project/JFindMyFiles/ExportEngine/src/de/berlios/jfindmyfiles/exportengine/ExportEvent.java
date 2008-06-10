@@ -17,19 +17,8 @@
  *  along with JFindMyFiles.  If not, see 
  * <http://www.gnu.org/licenses/gpl.html>.
  */
-package de.berlios.jfindmyfiles.readingfiles;
+package de.berlios.jfindmyfiles.exportengine;
 
-import de.berlios.jfindmyfiles.catalog.entities.FileWrapper;
-import java.io.File;
-
-public class CompositeFile {
-    
-    public final File file;
-    public final FileWrapper parent;
-    
-    public CompositeFile(File file, FileWrapper parent) {
-        this.file = file;
-        this.parent = parent;                
-    }
+public class ExportEvent {
 
 }
