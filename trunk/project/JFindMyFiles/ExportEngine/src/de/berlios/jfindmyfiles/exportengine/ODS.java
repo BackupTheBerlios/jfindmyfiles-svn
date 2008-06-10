@@ -25,7 +25,7 @@ import java.io.File;
  *
  * @author Knitter
  */
-public class ODS extends Thread implements ExportContract {
+public class ODS extends ExportEngine {
 
     private File file;
     

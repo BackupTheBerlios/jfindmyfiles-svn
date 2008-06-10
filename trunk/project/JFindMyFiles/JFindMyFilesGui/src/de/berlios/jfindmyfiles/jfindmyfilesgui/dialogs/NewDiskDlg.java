@@ -21,6 +21,7 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
+import de.berlios.jfindmyfiles.readingfiles.MediaReader;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -36,6 +37,7 @@ import javax.swing.SwingConstants;
 import javax.swing.filechooser.FileSystemView;
 import org.openide.util.Lookup;
 import org.openide.util.Utilities;
+import org.openide.windows.WindowManager;
 
 /**
  *
@@ -150,7 +152,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
         jcbxCatalog = new JComboBox(listDiskGroups());
         jlblCatalog = new javax.swing.JLabel();
         jpScanningOptions = new javax.swing.JPanel();
-        jchkCalculateCRC = new javax.swing.JCheckBox();
+        jchkCalculateHash = new javax.swing.JCheckBox();
         jchkAskDescription = new javax.swing.JCheckBox();
         jchkShowAgain = new javax.swing.JCheckBox();
         jSeparator1 = new javax.swing.JSeparator();
@@ -182,7 +184,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
 
         jpScanningOptions.setBorder(javax.swing.BorderFactory.createTitledBorder("Options "));
 
-        jchkCalculateCRC.setText(org.openide.util.NbBundle.getMessage(NewDiskDlg.class, "NewDiskDlg.jchkCalculateCRC.text")); // NOI18N
+        jchkCalculateHash.setText(org.openide.util.NbBundle.getMessage(NewDiskDlg.class, "NewDiskDlg.jchkCalculateHash.text")); // NOI18N
 
         jchkAskDescription.setText(org.openide.util.NbBundle.getMessage(NewDiskDlg.class, "NewDiskDlg.jchkAskDescription.text")); // NOI18N
 
@@ -190,7 +192,6 @@ public class NewDiskDlg extends javax.swing.JDialog {
 
         jtbSelectedPlugins.setIcon(new ImageIcon(Utilities.loadImage("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/button-show-plugins.png")));
         jtbSelectedPlugins.setText(org.openide.util.NbBundle.getMessage(NewDiskDlg.class, "NewDiskDlg.jtbSelectedPlugins.text")); // NOI18N
-        jtbSelectedPlugins.setEnabled(false);
         jtbSelectedPlugins.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jtbSelectedPlugins.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -205,7 +206,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
             .addGroup(jpScanningOptionsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpScanningOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jchkCalculateCRC)
+                    .addComponent(jchkCalculateHash)
                     .addComponent(jchkAskDescription)
                     .addComponent(jchkShowAgain)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
@@ -216,7 +217,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
             jpScanningOptionsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpScanningOptionsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jchkCalculateCRC)
+                .addComponent(jchkCalculateHash)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jchkAskDescription)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -325,6 +326,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
 
 private void jtbSelectedPluginsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtbSelectedPluginsActionPerformed
     //TODO: show plugin panel
+    //WindowManager.getDefault().getMainWindow().
     if (jtbSelectedPlugins.isSelected()) {
         jpopPlugins.setLocation(getParent().getX() + this.getX() + jtbSelectedPlugins.getX() + jtbSelectedPlugins.getWidth(),
                 getParent().getY() + this.getY() + jtbSelectedPlugins.getY() + jtbSelectedPlugins.getHeight() + 48);
@@ -336,10 +338,10 @@ private void jtbSelectedPluginsActionPerformed(java.awt.event.ActionEvent evt) {
 }//GEN-LAST:event_jtbSelectedPluginsActionPerformed
 
 private void jbtnScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnScanActionPerformed
-    if (eng != null) {
-        //TODO: eng.readDisk(new File(currentSelectedPath), (DiskGroup)jcbxCatalog.getSelectedItem());
-        eng.readDisk(new File(currentSelectedPath), null, false);
-    }
+    MediaReader r = Lookup.getDefault().lookup(MediaReader.class);
+    ActiveScanningDlg scanningDlg = new ActiveScanningDlg(WindowManager.getDefault().getMainWindow(), true);
+    r.read(new File(currentSelectedPath), jchkCalculateHash.isSelected());
+    scanningDlg.showCentered();
 }//GEN-LAST:event_jbtnScanActionPerformed
 
 private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
@@ -361,7 +363,7 @@ private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.ButtonGroup jbtngrpDrives;
     private javax.swing.JComboBox jcbxCatalog;
     private javax.swing.JCheckBox jchkAskDescription;
-    private javax.swing.JCheckBox jchkCalculateCRC;
+    private javax.swing.JCheckBox jchkCalculateHash;
     private javax.swing.JCheckBox jchkShowAgain;
     private javax.swing.JFormattedTextField jffDiskNumber;
     private javax.swing.JLabel jlblCatalog;

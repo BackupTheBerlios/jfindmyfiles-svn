@@ -19,39 +19,51 @@
  */
 package de.berlios.jfindmyfiles.exportengine;
 
-import java.io.File;
-import java.util.List;
+import java.util.Vector;
 
-public abstract class ExportEngine {
+public abstract class ExportEngine extends Thread implements ExportContract {
 
-    protected List groups;
-    protected List types;
-    protected List labels;
-    
-    private ExportEngine() {
+    private Vector<ExportListener> listeners;
+
+    public ExportEngine() {
+        listeners = new Vector<ExportListener>();
+    }
+
+    public void addListener(ExportListener l) {
+        if(listeners == null) {
+            listeners = new Vector<ExportListener>();
+        }
+        
+        listeners.add(l);
+    }
+
+    public void removeListener(ExportListener l) {
+        if(listeners != null) {
+            listeners.remove(l);
+        }
+    }
+
+    protected void fireExportStarted() {
+        if (listeners != null) {
+            for (ExportListener l : listeners) {
+                l.exportStarted();
+            }
+        }
+    }
+
+    protected void fireExportFinished() {
+        if (listeners != null) {
+            for (ExportListener l : listeners) {
+                l.exportFinished();
+            }
+        }
     }
     
-    public final void queryData() {
-        //
-    }
-
-    public static void exportToXML(File file) {
-        new XML(file).start();//.export()
-    }
-
-    public static void exportToCSV(File file) {
-        new CSV(file).start();//.export()
-    }
-
-    public static void exportToODS(File file) {
-        new ODS(file).start();//.export()
-    }
-
-    public static void exportToSQL(File file) {
-        new SQL(file).start();//.export()
-    }
-
-    public static void exportToHTML(File destination, String name, String template) {
-        new HTML(destination, name, template).start();//.export()
-    }
+    protected void fireExportError() {
+        if (listeners != null) {
+            for (ExportListener l : listeners) {
+                l.exportError();
+            }
+        }
+    }    
 }

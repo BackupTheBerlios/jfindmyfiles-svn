@@ -32,7 +32,7 @@ import java.util.logging.Logger;
  *
  * @author Knitter
  */
-public class CSV extends Thread implements ExportContract {
+public class CSV extends ExportEngine {
 
     private File file;
     

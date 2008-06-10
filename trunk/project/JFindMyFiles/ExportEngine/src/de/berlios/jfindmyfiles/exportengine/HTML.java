@@ -25,7 +25,7 @@ import java.io.File;
  *
  * @author Knitter
  */
-public class HTML extends Thread implements ExportContract {
+public class HTML extends ExportEngine {
     
     File destination;
     String name;

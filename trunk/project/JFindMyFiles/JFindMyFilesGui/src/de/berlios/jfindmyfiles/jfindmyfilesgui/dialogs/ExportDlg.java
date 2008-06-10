@@ -19,10 +19,18 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
+import com.sun.org.apache.xerces.internal.util.XML11Char;
+import de.berlios.jfindmyfiles.exportengine.CSV;
+import de.berlios.jfindmyfiles.exportengine.ExportListener;
+import de.berlios.jfindmyfiles.exportengine.SQL;
+import de.berlios.jfindmyfiles.exportengine.XML;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.io.File;
+import java.io.IOException;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
@@ -33,7 +41,7 @@ import org.openide.util.Utilities;
  *
  * @author  knitter
  */
-public class ExportDlg extends javax.swing.JDialog {
+public class ExportDlg extends javax.swing.JDialog implements ExportListener {
 
     /*private static final int EXPORT_CVS = 0;
     private static final int EXPORT_HTML = 1;
@@ -42,6 +50,7 @@ public class ExportDlg extends javax.swing.JDialog {
     private static final int EXPORT_XML = 4;
     private static final int EXPORT_SQL = 5;*/
     private Integer[] values = new Integer[]{0, 1, 2, 3, 4, 5};
+    private File selectedFile;
 
     /** Creates new form ExportDlg */
     public ExportDlg(java.awt.Frame parent, boolean modal) {
@@ -79,6 +88,9 @@ public class ExportDlg extends javax.swing.JDialog {
         jlstExportTypes = new JList(values);
         jpExportOptions = new javax.swing.JPanel();
         jpFileExport = new javax.swing.JPanel();
+        jlblDestination = new javax.swing.JLabel();
+        jtfDestination = new javax.swing.JTextField();
+        jbtnBrowse = new javax.swing.JButton();
         jpTemplateExport = new javax.swing.JPanel();
         jbtnCancel = new javax.swing.JButton();
         jbtnExport = new javax.swing.JButton();
@@ -149,7 +161,7 @@ public class ExportDlg extends javax.swing.JDialog {
         jpExportTypeLayout.setVerticalGroup(
             jpExportTypeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpExportTypeLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 289, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -157,15 +169,39 @@ public class ExportDlg extends javax.swing.JDialog {
 
         jpFileExport.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jpFileExport.border.title"))); // NOI18N
 
+        jlblDestination.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jlblDestination.text")); // NOI18N
+
+        jtfDestination.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jtfDestination.text")); // NOI18N
+
+        jbtnBrowse.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jbtnBrowse.text")); // NOI18N
+        jbtnBrowse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnBrowseActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpFileExportLayout = new javax.swing.GroupLayout(jpFileExport);
         jpFileExport.setLayout(jpFileExportLayout);
         jpFileExportLayout.setHorizontalGroup(
             jpFileExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 392, Short.MAX_VALUE)
+            .addGroup(jpFileExportLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlblDestination)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfDestination, javax.swing.GroupLayout.DEFAULT_SIZE, 228, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtnBrowse)
+                .addContainerGap())
         );
         jpFileExportLayout.setVerticalGroup(
             jpFileExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 396, Short.MAX_VALUE)
+            .addGroup(jpFileExportLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpFileExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblDestination)
+                    .addComponent(jbtnBrowse)
+                    .addComponent(jtfDestination, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(266, Short.MAX_VALUE))
         );
 
         jpExportOptions.add(jpFileExport, "card2");
@@ -176,11 +212,11 @@ public class ExportDlg extends javax.swing.JDialog {
         jpTemplateExport.setLayout(jpTemplateExportLayout);
         jpTemplateExportLayout.setHorizontalGroup(
             jpTemplateExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 392, Short.MAX_VALUE)
+            .addGap(0, 361, Short.MAX_VALUE)
         );
         jpTemplateExportLayout.setVerticalGroup(
             jpTemplateExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 396, Short.MAX_VALUE)
+            .addGap(0, 300, Short.MAX_VALUE)
         );
 
         jpExportOptions.add(jpTemplateExport, "card3");
@@ -216,7 +252,7 @@ public class ExportDlg extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jpExportType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jpExportOptions, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE))
+                        .addComponent(jpExportOptions, javax.swing.GroupLayout.DEFAULT_SIZE, 377, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jbtnExport)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -233,7 +269,7 @@ public class ExportDlg extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jpExportOptions, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                    .addComponent(jpExportOptions, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
                     .addComponent(jpExportType, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -247,12 +283,12 @@ public class ExportDlg extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jlstExportTypesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jlstExportTypesValueChanged
-    if (jlstExportTypes.getSelectedIndex() == 0) {
-        CardLayout lay = (CardLayout) jpExportOptions.getLayout();
-        lay.first(jpExportOptions);
-    } else {
+    if (jlstExportTypes.getSelectedIndex() == 1) {
         CardLayout lay = (CardLayout) jpExportOptions.getLayout();
         lay.last(jpExportOptions);
+    } else {
+        CardLayout lay = (CardLayout) jpExportOptions.getLayout();
+        lay.first(jpExportOptions);
     }
 }//GEN-LAST:event_jlstExportTypesValueChanged
 
@@ -261,28 +297,55 @@ private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_jbtnCancelActionPerformed
 
 private void jbtnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnExportActionPerformed
-// TODO add your handling code here:
+    //csv html sql ods xls xml
+    switch (jlstExportTypes.getSelectedIndex()) {
+        case 0://CSV
+            new CSV(selectedFile).export();
+            break;
+        case 1://HTML
+            break;
+        case 2://SQL
+            new SQL(selectedFile).export();
+            break;
+        case 3://ODS
+            break;
+        case 4://XLS
+            break;
+        case 5://XML
+            new XML(selectedFile).export();
+
+    }
 }//GEN-LAST:event_jbtnExportActionPerformed
 
 private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_jbtnHelpActionPerformed
+
+private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBrowseActionPerformed
+    JFileChooser jfc = new JFileChooser();
+    if (jfc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+        selectedFile = jfc.getSelectedFile();
+        jtfDestination.setText(selectedFile.getAbsolutePath());
+    }
+}//GEN-LAST:event_jbtnBrowseActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton jbtnBrowse;
     private javax.swing.JButton jbtnCancel;
     private javax.swing.JButton jbtnExport;
     private javax.swing.JButton jbtnHelp;
+    private javax.swing.JLabel jlblDestination;
     private javax.swing.JList jlstExportTypes;
     private javax.swing.JPanel jpExportOptions;
     private javax.swing.JPanel jpExportType;
     private javax.swing.JPanel jpFileExport;
     private javax.swing.JPanel jpTemplateExport;
+    private javax.swing.JTextField jtfDestination;
     // End of variables declaration//GEN-END:variables
-    
     /**
      * Renderer class for showing icons on the list of existing export options
      */
@@ -295,9 +358,9 @@ private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                         new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-csv.png")),
                         new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-html.png")),
                         new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-ods.png")),
+                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-sql.png")),
                         new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-xls.png")),
-                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-xml.png")),
-                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-sql.png"))
+                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-xml.png"))
                     };
 
             setOpaque(true);
@@ -322,5 +385,20 @@ private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             setFont(list.getFont());
             return this;
         }
+    }
+
+    public void exportStarted() {
+        //TODO:
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void exportFinished() {
+        //TODO:
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void exportError() {
+        //TODO:
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

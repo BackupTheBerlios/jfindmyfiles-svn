@@ -19,7 +19,7 @@
  */
 package de.berlios.jfindmyfiles.exportengine;
 
-public class XLS extends Thread implements ExportContract {
+public class XLS extends ExportEngine {
 
     public void export() {
         start();

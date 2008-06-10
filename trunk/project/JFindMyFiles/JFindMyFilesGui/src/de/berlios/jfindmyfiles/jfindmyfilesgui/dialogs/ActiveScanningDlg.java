@@ -17,7 +17,6 @@
  *  along with JFindMyFiles.  If not, see 
  * <http://www.gnu.org/licenses/gpl.html>.
  */
-
 package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
 /**
@@ -25,13 +24,19 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
  * @author  ei10635
  */
 public class ActiveScanningDlg extends javax.swing.JDialog {
-    
+
     /** Creates new form ActiveScanningDlg */
     public ActiveScanningDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-    
+
+    public void showCentered() {
+        setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
+                getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
+        setVisible(true);
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -40,23 +45,32 @@ public class ActiveScanningDlg extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jpbReadingProgress = new javax.swing.JProgressBar();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jpbReadingProgress.setIndeterminate(true);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 401, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpbReadingProgress, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 70, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jpbReadingProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JProgressBar jpbReadingProgress;
     // End of variables declaration//GEN-END:variables
-    
 }

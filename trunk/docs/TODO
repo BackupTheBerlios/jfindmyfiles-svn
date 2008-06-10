@@ -45,6 +45,8 @@ Iteração 6:
 	- exportar para ODS
 	- importar dados de outras aplicações
 
+TODOS:
+	Todos os eventos têm de extender de EventObject e todas as interfaces de listeners de EventListener
 NOTAS:
 	Atenção ao nome dos paineis e componentes na internacionalização
 	Criar painel para escolher a língua?

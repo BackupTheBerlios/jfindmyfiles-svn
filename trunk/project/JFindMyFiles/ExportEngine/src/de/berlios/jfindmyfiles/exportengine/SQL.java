@@ -21,7 +21,7 @@ package de.berlios.jfindmyfiles.exportengine;
 
 import java.io.File;
 
-public class SQL extends Thread implements ExportContract {
+public class SQL extends ExportEngine {
 
     File file;
     
