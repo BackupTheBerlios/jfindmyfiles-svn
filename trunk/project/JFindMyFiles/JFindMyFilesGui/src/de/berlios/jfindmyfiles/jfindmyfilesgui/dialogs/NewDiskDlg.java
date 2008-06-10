@@ -362,7 +362,7 @@ private void jtbSelectedPluginsActionPerformed(java.awt.event.ActionEvent evt) {
 private void jbtnScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnScanActionPerformed
     MediaReader r = Lookup.getDefault().lookup(MediaReader.class);
     r.addListener(scanningDlg);
-    r.read(new File(currentSelectedPath), calculateHash, isMedia);
+    r.read(new File(currentSelectedPath), calculateHash, isMedia, jtfDiskName.getName().trim());
     
 }//GEN-LAST:event_jbtnScanActionPerformed
 

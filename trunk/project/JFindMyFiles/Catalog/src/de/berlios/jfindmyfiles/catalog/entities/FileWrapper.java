@@ -40,6 +40,7 @@ public class FileWrapper {
     private ImageData image;
     private VideoData video;
     private AudioData audio;
+    private String hash;
     //Helpers    
     private boolean file;
     private boolean folder;
@@ -65,7 +66,7 @@ public class FileWrapper {
      */
     public FileWrapper(String name, String absolutePath, long size,
             boolean file, boolean hidden, long lastModified, Media disk,
-            FileWrapper parent) {
+            FileWrapper parent, String hash) {
         this.name = name;
         this.absolutePath = absolutePath;
         this.size = size;
@@ -74,6 +75,7 @@ public class FileWrapper {
         this.lastModified = lastModified;
         this.disk = disk;
         this.parent = parent;
+        this.hash = hash;
     }
 
     /**
@@ -146,6 +148,14 @@ public class FileWrapper {
 
     public void setExtension(String extension) {
         this.extension = extension;
+    }
+    
+    public String getHash() {
+        return hash;
+    }
+    
+    public void setHash(String hash) {
+        this.hash = hash;
     }
 
     public boolean isFile() {

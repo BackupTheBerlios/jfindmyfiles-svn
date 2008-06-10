@@ -35,6 +35,7 @@
         <property name="hidden"/>
         <property name="size"/>
         <property name="extension"/>
+        <property name="hash"/>
 
         <property name="file"/>
         <property name="folder"/>
