@@ -19,11 +19,16 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
+import de.berlios.jfindmyfiles.readingfiles.MediaReader;
+import de.berlios.jfindmyfiles.readingfiles.ReadingEvent;
+import de.berlios.jfindmyfiles.readingfiles.ReadingListener;
+import org.openide.util.Lookup;
+
 /**
  *
  * @author  ei10635
  */
-public class ActiveScanningDlg extends javax.swing.JDialog {
+public class ActiveScanningDlg extends javax.swing.JDialog implements ReadingListener {
 
     /** Creates new form ActiveScanningDlg */
     public ActiveScanningDlg(java.awt.Frame parent, boolean modal) {
@@ -46,31 +51,66 @@ public class ActiveScanningDlg extends javax.swing.JDialog {
     private void initComponents() {
 
         jpbReadingProgress = new javax.swing.JProgressBar();
+        jbtnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setUndecorated(true);
 
         jpbReadingProgress.setIndeterminate(true);
+
+        jbtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/button-stop.png"))); // NOI18N
+        jbtnCancel.setText(org.openide.util.NbBundle.getMessage(ActiveScanningDlg.class, "ActiveScanningDlg.jbtnCancel.text")); // NOI18N
+        jbtnCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnCancelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpbReadingProgress, javax.swing.GroupLayout.DEFAULT_SIZE, 381, Short.MAX_VALUE)
+                .addComponent(jpbReadingProgress, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpbReadingProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jpbReadingProgress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                    .addComponent(jbtnCancel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
+    MediaReader r = Lookup.getDefault().lookup(MediaReader.class);
+    r.abort();
+}//GEN-LAST:event_jbtnCancelActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jbtnCancel;
     private javax.swing.JProgressBar jpbReadingProgress;
     // End of variables declaration//GEN-END:variables
+    public void readingStarted(ReadingEvent evt) {
+        //DO NOTHING
+    }
+
+    public void readingFile(ReadingEvent evt) {
+        jpbReadingProgress.setString(evt.getCurrentFileName());
+    }
+
+    public void readingStopped(ReadingEvent evt) {
+        dispose();
+    }
+
+    public void readingAborted(ReadingEvent evt) {
+        dispose();
+    }
 }

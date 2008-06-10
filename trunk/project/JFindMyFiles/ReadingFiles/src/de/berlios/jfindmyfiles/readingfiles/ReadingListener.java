@@ -11,6 +11,7 @@ package de.berlios.jfindmyfiles.readingfiles;
  */
 public interface ReadingListener {
     
+    void readingStarted(ReadingEvent evt);
     void readingFile(ReadingEvent evt);
     void readingStopped(ReadingEvent evt);
     void readingAborted(ReadingEvent evt);

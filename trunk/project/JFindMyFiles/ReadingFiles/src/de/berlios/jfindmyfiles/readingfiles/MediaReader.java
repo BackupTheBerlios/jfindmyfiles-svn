@@ -4,11 +4,14 @@
  */
 package de.berlios.jfindmyfiles.readingfiles;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.catalog.entities.FileWrapper;
 import de.berlios.jfindmyfiles.catalog.entities.Media;
 import java.io.File;
 import java.util.Stack;
 import java.util.Vector;
+import org.hibernate.Session;
+import org.openide.util.Lookup;
 
 /**
  *
@@ -18,31 +21,29 @@ public class MediaReader {
 
     private Vector<ReadingListener> listeners;
     private MediaReader me = this;
+    private boolean abort = false;
 
     public MediaReader() {
         listeners = new Vector<ReadingListener>();
     }
 
-    public void read(File source, boolean sha) {
-        final File file = source;
-        final boolean isMedia = false;//?
+    public void read(final File file, final boolean sha, final boolean isMedia) {
 
         new Thread(new Runnable() {
 
             public void run() {
-                fireReadingFile(new ReadingEvent(me, ""));
-
+                fireReadingStarted(new ReadingEvent(me, "", null));
+                Session s = Lookup.getDefault().lookup(CatalogEngine.class).sessionFactory.getCurrentSession();
+                s.beginTransaction();
                 Stack<File> directories = new Stack<File>();
                 File current, listing[];
                 long totalSize = 0L, childSize = 0L;
                 FileWrapper fw, child;
                 int z;
-                //?
                 Media container = null;
-
                 if (isMedia) {
                     container = new Media();
-                }//?
+                }
 
                 if (file.isDirectory()) {//NOTE: this protections may be dropped
                     fw = new FileWrapper(file.getName(),
@@ -64,7 +65,7 @@ public class MediaReader {
                         }
                     }
 
-                    while (!directories.empty()) {
+                    while (!directories.empty() && !abort) {
                         current = directories.pop();
                         childSize = 0;
                         child = new FileWrapper(current.getName(),
@@ -89,13 +90,20 @@ public class MediaReader {
                         child.setSize(childSize);
                     }
                     fw.setSize(totalSize);
+                    if (abort) {
+                        s.getTransaction().rollback();
+                    }
+                    s.getTransaction().commit();
                 }
-                
-                
-                //insert all inside the db?
+                fireReadingStopped(new ReadingEvent(me, "", container));
             }
         }).start();
-        fireReadingStopped(new ReadingEvent(this, ""));
+
+    }
+
+    public void abort() {
+        abort = true;
+        fireReadingAborted(new ReadingEvent(this, "", null));
     }
 
     public void addListener(ReadingListener l) {
@@ -111,16 +119,28 @@ public class MediaReader {
             listeners.remove(l);
         }
     }
-
-    private void fireReadingFile(ReadingEvent evt) {
+   
+    private void fireReadingStarted(ReadingEvent evt) {
         for (ReadingListener l : listeners) {
-            l.readingFile(evt);
+            l.readingStarted(evt);
         }
     }
 
     private void fireReadingStopped(ReadingEvent evt) {
         for (ReadingListener l : listeners) {
             l.readingStopped(evt);
+        }
+    }
+    
+    private void fireReadingFile(ReadingEvent evt) {
+        for (ReadingListener l : listeners) {
+            l.readingFile(evt);
+        }
+    }
+
+    private void fireReadingAborted(ReadingEvent evt) {
+        for (ReadingListener l : listeners) {
+            l.readingAborted(evt);
         }
     }
 }
