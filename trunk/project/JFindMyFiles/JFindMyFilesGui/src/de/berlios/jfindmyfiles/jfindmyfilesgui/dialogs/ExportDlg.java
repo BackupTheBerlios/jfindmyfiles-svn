@@ -19,7 +19,6 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
-import com.sun.org.apache.xerces.internal.util.XML11Char;
 import de.berlios.jfindmyfiles.exportengine.CSV;
 import de.berlios.jfindmyfiles.exportengine.ExportListener;
 import de.berlios.jfindmyfiles.exportengine.SQL;

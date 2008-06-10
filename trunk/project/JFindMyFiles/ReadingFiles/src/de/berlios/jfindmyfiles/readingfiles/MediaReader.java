@@ -5,8 +5,11 @@
 package de.berlios.jfindmyfiles.readingfiles;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
+import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
 import de.berlios.jfindmyfiles.catalog.entities.FileWrapper;
 import de.berlios.jfindmyfiles.catalog.entities.Media;
+import de.berlios.jfindmyfiles.catalog.entities.Type;
+import de.berlios.jfindmyfiles.readingfiles.utils.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -31,7 +34,7 @@ public class MediaReader {
         listeners = new Vector<ReadingListener>();
     }
 
-    public void read(final File file, final boolean sha, final boolean isMedia, String mediaName) {
+    public void read(final File file, final boolean sha, final boolean isMedia, final String mediaName, final DiskGroup group, final Type type) {
 
         new Thread(new Runnable() {
 
@@ -45,7 +48,11 @@ public class MediaReader {
                 long childSize = 0L, totalSize = 0L;
                 FileWrapper fw, temp;
                 int z;
+                Type t = new Type("test");
+                s.save(t);
                 Media container = new Media();
+                container.setName(mediaName);
+                container.setType(t);
                 s.save(container);
 
                 if ((listing = file.listFiles()) != null) {
@@ -60,7 +67,8 @@ public class MediaReader {
                                     listing[z].length(), listing[z].isFile(),
                                     listing[z].isHidden(),
                                     listing[z].lastModified(), container, null,
-                                    (sha ? calculateSHA1HashString(listing[z]) : ""));
+                                    (sha ? FileUtils.calculateSHA1HashString(listing[z]) : ""), 
+                                    FileUtils.findExtension(listing[z].getName()));
                             s.save(temp);
                             container.addFile(temp);
                         }
@@ -74,7 +82,7 @@ public class MediaReader {
                     fw = new FileWrapper(current.getName(),
                             current.getAbsolutePath(), 0, current.isFile(),
                             current.isHidden(), current.lastModified(),
-                            container, cf.parent, "");//NOTE: should we hash a directory?
+                            container, cf.parent, "", "");//NOTE: should we hash a directory?
                     s.save(fw);
                     if ((listing = current.listFiles()) != null) {
                         for (z = listing.length; z-- > 0;) {
@@ -87,8 +95,9 @@ public class MediaReader {
                                         listing[z].getAbsolutePath(),
                                         listing[z].length(), listing[z].isFile(),
                                         listing[z].isHidden(),
-                                        listing[z].lastModified(), container, fw, 
-                                        (sha ? calculateSHA1HashString(listing[z]) : ""));
+                                        listing[z].lastModified(), container, fw,
+                                        (sha ? FileUtils.calculateSHA1HashString(listing[z]) : ""), 
+                                        FileUtils.findExtension(listing[z].getName()));
                                 s.save(temp);
                                 fw.addChild(temp);
                             }
@@ -97,7 +106,7 @@ public class MediaReader {
                     fw.setSize(childSize);
                     totalSize += childSize;
                 }
-                //TODO: capacity
+                //TODO: capacity and other properties
                 if (abort) {
                     s.getTransaction().rollback();
                 }
@@ -105,19 +114,6 @@ public class MediaReader {
                 fireReadingStopped(new ReadingEvent(me, "", container));
             }
         }).start();
-
-    }
-
-    private String calculateSHA1HashString(File file) {
-        AbstractChecksum checksum = null;
-        try {
-            checksum = JacksumAPI.getChecksumInstance("sha-1");
-            return "" + checksum.readFile(file.getAbsolutePath());
-        } catch (IOException ex) {
-            return "";
-        } catch (NoSuchAlgorithmException ex) {
-            return "";
-        }
     }
 
     public void abort() {

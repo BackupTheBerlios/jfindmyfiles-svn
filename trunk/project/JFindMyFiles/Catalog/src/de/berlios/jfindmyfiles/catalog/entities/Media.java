@@ -59,6 +59,8 @@ public class Media {
         this.location = location;
         this.group = group;
         this.type = type;
+        files = new LinkedHashSet();
+        labels = new LinkedHashSet();
     }
 
     @SuppressWarnings("unchecked")
@@ -66,7 +68,7 @@ public class Media {
         if (files == null) {
             files = new LinkedHashSet();
         }
-        files.add(files);
+        files.add(file);
     }
 
     public void removeFile(FileWrapper file) {

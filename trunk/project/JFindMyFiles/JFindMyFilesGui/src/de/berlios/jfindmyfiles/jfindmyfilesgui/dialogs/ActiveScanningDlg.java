@@ -54,7 +54,6 @@ public class ActiveScanningDlg extends javax.swing.JDialog implements ReadingLis
         jbtnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setUndecorated(true);
 
         jpbReadingProgress.setIndeterminate(true);
 
@@ -107,10 +106,12 @@ private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }
 
     public void readingStopped(ReadingEvent evt) {
+        Lookup.getDefault().lookup(MediaReader.class).removeListener(this);
         dispose();
     }
 
     public void readingAborted(ReadingEvent evt) {
+        Lookup.getDefault().lookup(MediaReader.class).removeListener(this);
         dispose();
     }
 }

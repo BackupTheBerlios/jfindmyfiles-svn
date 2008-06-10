@@ -36,6 +36,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPopupMenu;
 import javax.swing.JToggleButton;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileSystemView;
 import org.hibernate.Session;
 import org.openide.util.Lookup;
@@ -362,7 +363,8 @@ private void jtbSelectedPluginsActionPerformed(java.awt.event.ActionEvent evt) {
 private void jbtnScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnScanActionPerformed
     MediaReader r = Lookup.getDefault().lookup(MediaReader.class);
     r.addListener(scanningDlg);
-    r.read(new File(currentSelectedPath), calculateHash, isMedia, jtfDiskName.getName().trim());
+    r.addListener(this);
+    r.read(new File(currentSelectedPath), calculateHash, isMedia, jtfDiskName.getText().trim(), (DiskGroup)jcbxCatalog.getSelectedItem(), null);
     
 }//GEN-LAST:event_jbtnScanActionPerformed
 
@@ -413,16 +415,20 @@ private void jchkShowAgainStateChanged(javax.swing.event.ChangeEvent evt) {//GEN
 
 
     public void readingStarted(ReadingEvent evt) {
-        scanningDlg.showCentered();
+       SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+               scanningDlg.showCentered();
+            }
+        });
     }
     
     public void readingFile(ReadingEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //DO NOTHING
     }
 
     public void readingStopped(ReadingEvent evt) {
         //TODO: ask for description
-        if(ask4Description) {
+        /*if(ask4Description) {
             AskDescriptionDlg dlg = new AskDescriptionDlg(WindowManager.getDefault().getMainWindow(), true);
             dlg.showCentered();
             /*
@@ -430,13 +436,16 @@ private void jchkShowAgainStateChanged(javax.swing.event.ChangeEvent evt) {//GEN
             s.beginTransaction();
             evt.getMedia().setDescription("");
             s.getTransaction().commit();*/
-        }
+        /*}
         if(!showAgain) {
             dispose();
-        }
+        }*/
+        Lookup.getDefault().lookup(MediaReader.class).removeListener(this);
+        dispose();
     }
 
     public void readingAborted(ReadingEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        JOptionPane.showMessageDialog(this, "", "", JOptionPane.ERROR_MESSAGE);
+        Lookup.getDefault().lookup(MediaReader.class).removeListener(this);
     }
 }

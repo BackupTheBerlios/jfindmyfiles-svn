@@ -56,7 +56,7 @@ public class CatalogEngine {
         String strategy = "create";
         try {
             Configuration hConfig = new Configuration().configure("de/berlios" +
-                    "/jfindmyfiles/catalog/utils/hibernate.general.cfg.xml");
+                    "/jfindmyfiles/catalog/hibernate.general.cfg.xml");
 
             if (open) {
                 strategy = "update";
@@ -171,7 +171,7 @@ public class CatalogEngine {
         properties = new CatalogProperties();
         properties.setName(dbname);
         properties.setCreationDate(new Date());
-        cSession.save(properties);
+        cSession.save(properties);        
         cSession.getTransaction().commit();
         fireCatalogCreated(new CatalogEngineEvent(dbname, null, null, null, null));
     }

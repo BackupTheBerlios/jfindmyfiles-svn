@@ -15,13 +15,9 @@ http://www.hibernate.org/hib_docs/v3/reference/en/html/tutorial.html
 Iteração 2:
 	- ligar código de leitura para permitir ler os dados dos discos, implica uma base de API
 	- Fazer DER e modelo de dominio com base no esquema usado para o mapeamento
-	- Criar catálogo
 	- Abrir catálogo
 	- Fechar catálogo
-	- Guardar catálogo
 	- Manter registo de catálogos recentes
-	- NewDiskDlg - Janela de diálogo que permite ler novos suportes.
-	- NewCatalogDlg - Janela de diálogo que permite criar novos catálogos
 	- OpenCatalogDlg - Janela de diálogo que permite abrir catálogos existentes.
 - Menus:?
 	
@@ -29,7 +25,7 @@ Iteração 3:
 	- desenhar API
 
 Iteração 4:
-	- pesquisa de ficheiros duplicados em todo o catálogo - usar SHA-1 para verificar ficheiros
+	- pesquisa de ficheiros duplicados em todo o catálogo
 	- falta ver o sql para pesquisa dentro de grupo
 	
 Iteração 5:
@@ -47,6 +43,7 @@ Iteração 6:
 
 TODOS:
 	Todos os eventos têm de extender de EventObject e todas as interfaces de listeners de EventListener
+	Proper logging
 NOTAS:
 	Atenção ao nome dos paineis e componentes na internacionalização
 	Criar painel para escolher a língua?
