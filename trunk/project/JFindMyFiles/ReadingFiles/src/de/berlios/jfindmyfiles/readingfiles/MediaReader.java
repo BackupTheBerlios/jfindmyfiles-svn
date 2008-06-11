@@ -24,7 +24,7 @@ import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
 import de.berlios.jfindmyfiles.catalog.entities.FileWrapper;
 import de.berlios.jfindmyfiles.catalog.entities.Media;
 import de.berlios.jfindmyfiles.catalog.entities.Type;
-import de.berlios.jfindmyfiles.readingfiles.utils.FileUtils;
+import de.berlios.jfindmyfiles.readingfiles.utils.ReadingUtils;
 import java.io.File;
 import java.util.Stack;
 import java.util.Vector;
@@ -74,8 +74,8 @@ public class MediaReader {
                                     listing[z].length(), listing[z].isFile(),
                                     listing[z].isHidden(),
                                     listing[z].lastModified(), container, null,
-                                    (sha ? FileUtils.calculateSHA1HashString(listing[z]) : ""), 
-                                    FileUtils.findExtension(listing[z].getName()));
+                                    (sha ? ReadingUtils.calculateSHA1HashString(listing[z]) : ""), 
+                                    ReadingUtils.findExtension(listing[z].getName()));
                             s.save(temp);
                             container.addFile(temp);
                         }
@@ -103,8 +103,8 @@ public class MediaReader {
                                         listing[z].length(), listing[z].isFile(),
                                         listing[z].isHidden(),
                                         listing[z].lastModified(), container, fw,
-                                        (sha ? FileUtils.calculateSHA1HashString(listing[z]) : ""), 
-                                        FileUtils.findExtension(listing[z].getName()));
+                                        (sha ? ReadingUtils.calculateSHA1HashString(listing[z]) : ""), 
+                                        ReadingUtils.findExtension(listing[z].getName()));
                                 s.save(temp);
                                 fw.addChild(temp);
                             }

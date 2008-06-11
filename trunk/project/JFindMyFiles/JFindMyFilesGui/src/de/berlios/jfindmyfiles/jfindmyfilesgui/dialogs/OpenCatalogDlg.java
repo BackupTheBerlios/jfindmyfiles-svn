@@ -19,10 +19,12 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
+import de.berlios.jfindmyfiles.catalog.CatalogConstants;
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import java.io.File;
 import javax.swing.JFileChooser;
 import org.openide.util.Lookup;
+import org.openide.util.NbBundle;
 
 public class OpenCatalogDlg extends javax.swing.JDialog {
 
@@ -58,42 +60,42 @@ public class OpenCatalogDlg extends javax.swing.JDialog {
             jlbError.setText(org.openide.util.NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.empyname")); // NOI18N
 
             jlbError.setVisible(true);
-            this.validate();
+            validate();
             return false;
         }
 
         if (jchkUserinternalDB.isSelected()) {
             if (jtfDestination.getText().isEmpty()) {
-                jlbError.setText(org.openide.util.NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.invaliddestination")); // NOI18N
+                jlbError.setText(NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.invaliddestination")); // NOI18N
 
                 jlbError.setVisible(true);
-                this.validate();
+                validate();
                 return false;
             }
         } else {
             if (jtfHostname.getText().isEmpty()) {
-                jlbError.setText(org.openide.util.NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.invalidurl")); // NOI18N
+                jlbError.setText(NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.invalidurl")); // NOI18N
 
                 jlbError.setVisible(true);
-                this.validate();
+                validate();
                 return false;
             } else if (jtfUsername.getText().isEmpty()) {
-                jlbError.setText(org.openide.util.NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.invalidusername")); // NOI18N
+                jlbError.setText(NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.invalidusername")); // NOI18N
 
                 jlbError.setVisible(true);
-                this.validate();
+                validate();
                 return false;
             } else if (jffPort.getText().isEmpty()) {
-                jlbError.setText(org.openide.util.NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.invalidport")); // NOI18N
+                jlbError.setText(NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.invalidport")); // NOI18N
 
                 jlbError.setVisible(true);
-                this.validate();
+                validate();
                 return false;
             }
         }
         if (jlbError.isVisible()) {
             jlbError.setVisible(false);
-            this.validate();
+            validate();
         }
         return true;
     }
@@ -365,10 +367,8 @@ private void jbtnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         // if dbtype is selected to local return the CatalogEngine.LOCAL, if not 
         // check to see what the selected value of the combobox is and return 
         // the corresponding value.
-        final int dbtype = (jchkUserinternalDB.isSelected() ? CatalogEngine.LOCAL : (selectedname.equals("Firebird") ? CatalogEngine.FIREBIRD : (selectedname.equals("PostgreSQL") ? CatalogEngine.POSTGRESQL : (selectedname.equals("MsSQL") ? CatalogEngine.MSSQL : CatalogEngine.MYSQL))));
+        final int dbtype = (jchkUserinternalDB.isSelected() ? CatalogConstants.LOCAL : (selectedname.equals("Firebird") ? CatalogConstants.FIREBIRD : (selectedname.equals("PostgreSQL") ? CatalogConstants.POSTGRESQL : (selectedname.equals("MsSQL") ? CatalogConstants.MSSQL : CatalogConstants.MYSQL))));
 
-
-        //TODO: event notification
         new Thread(new Runnable() {
 
             public void run() {
@@ -384,7 +384,7 @@ private void jbtnOpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 }//GEN-LAST:event_jbtnOpenActionPerformed
 
 private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
-    //TODO:
+    //TODO: help action
 }//GEN-LAST:event_jbtnHelpActionPerformed
 
 private void jchkUserinternalDBStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jchkUserinternalDBStateChanged
@@ -397,7 +397,7 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     JFileChooser jfc = new JFileChooser();
     jfc.setCurrentDirectory(new File(System.getProperty("user.dir"))); // NOI18N
 
-    jfc.setDialogTitle("Choose a directory");//TODO: i18n
+    jfc.setDialogTitle(NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.choosedirectory")); // NOI18N
 
     jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
     jfc.setMultiSelectionEnabled(false);

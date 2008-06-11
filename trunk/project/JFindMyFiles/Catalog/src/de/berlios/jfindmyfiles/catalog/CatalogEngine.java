@@ -20,7 +20,6 @@
 package de.berlios.jfindmyfiles.catalog;
 
 import de.berlios.jfindmyfiles.catalog.entities.*;
-import java.io.File;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
@@ -31,11 +30,6 @@ import org.hibernate.cfg.Configuration;
 public class CatalogEngine {
 
     /* Constants for the available dabatabase engines*/
-    public static final int FIREBIRD = 0;
-    public static final int POSTGRESQL = 1;
-    public static final int MSSQL = 2;
-    public static final int MYSQL = 3;
-    public static final int LOCAL = 4;
     public SessionFactory sessionFactory;
     private CatalogProperties properties;
     private Vector<CatalogEngineListener> listeners;
@@ -65,7 +59,7 @@ public class CatalogEngine {
             hConfig.setProperty("hibernate.hbm2ddl.auto", strategy);
 
             switch (dbType) {
-                case FIREBIRD://TODO: change for FIREBIRD database engine
+                case CatalogConstants.FIREBIRD://TODO: change for FIREBIRD database engine
 
                     hConfig.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
                     hConfig.setProperty("hibernate.connection.driver_class", "org.hsqldb.jdbcDriver");
@@ -75,7 +69,7 @@ public class CatalogEngine {
                     hConfig.setProperty("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
 
                     break;
-                case POSTGRESQL://TODO: change for POSTGRESQL database engine
+                case CatalogConstants.POSTGRESQL://TODO: change for POSTGRESQL database engine
 
                     hConfig.setProperty("hibernate.dialect", "");
                     hConfig.setProperty("hibernate.connection.driver_class", "");
@@ -84,7 +78,7 @@ public class CatalogEngine {
                     hConfig.setProperty("hibernate.connection.password", password);
 
                     break;
-                case MYSQL:
+                case CatalogConstants.MYSQL:
                     //TODO: remove this!
                     username = "jfindmyfilesuser";
                     password = "Jf1ndmYf1l3z!";
@@ -98,7 +92,7 @@ public class CatalogEngine {
                     hConfig.setProperty("hibernate.connection.username", username);
                     hConfig.setProperty("hibernate.connection.password", password);
                     break;
-                case MSSQL://TODO: change for MSSQL database engine
+                case CatalogConstants.MSSQL://TODO: change for MSSQL database engine
 
                     hConfig.setProperty("hibernate.dialect", "");
                     hConfig.setProperty("hibernate.connection.driver_class", "");

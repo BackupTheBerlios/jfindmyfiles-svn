@@ -57,7 +57,7 @@ public class NewDiskDlg extends javax.swing.JDialog implements ReadingListener {
     private boolean showAgain = false;
     private boolean calculateHash = false;
     private boolean isMedia = true;
-    
+
     /** Creates new form NewDiskDlg */
     public NewDiskDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -100,8 +100,7 @@ public class NewDiskDlg extends javax.swing.JDialog implements ReadingListener {
             jbtngrpDrives.add(toggle);
             jpButtons.add(toggle);
         }
-        toggle = new JToggleButton("..."); // NOI18N
-
+        toggle = new JToggleButton();
         toggle.setIcon(new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x22/button-folder.png"))); // NOI18N
 
         toggle.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -364,8 +363,8 @@ private void jbtnScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     MediaReader r = Lookup.getDefault().lookup(MediaReader.class);
     r.addListener(scanningDlg);
     r.addListener(this);
-    r.read(new File(currentSelectedPath), calculateHash, isMedia, jtfDiskName.getText().trim(), (DiskGroup)jcbxCatalog.getSelectedItem(), null);
-    
+    r.read(new File(currentSelectedPath), calculateHash, isMedia, jtfDiskName.getText().trim(), (DiskGroup) jcbxCatalog.getSelectedItem(), null);
+
 }//GEN-LAST:event_jbtnScanActionPerformed
 
 private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
@@ -388,7 +387,6 @@ private void jchkAskDescriptionStateChanged(javax.swing.event.ChangeEvent evt) {
 private void jchkShowAgainStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jchkShowAgainStateChanged
     showAgain = jchkShowAgain.isSelected();
 }//GEN-LAST:event_jchkShowAgainStateChanged
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
@@ -412,16 +410,15 @@ private void jchkShowAgainStateChanged(javax.swing.event.ChangeEvent evt) {//GEN
     private javax.swing.JToggleButton jtbSelectedPlugins;
     private javax.swing.JTextField jtfDiskName;
     // End of variables declaration//GEN-END:variables
-
-
     public void readingStarted(ReadingEvent evt) {
-       SwingUtilities.invokeLater(new Runnable() {
+        SwingUtilities.invokeLater(new Runnable() {
+
             public void run() {
-               scanningDlg.showCentered();
+                scanningDlg.showCentered();
             }
         });
     }
-    
+
     public void readingFile(ReadingEvent evt) {
         //DO NOTHING
     }
@@ -429,16 +426,16 @@ private void jchkShowAgainStateChanged(javax.swing.event.ChangeEvent evt) {//GEN
     public void readingStopped(ReadingEvent evt) {
         //TODO: ask for description
         /*if(ask4Description) {
-            AskDescriptionDlg dlg = new AskDescriptionDlg(WindowManager.getDefault().getMainWindow(), true);
-            dlg.showCentered();
-            /*
-            Session s = eng.sessionFactory.getCurrentSession();
-            s.beginTransaction();
-            evt.getMedia().setDescription("");
-            s.getTransaction().commit();
+        AskDescriptionDlg dlg = new AskDescriptionDlg(WindowManager.getDefault().getMainWindow(), true);
+        dlg.showCentered();
+        /*
+        Session s = eng.sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        evt.getMedia().setDescription("");
+        s.getTransaction().commit();
         }*/
         Lookup.getDefault().lookup(MediaReader.class).removeListener(this);
-        if(!showAgain) {
+        if (!showAgain) {
             dispose();
         }
     }

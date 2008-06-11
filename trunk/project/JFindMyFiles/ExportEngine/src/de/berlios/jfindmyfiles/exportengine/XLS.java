@@ -19,8 +19,15 @@
  */
 package de.berlios.jfindmyfiles.exportengine;
 
-public class XLS extends ExportEngine {
+import java.io.File;
 
+public class XLS extends ExportEngine {
+    
+    private File file;
+    
+    public XLS(File file) {
+        this.file = file;
+    }
     public void export() {
         start();
     }

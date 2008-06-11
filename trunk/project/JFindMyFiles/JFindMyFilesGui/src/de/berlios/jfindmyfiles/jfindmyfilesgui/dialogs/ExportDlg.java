@@ -21,13 +21,15 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
 import de.berlios.jfindmyfiles.exportengine.CSV;
 import de.berlios.jfindmyfiles.exportengine.ExportListener;
+import de.berlios.jfindmyfiles.exportengine.HTML;
+import de.berlios.jfindmyfiles.exportengine.ODS;
 import de.berlios.jfindmyfiles.exportengine.SQL;
+import de.berlios.jfindmyfiles.exportengine.XLS;
 import de.berlios.jfindmyfiles.exportengine.XML;
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.io.File;
-import java.io.IOException;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
@@ -50,17 +52,12 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
     private static final int EXPORT_SQL = 5;*/
     private Integer[] values = new Integer[]{0, 1, 2, 3, 4, 5};
     private File selectedFile;
+    private int visiblePanel = 0,  previousPanel = 0;
 
     /** Creates new form ExportDlg */
     public ExportDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-
-        //TODO:
-        jPanel1.setVisible(true);
-        jPanel2.setVisible(false);
-        this.add(jPanel2, BorderLayout.CENTER);
-        this.add(jPanel1, BorderLayout.CENTER);
     }
 
     public void showCentered() {
@@ -78,10 +75,6 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jpExportType = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jlstExportTypes = new JList(values);
@@ -91,47 +84,11 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
         jtfDestination = new javax.swing.JTextField();
         jbtnBrowse = new javax.swing.JButton();
         jpTemplateExport = new javax.swing.JPanel();
+        jpProgressBar = new javax.swing.JPanel();
+        jpbExportProgress = new javax.swing.JProgressBar();
         jbtnCancel = new javax.swing.JButton();
         jbtnExport = new javax.swing.JButton();
         jbtnHelp = new javax.swing.JButton();
-
-        jLabel2.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jLabel2.text")); // NOI18N
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(187, 187, 187)
-                .addComponent(jLabel2)
-                .addContainerGap(213, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(142, 142, 142)
-                .addComponent(jLabel2)
-                .addContainerGap(280, Short.MAX_VALUE))
-        );
-
-        jLabel1.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jLabel1.text")); // NOI18N
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(146, 146, 146)
-                .addComponent(jLabel1)
-                .addContainerGap(254, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(170, 170, 170)
-                .addComponent(jLabel1)
-                .addContainerGap(252, Short.MAX_VALUE))
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -220,6 +177,29 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
 
         jpExportOptions.add(jpTemplateExport, "card3");
 
+        jpbExportProgress.setIndeterminate(true);
+        jpbExportProgress.setString(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jpbExportProgress.string")); // NOI18N
+        jpbExportProgress.setStringPainted(true);
+
+        javax.swing.GroupLayout jpProgressBarLayout = new javax.swing.GroupLayout(jpProgressBar);
+        jpProgressBar.setLayout(jpProgressBarLayout);
+        jpProgressBarLayout.setHorizontalGroup(
+            jpProgressBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpProgressBarLayout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jpbExportProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(49, Short.MAX_VALUE))
+        );
+        jpProgressBarLayout.setVerticalGroup(
+            jpProgressBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpProgressBarLayout.createSequentialGroup()
+                .addGap(153, 153, 153)
+                .addComponent(jpbExportProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(158, Short.MAX_VALUE))
+        );
+
+        jpExportOptions.add(jpProgressBar, "card4");
+
         jbtnCancel.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jbtnCancel.text")); // NOI18N
         jbtnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -284,10 +264,16 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
 private void jlstExportTypesValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jlstExportTypesValueChanged
     if (jlstExportTypes.getSelectedIndex() == 1) {
         CardLayout lay = (CardLayout) jpExportOptions.getLayout();
-        lay.last(jpExportOptions);
+        if (visiblePanel == 0) {
+            lay.next(jpExportOptions);
+        } else if (visiblePanel == 2) {
+            lay.previous(jpExportOptions);
+        }
+        visiblePanel = previousPanel = 1;
     } else {
         CardLayout lay = (CardLayout) jpExportOptions.getLayout();
         lay.first(jpExportOptions);
+        visiblePanel = previousPanel = 0;
     }
 }//GEN-LAST:event_jlstExportTypesValueChanged
 
@@ -302,13 +288,16 @@ private void jbtnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             new CSV(selectedFile).export();
             break;
         case 1://HTML
+            new HTML(selectedFile, "", "");//TODO: get the proper values for HTML export
             break;
         case 2://SQL
             new SQL(selectedFile).export();
             break;
         case 3://ODS
+            new ODS(selectedFile);
             break;
         case 4://XLS
+            new XLS(selectedFile);
             break;
         case 5://XML
             new XML(selectedFile).export();
@@ -317,21 +306,17 @@ private void jbtnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_jbtnExportActionPerformed
 
 private void jbtnHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnHelpActionPerformed
-// TODO add your handling code here:
+// TODO: help actions
 }//GEN-LAST:event_jbtnHelpActionPerformed
 
 private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBrowseActionPerformed
     JFileChooser jfc = new JFileChooser();
     if (jfc.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
         selectedFile = jfc.getSelectedFile();
-        jtfDestination.setText(selectedFile.getAbsolutePath());
+        jtfDestination.setText(selectedFile.getAbsolutePath().trim());
     }
 }//GEN-LAST:event_jbtnBrowseActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JButton jbtnBrowse;
     private javax.swing.JButton jbtnCancel;
@@ -342,7 +327,9 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JPanel jpExportOptions;
     private javax.swing.JPanel jpExportType;
     private javax.swing.JPanel jpFileExport;
+    private javax.swing.JPanel jpProgressBar;
     private javax.swing.JPanel jpTemplateExport;
+    private javax.swing.JProgressBar jpbExportProgress;
     private javax.swing.JTextField jtfDestination;
     // End of variables declaration//GEN-END:variables
     /**
@@ -387,17 +374,24 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }
 
     public void exportStarted() {
-        //TODO:
-        throw new UnsupportedOperationException("Not supported yet.");
+        visiblePanel = 2;
+        CardLayout lay = (CardLayout) jpExportOptions.getLayout();
+        lay.last(jpExportOptions);
     }
 
     public void exportFinished() {
-        //TODO:
-        throw new UnsupportedOperationException("Not supported yet.");
+        if (previousPanel == 0) {
+            CardLayout lay = (CardLayout) jpExportOptions.getLayout();
+            lay.first(jpExportOptions);
+        } else {
+            CardLayout lay = (CardLayout) jpExportOptions.getLayout();
+            lay.previous(jpExportOptions);
+        }
+        visiblePanel = previousPanel;
     }
 
     public void exportError() {
-        //TODO:
+        //TODO: show error message
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

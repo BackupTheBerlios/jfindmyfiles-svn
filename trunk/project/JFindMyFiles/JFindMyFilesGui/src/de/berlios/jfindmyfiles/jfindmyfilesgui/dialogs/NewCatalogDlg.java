@@ -19,10 +19,12 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
+import de.berlios.jfindmyfiles.catalog.CatalogConstants;
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import java.io.File;
 import javax.swing.JFileChooser;
 import org.openide.util.Lookup;
+import org.openide.util.NbBundle;
 
 public class NewCatalogDlg extends javax.swing.JDialog {
 
@@ -46,7 +48,7 @@ public class NewCatalogDlg extends javax.swing.JDialog {
 
     private boolean validateWihtMessages() {
         if (jtfName.getText().trim().isEmpty()) {
-            jlbError.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.empyname")); // NOI18N
+            jlbError.setText(NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.empyname")); // NOI18N
 
             jlbError.setVisible(true);
             validate();
@@ -54,7 +56,7 @@ public class NewCatalogDlg extends javax.swing.JDialog {
         }
         if (jchkUserinternalDB.isSelected()) {
             if (jtfDestination.getText().trim().isEmpty()) {
-                jlbError.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.invaliddestination")); // NOI18N
+                jlbError.setText(NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.invaliddestination")); // NOI18N
 
                 jlbError.setVisible(true);
                 validate();
@@ -62,19 +64,19 @@ public class NewCatalogDlg extends javax.swing.JDialog {
             }
         } else {
             if (jtfHostname.getText().trim().isEmpty()) {
-                jlbError.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.invalidurl")); // NOI18N
+                jlbError.setText(NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.invalidurl")); // NOI18N
 
                 jlbError.setVisible(true);
                 validate();
                 return false;
             } else if (jtfUsername.getText().trim().isEmpty()) {
-                jlbError.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.invalidusername")); // NOI18N
+                jlbError.setText(NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.invalidusername")); // NOI18N
 
                 jlbError.setVisible(true);
                 validate();
                 return false;
             } else if (jffPort.getText().trim().isEmpty()) {
-                jlbError.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.invalidport")); // NOI18N
+                jlbError.setText(NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.invalidport")); // NOI18N
 
                 jlbError.setVisible(true);
                 validate();
@@ -356,7 +358,7 @@ private void jbtnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         // if dbtype is selected to local return the CatalogEngine.LOCAL, if not 
         // check to see what the selected value of the combobox is and return 
         // the corresponding value.
-        final int dbtype = (jchkUserinternalDB.isSelected() ? CatalogEngine.LOCAL : (selectedname.equals("Firebird") ? CatalogEngine.FIREBIRD : (selectedname.equals("PostgreSQL") ? CatalogEngine.POSTGRESQL : (selectedname.equals("MsSQL") ? CatalogEngine.MSSQL : CatalogEngine.MYSQL)))); // NOI18N
+        final int dbtype = (jchkUserinternalDB.isSelected() ? CatalogConstants.LOCAL : (selectedname.equals("Firebird") ? CatalogConstants.FIREBIRD : (selectedname.equals("PostgreSQL") ? CatalogConstants.POSTGRESQL : (selectedname.equals("MsSQL") ? CatalogConstants.MSSQL : CatalogConstants.MYSQL)))); // NOI18N
 
         new Thread(new Runnable() {
 
@@ -386,7 +388,7 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     JFileChooser jfc = new JFileChooser();
     jfc.setCurrentDirectory(new File(System.getProperty("user.dir"))); // NOI18N
 
-    jfc.setDialogTitle("Choose a directory");//TODO: i18n
+    jfc.setDialogTitle(NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.choosedirectory")); // NOI18N
 
     jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
     jfc.setMultiSelectionEnabled(false);

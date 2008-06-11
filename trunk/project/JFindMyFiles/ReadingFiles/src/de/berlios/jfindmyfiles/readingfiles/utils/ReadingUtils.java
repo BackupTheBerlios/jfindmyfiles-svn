@@ -19,6 +19,7 @@
  */
 package de.berlios.jfindmyfiles.readingfiles.utils;
 
+import de.berlios.jfindmyfiles.catalog.CatalogConstants;
 import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -29,7 +30,7 @@ import jonelo.jacksum.algorithm.AbstractChecksum;
  *
  * @author Knitter
  */
-public class FileUtils {
+public class ReadingUtils {
 
     /**
      * Method that, given a file name, will return it's extension.
@@ -63,5 +64,18 @@ public class FileUtils {
         } catch (NoSuchAlgorithmException ex) {
             return "";
         }
+    }
+
+    public static int findFileType(String absolutepath) {
+        if (absolutepath.length() == 3 && absolutepath.matches("")) {
+            if (absolutepath.compareToIgnoreCase("a:\\") == 0 || absolutepath.compareToIgnoreCase("b:\\") == 0) {
+                return CatalogConstants.FLOPPY;
+            }
+            if (absolutepath.compareToIgnoreCase("c:\\") == 0) {
+                return CatalogConstants.HDD;
+            }
+            return CatalogConstants.CDROM;
+        }
+        return CatalogConstants.FOLDER;
     }
 }
