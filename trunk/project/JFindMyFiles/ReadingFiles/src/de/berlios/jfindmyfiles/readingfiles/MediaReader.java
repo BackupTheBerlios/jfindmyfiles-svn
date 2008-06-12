@@ -23,7 +23,6 @@ import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
 import de.berlios.jfindmyfiles.catalog.entities.FileWrapper;
 import de.berlios.jfindmyfiles.catalog.entities.Media;
-import de.berlios.jfindmyfiles.catalog.entities.Type;
 import de.berlios.jfindmyfiles.readingfiles.utils.ReadingUtils;
 import java.io.File;
 import java.util.Stack;
@@ -41,7 +40,7 @@ public class MediaReader {
         listeners = new Vector<ReadingListener>();
     }
 
-    public void read(final File file, final boolean sha, final boolean isMedia, final String mediaName, final DiskGroup group, final Type type) {
+    public void read(final File file, final boolean sha, final boolean isMedia, final String mediaName, final DiskGroup group) {
 
         new Thread(new Runnable() {
 
@@ -55,11 +54,9 @@ public class MediaReader {
                 long childSize = 0L, totalSize = 0L;
                 FileWrapper fw, temp;
                 int z;
-                Type t = new Type("test");
-                s.save(t);
                 Media container = new Media();
                 container.setName(mediaName);
-                container.setType(t);
+                container.setType(ReadingUtils.findFileType(file.getAbsolutePath()));
                 s.save(container);
 
                 if ((listing = file.listFiles()) != null) {
@@ -74,7 +71,7 @@ public class MediaReader {
                                     listing[z].length(), listing[z].isFile(),
                                     listing[z].isHidden(),
                                     listing[z].lastModified(), container, null,
-                                    (sha ? ReadingUtils.calculateSHA1HashString(listing[z]) : ""), 
+                                    (sha ? ReadingUtils.calculateSHA1HashString(listing[z]) : ""),
                                     ReadingUtils.findExtension(listing[z].getName()));
                             s.save(temp);
                             container.addFile(temp);
@@ -103,7 +100,7 @@ public class MediaReader {
                                         listing[z].length(), listing[z].isFile(),
                                         listing[z].isHidden(),
                                         listing[z].lastModified(), container, fw,
-                                        (sha ? ReadingUtils.calculateSHA1HashString(listing[z]) : ""), 
+                                        (sha ? ReadingUtils.calculateSHA1HashString(listing[z]) : ""),
                                         ReadingUtils.findExtension(listing[z].getName()));
                                 s.save(temp);
                                 fw.addChild(temp);
@@ -116,9 +113,10 @@ public class MediaReader {
                 //TODO: capacity and other properties
                 if (abort) {
                     s.getTransaction().rollback();
+                } else {
+                    s.getTransaction().commit();
+                    fireReadingStopped(new ReadingEvent(me, "", container));
                 }
-                s.getTransaction().commit();
-                fireReadingStopped(new ReadingEvent(me, "", container));
             }
         }).start();
     }

@@ -19,7 +19,9 @@
  */
 package de.berlios.jfindmyfiles.catalog.entities;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -36,12 +38,12 @@ public class Media {
     private String description;
     private long freeSpace;
     private String location;
+    private int type;
     //Attributes from relationships
     private Set files;
     private Set labels;
     private DiskGroup group;
     private Set loans;
-    private Type type;
 
     public Media() {
         //DO NOTHING
@@ -49,7 +51,7 @@ public class Media {
 
     public Media(String name, long capacity, long lastModified,
             String description, long freeSpace, String location,
-            DiskGroup group, Type type) {
+            DiskGroup group, int type) {
 
         this.name = name;
         this.capacity = capacity;
@@ -76,6 +78,14 @@ public class Media {
             files.remove(file);
         }
     }
+    
+    public List<FileWrapper> getFileList() {
+        ArrayList<FileWrapper> temp = new ArrayList<FileWrapper>(files.size());
+        for(Object o : files) {
+            temp.add((FileWrapper)o);
+        }
+        return temp;
+    }    
 
     @SuppressWarnings("unchecked")
     public void addLabel(Label label) {
@@ -91,6 +101,14 @@ public class Media {
         }
     }
     
+    public List<Label> getLabelList() {
+        ArrayList<Label> temp = new ArrayList<Label>(labels.size());
+        for(Object o : labels) {
+            temp.add((Label)o);
+        }
+        return temp;
+    }
+    
     @SuppressWarnings("unchecked")
     public void addLoan(Loan loan) {
         if (loans == null) {
@@ -104,7 +122,15 @@ public class Media {
             loans.remove(loan);
         }
     }
-
+    
+    public List<Loan> getLoanList() {
+        ArrayList<Loan> temp = new ArrayList<Loan>(loans.size());
+        for(Object o : loans) {
+            temp.add((Loan)o);
+        }
+        return temp;
+    }
+    
     public void increaseCapacity(long amount) {
         capacity += amount;
     }
@@ -168,11 +194,11 @@ public class Media {
     private void setLabels(Set labels) {
         this.labels = labels;
     }
-    
+
     private Set getLoans() {
         return loans;
     }
-    
+
     private void setLoans(Set loans) {
         this.loans = loans;
     }
@@ -201,11 +227,11 @@ public class Media {
         this.name = name;
     }
 
-    public Type getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(Type type) {
+    public void setType(int type) {
         this.type = type;
     }
 
@@ -220,7 +246,7 @@ public class Media {
      */
     @Override
     public boolean equals(Object obj) {
-        if(obj == null) {
+        if (obj == null) {
             return false;
         }
 
@@ -233,7 +259,7 @@ public class Media {
         }
 
         Media other = (Media) obj;
-        return name.equals(other.name) && description.equals(other.description) && type.equals(other.type);
+        return name.equals(other.name) && description.equals(other.description) && type == other.type;
     }
 
     /**
@@ -245,9 +271,9 @@ public class Media {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 31 * hash + (this.name != null ? this.name.hashCode() : 0);
-        hash = 31 * hash + (this.description != null ? this.description.hashCode() : 0);
-        hash = 31 * hash + (this.type != null ? this.type.hashCode() : 0);
+        hash = 37 * hash + (this.name != null ? this.name.hashCode() : 0);
+        hash = 37 * hash + (this.description != null ? this.description.hashCode() : 0);
+        hash = 37 * hash + this.type;
         return hash;
     }
 

@@ -19,7 +19,9 @@
  */
 package de.berlios.jfindmyfiles.catalog.entities;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -61,6 +63,14 @@ public class DiskGroup {
             groups.remove(child);
         }
     }
+    
+    public List<DiskGroup> getGroupList() {
+        ArrayList<DiskGroup> temp = new ArrayList<DiskGroup>(groups.size());
+        for(Object o : groups) {
+            temp.add((DiskGroup)o);
+        }
+        return temp;
+    }
 
     @SuppressWarnings("unchecked")
     public void addDisk(Media media) {
@@ -77,6 +87,14 @@ public class DiskGroup {
         }
     }
 
+    public List getDiskList() {
+        ArrayList<Media> temp = new ArrayList<Media>(groups.size());
+        for(Object o : groups) {
+            temp.add((Media)o);
+        }
+        return temp;
+    }    
+    
     public void increaseCapacity(long amount) {
         capacity += amount;
     }

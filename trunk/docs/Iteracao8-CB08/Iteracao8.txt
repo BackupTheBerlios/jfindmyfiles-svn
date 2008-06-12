@@ -1,0 +1,9 @@
+<==== Objectivos ==============================================================>
+CB08: ST8
+- Sistema de estatísticas que mostre dados relevantes sobre os ficheiros 
+existentes como o número de ficheiros de determinado tipo, o tamanho médio dos 
+ficheiros catalogados, o tamanho total ocupado, etc..
+<==== Documentos produzidos ===================================================>
+Nenhum
+<====
+<==== Avaliação ===============================================================>

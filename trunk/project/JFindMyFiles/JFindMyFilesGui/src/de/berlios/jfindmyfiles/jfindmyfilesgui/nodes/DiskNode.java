@@ -21,6 +21,7 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 
 import de.berlios.jfindmyfiles.catalog.entities.Media;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionSearchForItems;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.utils.GuiUtils;
 import java.awt.Image;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
@@ -36,9 +37,11 @@ import org.openide.util.lookup.Lookups;
 public class DiskNode extends AbstractNode {
 
     private SystemAction[] sysact;
-
+    private Media media;
+    
     public DiskNode(Media media) {
         super(Children.LEAF);
+        this.media = media;
         setName(media.getName());
 
         Lookup lo = Lookups.forPath("/Actions");//TODO: sort actions correctly and add separators
@@ -47,8 +50,8 @@ public class DiskNode extends AbstractNode {
 
     @Override
     public Image getIcon(int type) {
-        //TODO: depending on the  type of media give the right icon
-        return Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-drive-optical.png"); // NOI18N
+        //return Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-drive-optical.png"); // NOI18N
+        return Utilities.loadImage(GuiUtils.findIconForType(media.getType())); // NOI18N
     }
 
     @Override

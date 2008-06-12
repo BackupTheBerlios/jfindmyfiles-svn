@@ -27,7 +27,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jpExportType" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jpExportOptions" pref="377" max="32767" attributes="0"/>
+                      <Component id="jpExportOptions" pref="389" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jbtnExport" linkSize="1" min="-2" max="-2" attributes="0"/>
@@ -145,13 +145,18 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jlblDestination" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jtfDestination" pref="228" max="32767" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jbtnBrowse" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jchkOpenAfter" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jtfDestination" pref="240" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jbtnBrowse" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -165,7 +170,9 @@
                           <Component id="jbtnBrowse" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jtfDestination" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="266" max="32767" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jchkOpenAfter" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="241" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -195,6 +202,16 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnBrowseActionPerformed"/>
               </Events>
             </Component>
+            <Component class="javax.swing.JCheckBox" name="jchkOpenAfter">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/dialogs/Bundle.properties" key="ExportDlg.jchkOpenAfter.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jchkOpenAfterStateChanged"/>
+              </Events>
+            </Component>
           </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jpTemplateExport">
@@ -216,15 +233,206 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="361" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jpPreview" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jpTemplateDetails" max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jlblTemplateDestination" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jchkTemplateOpenAfter" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jtfTemplateDestination" pref="240" max="32767" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="jbtnTemplateBrowse" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <EmptySpace min="0" pref="300" max="32767" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Component id="jpPreview" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="jpTemplateDetails" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jlblTemplateDestination" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbtnTemplateBrowse" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jtfTemplateDestination" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jchkTemplateOpenAfter" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="91" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="jpPreview">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="Preview">
+                      <ResourceString PropertyName="titleX" bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/dialogs/Bundle.properties" key="ExportDlg.jpPreview.border.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                    </TitledBorder>
+                  </Border>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jlblPreview" alignment="0" pref="158" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jlblPreview" alignment="1" pref="125" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="jlblPreview">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                      <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/dialogs/Bundle.properties" key="ExportDlg.jlblPreview.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                    </Property>
+                    <Property name="horizontalTextPosition" type="int" value="0"/>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JLabel" name="jlblTemplateDestination">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/dialogs/Bundle.properties" key="ExportDlg.jlblTemplateDestination.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jtfTemplateDestination">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/dialogs/Bundle.properties" key="ExportDlg.jtfTemplateDestination.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                </Property>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jbtnTemplateBrowse">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/dialogs/Bundle.properties" key="ExportDlg.jbtnTemplateBrowse.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jbtnTemplateBrowseActionPerformed"/>
+              </Events>
+            </Component>
+            <Container class="javax.swing.JPanel" name="jpTemplateDetails">
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="jsDetailsSeparator" alignment="0" pref="153" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jlblSelectTemplate" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jcbxSelectTemplate" pref="101" max="32767" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jlblTemplateAuthor" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="jlblTemplateAuthorValue" pref="110" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jlblSelectTemplate" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jcbxSelectTemplate" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Component id="jsDetailsSeparator" min="-2" pref="10" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jlblTemplateAuthor" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jlblTemplateAuthorValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace pref="88" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Component class="javax.swing.JLabel" name="jlblSelectTemplate">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                      <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/dialogs/Bundle.properties" key="ExportDlg.jlblSelectTemplate.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="jcbxSelectTemplate">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcbxSelectTemplateActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JSeparator" name="jsDetailsSeparator">
+                </Component>
+                <Component class="javax.swing.JLabel" name="jlblTemplateAuthor">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                      <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/dialogs/Bundle.properties" key="ExportDlg.jlblTemplateAuthor.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                    </Property>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JLabel" name="jlblTemplateAuthorValue">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                      <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/dialogs/Bundle.properties" key="ExportDlg.jlblTemplateAuthorValue.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                    </Property>
+                  </Properties>
+                </Component>
+              </SubComponents>
+            </Container>
+            <Component class="javax.swing.JCheckBox" name="jchkTemplateOpenAfter">
+              <Properties>
+                <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
+                  <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/dialogs/Bundle.properties" key="ExportDlg.jchkTemplateOpenAfter.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jchkTemplateOpenAfterStateChanged"/>
+              </Events>
+            </Component>
+          </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jpProgressBar">
           <Constraints>
@@ -239,7 +447,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                       <Component id="jpbExportProgress" min="-2" pref="282" max="-2" attributes="0"/>
-                      <EmptySpace pref="49" max="32767" attributes="0"/>
+                      <EmptySpace pref="61" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

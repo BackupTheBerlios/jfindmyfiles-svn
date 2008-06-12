@@ -32,6 +32,8 @@
         <property name="description"/>
         <property name="freeSpace"/>
         <property name="location"/>
+        <property name="type"/>
+        
         <set name="loans" table="TBL_LOANS" inverse="true">
             <key column="MEDIA_ID"/>
             <one-to-many class="de.berlios.jfindmyfiles.catalog.entities.Loan"/>
@@ -43,9 +45,7 @@
         <set name="files" inverse="true">
             <key column="MEDIA_ID"/>
             <one-to-many class="de.berlios.jfindmyfiles.catalog.entities.FileWrapper"/>
-        </set>
-
-        <many-to-one name="type" class="de.berlios.jfindmyfiles.catalog.entities.Type" column="TYPE_ID" not-null="true" lazy="false"/>
+        </set> 
         
         <join table="TBL_GROUP_MEDIA" optional="true">
             <key column="MEDIA_ID"/>

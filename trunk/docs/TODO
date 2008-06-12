@@ -17,7 +17,6 @@ Iteração 2:
 	- Abrir catálogo
 	- Fechar catálogo
 	- Manter registo de catálogos recentes
-	- OpenCatalogDlg - Janela de diálogo que permite abrir catálogos existentes.
 - Menus:?
 	
 Iteração 3:
@@ -31,7 +30,6 @@ Iteração 5:
 	- menus de contexto sensíveis
 
 Iteração 6:
-	- exportar dados para XML
 	- exportar dados para CSV
 	- importar dados de XML
 	- importar dados de outra base de dados

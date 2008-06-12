@@ -25,4 +25,14 @@ como no sistema Hibernate. Assim considera-se o uso de apenas dois caracteres
 como pertencentes a expressções regulares, o asterisco, *, e o ponto de 
 interrogação, ?.
 NOTA:::::: O sistema hibernate faz o mesmo que estes caracteres através do padarão de matching!!!!
+
+Não será possível saber se um ficheiro existe sem o tentar abrir, ou pelo menos 
+sem criar um objecto do tipo File e usar os seus métodos para verificar a 
+existência do ficheiro. Assim, não será possível activar ou desactivar a opção 
+de abrir um determinado ficheiro quando o mesmo está disponível ou indisponível.
+Esta opção será implementada de outra forma, em vez de activar ou desactivar as 
+interfaces com o utilizador dependendo da disponibilidade dos ficheiros, as 
+opções estarão sempre disponíveis, sendo que, quando o utilizador tentar abrir 
+um determinado ficheiro, é verificado se o ficheiro se encontra ou não presente 
+para ser aberto.
 <==== Avaliação ===============================================================>

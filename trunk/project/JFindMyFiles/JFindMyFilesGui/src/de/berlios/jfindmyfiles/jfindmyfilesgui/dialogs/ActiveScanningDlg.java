@@ -54,11 +54,20 @@ public class ActiveScanningDlg extends javax.swing.JDialog implements ReadingLis
         jbtnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
+        setUndecorated(true);
 
         jpbReadingProgress.setIndeterminate(true);
+        jpbReadingProgress.setString(org.openide.util.NbBundle.getMessage(ActiveScanningDlg.class, "ActiveScanningDlg.jpbReadingProgress.string")); // NOI18N
+        jpbReadingProgress.setStringPainted(true);
 
         jbtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/button-stop.png"))); // NOI18N
         jbtnCancel.setText(org.openide.util.NbBundle.getMessage(ActiveScanningDlg.class, "ActiveScanningDlg.jbtnCancel.text")); // NOI18N
+        jbtnCancel.setFocusPainted(false);
+        jbtnCancel.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        jbtnCancel.setMaximumSize(new java.awt.Dimension(20, 19));
+        jbtnCancel.setMinimumSize(new java.awt.Dimension(20, 19));
+        jbtnCancel.setPreferredSize(new java.awt.Dimension(20, 19));
         jbtnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnCancelActionPerformed(evt);
@@ -69,20 +78,20 @@ public class ActiveScanningDlg extends javax.swing.JDialog implements ReadingLis
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpbReadingProgress, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                .addComponent(jpbReadingProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jbtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jpbReadingProgress, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
-                    .addComponent(jbtnCancel, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jpbReadingProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
 
@@ -111,7 +120,8 @@ private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }
 
     public void readingAborted(ReadingEvent evt) {
-        Lookup.getDefault().lookup(MediaReader.class).removeListener(this);
-        dispose();
+        /*Lookup.getDefault().lookup(MediaReader.class).removeListener(this);
+        dispose();*/
+        readingStopped(evt);
     }
 }

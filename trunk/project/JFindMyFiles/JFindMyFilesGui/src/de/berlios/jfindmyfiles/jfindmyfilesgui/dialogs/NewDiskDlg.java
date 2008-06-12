@@ -24,6 +24,7 @@ import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
 import de.berlios.jfindmyfiles.readingfiles.MediaReader;
 import de.berlios.jfindmyfiles.readingfiles.ReadingEvent;
 import de.berlios.jfindmyfiles.readingfiles.ReadingListener;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
@@ -102,7 +103,10 @@ public class NewDiskDlg extends javax.swing.JDialog implements ReadingListener {
         }
         toggle = new JToggleButton();
         toggle.setIcon(new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x22/button-folder.png"))); // NOI18N
-
+        toggle.setMaximumSize(new Dimension(100, 24));
+        toggle.setMinimumSize(new Dimension(24, 24));
+        toggle.setSize(toggle.getWidth(), 24);
+        
         toggle.setHorizontalTextPosition(SwingConstants.CENTER);
         toggle.setVerticalTextPosition(SwingConstants.BOTTOM);
         toggle.addActionListener(new ActionListener() {
@@ -363,7 +367,7 @@ private void jbtnScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     MediaReader r = Lookup.getDefault().lookup(MediaReader.class);
     r.addListener(scanningDlg);
     r.addListener(this);
-    r.read(new File(currentSelectedPath), calculateHash, isMedia, jtfDiskName.getText().trim(), (DiskGroup) jcbxCatalog.getSelectedItem(), null);
+    r.read(new File(currentSelectedPath), calculateHash, isMedia, jtfDiskName.getText().trim(), (DiskGroup) jcbxCatalog.getSelectedItem());
 
 }//GEN-LAST:event_jbtnScanActionPerformed
 
