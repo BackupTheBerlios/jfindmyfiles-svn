@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 import org.openide.util.Exceptions;
+import org.openide.util.NbPreferences;
 
 /**
  *
@@ -28,6 +29,7 @@ public class PluginCache {
 
     private void loadPlugins() {
         try {
+            //NbPreferences.forModule(PluginsPanel.class).get("PluginFolder", "");
             File f = new File("C:\\Documents and Settings\\Knitter\\Desktop\\PLGIN\\");
             String s = "pluginapi.AntMovieCatalogerPlugin";
             URLClassLoader ucl = new URLClassLoader(new URL[]{f.toURI().toURL()}, ClassLoader.getSystemClassLoader());

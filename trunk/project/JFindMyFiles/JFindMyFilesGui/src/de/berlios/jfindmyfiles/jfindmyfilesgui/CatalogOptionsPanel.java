@@ -37,7 +37,6 @@ final class CatalogOptionsPanel extends javax.swing.JPanel {
      * @param state true/false for activating and deactivating the components.
      */
     private void serverOptionsStateChanged(boolean state) {
-        jpDatabaseSettings.setEnabled(state);
         //Labels
         jlblDatabase.setEnabled(state);
         jlblHostname.setEnabled(state);
@@ -65,18 +64,19 @@ final class CatalogOptionsPanel extends javax.swing.JPanel {
         jchkUserinternalDB = new javax.swing.JCheckBox();
         jlblDefaultLocation = new javax.swing.JLabel();
         jtfDefaultLocation = new javax.swing.JTextField();
-        jpDatabaseSettings = new javax.swing.JPanel();
+        jbtnBrowse = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
         jlblHostname = new javax.swing.JLabel();
         jtfHostname = new javax.swing.JTextField();
-        jlblUsername = new javax.swing.JLabel();
-        jtfUsername = new javax.swing.JTextField();
         jlblPort = new javax.swing.JLabel();
         jffPort = new javax.swing.JFormattedTextField();
+        jlblUsername = new javax.swing.JLabel();
         jlblPassword = new javax.swing.JLabel();
         jlblDatabase = new javax.swing.JLabel();
-        jcbxDatabase = new javax.swing.JComboBox();
+        jtfUsername = new javax.swing.JTextField();
         jpfPassword = new javax.swing.JPasswordField();
-        jbtnBrowse = new javax.swing.JButton();
+        jcbxDatabase = new javax.swing.JComboBox();
 
         jchkUserinternalDB.setSelected(true);
         org.openide.awt.Mnemonics.setLocalizedText(jchkUserinternalDB, org.openide.util.NbBundle.getMessage(CatalogOptionsPanel.class, "CatalogOptionsPanel.jchkUserinternalDB.text")); // NOI18N
@@ -90,8 +90,14 @@ final class CatalogOptionsPanel extends javax.swing.JPanel {
 
         jtfDefaultLocation.setText(org.openide.util.NbBundle.getMessage(CatalogOptionsPanel.class, "CatalogOptionsPanel.jtfDefaultLocation.text")); // NOI18N
 
-        jpDatabaseSettings.setBorder(javax.swing.BorderFactory.createTitledBorder("Server "));
-        jpDatabaseSettings.setEnabled(false);
+        org.openide.awt.Mnemonics.setLocalizedText(jbtnBrowse, org.openide.util.NbBundle.getMessage(CatalogOptionsPanel.class, "CatalogOptionsPanel.jbtnBrowse.text")); // NOI18N
+        jbtnBrowse.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnBrowseActionPerformed(evt);
+            }
+        });
+
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(CatalogOptionsPanel.class, "CatalogOptionsPanel.jLabel1.text")); // NOI18N
 
         org.openide.awt.Mnemonics.setLocalizedText(jlblHostname, org.openide.util.NbBundle.getMessage(CatalogOptionsPanel.class, "CatalogOptionsPanel.jlblHostname.text")); // NOI18N
         jlblHostname.setEnabled(false);
@@ -99,15 +105,13 @@ final class CatalogOptionsPanel extends javax.swing.JPanel {
         jtfHostname.setAutoscrolls(false);
         jtfHostname.setEnabled(false);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jlblUsername, org.openide.util.NbBundle.getMessage(CatalogOptionsPanel.class, "CatalogOptionsPanel.jlblUsername.text")); // NOI18N
-        jlblUsername.setEnabled(false);
-
-        jtfUsername.setEnabled(false);
-
         org.openide.awt.Mnemonics.setLocalizedText(jlblPort, org.openide.util.NbBundle.getMessage(CatalogOptionsPanel.class, "CatalogOptionsPanel.jlblPort.text")); // NOI18N
         jlblPort.setEnabled(false);
 
         jffPort.setEnabled(false);
+
+        org.openide.awt.Mnemonics.setLocalizedText(jlblUsername, org.openide.util.NbBundle.getMessage(CatalogOptionsPanel.class, "CatalogOptionsPanel.jlblUsername.text")); // NOI18N
+        jlblUsername.setEnabled(false);
 
         org.openide.awt.Mnemonics.setLocalizedText(jlblPassword, org.openide.util.NbBundle.getMessage(CatalogOptionsPanel.class, "CatalogOptionsPanel.jlblPassword.text")); // NOI18N
         jlblPassword.setEnabled(false);
@@ -115,84 +119,53 @@ final class CatalogOptionsPanel extends javax.swing.JPanel {
         org.openide.awt.Mnemonics.setLocalizedText(jlblDatabase, org.openide.util.NbBundle.getMessage(CatalogOptionsPanel.class, "CatalogOptionsPanel.jlblDatabase.text")); // NOI18N
         jlblDatabase.setEnabled(false);
 
-        jcbxDatabase.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Firebird", "PostgreSQL", "MsSQL", "MySQL" }));
-        jcbxDatabase.setEnabled(false);
+        jtfUsername.setEnabled(false);
 
         jpfPassword.setEnabled(false);
 
-        org.jdesktop.layout.GroupLayout jpDatabaseSettingsLayout = new org.jdesktop.layout.GroupLayout(jpDatabaseSettings);
-        jpDatabaseSettings.setLayout(jpDatabaseSettingsLayout);
-        jpDatabaseSettingsLayout.setHorizontalGroup(
-            jpDatabaseSettingsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jpDatabaseSettingsLayout.createSequentialGroup()
-                .addContainerGap()
-                .add(jpDatabaseSettingsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jpDatabaseSettingsLayout.createSequentialGroup()
-                        .add(jpDatabaseSettingsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(jlblPassword)
-                            .add(jlblHostname)
-                            .add(jlblUsername))
-                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jpDatabaseSettingsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                            .add(org.jdesktop.layout.GroupLayout.TRAILING, jtfHostname, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 211, Short.MAX_VALUE)
-                            .add(jpDatabaseSettingsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                                .add(org.jdesktop.layout.GroupLayout.LEADING, jpfPassword)
-                                .add(org.jdesktop.layout.GroupLayout.LEADING, jtfUsername, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                                .add(org.jdesktop.layout.GroupLayout.LEADING, jpDatabaseSettingsLayout.createSequentialGroup()
-                                    .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                    .add(jcbxDatabase, 0, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                    .add(jlblDatabase))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(jlblPort)
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jffPort, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 42, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jpDatabaseSettingsLayout.setVerticalGroup(
-            jpDatabaseSettingsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jpDatabaseSettingsLayout.createSequentialGroup()
-                .add(jpDatabaseSettingsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jlblHostname)
-                    .add(jffPort, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                    .add(jlblPort)
-                    .add(jtfHostname, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jpDatabaseSettingsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jlblUsername)
-                    .add(jtfUsername, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jpDatabaseSettingsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(jlblPassword)
-                    .add(jpfPassword, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                .add(jpDatabaseSettingsLayout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(jlblDatabase)
-                    .add(jcbxDatabase, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(42, Short.MAX_VALUE))
-        );
-
-        org.openide.awt.Mnemonics.setLocalizedText(jbtnBrowse, org.openide.util.NbBundle.getMessage(CatalogOptionsPanel.class, "CatalogOptionsPanel.jbtnBrowse.text")); // NOI18N
+        jcbxDatabase.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Firebird", "PostgreSQL", "MsSQL", "MySQL" }));
+        jcbxDatabase.setEnabled(false);
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .add(24, 24, 24)
-                        .add(jpDatabaseSettings, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .add(org.jdesktop.layout.GroupLayout.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
+                .addContainerGap()
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jchkUserinternalDB)
+                    .add(layout.createSequentialGroup()
+                        .add(12, 12, 12)
+                        .add(jlblDefaultLocation)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jtfDefaultLocation, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                        .add(6, 6, 6)
+                        .add(jbtnBrowse))
+                    .add(layout.createSequentialGroup()
+                        .add(jLabel1)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE))
+                    .add(layout.createSequentialGroup()
+                        .add(10, 10, 10)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
-                                .add(12, 12, 12)
-                                .add(jlblDefaultLocation)
+                                .add(jlblHostname)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jtfDefaultLocation, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
-                                .add(6, 6, 6)
-                                .add(jbtnBrowse))
-                            .add(jchkUserinternalDB))))
+                                .add(jtfHostname, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
+                            .add(layout.createSequentialGroup()
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                                    .add(jlblPassword)
+                                    .add(jlblUsername)
+                                    .add(jlblDatabase))
+                                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                                    .add(jpfPassword, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                                    .add(jcbxDatabase, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 166, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                                    .add(jtfUsername, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))))
+                        .add(18, 18, 18)
+                        .add(jlblPort)
+                        .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                        .add(jffPort, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 42, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -205,9 +178,29 @@ final class CatalogOptionsPanel extends javax.swing.JPanel {
                     .add(jlblDefaultLocation)
                     .add(jtfDefaultLocation, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jbtnBrowse))
-                .add(11, 11, 11)
-                .add(jpDatabaseSettings, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .add(26, 26, 26)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(jLabel1)
+                    .add(jSeparator1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 10, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jlblHostname)
+                    .add(jffPort, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(jlblPort)
+                    .add(jtfHostname, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jlblUsername)
+                    .add(jtfUsername, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jlblPassword)
+                    .add(jpfPassword, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jlblDatabase)
+                    .add(jcbxDatabase, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -216,6 +209,10 @@ private void jchkUserinternalDBStateChanged(javax.swing.event.ChangeEvent evt) {
     jbtnBrowse.setEnabled(jchkUserinternalDB.isSelected());
     jtfDefaultLocation.setEnabled(jchkUserinternalDB.isSelected());
 }//GEN-LAST:event_jchkUserinternalDBStateChanged
+
+private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBrowseActionPerformed
+// TODO add your handling code here:
+}//GEN-LAST:event_jbtnBrowseActionPerformed
     void load() {
     // TODO read settings and initialize GUI
     // Example:        
@@ -242,6 +239,8 @@ private void jchkUserinternalDBStateChanged(javax.swing.event.ChangeEvent evt) {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbtnBrowse;
     private javax.swing.JComboBox jcbxDatabase;
     private javax.swing.JCheckBox jchkUserinternalDB;
@@ -252,7 +251,6 @@ private void jchkUserinternalDBStateChanged(javax.swing.event.ChangeEvent evt) {
     private javax.swing.JLabel jlblPassword;
     private javax.swing.JLabel jlblPort;
     private javax.swing.JLabel jlblUsername;
-    private javax.swing.JPanel jpDatabaseSettings;
     private javax.swing.JPasswordField jpfPassword;
     private javax.swing.JTextField jtfDefaultLocation;
     private javax.swing.JTextField jtfHostname;
