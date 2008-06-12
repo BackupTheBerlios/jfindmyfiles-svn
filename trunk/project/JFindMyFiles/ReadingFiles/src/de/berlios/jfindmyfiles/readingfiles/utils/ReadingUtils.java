@@ -33,7 +33,7 @@ import jonelo.jacksum.algorithm.AbstractChecksum;
 public class ReadingUtils {
 
     /**
-     * Method that, given a file name, will return it's extension.
+     * Method that, given a file name, will return it's extension in lower case.
      * A file extension has little meaning for some operating systems, being 
      * relevant only on Windows OS. Nevertheless it is necessary to determine 
      * the extension of a given file to use on the Description API.
@@ -43,7 +43,7 @@ public class ReadingUtils {
      */
     public static String findExtension(String filename) {
         int x = -1;
-        return ((x = filename.lastIndexOf(".")) > 0 ? filename.substring(x + 1) : "");
+        return ((x = filename.lastIndexOf(".")) > 0 ? filename.substring(x + 1) : "").toLowerCase();
     }
 
     /**

@@ -17,18 +17,14 @@
  *  along with JFindMyFiles.  If not, see 
  * <http://www.gnu.org/licenses/gpl.html>.
  */
-package de.berlios.jfindmyfiles.readingfiles;
+package pluginapi;
 
-import de.berlios.jfindmyfiles.catalog.entities.AudioData;
-import de.berlios.jfindmyfiles.catalog.entities.ImageData;
-import de.berlios.jfindmyfiles.catalog.entities.VideoData;
-import javax.swing.ImageIcon;
+import java.io.File;
 
-public interface DescriptionValues {
+public interface Reader {
     
-    String getTextDescription();
-    ImageIcon getIcon();
-    AudioData getAudioData();
-    VideoData getVideoData();
-    ImageData getThumbnail();
+    String getName();
+    String getAuthor();
+    String pluginFor();
+    DescriptionValues read(File file);   
 }

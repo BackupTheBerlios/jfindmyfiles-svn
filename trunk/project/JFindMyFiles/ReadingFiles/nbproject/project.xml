@@ -41,6 +41,8 @@
             </module-dependencies>
             <public-packages>
                 <package>de.berlios.jfindmyfiles.readingfiles</package>
+                <package>de.berlios.jfindmyfiles.readingfiles.pluginapi</package>
+                <package>de.berlios.jfindmyfiles.readingfiles.plugins</package>
             </public-packages>
         </data>
     </configuration>

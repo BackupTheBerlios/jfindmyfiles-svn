@@ -17,14 +17,14 @@
  *  along with JFindMyFiles.  If not, see 
  * <http://www.gnu.org/licenses/gpl.html>.
  */
-package de.berlios.jfindmyfiles.readingfiles;
+package de.berlios.jfindmyfiles.readingfiles.pluginapi;
 
 import java.io.File;
 
 public interface Reader {
     
     String getName();
-    int getType();
-    void setController(Controller controller);
-    void read(File file);   
+    String getAuthor();
+    String pluginFor();
+    DescriptionValues read(File file);   
 }

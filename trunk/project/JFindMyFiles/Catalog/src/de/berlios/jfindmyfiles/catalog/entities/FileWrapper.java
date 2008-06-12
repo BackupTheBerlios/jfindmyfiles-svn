@@ -66,7 +66,7 @@ public class FileWrapper {
      */
     public FileWrapper(String name, String absolutePath, long size,
             boolean file, boolean hidden, long lastModified, Media disk,
-            FileWrapper parent, String sha1, String extension) {
+            FileWrapper parent, String sha1, String extension, String description) {
         this.name = name;
         this.absolutePath = absolutePath;
         this.size = size;
@@ -77,6 +77,7 @@ public class FileWrapper {
         this.parent = parent;
         this.sha1 = sha1;
         this.extension = extension;
+        this.description = description;
     }
 
     /**

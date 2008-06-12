@@ -23,6 +23,8 @@ import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
 import de.berlios.jfindmyfiles.catalog.entities.FileWrapper;
 import de.berlios.jfindmyfiles.catalog.entities.Media;
+import de.berlios.jfindmyfiles.readingfiles.pluginapi.PluginCache;
+import de.berlios.jfindmyfiles.readingfiles.pluginapi.Reader;
 import de.berlios.jfindmyfiles.readingfiles.utils.ReadingUtils;
 import java.io.File;
 import java.util.Stack;
@@ -47,6 +49,7 @@ public class MediaReader {
             public void run() {
                 fireReadingStarted(new ReadingEvent(me, "", null));
                 Session s = Lookup.getDefault().lookup(CatalogEngine.class).sessionFactory.getCurrentSession();
+                PluginCache cache = Lookup.getDefault().lookup(PluginCache.class);
                 s.beginTransaction();
                 Stack<CompositeFile> directories = new Stack<CompositeFile>();
                 File current, listing[];
@@ -54,6 +57,8 @@ public class MediaReader {
                 long childSize = 0L, totalSize = 0L;
                 FileWrapper fw, temp;
                 int z;
+                String tExt;
+                Reader reader;
                 Media container = new Media();
                 container.setName(mediaName);
                 container.setType(ReadingUtils.findFileType(file.getAbsolutePath()));
@@ -72,7 +77,8 @@ public class MediaReader {
                                     listing[z].isHidden(),
                                     listing[z].lastModified(), container, null,
                                     (sha ? ReadingUtils.calculateSHA1HashString(listing[z]) : ""),
-                                    ReadingUtils.findExtension(listing[z].getName()));
+                                    (tExt = ReadingUtils.findExtension(listing[z].getName())), //TODO: same for other attributes
+                                    (reader = cache.readerFor(tExt)) != null ? reader.read(listing[z]).getDescription() : "");
                             s.save(temp);
                             container.addFile(temp);
                         }
@@ -86,7 +92,7 @@ public class MediaReader {
                     fw = new FileWrapper(current.getName(),
                             current.getAbsolutePath(), 0, current.isFile(),
                             current.isHidden(), current.lastModified(),
-                            container, cf.parent, "", "");//NOTE: should we hash a directory?
+                            container, cf.parent, "", "", "");//NOTE: should we hash a directory?
                     s.save(fw);
                     if ((listing = current.listFiles()) != null) {
                         for (z = listing.length; z-- > 0;) {
@@ -101,7 +107,8 @@ public class MediaReader {
                                         listing[z].isHidden(),
                                         listing[z].lastModified(), container, fw,
                                         (sha ? ReadingUtils.calculateSHA1HashString(listing[z]) : ""),
-                                        ReadingUtils.findExtension(listing[z].getName()));
+                                        (tExt = ReadingUtils.findExtension(listing[z].getName())), //TODO: same for other attributes
+                                        (reader = cache.readerFor(tExt)) != null ? reader.read(listing[z]).getDescription() : "");
                                 s.save(temp);
                                 fw.addChild(temp);
                             }
