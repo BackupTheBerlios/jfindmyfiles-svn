@@ -11,9 +11,9 @@ import org.netbeans.spi.options.OptionsPanelController;
 import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
 
-final class MiscUserOptionsPanelController extends OptionsPanelController {
+final class MiscOptionsPanelController extends OptionsPanelController {
 
-    private MiscUserPanel panel;
+    private MiscPanel panel;
     private final PropertyChangeSupport pcs = new PropertyChangeSupport(this);
     private boolean changed;
 
@@ -56,9 +56,9 @@ final class MiscUserOptionsPanelController extends OptionsPanelController {
         pcs.removePropertyChangeListener(l);
     }
 
-    private MiscUserPanel getPanel() {
+    private MiscPanel getPanel() {
         if (panel == null) {
-            panel = new MiscUserPanel(this);
+            panel = new MiscPanel(this);
         }
         return panel;
     }

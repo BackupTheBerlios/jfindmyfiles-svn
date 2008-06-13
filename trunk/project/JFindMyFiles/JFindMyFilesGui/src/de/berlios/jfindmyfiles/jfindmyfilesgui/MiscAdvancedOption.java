@@ -8,17 +8,17 @@ import org.netbeans.spi.options.AdvancedOption;
 import org.netbeans.spi.options.OptionsPanelController;
 import org.openide.util.NbBundle;
 
-public final class MiscUserAdvancedOption extends AdvancedOption {
+public final class MiscAdvancedOption extends AdvancedOption {
 
     public String getDisplayName() {
-        return NbBundle.getMessage(MiscUserAdvancedOption.class, "AdvancedOption_DisplayName_MiscUser");
+        return NbBundle.getMessage(MiscAdvancedOption.class, "AdvancedOption_DisplayName_MiscUser");
     }
 
     public String getTooltip() {
-        return NbBundle.getMessage(MiscUserAdvancedOption.class, "AdvancedOption_Tooltip_MiscUser");
+        return NbBundle.getMessage(MiscAdvancedOption.class, "AdvancedOption_Tooltip_MiscUser");
     }
 
     public OptionsPanelController create() {
-        return new MiscUserOptionsPanelController();
+        return new MiscOptionsPanelController();
     }
 }

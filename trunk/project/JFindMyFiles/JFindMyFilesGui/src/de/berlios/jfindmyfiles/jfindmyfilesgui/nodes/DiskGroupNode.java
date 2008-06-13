@@ -23,6 +23,7 @@ import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionAddNewDisk;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionAddNewDiskGroup;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionProperties;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionRemoveFromCatalog;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionRenumberDisks;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionScanForDuplicates;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionSearchForItems;
@@ -47,8 +48,8 @@ public class DiskGroupNode extends AbstractNode {
         setName(group.getName());
 
         Lookup lo = Lookups.forPath("/Actions");//TODO: sort actions correctly and add separators
-        sysact = new SystemAction[]{lo.lookup(ActionProperties.class), lo.lookup(ActionRenumberDisks.class),
-                    lo.lookup(ActionScanForDuplicates.class), lo.lookup(ActionSearchForItems.class), 
+        sysact = new SystemAction[]{lo.lookup(ActionRemoveFromCatalog.class), lo.lookup(ActionProperties.class), 
+                    lo.lookup(ActionRenumberDisks.class), lo.lookup(ActionSearchForItems.class), 
                     lo.lookup(ActionAddNewDisk.class), lo.lookup(ActionAddNewDiskGroup.class)
                 };
     }

@@ -95,16 +95,17 @@ public class SearchDlg extends javax.swing.JDialog {
         } else if (casein) { //only case insensitive
             crit.add(Restrictions.ilike("name", sText, MatchMode.ANYWHERE));
         } else { //only in description
-            crit.add(Restrictions.ilike("description", sText, MatchMode.ANYWHERE));
+            crit.add(Restrictions.or(Restrictions.like("name", sText, MatchMode.ANYWHERE),
+                    Restrictions.like("description", sText, MatchMode.ANYWHERE)));
         }
 
-        if (jchkUseReGex.isSelected()) {//NOTE: don't really know if this is necessary.
-            sText = sText.replaceAll("*", "%");
-        }
+        /*if (jchkUseReGex.isSelected()) {//NOTE: don't really know if this is necessary.
+        sText = sText.replaceAll("*", "%");
+        }*/
 
         /*if (jrdbEntireCatalog.isSelected()) {
-            DiskGroup dg = (DiskGroup) jcbxDiskGroups.getSelectedItem();
-            crit.add(Restrictions.eq("disk.group", "" + dg));
+        DiskGroup dg = (DiskGroup) jcbxDiskGroups.getSelectedItem();
+        crit.add(Restrictions.eq("disk.group", "" + dg));
         }*/
 
         for (Object o : crit.list()) {
@@ -162,9 +163,11 @@ public class SearchDlg extends javax.swing.JDialog {
 
         jchkSearchInDesc.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jchkSearchInDesc.text")); // NOI18N
 
+        jchkCaseSensitive.setSelected(true);
         jchkCaseSensitive.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jchkCaseSensitive.text")); // NOI18N
 
         jchkUseReGex.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jchkUseReGex.text")); // NOI18N
+        jchkUseReGex.setEnabled(false);
 
         javax.swing.GroupLayout jpOptionsPanelLayout = new javax.swing.GroupLayout(jpOptionsPanel);
         jpOptionsPanel.setLayout(jpOptionsPanelLayout);
@@ -349,7 +352,6 @@ private void jbtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 private void jbtnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCloseActionPerformed
     dispose();
 }//GEN-LAST:event_jbtnCloseActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup btngrpScope;
     private javax.swing.JButton jbtnClose;

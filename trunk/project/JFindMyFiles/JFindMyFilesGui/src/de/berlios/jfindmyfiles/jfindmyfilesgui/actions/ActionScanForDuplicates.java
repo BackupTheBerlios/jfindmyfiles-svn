@@ -22,11 +22,16 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
+import org.openide.windows.TopComponent;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.DuplicateResultsTopComponent;
 
 public final class ActionScanForDuplicates extends CallableSystemAction {
 
     public void performAction() {
-    // TODO implement action body
+        TopComponent win = DuplicateResultsTopComponent.findInstance();
+        win.open();
+        win.requestActive();
+        ((DuplicateResultsTopComponent)win).startSearching();//TODO: get hash from selected files
     }
 
     public String getName() {

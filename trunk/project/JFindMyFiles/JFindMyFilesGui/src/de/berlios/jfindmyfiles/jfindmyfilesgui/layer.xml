@@ -34,7 +34,7 @@
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionExport.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionImport.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionNewCatalog.instance"/>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpen.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpenCatalog.instance"/>
         </folder>
         <folder name="Help">
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionHelpIndex.instance"/>
@@ -49,6 +49,7 @@
         </folder>
         <folder name="Window">
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-DetailsViewAction.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-DuplicateResultsAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-NavigationTreeAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionDescriptionWindow.instance"/>
         </folder>
@@ -147,7 +148,7 @@
                 <attr name="position" intvalue="1300"/>
             </file>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpen.shadow">
-                <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpen.instance"/>
+                <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpenCatalog.instance"/>
                 <attr name="position" intvalue="1325"/>
             </file>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-separatorAfter.instance">
@@ -212,6 +213,9 @@
                 <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-DetailsViewAction.instance"/>
             </file>
             <file name="DocumentsAction.shadow_hidden"/>
+            <file name="DuplicateResultsAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-DuplicateResultsAction.instance"/>
+            </file>
             <file name="NavigationTreeAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-NavigationTreeAction.instance"/>
             </file>
@@ -230,11 +234,12 @@
     </folder>
     <folder name="OptionsDialog">
         <folder name="Advanced">
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-MiscUserAdvancedOption.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-MiscAdvancedOption.instance"/>
         </folder>
         <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-CatalogOptionsCategory.instance"/>
         <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-PluginsOptionsCategory.instance"/>
     </folder>
+    <folder name="Recent"/>
     <folder name="Shortcuts">
         <file name="S-F.shadow">
             <attr name="originalFile" stringvalue="Actions/Search/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionSearchForItems.instance"/>
@@ -243,7 +248,7 @@
             <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionNewCatalog.instance"/>
         </file>
         <file name="S-O.shadow">
-            <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpen.instance"/>
+            <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpenCatalog.instance"/>
         </file>
     </folder>
     <folder name="Toolbars">
@@ -256,6 +261,7 @@
     <folder name="Windows2">
         <folder name="Components">
             <file name="DetailsViewTopComponent.settings" url="DetailsViewTopComponentSettings.xml"/>
+            <file name="DuplicateResultsTopComponent.settings" url="DuplicateResultsTopComponentSettings.xml"/>
             <file name="NavigationTreeTopComponent.settings" url="NavigationTreeTopComponentSettings.xml"/>
         </folder>
         <folder name="Modes">
@@ -264,6 +270,9 @@
             </folder>
             <folder name="leftSlidingSide">
                 <file name="NavigationTreeTopComponent.wstcref" url="NavigationTreeTopComponentWstcref.xml"/>
+            </folder>
+            <folder name="output">
+                <file name="DuplicateResultsTopComponent.wstcref" url="DuplicateResultsTopComponentWstcref.xml"/>
             </folder>
         </folder>
     </folder>

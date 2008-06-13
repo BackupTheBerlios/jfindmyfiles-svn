@@ -20,6 +20,8 @@
 package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 
 import de.berlios.jfindmyfiles.catalog.entities.Media;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionRemoveFromCatalog;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionScanForDuplicates;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionSearchForItems;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.utils.GuiUtils;
 import java.awt.Image;
@@ -38,14 +40,14 @@ public class DiskNode extends AbstractNode {
 
     private SystemAction[] sysact;
     private Media media;
-    
+
     public DiskNode(Media media) {
         super(Children.LEAF);
         this.media = media;
         setName(media.getName());
 
         Lookup lo = Lookups.forPath("/Actions");//TODO: sort actions correctly and add separators
-        sysact = new SystemAction[]{lo.lookup(ActionSearchForItems.class)};
+        sysact = new SystemAction[]{lo.lookup(ActionRemoveFromCatalog.class), lo.lookup(ActionSearchForItems.class)};
     }
 
     @Override

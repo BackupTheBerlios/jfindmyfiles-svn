@@ -25,7 +25,7 @@ import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
 import org.openide.windows.WindowManager;
 
-public final class ActionOpen extends CallableSystemAction {
+public final class ActionOpenCatalog extends CallableSystemAction {
 
     public void performAction() {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -36,7 +36,7 @@ public final class ActionOpen extends CallableSystemAction {
     }
 
     public String getName() {
-        return NbBundle.getMessage(ActionOpen.class, "CTL_ActionOpen");
+        return NbBundle.getMessage(ActionOpenCatalog.class, "CTL_ActionOpen");
     }
 
     @Override

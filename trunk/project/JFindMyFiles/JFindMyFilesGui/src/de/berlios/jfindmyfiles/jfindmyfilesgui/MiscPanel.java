@@ -7,11 +7,11 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
 import org.openide.util.NbPreferences;
 
-final class MiscUserPanel extends javax.swing.JPanel {
+final class MiscPanel extends javax.swing.JPanel {
 
-    private final MiscUserOptionsPanelController controller;
+    private final MiscOptionsPanelController controller;
 
-    MiscUserPanel(MiscUserOptionsPanelController controller) {
+    MiscPanel(MiscOptionsPanelController controller) {
         this.controller = controller;
         initComponents();
         // TODO listen to changes in form fields and call controller.changed()
@@ -40,30 +40,30 @@ final class MiscUserPanel extends javax.swing.JPanel {
         jspRememberCatalogs = new javax.swing.JSpinner();
         jlblDisabeRememberCatalogsTip = new javax.swing.JLabel();
 
-        org.openide.awt.Mnemonics.setLocalizedText(jlblUserDataTitle, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jlblUserDataTitle.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jlblUserDataTitle, org.openide.util.NbBundle.getMessage(MiscPanel.class, "MiscPanel.jlblUserDataTitle.text")); // NOI18N
 
-        jtfUserName.setText(org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jtfUserName.text")); // NOI18N
+        jtfUserName.setText(org.openide.util.NbBundle.getMessage(MiscPanel.class, "MiscPanel.jtfUserName.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(jlblUserName, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jlblUserName.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jlblUserName, org.openide.util.NbBundle.getMessage(MiscPanel.class, "MiscPanel.jlblUserName.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(jlblEmail, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jlblEmail.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jlblEmail, org.openide.util.NbBundle.getMessage(MiscPanel.class, "MiscPanel.jlblEmail.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(jlblWebAddress, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jlblWebAddress.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jlblWebAddress, org.openide.util.NbBundle.getMessage(MiscPanel.class, "MiscPanel.jlblWebAddress.text")); // NOI18N
 
-        jtfEmail.setText(org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jtfEmail.text")); // NOI18N
+        jtfEmail.setText(org.openide.util.NbBundle.getMessage(MiscPanel.class, "MiscPanel.jtfEmail.text")); // NOI18N
 
-        jtfWebAddress.setText(org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jtfWebAddress.text")); // NOI18N
+        jtfWebAddress.setText(org.openide.util.NbBundle.getMessage(MiscPanel.class, "MiscPanel.jtfWebAddress.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(jlblBehaviorTitle, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jlblBehaviorTitle.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jlblBehaviorTitle, org.openide.util.NbBundle.getMessage(MiscPanel.class, "MiscPanel.jlblBehaviorTitle.text")); // NOI18N
 
         jchkConfirmExit.setSelected(true);
-        org.openide.awt.Mnemonics.setLocalizedText(jchkConfirmExit, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jchkConfirmExit.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jchkConfirmExit, org.openide.util.NbBundle.getMessage(MiscPanel.class, "MiscPanel.jchkConfirmExit.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(jlblRememberedCatalogs, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jlblRememberedCatalogs.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jlblRememberedCatalogs, org.openide.util.NbBundle.getMessage(MiscPanel.class, "MiscPanel.jlblRememberedCatalogs.text")); // NOI18N
 
         jspRememberCatalogs.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
 
-        org.openide.awt.Mnemonics.setLocalizedText(jlblDisabeRememberCatalogsTip, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jlblDisabeRememberCatalogsTip.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jlblDisabeRememberCatalogsTip, org.openide.util.NbBundle.getMessage(MiscPanel.class, "MiscPanel.jlblDisabeRememberCatalogsTip.text")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -145,19 +145,19 @@ final class MiscUserPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     void load() {
-        jtfUserName.setText(NbPreferences.forModule(MiscUserPanel.class).get("name", ""));
-        jtfEmail.setText(NbPreferences.forModule(MiscUserPanel.class).get("email", ""));
-        jtfWebAddress.setText(NbPreferences.forModule(MiscUserPanel.class).get("web", ""));
-        jchkConfirmExit.setSelected(NbPreferences.forModule(MiscUserPanel.class).getBoolean("confirmexit", true));
-        jspRememberCatalogs.setValue(NbPreferences.forModule(MiscUserPanel.class).getInt("remembered", 3));
+        jtfUserName.setText(NbPreferences.forModule(MiscPanel.class).get("name", ""));
+        jtfEmail.setText(NbPreferences.forModule(MiscPanel.class).get("email", ""));
+        jtfWebAddress.setText(NbPreferences.forModule(MiscPanel.class).get("web", ""));
+        jchkConfirmExit.setSelected(NbPreferences.forModule(MiscPanel.class).getBoolean("confirmexit", true));
+        jspRememberCatalogs.setValue(NbPreferences.forModule(MiscPanel.class).getInt("remembered", 3));
     }
 
     void store() {
-        NbPreferences.forModule(MiscUserPanel.class).put("name", jtfUserName.getText().trim());
-        NbPreferences.forModule(MiscUserPanel.class).put("email", jtfEmail.getText().trim());
-        NbPreferences.forModule(MiscUserPanel.class).put("web", jtfWebAddress.getText().trim());
-        NbPreferences.forModule(MiscUserPanel.class).putBoolean("confirmexit", jchkConfirmExit.isSelected());
-        NbPreferences.forModule(MiscUserPanel.class).putInt("remembered", ((Integer)jspRememberCatalogs.getValue()).intValue());
+        NbPreferences.forModule(MiscPanel.class).put("name", jtfUserName.getText().trim());
+        NbPreferences.forModule(MiscPanel.class).put("email", jtfEmail.getText().trim());
+        NbPreferences.forModule(MiscPanel.class).put("web", jtfWebAddress.getText().trim());
+        NbPreferences.forModule(MiscPanel.class).putBoolean("confirmexit", jchkConfirmExit.isSelected());
+        NbPreferences.forModule(MiscPanel.class).putInt("remembered", ((Integer)jspRememberCatalogs.getValue()).intValue());
     }
 
     boolean valid() {

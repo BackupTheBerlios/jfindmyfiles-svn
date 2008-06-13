@@ -183,6 +183,7 @@
             </Component>
             <Component class="javax.swing.JCheckBox" name="jchkCaseSensitive">
               <Properties>
+                <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/dialogs/Bundle.properties" key="SearchDlg.jchkCaseSensitive.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </Property>
@@ -193,6 +194,7 @@
                 <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
                   <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/dialogs/Bundle.properties" key="SearchDlg.jchkUseReGex.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
                 </Property>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
             </Component>
           </SubComponents>
