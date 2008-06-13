@@ -17,8 +17,13 @@
  *  along with JFindMyFiles.  If not, see 
  * <http://www.gnu.org/licenses/gpl.html>.
  */
-
 package de.berlios.jfindmyfiles.jfindmyfilesgui;
+
+import de.berlios.jfindmyfiles.catalog.CatalogConstants;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.JFileChooser;
+import org.openide.util.NbPreferences;
 
 final class CatalogOptionsPanel extends javax.swing.JPanel {
 
@@ -27,7 +32,19 @@ final class CatalogOptionsPanel extends javax.swing.JPanel {
     CatalogOptionsPanel(CatalogOptionsPanelController controller) {
         this.controller = controller;
         initComponents();
-        // TODO listen to changes in form fields and call controller.changed()
+    // TODO listen to changes in form fields and call controller.changed()
+         /*   jbtnBrowse.addActionListener(new ActionListener() {
+    
+    public void actionPerformed(ActionEvent e) {
+    //throw new UnsupportedOperationException("Not supported yet.");
+    }
+    });
+    jtfDefaultLocation.setEnabled(jchkUserinternalDB.isSelected());
+    jtfHostname.setEnabled(state);
+    jtfUsername.setEnabled(state);
+    jpfPassword.setEnabled(state);
+    jffPort.setEnabled(state);
+    jcbxDatabase.setEnabled(state);*/
     }
 
     /**
@@ -44,15 +61,17 @@ final class CatalogOptionsPanel extends javax.swing.JPanel {
         jlblPassword.setEnabled(state);
         jlblPort.setEnabled(state);
         jlblUsername.setEnabled(state);
-        
+
         //Inputs
         jtfHostname.setEnabled(state);
         jtfUsername.setEnabled(state);
         jpfPassword.setEnabled(state);
         jffPort.setEnabled(state);
         jcbxDatabase.setEnabled(state);
-    }    
-    
+        jbtnBrowse.setEnabled(!state);
+        jtfDefaultLocation.setEnabled(!state);
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -144,14 +163,14 @@ final class CatalogOptionsPanel extends javax.swing.JPanel {
                     .add(layout.createSequentialGroup()
                         .add(jLabel1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 385, Short.MAX_VALUE))
+                        .add(jSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .add(10, 10, 10)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                             .add(layout.createSequentialGroup()
                                 .add(jlblHostname)
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                                .add(jtfHostname, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))
+                                .add(jtfHostname, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))
                             .add(layout.createSequentialGroup()
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
                                     .add(jlblPassword)
@@ -159,9 +178,9 @@ final class CatalogOptionsPanel extends javax.swing.JPanel {
                                     .add(jlblDatabase))
                                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                                    .add(jpfPassword, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE)
+                                    .add(jpfPassword, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
                                     .add(jcbxDatabase, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 166, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                                    .add(jtfUsername, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 267, Short.MAX_VALUE))))
+                                    .add(jtfUsername, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))))
                         .add(18, 18, 18)
                         .add(jlblPort)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
@@ -206,35 +225,58 @@ final class CatalogOptionsPanel extends javax.swing.JPanel {
 
 private void jchkUserinternalDBStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jchkUserinternalDBStateChanged
     serverOptionsStateChanged(!jchkUserinternalDB.isSelected());
-    jbtnBrowse.setEnabled(jchkUserinternalDB.isSelected());
-    jtfDefaultLocation.setEnabled(jchkUserinternalDB.isSelected());
 }//GEN-LAST:event_jchkUserinternalDBStateChanged
 
 private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBrowseActionPerformed
-// TODO add your handling code here:
+    JFileChooser jfc = new JFileChooser(System.getProperty("user.home"));
+    jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+    jfc.setMultiSelectionEnabled(false);
+    if(jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+        jtfDefaultLocation.setText(jfc.getSelectedFile().getAbsolutePath());
+    }
 }//GEN-LAST:event_jbtnBrowseActionPerformed
+    
     void load() {
-    // TODO read settings and initialize GUI
-    // Example:        
-    // someCheckBox.setSelected(Preferences.userNodeForPackage(CatalogOptionsPanel.class).getBoolean("someFlag", false));
-    // or for org.openide.util with API spec. version >= 7.4:
-    // someCheckBox.setSelected(NbPreferences.forModule(CatalogOptionsPanel.class).getBoolean("someFlag", false));
-    // or:
-    // someTextField.setText(SomeSystemOption.getDefault().getSomeStringProperty());
+        jchkUserinternalDB.setSelected(NbPreferences.forModule(CatalogOptionsPanel.class).getBoolean("internaldb", true));
+        jtfDefaultLocation.setText(NbPreferences.forModule(CatalogOptionsPanel.class).get("defaultpath", System.getProperty("user.home")));
+        NbPreferences.forModule(CatalogOptionsPanel.class).get("hostname", jtfHostname.getText().trim());
+        jtfUsername.setText(NbPreferences.forModule(CatalogOptionsPanel.class).get("username", ""));
+        jpfPassword.setText(NbPreferences.forModule(CatalogOptionsPanel.class).get("password", ""));
+        jffPort.setText(String.valueOf(NbPreferences.forModule(CatalogOptionsPanel.class).getInt("port", 0)));
+        switch (NbPreferences.forModule(CatalogOptionsPanel.class).getInt("database", CatalogConstants.LOCAL)) {
+            case CatalogConstants.MSSQL:
+                jcbxDatabase.setSelectedItem("Firebird");
+                break;
+            case CatalogConstants.MYSQL:
+                jcbxDatabase.setSelectedItem("MsSQL");
+                break;
+            case CatalogConstants.POSTGRESQL:
+                jcbxDatabase.setSelectedItem("PostgreSQL");
+                break;
+        }
+        serverOptionsStateChanged(!jchkUserinternalDB.isSelected());
     }
 
     void store() {
-    // TODO store modified settings
-    // Example:
-    // Preferences.userNodeForPackage(CatalogOptionsPanel.class).putBoolean("someFlag", someCheckBox.isSelected());
-    // or for org.openide.util with API spec. version >= 7.4:
-    // NbPreferences.forModule(CatalogOptionsPanel.class).putBoolean("someFlag", someCheckBox.isSelected());
-    // or:
-    // SomeSystemOption.getDefault().setSomeStringProperty(someTextField.getText());
+        NbPreferences.forModule(CatalogOptionsPanel.class).putBoolean("internaldb", jchkUserinternalDB.isSelected());
+        NbPreferences.forModule(CatalogOptionsPanel.class).put("defaultpath", jtfDefaultLocation.getText().trim());
+        NbPreferences.forModule(CatalogOptionsPanel.class).put("hostname", jtfHostname.getText().trim());
+        NbPreferences.forModule(CatalogOptionsPanel.class).put("username", jtfUsername.getText().trim());
+        NbPreferences.forModule(CatalogOptionsPanel.class).put("password", String.valueOf(jpfPassword.getPassword()));
+        NbPreferences.forModule(CatalogOptionsPanel.class).putInt("port", Integer.parseInt(jffPort.getText()));
+        String db = (String) jcbxDatabase.getSelectedItem();
+        NbPreferences.forModule(CatalogOptionsPanel.class).putInt("database", db.equals("Firebird") ? CatalogConstants.FIREBIRD : (db.equals("PostgreSQL") ? CatalogConstants.POSTGRESQL : (db.equals("MsSQL") ? CatalogConstants.MSSQL : CatalogConstants.MYSQL))); // NOI18N
     }
 
     boolean valid() {
-        // TODO check whether form is consistent and complete
+        if (jchkUserinternalDB.isSelected()) {
+            return !jtfDefaultLocation.getText().trim().isEmpty();
+        }
+        if (!jchkUserinternalDB.isSelected()) {
+            return !(jtfHostname.getText().trim().isEmpty() && jtfUsername.getText().trim().isEmpty() 
+                    && jffPort.getText().trim().isEmpty());
+        }
+        //NOTE: This is never executed...
         return true;
     }
 

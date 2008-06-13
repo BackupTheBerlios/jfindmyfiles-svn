@@ -6,6 +6,8 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
 import de.berlios.jfindmyfiles.readingfiles.pluginapi.PluginCache;
 import java.util.List;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableModel;
@@ -22,6 +24,20 @@ final class PluginsPanel extends javax.swing.JPanel {
         cache = Lookup.getDefault().lookup(PluginCache.class);
         initComponents();
     // TODO listen to changes in form fields and call controller.changed()
+        /*jtfPluginFolder.getDocument().addDocumentListener(new DocumentListener() {
+
+            public void insertUpdate(DocumentEvent e) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                throw new UnsupportedOperationException("Not supported yet.");
+            }
+        });*/
     }
 
     /** This method is called from within the constructor to
@@ -102,12 +118,12 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_jbtnBrowseActionPerformed
 
     void load() {
-        jtfPluginFolder.setText(NbPreferences.forModule(PluginsPanel.class).get("PluginFolder","")); // NOI18N
+        jtfPluginFolder.setText(NbPreferences.forModule(PluginCache.class).get("PluginFolder","")); // NOI18N
         //TODO: load plugin definition
     }
 
     void store() {
-        NbPreferences.forModule(PluginsPanel.class).put("PluginFolder", jtfPluginFolder.getText().trim()); // NOI18N
+        NbPreferences.forModule(PluginCache.class).put("PluginFolder", jtfPluginFolder.getText().trim()); // NOI18N
         //TODO: save plugin definition
     }
 

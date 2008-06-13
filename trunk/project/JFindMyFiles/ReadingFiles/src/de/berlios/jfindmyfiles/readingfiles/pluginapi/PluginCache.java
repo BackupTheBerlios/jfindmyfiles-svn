@@ -29,13 +29,16 @@ public class PluginCache {
 
     private void loadPlugins() {
         try {
-            //NbPreferences.forModule(PluginsPanel.class).get("PluginFolder", "");
-            File f = new File("C:\\Documents and Settings\\Knitter\\Desktop\\PLGIN\\");
-            String s = "pluginapi.AntMovieCatalogerPlugin";
-            URLClassLoader ucl = new URLClassLoader(new URL[]{f.toURI().toURL()}, ClassLoader.getSystemClassLoader());
-            Class tClass = Class.forName(s, true, ucl);
-            Reader reader = (Reader) tClass.newInstance();
-            cache.put(reader.pluginFor(), reader);
+            String baseFolder = NbPreferences.forModule(PluginCache.class).get("PluginFolder", "");
+            if (baseFolder != null) {
+                File f = new File(baseFolder);
+                //TODO:
+                String s = "pluginapi.AntMovieCatalogerPlugin";
+                URLClassLoader ucl = new URLClassLoader(new URL[]{f.toURI().toURL()}, ClassLoader.getSystemClassLoader());
+                Class tClass = Class.forName(s, true, ucl);
+                Reader reader = (Reader) tClass.newInstance();
+                cache.put(reader.pluginFor(), reader);
+            }
         } catch (MalformedURLException ex) {
             //TODO: logging
         } catch (ClassNotFoundException ex) {
@@ -50,14 +53,14 @@ public class PluginCache {
     public Reader readerFor(String extension) {
         return cache.get(extension);
     }
-    
+
     public int pluginCount() {
         return cache.size();
     }
-    
+
     public List listAll() {
         ArrayList<Reader> temp = new ArrayList<Reader>();
-        for(Reader r : cache.values()) {
+        for (Reader r : cache.values()) {
             temp.add(r);
         }
         return temp;

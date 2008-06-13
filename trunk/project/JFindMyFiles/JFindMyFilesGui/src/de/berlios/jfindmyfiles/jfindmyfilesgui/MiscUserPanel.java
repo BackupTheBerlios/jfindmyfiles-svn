@@ -5,6 +5,8 @@
 
 package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
+import org.openide.util.NbPreferences;
+
 final class MiscUserPanel extends javax.swing.JPanel {
 
     private final MiscUserOptionsPanelController controller;
@@ -23,42 +25,45 @@ final class MiscUserPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel4 = new javax.swing.JLabel();
+        jlblUserDataTitle = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        jtfUserName = new javax.swing.JTextField();
+        jlblUserName = new javax.swing.JLabel();
+        jlblEmail = new javax.swing.JLabel();
+        jlblWebAddress = new javax.swing.JLabel();
+        jtfEmail = new javax.swing.JTextField();
+        jtfWebAddress = new javax.swing.JTextField();
+        jlblBehaviorTitle = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jLabel6 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
-        jLabel7 = new javax.swing.JLabel();
+        jchkConfirmExit = new javax.swing.JCheckBox();
+        jlblRememberedCatalogs = new javax.swing.JLabel();
+        jspRememberCatalogs = new javax.swing.JSpinner();
+        jlblDisabeRememberCatalogsTip = new javax.swing.JLabel();
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel4, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jLabel4.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jlblUserDataTitle, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jlblUserDataTitle.text")); // NOI18N
 
-        jTextField1.setText(org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jTextField1.text")); // NOI18N
+        jtfUserName.setText(org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jtfUserName.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jLabel1.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jlblUserName, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jlblUserName.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel2, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jLabel2.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jlblEmail, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jlblEmail.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel3, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jLabel3.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jlblWebAddress, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jlblWebAddress.text")); // NOI18N
 
-        jTextField2.setText(org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jTextField2.text")); // NOI18N
+        jtfEmail.setText(org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jtfEmail.text")); // NOI18N
 
-        jTextField3.setText(org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jTextField3.text")); // NOI18N
+        jtfWebAddress.setText(org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jtfWebAddress.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel5, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jLabel5.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jlblBehaviorTitle, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jlblBehaviorTitle.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(jCheckBox1, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jCheckBox1.text")); // NOI18N
+        jchkConfirmExit.setSelected(true);
+        org.openide.awt.Mnemonics.setLocalizedText(jchkConfirmExit, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jchkConfirmExit.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel6, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jLabel6.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jlblRememberedCatalogs, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jlblRememberedCatalogs.text")); // NOI18N
 
-        org.openide.awt.Mnemonics.setLocalizedText(jLabel7, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jLabel7.text")); // NOI18N
+        jspRememberCatalogs.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+
+        org.openide.awt.Mnemonics.setLocalizedText(jlblDisabeRememberCatalogsTip, org.openide.util.NbBundle.getMessage(MiscUserPanel.class, "MiscUserPanel.jlblDisabeRememberCatalogsTip.text")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -71,9 +76,9 @@ final class MiscUserPanel extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
-                                .addComponent(jCheckBox1))
+                                .addComponent(jchkConfirmExit))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
+                                .addComponent(jlblUserDataTitle)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -82,27 +87,27 @@ final class MiscUserPanel extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(9, 9, 9)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel3)))
+                                            .addComponent(jlblEmail)
+                                            .addComponent(jlblWebAddress)))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(10, 10, 10)
-                                        .addComponent(jLabel1)))
+                                        .addComponent(jlblUserName)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
-                                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)))
+                                    .addComponent(jtfUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                                    .addComponent(jtfWebAddress, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)
+                                    .addComponent(jtfEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 229, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
+                                .addComponent(jlblBehaviorTitle)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE))))
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 273, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(28, 28, 28)
-                        .addComponent(jLabel6)
+                        .addComponent(jlblRememberedCatalogs)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jspRememberCatalogs, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel7)))
+                        .addComponent(jlblDisabeRememberCatalogsTip)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -110,74 +115,69 @@ final class MiscUserPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4)
+                    .addComponent(jlblUserDataTitle)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlblUserName)
+                    .addComponent(jtfUserName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlblEmail)
+                    .addComponent(jtfEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jlblWebAddress)
+                    .addComponent(jtfWebAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel5)
+                    .addComponent(jlblBehaviorTitle)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jCheckBox1)
+                .addComponent(jchkConfirmExit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(jlblRememberedCatalogs)
+                    .addComponent(jspRememberCatalogs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlblDisabeRememberCatalogsTip))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     void load() {
-        // TODO read settings and initialize GUI
-        // Example:        
-        // someCheckBox.setSelected(Preferences.userNodeForPackage(MiscUserPanel.class).getBoolean("someFlag", false));
-        // or for org.openide.util with API spec. version >= 7.4:
-        // someCheckBox.setSelected(NbPreferences.forModule(MiscUserPanel.class).getBoolean("someFlag", false));
-        // or:
-        // someTextField.setText(SomeSystemOption.getDefault().getSomeStringProperty());
+        jtfUserName.setText(NbPreferences.forModule(MiscUserPanel.class).get("name", ""));
+        jtfEmail.setText(NbPreferences.forModule(MiscUserPanel.class).get("email", ""));
+        jtfWebAddress.setText(NbPreferences.forModule(MiscUserPanel.class).get("web", ""));
+        jchkConfirmExit.setSelected(NbPreferences.forModule(MiscUserPanel.class).getBoolean("confirmexit", true));
+        jspRememberCatalogs.setValue(NbPreferences.forModule(MiscUserPanel.class).getInt("remembered", 3));
     }
 
     void store() {
-        // TODO store modified settings
-        // Example:
-        // Preferences.userNodeForPackage(MiscUserPanel.class).putBoolean("someFlag", someCheckBox.isSelected());
-        // or for org.openide.util with API spec. version >= 7.4:
-        // NbPreferences.forModule(MiscUserPanel.class).putBoolean("someFlag", someCheckBox.isSelected());
-        // or:
-        // SomeSystemOption.getDefault().setSomeStringProperty(someTextField.getText());
+        NbPreferences.forModule(MiscUserPanel.class).put("name", jtfUserName.getText().trim());
+        NbPreferences.forModule(MiscUserPanel.class).put("email", jtfEmail.getText().trim());
+        NbPreferences.forModule(MiscUserPanel.class).put("web", jtfWebAddress.getText().trim());
+        NbPreferences.forModule(MiscUserPanel.class).putBoolean("confirmexit", jchkConfirmExit.isSelected());
+        NbPreferences.forModule(MiscUserPanel.class).putInt("remembered", ((Integer)jspRememberCatalogs.getValue()).intValue());
     }
 
     boolean valid() {
-        // TODO check whether form is consistent and complete
         return true;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
+    private javax.swing.JCheckBox jchkConfirmExit;
+    private javax.swing.JLabel jlblBehaviorTitle;
+    private javax.swing.JLabel jlblDisabeRememberCatalogsTip;
+    private javax.swing.JLabel jlblEmail;
+    private javax.swing.JLabel jlblRememberedCatalogs;
+    private javax.swing.JLabel jlblUserDataTitle;
+    private javax.swing.JLabel jlblUserName;
+    private javax.swing.JLabel jlblWebAddress;
+    private javax.swing.JSpinner jspRememberCatalogs;
+    private javax.swing.JTextField jtfEmail;
+    private javax.swing.JTextField jtfUserName;
+    private javax.swing.JTextField jtfWebAddress;
     // End of variables declaration//GEN-END:variables
 }
