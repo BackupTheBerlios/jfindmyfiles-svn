@@ -43,6 +43,6 @@ URL: http://xtest.netbeans.org
 BrowserLaunch2 - Executar páginas web no browser do sistema
 HSQLDB - Motor de base de dado em Java
 JCalendar - Widget para mostrar calendários
-iText - Sistema de exportação/impressão
 JFreeChart - Sistema de geração de gráficos
 JExcelApi, utilização por definir.
+jacksum

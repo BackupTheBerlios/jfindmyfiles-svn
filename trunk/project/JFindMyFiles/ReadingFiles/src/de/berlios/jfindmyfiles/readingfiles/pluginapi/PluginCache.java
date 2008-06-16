@@ -4,6 +4,7 @@
  */
 package de.berlios.jfindmyfiles.readingfiles.pluginapi;
 
+import de.berlios.jfindmyfiles.readingfiles.utils.ReadingUtils;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -24,29 +25,58 @@ public class PluginCache {
 
     public PluginCache() {
         cache = new Hashtable<String, Reader>();
-    //loadPlugins();
+        loadPlugins();
     }
 
     private void loadPlugins() {
+        String baseFolder = NbPreferences.forModule(PluginCache.class).get("PluginFolder", 
+                System.getProperty("user.home") + File.pathSeparator + "JFindMyFiles Plugins");
+        
+        Class tClass = null;
+        Reader reader = null;
+        boolean found = false;
+
         try {
-            String baseFolder = NbPreferences.forModule(PluginCache.class).get("PluginFolder", "");
             if (baseFolder != null) {
                 File f = new File(baseFolder);
-                //TODO:
-                String s = "pluginapi.AntMovieCatalogerPlugin";
-                URLClassLoader ucl = new URLClassLoader(new URL[]{f.toURI().toURL()}, ClassLoader.getSystemClassLoader());
-                Class tClass = Class.forName(s, true, ucl);
-                Reader reader = (Reader) tClass.newInstance();
-                cache.put(reader.pluginFor(), reader);
+                if (f.exists() && f.isDirectory()) {
+                    URLClassLoader ucl = new URLClassLoader(new URL[]{f.toURI().toURL()}, ClassLoader.getSystemClassLoader());
+                    File[] flst = f.listFiles();
+                    String[] existing = null;
+                    if (flst != null) {
+                        existing = new String[flst.length];
+                        for (int z = flst.length; z-- > 0;) {
+                            if (ReadingUtils.findExtension(flst[z].getName()).equals("class")) {
+                                existing[z] = ReadingUtils.stripFileExtension(flst[z].getName());
+                                found = true;
+                            }
+                        }
+                    }
+                    if (found) {
+                        for (int z = existing.length; z-- > 0;) {
+                            tClass = Class.forName(existing[z], true, ucl);
+                            reader = (Reader) tClass.newInstance();
+                            cache.put(reader.pluginFor(), reader);
+                        }
+                    }
+                }
             }
+            //Provided plugins. - Could be the same as an URL search
+            tClass = Class.forName("de.berlios.jfindmyfiles.readingfiles.plugins.AntMovieCataloferPlugin");
+            reader = (Reader) tClass.newInstance();
+            cache.put(reader.pluginFor(), reader);
+            
+            tClass = Class.forName("de.berlios.jfindmyfiles.readingfiles.plugins.JPGPlugin");
+            reader = (Reader) tClass.newInstance();
+            cache.put(reader.pluginFor(), reader);
         } catch (MalformedURLException ex) {
             //TODO: logging
         } catch (ClassNotFoundException ex) {
-            Exceptions.printStackTrace(ex);
+            //TODO: logging
         } catch (InstantiationException ex) {
-            Exceptions.printStackTrace(ex);
+            //TODO: logging
         } catch (IllegalAccessException ex) {
-            Exceptions.printStackTrace(ex);
+            //TODO: logging
         }
     }
 
@@ -58,7 +88,7 @@ public class PluginCache {
         return cache.size();
     }
 
-    public List listAll() {
+    public List<Reader> listAll() {
         ArrayList<Reader> temp = new ArrayList<Reader>();
         for (Reader r : cache.values()) {
             temp.add(r);

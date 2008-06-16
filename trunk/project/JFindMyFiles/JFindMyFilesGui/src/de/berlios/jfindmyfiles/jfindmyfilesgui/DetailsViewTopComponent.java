@@ -21,20 +21,22 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
 import java.io.Serializable;
 import java.util.logging.Logger;
+import org.openide.explorer.ExplorerManager;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
-//import org.openide.util.Utilities;
 
+//import org.openide.util.Utilities;
 /**
  * Top component which displays something.
  */
 final class DetailsViewTopComponent extends TopComponent {
 
     private static DetailsViewTopComponent instance;
+    private final ExplorerManager manager = new ExplorerManager();
+    //private final TableView view = new TableView();
     /** path to the icon used by the component and its open action */
 //    static final String ICON_PATH = "SET/PATH/TO/ICON/HERE";
-
     private static final String PREFERRED_ID = "DetailsViewTopComponent";
 
     private DetailsViewTopComponent() {
@@ -65,6 +67,7 @@ final class DetailsViewTopComponent extends TopComponent {
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
     /**
      * Gets default instance. Do not use directly: reserved for *.settings files only,
      * i.e. deserialization routines; otherwise you could get a non-deserialized instance.
@@ -103,12 +106,12 @@ final class DetailsViewTopComponent extends TopComponent {
 
     @Override
     public void componentOpened() {
-    // TODO add custom code on component opening
+        // TODO add custom code on component opening
     }
 
     @Override
     public void componentClosed() {
-    // TODO add custom code on component closing
+        // TODO add custom code on component closing
     }
 
     /** replaces this in object stream */
@@ -130,4 +133,8 @@ final class DetailsViewTopComponent extends TopComponent {
             return DetailsViewTopComponent.getDefault();
         }
     }
+
+    public ExplorerManager getExplorerManager() {
+        return manager;
+    }    
 }

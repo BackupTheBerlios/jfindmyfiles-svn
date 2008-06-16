@@ -269,6 +269,7 @@ public class XML extends ExportEngine {
                     hd.startElement("", "", "description", atts);
                     aux = f.getDescription() != null ? f.getDescription() : "";
                     hd.characters(aux.toCharArray(), 0, aux.length());
+                    hd.endElement("", "", "description");
                     hd.startElement("", "", "hidden", atts);
                     aux = String.valueOf(f.isHidden());
                     hd.characters(aux.toCharArray(), 0, aux.length());

@@ -5,6 +5,9 @@
 package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
 import de.berlios.jfindmyfiles.readingfiles.pluginapi.PluginCache;
+import de.berlios.jfindmyfiles.readingfiles.pluginapi.Reader;
+import de.berlios.jfindmyfiles.readingfiles.utils.ReadingUtils;
+import java.io.File;
 import java.util.List;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -23,21 +26,25 @@ final class PluginsPanel extends javax.swing.JPanel {
         this.controller = controller;
         cache = Lookup.getDefault().lookup(PluginCache.class);
         initComponents();
+        myInitComponents();
     // TODO listen to changes in form fields and call controller.changed()
         /*jtfPluginFolder.getDocument().addDocumentListener(new DocumentListener() {
+    
+    public void insertUpdate(DocumentEvent e) {
+    throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    public void removeUpdate(DocumentEvent e) {
+    throw new UnsupportedOperationException("Not supported yet.");
+    }
+    
+    public void changedUpdate(DocumentEvent e) {
+    throw new UnsupportedOperationException("Not supported yet.");
+    }
+    });*/
+    }
 
-            public void insertUpdate(DocumentEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-            public void removeUpdate(DocumentEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-
-            public void changedUpdate(DocumentEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-        });*/
+    private void myInitComponents() {
     }
 
     /** This method is called from within the constructor to
@@ -142,13 +149,12 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
     private class PluginModel extends AbstractTableModel {
 
-        //TODO: implement model
-        //private List<Reader> values = cache.listAll();
-       
+        private List<Reader> values;
         private int rowCount;
         
         public PluginModel() {
             super();
+            values = cache.listAll();            
             rowCount = cache.pluginCount();
         }
         
@@ -164,7 +170,7 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
         @Override
         public Object getValueAt(int rowIndex, int columnIndex) {
-            /*switch(columnIndex) {
+            switch(columnIndex) {
                 case 0:
                     return values.get(rowIndex).getName();
                 case 1:
@@ -172,8 +178,8 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                 case 2:
                     return values.get(rowIndex).getAuthor();
                 case 3:
-                    return null;//TODO:
-            }*/
+                    return null;//TODO: create an object that can represent if the plugin is active or not
+            }
             return null;
         }
         

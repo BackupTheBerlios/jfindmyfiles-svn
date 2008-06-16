@@ -13,8 +13,9 @@ import org.openide.util.Utilities;
 
 public final class PluginsOptionsCategory extends OptionsCategory {
 
+    @Override
     public Icon getIcon() {
-        return new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x32/options-storage-config.png"));
+        return new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x32/options-plugins.png"));
     }
 
     public String getCategoryName() {

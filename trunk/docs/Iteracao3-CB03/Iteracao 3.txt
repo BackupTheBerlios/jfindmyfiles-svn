@@ -1,7 +1,6 @@
 <==== Objectivos ==============================================================>
 Desenhar uma API que permita obter algumas descrições fornecidas por classes 
 externas que implementem a API.
-
 <==== Documentos produzidos ===================================================>
 
 Spikes:
@@ -11,10 +10,55 @@ Spikes:
 Outros documentos:
 	DecricaoAPI - documento com a descrição da API e principais ideias por 
 	detrás da mesma.
+	example.amc - Ficheiro de Ant Movie Catalog usado para testar a API.
+	DSC00165.JPG - Imagem JPG usada para testar a API
 
 <==== 
-Separada num módulo próprio, será criada uma API através do desenho de uma 
-interface que possa ser implementada por classes que pretendam adicionar 
-informação a ficheiros já conhecidos ou fornecer informação de novos tipos de 
-ficheiros.
+Será criada uma API que possibilite a criação de plugins, classes Java, que 
+consigam fornecer descrições de novos tipos de ficheiros ou acrescentar novas 
+iniformações às descrições já obtidas pela aplicação.
+Esta API fará parte do módulo que permite a leitura e introdução das informações 
+na base de dados.
+
+A API vai ser conseguida através de um conjunto de interfaces que forneçam um 
+contracto com as classes que pretendam adicionar novas descrições, e um 
+conjunto de classes de ajuda, que permitiram verificar quais os plugins 
+existentes, quais os que se encontram activos, etc.
+
+Considera-se que os dados mais importantes a serem lidos são: descrições 
+textuais do ficheiro, não acessíveis através do sistema de ficheiros do sistema 
+operativo; Pequenos excertos do ficheiro, quando se trata de ficheiros 
+multimédia.
+Assim, a API, deverá permitir que um plugin forneça uma descrição em texto, um 
+excerto de video, caso o ficheiro seja um video, um excerto de audio, caso o 
+ficheiro seja um ficheiro de audio, e uma miniatura, caso o ficheiro seja uma 
+imagem.
+
+Um plugin pode ser fornecido com a aplicação, fazendo parte da estrutura de 
+packages da mesma, ou adicionado pelo utilizador. Neste último caso, por omissão 
+a aplicação deverá estabelecer como local predefinido para procurar plugins, uma 
+pasta dentro da pessoal do utilizador. No entanto, deve ser dada oportunidade 
+ao utilizador para definir onde pretende que os plugins seja procurados.
+Daqui se depreende que os plugins são definidos para um utilizador apenas e não 
+serão, por omissão, partilhados por vários utilizadores com acesso ao mesmo 
+computador. Caso se pretenda a partilha ou uso dos mesmos plugins por parte de 
+vários utilizadores, estes terão de configurar, individualmente, a pasta a usar 
+de forma a que todos definam a mesma pasta.
+
+A API deverá permitir que um plugin identifique o tipo de ficheiro que irá ler, 
+através da extensão, o nome do plugin e o nome do autor.
+
+Deverá existir uma interface com o utilizador que permita saber quais os 
+plugins reconhecidos pela aplicação, qual o seu estado, (activo/inactivo), e 
+que permita altera esse estado.
+
+Deverão ser criados, pelo menos, dois tipos de plugins para verificar a 
+viabilidade da API desenhada.
+Um plugin deverá apenas importar apenas a descrição textual de um ficheiro, 
+outro deverá importar uma das descrições multimédia, seja audio, video ou 
+imagem.
 <==== Avaliação ===============================================================>
+Esta iteração revelou-se bastante mais simples que o inicialmente pensado. 
+Muito devido ao facto de, após avaliação das user stories e da experiência que 
+a equiapa de programação tinha com o software de referência, se verificou que 
+seria suficiente limitar o tipo de informação a guardar.

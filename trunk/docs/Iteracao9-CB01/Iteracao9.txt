@@ -1,0 +1,13 @@
+<==== Objectivos ==============================================================>
+Criar um sistema de gestão de empréstimos a utilizadores registados na 
+aplicação. Deverá também ser possível gerir esses utilizadores.
+<==== Documentos produzidos ===================================================>
+Nenhum
+<====
+A gestão de utilizadores e empréstimos deverá conter uma interface própria, 
+sendo suficiente as funcionalidades de adição, remoção e edição de utilizadores, 
+bem como a visualização de empréstimos actuais para um dado utilizador e os 
+empréstimos já terminados.
+Devem existir as mesmas opções de criar, apagar e editar mas no caso de 
+empréstimos.
+<==== Avaliação ===============================================================>

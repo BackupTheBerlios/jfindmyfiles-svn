@@ -1,9 +1,6 @@
 <==== Objectivos ==============================================================>
-CB06: ST11
-- Quero exportar um catálogo completo ou um subconjunto para um conjunto de 
-ficheiros HTML que possam ser colocados on-line ou distribuídos livremente.
-Devem existir personalizações de aspecto que se possam aplicar aos ficheiros 
-criados.
+Pretende-se que seja possível exportar os dados, tendo por base de apresentação 
+um template em HTML.
 <==== Documentos produzidos ===================================================>
 Nenhum
 <====

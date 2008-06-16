@@ -66,6 +66,16 @@ public class ReadingUtils {
         }
     }
 
+    /**
+     * Gets the file type defined by in the catalog constants'.
+     * Some assumptions are made regarding drive naming in MS Windows operationg 
+     * systems. Such assumptions may provide incorrect results.
+     * 
+     * @param absolutepath the absolute path to the file
+     * @return an int define by the <code>CatalogConstants</code> interface
+     * 
+     * @see de.berlios.jfindmyfiles.catalog.CatalogConstants
+     */
     public static int findFileType(String absolutepath) {
         if (absolutepath.length() == 3 && absolutepath.matches("")) {
             if (absolutepath.compareToIgnoreCase("a:\\") == 0 || absolutepath.compareToIgnoreCase("b:\\") == 0) {
@@ -77,5 +87,15 @@ public class ReadingUtils {
             return CatalogConstants.CDROM;
         }
         return CatalogConstants.FOLDER;
+    }
+
+    /**
+     * 
+     * @param filename
+     * @return
+     */
+    public static String stripFileExtension(String filename) {
+        int x = -1;
+        return ((x = filename.lastIndexOf(".")) > 0 ? filename.substring(0, x) : "").toLowerCase();
     }
 }

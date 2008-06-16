@@ -1,73 +1,45 @@
-/**
- *  Copyright (C) 2008  Patrícia Monteiro e Sérgio Lopes
- *
- *  This file is part of JFindMyFiles.
- *
- *  JFindMyFiles is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 2 of the License, or
- *  (at your option) any later version.
- *
- *  JFindMyFiles is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
- *
- *  You should have received a copy of the GNU General Public License
- *  along with JFindMyFiles.  If not, see 
- * <http://www.gnu.org/licenses/gpl.html>.
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
  */
-package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
+package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
 import de.berlios.jfindmyfiles.catalog.entities.FileWrapper;
+import java.io.Serializable;
 import java.util.Vector;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
-import org.openide.util.Lookup;
-
+import org.openide.util.NbBundle;
+import org.openide.windows.TopComponent;
+import org.openide.windows.WindowManager;
+//import org.openide.util.Utilities;
 /**
- *
- * @author  knitter
+ * Top component which displays something.
  */
-public class SearchDlg extends javax.swing.JDialog {
+final class SearchWindowTopComponent extends TopComponent {
 
     private CatalogEngine eng;
     private Vector<DiskGroup> groups;
     private DefaultListModel listModel;
-    private boolean running;
+    private boolean searching;
+    private static SearchWindowTopComponent instance;
+    /** path to the icon used by the component and its open action */
+//    static final String ICON_PATH = "SET/PATH/TO/ICON/HERE";
+    private static final String PREFERRED_ID = "SearchWindowTopComponent";
 
-    /** Creates new form SearchDlg */
-    public SearchDlg(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
-        eng = Lookup.getDefault().lookup(CatalogEngine.class);
+    private SearchWindowTopComponent() {
         obtainDiskGroupNames();
         initComponents();
-        jpbProgress.setVisible(false);
-    }
-
-    /** Creates a new form SeachDlg and changes the selected item in the 
-     * combobox that list disk groups to match the given group.
-     *
-     * @param parent
-     * @param modal
-     * @param group the group in which the search is to take place
-     */
-    public SearchDlg(java.awt.Frame parent, boolean modal, DiskGroup group) {
-        this(parent, modal);
-        jrdbDiskGroupOnly.setSelected(true);
-        jcbxDiskGroups.setSelectedItem(group);
-    }
-
-    public void showCentered() {
-        setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
-                getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
-        setVisible(true);
+        setName(NbBundle.getMessage(SearchWindowTopComponent.class, "CTL_SearchWindowTopComponent"));
+        setToolTipText(NbBundle.getMessage(SearchWindowTopComponent.class, "HINT_SearchWindowTopComponent"));
+//        setIcon(Utilities.loadImage(ICON_PATH, true));
     }
 
     @SuppressWarnings("unchecked")
@@ -81,40 +53,45 @@ public class SearchDlg extends javax.swing.JDialog {
 
     @SuppressWarnings("unchecked")
     private void search() {
-        listModel.clear();
+        if (!searching) {
+            searching = true;
+            listModel.clear();
 
-        boolean inDescription = jchkSearchInDesc.isSelected();
-        boolean casein = jchkCaseSensitive.isSelected();
-        String sText = jtfSearchText.getText().trim();
-        Session s = eng.sessionFactory.getCurrentSession();
-        s.beginTransaction();
-        Criteria crit = s.createCriteria(FileWrapper.class);
+            boolean inDescription = jchkSearchInDesc.isSelected();
+            boolean casein = jchkCaseSensitive.isSelected();
+            String sText = jtfSearchText.getText().trim();
+            Session s = eng.sessionFactory.getCurrentSession();
+            s.beginTransaction();
+            Criteria crit = s.createCriteria(FileWrapper.class);
 
-        if (casein && inDescription) {//Case insensitive and in description
-            crit.add(Restrictions.or(Restrictions.ilike("name", sText, MatchMode.ANYWHERE),
-                    Restrictions.ilike("description", sText, MatchMode.ANYWHERE)));
-        } else if (casein) { //only case insensitive
-            crit.add(Restrictions.ilike("name", sText, MatchMode.ANYWHERE));
-        } else { //only in description
-            crit.add(Restrictions.or(Restrictions.like("name", sText, MatchMode.ANYWHERE),
-                    Restrictions.like("description", sText, MatchMode.ANYWHERE)));
+            if (casein && inDescription) {//case sensitive and in description
+                crit.add(Restrictions.or(Restrictions.ilike("name", sText, MatchMode.ANYWHERE),
+                        Restrictions.ilike("description", sText, MatchMode.ANYWHERE)));
+            } else if (casein) { //only case sensitive not in descriptions
+                crit.add(Restrictions.ilike("name", sText, MatchMode.ANYWHERE));
+            } else if(inDescription){ //in description but not case sensitive
+                crit.add(Restrictions.or(Restrictions.like("name", sText, MatchMode.ANYWHERE),
+                        Restrictions.like("description", sText, MatchMode.ANYWHERE)));
+            } else { //only in name not in descriptions and not case sensitive
+                crit.add(Restrictions.like("name", sText, MatchMode.ANYWHERE));
+            }
+
+            /*if (jchkUseReGex.isSelected()) {//NOTE: don't really know if this is necessary.
+            sText = sText.replaceAll("*", "%");
+            }*/
+
+            /*if (jrdbEntireCatalog.isSelected()) {
+            DiskGroup dg = (DiskGroup) jcbxDiskGroups.getSelectedItem();
+            crit.add(Restrictions.eq("disk.group", "" + dg));
+            }*/
+
+            for (Object o : crit.list()) {
+                o.equals(null);
+                listModel.addElement(o);
+            }
+            s.getTransaction().commit();
+            searching = false;
         }
-
-        /*if (jchkUseReGex.isSelected()) {//NOTE: don't really know if this is necessary.
-        sText = sText.replaceAll("*", "%");
-        }*/
-
-        /*if (jrdbEntireCatalog.isSelected()) {
-        DiskGroup dg = (DiskGroup) jcbxDiskGroups.getSelectedItem();
-        crit.add(Restrictions.eq("disk.group", "" + dg));
-        }*/
-
-        for (Object o : crit.list()) {
-            o.equals(null);
-            listModel.addElement(o);
-        }
-        s.getTransaction().commit();
-        jpbProgress.setVisible(false);
     }
 
     /** This method is called from within the constructor to
@@ -122,11 +99,9 @@ public class SearchDlg extends javax.swing.JDialog {
      * WARNING: Do NOT modify this code. The content of this method is
      * always regenerated by the Form Editor.
      */
-    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btngrpScope = new javax.swing.ButtonGroup();
         jpTopPanel = new javax.swing.JPanel();
         jlbText = new javax.swing.JLabel();
         jtfSearchText = new javax.swing.JTextField();
@@ -142,32 +117,28 @@ public class SearchDlg extends javax.swing.JDialog {
         jpResults = new javax.swing.JPanel();
         jscrResults = new javax.swing.JScrollPane();
         jlstResults = new javax.swing.JList();
-        jbtnClose = new javax.swing.JButton();
-        jpbProgress = new javax.swing.JProgressBar();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        jpTopPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Search"));
 
-        jpTopPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jpTopPanel.border.title"))); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jlbText, org.openide.util.NbBundle.getMessage(SearchWindowTopComponent.class, "SearchWindowTopComponent.jlbText.text")); // NOI18N
 
-        jlbText.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jlbText.text")); // NOI18N
+        jtfSearchText.setText(org.openide.util.NbBundle.getMessage(SearchWindowTopComponent.class, "SearchWindowTopComponent.jtfSearchText.text")); // NOI18N
 
-        jtfSearchText.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jtfSearchText.text")); // NOI18N
-
-        jbtnSearch.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jbtnSearch.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jbtnSearch, org.openide.util.NbBundle.getMessage(SearchWindowTopComponent.class, "SearchWindowTopComponent.jbtnSearch.text")); // NOI18N
         jbtnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnSearchActionPerformed(evt);
             }
         });
 
-        jpOptionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jpOptionsPanel.border.title"))); // NOI18N
+        jpOptionsPanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Options"));
 
-        jchkSearchInDesc.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jchkSearchInDesc.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jchkSearchInDesc, org.openide.util.NbBundle.getMessage(SearchWindowTopComponent.class, "SearchWindowTopComponent.jchkSearchInDesc.text")); // NOI18N
 
         jchkCaseSensitive.setSelected(true);
-        jchkCaseSensitive.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jchkCaseSensitive.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jchkCaseSensitive, org.openide.util.NbBundle.getMessage(SearchWindowTopComponent.class, "SearchWindowTopComponent.jchkCaseSensitive.text")); // NOI18N
 
-        jchkUseReGex.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jchkUseReGex.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jchkUseReGex, org.openide.util.NbBundle.getMessage(SearchWindowTopComponent.class, "SearchWindowTopComponent.jchkUseReGex.text")); // NOI18N
         jchkUseReGex.setEnabled(false);
 
         javax.swing.GroupLayout jpOptionsPanelLayout = new javax.swing.GroupLayout(jpOptionsPanel);
@@ -180,7 +151,7 @@ public class SearchDlg extends javax.swing.JDialog {
                     .addComponent(jchkSearchInDesc)
                     .addComponent(jchkCaseSensitive)
                     .addComponent(jchkUseReGex))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(105, Short.MAX_VALUE))
         );
         jpOptionsPanelLayout.setVerticalGroup(
             jpOptionsPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,16 +164,14 @@ public class SearchDlg extends javax.swing.JDialog {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        jpScopePanel.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jpScopePanel.border.title"))); // NOI18N
+        jpScopePanel.setBorder(javax.swing.BorderFactory.createTitledBorder("Scope"));
 
         jcbxDiskGroups.setEnabled(false);
 
-        btngrpScope.add(jrdbEntireCatalog);
         jrdbEntireCatalog.setSelected(true);
-        jrdbEntireCatalog.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jrdbEntireCatalog.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jrdbEntireCatalog, org.openide.util.NbBundle.getMessage(SearchWindowTopComponent.class, "SearchWindowTopComponent.jrdbEntireCatalog.text")); // NOI18N
 
-        btngrpScope.add(jrdbDiskGroupOnly);
-        jrdbDiskGroupOnly.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jrdbDiskGroupOnly.text")); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jrdbDiskGroupOnly, org.openide.util.NbBundle.getMessage(SearchWindowTopComponent.class, "SearchWindowTopComponent.jrdbDiskGroupOnly.text")); // NOI18N
         jrdbDiskGroupOnly.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jrdbDiskGroupOnlyStateChanged(evt);
@@ -217,7 +186,7 @@ public class SearchDlg extends javax.swing.JDialog {
                 .addGroup(jpScopePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jpScopePanelLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
-                        .addComponent(jcbxDiskGroups, 0, 218, Short.MAX_VALUE))
+                        .addComponent(jcbxDiskGroups, 0, 261, Short.MAX_VALUE))
                     .addGroup(jpScopePanelLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jrdbEntireCatalog))
@@ -247,7 +216,7 @@ public class SearchDlg extends javax.swing.JDialog {
                     .addGroup(jpTopPanelLayout.createSequentialGroup()
                         .addComponent(jlbText)
                         .addGap(18, 18, 18)
-                        .addComponent(jtfSearchText, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+                        .addComponent(jtfSearchText, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnSearch))
                     .addGroup(jpTopPanelLayout.createSequentialGroup()
@@ -270,9 +239,7 @@ public class SearchDlg extends javax.swing.JDialog {
                 .addContainerGap())
         );
 
-        jpTopPanelLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jpOptionsPanel, jpScopePanel});
-
-        jpResults.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jpResults.border.title"))); // NOI18N
+        jpResults.setBorder(javax.swing.BorderFactory.createTitledBorder("Results"));
 
         jlstResults.setModel(listModel = new DefaultListModel());
         jscrResults.setViewportView(jlstResults);
@@ -283,40 +250,26 @@ public class SearchDlg extends javax.swing.JDialog {
             jpResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpResultsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jscrResults, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
+                .addComponent(jscrResults, javax.swing.GroupLayout.DEFAULT_SIZE, 587, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpResultsLayout.setVerticalGroup(
             jpResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpResultsLayout.createSequentialGroup()
-                .addComponent(jscrResults, javax.swing.GroupLayout.DEFAULT_SIZE, 239, Short.MAX_VALUE)
+                .addComponent(jscrResults, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jbtnClose.setText(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jbtnClose.text")); // NOI18N
-        jbtnClose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbtnCloseActionPerformed(evt);
-            }
-        });
-
-        jpbProgress.setIndeterminate(true);
-        jpbProgress.setString(org.openide.util.NbBundle.getMessage(SearchDlg.class, "SearchDlg.jpbProgress.string")); // NOI18N
-        jpbProgress.setStringPainted(true);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 643, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jpTopPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpResults, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jpbProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 332, Short.MAX_VALUE)
-                        .addComponent(jbtnClose)))
+                    .addComponent(jpResults, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -326,22 +279,11 @@ public class SearchDlg extends javax.swing.JDialog {
                 .addComponent(jpTopPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpResults, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jbtnClose)
-                    .addComponent(jpbProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
-
-        pack();
     }// </editor-fold>//GEN-END:initComponents
 
-private void jrdbDiskGroupOnlyStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jrdbDiskGroupOnlyStateChanged
-    jcbxDiskGroups.setEnabled(jrdbDiskGroupOnly.isSelected());
-}//GEN-LAST:event_jrdbDiskGroupOnlyStateChanged
-
 private void jbtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSearchActionPerformed
-    jpbProgress.setVisible(true);
     new Thread(new Runnable() {
 
         public void run() {
@@ -350,13 +292,10 @@ private void jbtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }).start();
 }//GEN-LAST:event_jbtnSearchActionPerformed
 
-private void jbtnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCloseActionPerformed
-    dispose();
-}//GEN-LAST:event_jbtnCloseActionPerformed
-
+private void jrdbDiskGroupOnlyStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jrdbDiskGroupOnlyStateChanged
+    jcbxDiskGroups.setEnabled(jrdbDiskGroupOnly.isSelected());
+}//GEN-LAST:event_jrdbDiskGroupOnlyStateChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup btngrpScope;
-    private javax.swing.JButton jbtnClose;
     private javax.swing.JButton jbtnSearch;
     private javax.swing.JComboBox jcbxDiskGroups;
     private javax.swing.JCheckBox jchkCaseSensitive;
@@ -368,10 +307,74 @@ private void jbtnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     private javax.swing.JPanel jpResults;
     private javax.swing.JPanel jpScopePanel;
     private javax.swing.JPanel jpTopPanel;
-    private javax.swing.JProgressBar jpbProgress;
     private javax.swing.JRadioButton jrdbDiskGroupOnly;
     private javax.swing.JRadioButton jrdbEntireCatalog;
     private javax.swing.JScrollPane jscrResults;
     private javax.swing.JTextField jtfSearchText;
     // End of variables declaration//GEN-END:variables
+    /**
+     * Gets default instance. Do not use directly: reserved for *.settings files only,
+     * i.e. deserialization routines; otherwise you could get a non-deserialized instance.
+     * To obtain the singleton instance, use {@link findInstance}.
+     */
+    public static synchronized SearchWindowTopComponent getDefault() {
+        if (instance == null) {
+            instance = new SearchWindowTopComponent();
+        }
+        return instance;
     }
+
+    /**
+     * Obtain the SearchWindowTopComponent instance. Never call {@link #getDefault} directly!
+     */
+    public static synchronized SearchWindowTopComponent findInstance() {
+        TopComponent win = WindowManager.getDefault().findTopComponent(PREFERRED_ID);
+        if (win == null) {
+            Logger.getLogger(SearchWindowTopComponent.class.getName()).warning(
+                    "Cannot find " + PREFERRED_ID + " component. It will not be located properly in the window system.");
+            return getDefault();
+        }
+        if (win instanceof SearchWindowTopComponent) {
+            return (SearchWindowTopComponent) win;
+        }
+        Logger.getLogger(SearchWindowTopComponent.class.getName()).warning(
+                "There seem to be multiple components with the '" + PREFERRED_ID +
+                "' ID. That is a potential source of errors and unexpected behavior.");
+        return getDefault();
+    }
+
+    @Override
+    public int getPersistenceType() {
+        return TopComponent.PERSISTENCE_ALWAYS;
+    }
+
+    @Override
+    public void componentOpened() {
+        // TODO add custom code on component opening
+    }
+
+    @Override
+    public void componentClosed() {
+        // TODO add custom code on component closing
+    }
+
+    /** replaces this in object stream */
+    @Override
+    public Object writeReplace() {
+        return new ResolvableHelper();
+    }
+
+    @Override
+    protected String preferredID() {
+        return PREFERRED_ID;
+    }
+
+    final static class ResolvableHelper implements Serializable {
+
+        private static final long serialVersionUID = 1L;
+
+        public Object readResolve() {
+            return SearchWindowTopComponent.getDefault();
+        }
+    }
+}

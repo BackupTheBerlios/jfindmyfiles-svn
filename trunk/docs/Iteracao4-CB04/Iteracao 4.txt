@@ -15,16 +15,13 @@ Implementar um sistema que permita identificar ficheiros duplicados no catálogo.
 Nenhum
 <====
 A utilização da tecnologia Hibernate, com a sua linguagem de pesquisas própria, 
-permitirá facilmente atingir os objectivos pretendidos para esta iteração.
+permitirá facilmente atingir os objectivos base pretendidos para esta iteração.
 Dado que a mesma tecnologia permite o uso de SQL nas pesquisas, a versatilidade 
 da linguagem de pesquisa estrutura será uma mais valia caso se pretenda um 
 melhor controlo sobre o acesso aos dados.
 No entanto, o requisito de pesquisas com suporte para expressões regulares, é 
 limitado pela falta de suporte a esse tipo de pesquisas, tanto na linguagem SQL 
-como no sistema Hibernate. Assim considera-se o uso de apenas dois caracteres 
-como pertencentes a expressções regulares, o asterisco, *, e o ponto de 
-interrogação, ?.
-NOTA:::::: O sistema hibernate faz o mesmo que estes caracteres através do padarão de matching!!!!
+como no sistema Hibernate.
 
 Não será possível saber se um ficheiro existe sem o tentar abrir, ou pelo menos 
 sem criar um objecto do tipo File e usar os seus métodos para verificar a 
@@ -35,4 +32,29 @@ interfaces com o utilizador dependendo da disponibilidade dos ficheiros, as
 opções estarão sempre disponíveis, sendo que, quando o utilizador tentar abrir 
 um determinado ficheiro, é verificado se o ficheiro se encontra ou não presente 
 para ser aberto.
+
+Para identificar ficheiros duplicados é necessário criar, para cada ficheiro 
+lido, um código de identificação único que mais tarde possa ser comparado.
+Para gerar esse código iremos recorrer ao algoritmo SHA-1, que permite criar 
+um código hash, com alguma segurança de unicidade.
+Dado que o algoritmo é bastante conhecido, existem várias implementações do 
+mesmo, que poderiam ser usadas. Após uma breve pesquisa, foi escolhida a 
+biblioteca jacksum, pela sua simplicidade de utilização, diversidade de 
+algoritmos oferecidos, licença open source, e principalmente por ser 
+completamente implementada em Java, o que, em oposição a outras bibliotecas, 
+como a FastMD5, garante o requisito de que a aplicação terá de ser 
+multiplataforma.
 <==== Avaliação ===============================================================>
+Não foi resolvido o problema das pesquisas com expressões regulares.
+Dado que se pretende independência do motor de bases de dados que apoia o 
+sistema de persistência, não poderá ser usada nenhuma funcionalidade da 
+linguagem SQL que não seja standard. Assim, não é possível tirar partido do 
+suporte para expressões regulares que alguns motores de bases de dados oferecem.
+[...]
+
+A introdução do algoritmo de cálculo do código hash provocou um aumento da 
+memória consumida e do tempo necessário para efectuar a leitura dos dados dos 
+ficheiros.
+
+
+

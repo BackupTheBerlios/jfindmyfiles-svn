@@ -10,8 +10,6 @@ Spikes:
 Outros documentos:
 	exemplo.xml
 	exemplo.csv
-	exemplo.xls
-	exemplo.ods
 
 <==== 
 Dos vários formatos para os quais poderia ser possível exportar dados do 
