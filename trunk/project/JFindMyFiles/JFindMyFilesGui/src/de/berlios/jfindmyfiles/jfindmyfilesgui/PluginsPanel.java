@@ -6,14 +6,8 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
 import de.berlios.jfindmyfiles.readingfiles.pluginapi.PluginCache;
 import de.berlios.jfindmyfiles.readingfiles.pluginapi.Reader;
-import de.berlios.jfindmyfiles.readingfiles.utils.ReadingUtils;
-import java.io.File;
 import java.util.List;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
 import org.openide.util.Lookup;
 import org.openide.util.NbPreferences;
 
@@ -26,7 +20,6 @@ final class PluginsPanel extends javax.swing.JPanel {
         this.controller = controller;
         cache = Lookup.getDefault().lookup(PluginCache.class);
         initComponents();
-        myInitComponents();
     // TODO listen to changes in form fields and call controller.changed()
         /*jtfPluginFolder.getDocument().addDocumentListener(new DocumentListener() {
     

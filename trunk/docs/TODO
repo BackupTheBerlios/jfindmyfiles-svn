@@ -12,6 +12,8 @@ http://www.xylax.net/hibernate/onetomany.html
 http://www.hibernate.org/hib_docs/v3/reference/en/html_single/#mapping
 http://www.hibernate.org/hib_docs/v3/reference/en/html/tutorial.html
 
+Image taken from: http://www.drewnoakes.com/code/exif/index.html
+
 Iteração 2:
 	- Fazer DER e modelo de dominio com base no esquema usado para o mapeamento
 	- Abrir catálogo

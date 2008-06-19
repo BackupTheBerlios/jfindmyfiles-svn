@@ -40,11 +40,13 @@ public class PluginCache {
             Reader r = (Reader) c.newInstance();
             cache.put(r.pluginFor(), r);*/
 
-            File f = new File("C:\\Documents and Settings\\Knitter\\Desktop\\PLGIN\\");
-            URLClassLoader ucl = new URLClassLoader(new URL[]{f.toURI().toURL()}, ClassLoader.getSystemClassLoader());
-            String s = "pluginapi.AntMovieCatalogerPlugin";
-
-            Class c = Class.forName(s, true, ucl);
+            //File f = new File("C:\\Documents and Settings\\Knitter\\Desktop\\PLGIN\\");
+            //URLClassLoader ucl = new URLClassLoader(new URL[]{f.toURI().toURL()}, ClassLoader.getSystemClassLoader());
+            //String s = "pluginapi.AntMovieCatalogerPlugin";
+            String s = "pluginapi.JPGPlugin";
+            
+            //Class c = Class.forName(s, true, ucl);
+            Class c = Class.forName(s);
             Reader r = (Reader) c.newInstance();
             cache.put(r.pluginFor(), r);
 

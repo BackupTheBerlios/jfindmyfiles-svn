@@ -475,15 +475,15 @@ private void jbtnTemplateBrowseActionPerformed(java.awt.event.ActionEvent evt) {
 }//GEN-LAST:event_jbtnTemplateBrowseActionPerformed
 
 private void jchkOpenAfterStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jchkOpenAfterStateChanged
-// TODO add your handling code here:
+    //TODO: open file after exporting
 }//GEN-LAST:event_jchkOpenAfterStateChanged
 
 private void jchkTemplateOpenAfterStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jchkTemplateOpenAfterStateChanged
-// TODO add your handling code here:
+    //TODO: open HTML file after exporting
 }//GEN-LAST:event_jchkTemplateOpenAfterStateChanged
 
 private void jcbxSelectTemplateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbxSelectTemplateActionPerformed
-// TODO add your handling code here:
+//Change the selected template
 }//GEN-LAST:event_jcbxSelectTemplateActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

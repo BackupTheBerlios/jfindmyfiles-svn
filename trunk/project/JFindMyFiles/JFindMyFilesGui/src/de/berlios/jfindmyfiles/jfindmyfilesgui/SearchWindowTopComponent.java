@@ -17,6 +17,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
 import org.openide.util.NbBundle;
+import org.openide.util.Utilities;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 //import org.openide.util.Utilities;
@@ -39,7 +40,7 @@ final class SearchWindowTopComponent extends TopComponent {
         initComponents();
         setName(NbBundle.getMessage(SearchWindowTopComponent.class, "CTL_SearchWindowTopComponent"));
         setToolTipText(NbBundle.getMessage(SearchWindowTopComponent.class, "HINT_SearchWindowTopComponent"));
-//        setIcon(Utilities.loadImage(ICON_PATH, true));
+        //setIcon(Utilities.loadImage("", true));
     }
 
     @SuppressWarnings("unchecked")

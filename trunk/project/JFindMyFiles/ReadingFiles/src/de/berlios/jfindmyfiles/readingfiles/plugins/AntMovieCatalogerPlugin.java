@@ -16,7 +16,7 @@ import java.io.File;
 public class AntMovieCatalogerPlugin implements Reader {
     
     private static final String NAME = "Ant Movie Cataloger Reader";
-    private static final String AUTHOR = "Sergio Lopes";//TODO: provide correct author info
+    private static final String AUTHOR = "JFindMyFiles";
     private static final String EXT = "amc";
 
     public String getName() {

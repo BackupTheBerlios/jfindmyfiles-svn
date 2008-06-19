@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.apisupport.project</type>
+    <configuration>
+        <data xmlns="http://www.netbeans.org/ns/nb-module-project/3">
+            <code-name-base>com.drew.lang</code-name-base>
+            <suite-component/>
+            <module-dependencies/>
+            <public-packages>
+                <package>com.drew.imaging</package>
+                <package>com.drew.imaging.jpeg</package>
+                <package>com.drew.lang</package>
+                <package>com.drew.metadata</package>
+                <package>com.drew.metadata.exif</package>
+                <package>com.drew.metadata.iptc</package>
+                <package>com.drew.metadata.jpeg</package>
+            </public-packages>
+            <class-path-extension>
+                <runtime-relative-path>ext/metadata-extractor-2.3.1.jar</runtime-relative-path>
+                <binary-origin>release/modules/ext/metadata-extractor-2.3.1.jar</binary-origin>
+            </class-path-extension>
+        </data>
+    </configuration>
+</project>
