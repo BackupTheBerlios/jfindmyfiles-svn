@@ -14,7 +14,7 @@ programadores libertando-nos da formalidade extrema de outras metodologias que
 apenas sobrecarregaria a equipa de desenvolvimento.
 
 A aplicação da metodologia ICONIX ao desenvolvimento ágil seria uma solução para 
-se tirar partido das vantagens associasdas a processos ágeis e ao mesmo tempo o 
+se tirar partido das vantagens associadas a processos ágeis e ao mesmo tempo o 
 rigor e segurança no desenvolvimento de software que uma metodologia como a ICONIX 
 oferece. Mesmo assim, a aplicação da metodologia ICONIX ágil não responde ao 
 requisito temporal imposto.

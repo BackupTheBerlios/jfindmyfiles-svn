@@ -60,5 +60,5 @@ imagem.
 <==== Avaliação ===============================================================>
 Esta iteração revelou-se bastante mais simples que o inicialmente pensado. 
 Muito devido ao facto de, após avaliação das user stories e da experiência que 
-a equiapa de programação tinha com o software de referência, se verificou que 
+a equipa de programação tinha com o software de referência, se verificou que 
 seria suficiente limitar o tipo de informação a guardar.

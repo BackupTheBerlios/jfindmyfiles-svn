@@ -29,7 +29,7 @@ Outros pontos de relevo.
 - Disponibilidade de documentação oficial, existência de exemplos práticos.
 
 Ambas as plataformas possuem uma sólida documentação oficial com bastantes 
-exemplos e caso de uso sobe o desenvolvimento de aplicações ricas. A documentação
+exemplos e caso de uso sobre o desenvolvimento de aplicações ricas. A documentação
 existente é actualizada e facilmente acessível.
 
 Neste ponto a plataforma Netbeans leva um ligeira vantagem na medida em que 
@@ -99,7 +99,7 @@ impendem a correcta integração entre componentes SWT e componentes Swing em
 sistemas operativos Mac OS X.
 
 - Conclusão
-Tendo em conta os pontos acima indicados decidu-se a escolha da plataforma 
+Tendo em conta os pontos acima indicados decidiu-se a escolha da plataforma 
 Netbeans. Esta plataforma vai de encontro a todos os requisitos apresentados e 
 é a plataforma que introduz menos problemas à equipa de desenvolvimento
 
