@@ -133,7 +133,7 @@ public class MediaReader {
         fireReadingAborted(new ReadingEvent(this, "", null));
     }
 
-    public void addListener(ReadingListener l) {
+    public synchronized void addListener(ReadingListener l) {
         if (listeners == null) {
             listeners = new Vector<ReadingListener>();
         }
@@ -141,7 +141,7 @@ public class MediaReader {
         listeners.add(l);
     }
 
-    public void removeListener(ReadingListener l) {
+    public synchronized void removeListener(ReadingListener l) {
         if (listeners != null) {
             listeners.remove(l);
         }

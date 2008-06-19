@@ -17,11 +17,11 @@ public abstract class GuiUtils {
             case CatalogConstants.FLOPPY:
                 return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-floppy.png";
             case CatalogConstants.FOLDER:
-                return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-floppy.png";//TODO: get proper icon
+                return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-folder.png";
             case CatalogConstants.HDD:
                 return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-harddisk.png";
             default:
-                return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-floppy.png";//TODO: get proper icon
+                return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-unknown.png";
                 
         }
     }

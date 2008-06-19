@@ -131,10 +131,6 @@ public class CatalogProperties {
      */
     @Override
     public boolean equals(Object obj) {
-        if(obj == null) {
-            return false;
-        }
-
         if (!(obj instanceof CatalogProperties)) {
             return false;
         }
