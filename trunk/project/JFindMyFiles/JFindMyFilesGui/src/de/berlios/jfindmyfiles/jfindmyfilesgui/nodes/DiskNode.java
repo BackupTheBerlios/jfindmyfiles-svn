@@ -42,7 +42,7 @@ public class DiskNode extends AbstractNode {
     private Media media;
 
     public DiskNode(Media media) {
-        super(Children.LEAF);
+        super(new DiskChildren(media.getId(), true));
         this.media = media;
         setName(media.getName());
 
