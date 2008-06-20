@@ -26,7 +26,6 @@
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDisk.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDiskGroup.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAssignDiskPicture.instance"/>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionLendingDisks.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRenumberDisks.instance"/>
         </folder>
         <folder name="File">
@@ -36,20 +35,18 @@
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionNewCatalog.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpenCatalog.instance"/>
         </folder>
-        <folder name="Help">
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionHelpIndex.instance"/>
-        </folder>
+        <folder name="Help"/>
         <folder name="Search">
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionFindInThisDiskGroup.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionScanForDuplicates.instance"/>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionSearchForItems.instance"/>
-        </folder>
+            </folder>
         <folder name="View">
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionCatalogProperties.instance"/>
         </folder>
         <folder name="Window">
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-DetailsViewAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-DuplicateResultsAction.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-LoanAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-ManageUsersAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-NavigationTreeAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-SearchWindowAction.instance"/>
@@ -114,10 +111,6 @@
                 <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAssignDiskPicture.instance"/>
                 <attr name="position" intvalue="1200"/>
             </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionLendingDisks.shadow">
-                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionLendingDisks.instance"/>
-                <attr name="position" intvalue="1425"/>
-            </file>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRenumberDisks.shadow">
                 <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRenumberDisks.instance"/>
                 <attr name="position" intvalue="1350"/>
@@ -160,12 +153,7 @@
             </file>
         </folder>
         <file name="GoTo_hidden"/>
-        <folder name="Help">
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionHelpIndex.shadow">
-                <attr name="originalFile" stringvalue="Actions/Help/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionHelpIndex.instance"/>
-                <attr name="position" intvalue="400"/>
-            </file>
-        </folder>
+        <folder name="Help"/>
         <folder name="Search">
             <attr name="SystemFileSystem.localizingBundle" stringvalue="org.netbeans.core.Bundle"/>
             <attr name="position" intvalue="400"/>
@@ -182,15 +170,7 @@
                 <attr name="originalFile" stringvalue="Actions/Search/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionScanForDuplicates.instance"/>
                 <attr name="position" intvalue="1750"/>
             </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionSearchForItems.shadow">
-                <attr name="originalFile" stringvalue="Actions/Search/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionSearchForItems.instance"/>
-                <attr name="position" intvalue="600"/>
-            </file>
             <file name="org-netbeans-core-windows-actions-RecentViewListAction.shadow_hidden"/>
-            <file name="org-netbeans-modules-favorites-SelectInFavorites.shadow" url="org-netbeans-modules-favorites-SelectInFavorites.shadow">
-                <attr name="originalFile" stringvalue="Actions/Window/SelectDocumentNode/org-netbeans-modules-favorites-Select.instance"/>
-                <attr name="position" intvalue="2800"/>
-            </file>
             <file name="org-openide-actions-GotoAction.shadow_hidden"/>
         </folder>
         <folder name="View">
@@ -218,6 +198,9 @@
             <file name="DocumentsAction.shadow_hidden"/>
             <file name="DuplicateResultsAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-DuplicateResultsAction.instance"/>
+            </file>
+            <file name="LoanAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-LoanAction.instance"/>
             </file>
             <file name="ManageUsersAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-ManageUsersAction.instance"/>
@@ -253,9 +236,6 @@
     </folder>
     <folder name="Recent"/>
     <folder name="Shortcuts">
-        <file name="S-F.shadow">
-            <attr name="originalFile" stringvalue="Actions/Search/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionSearchForItems.instance"/>
-        </file>
         <file name="S-N.shadow">
             <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionNewCatalog.instance"/>
         </file>
@@ -274,6 +254,7 @@
         <folder name="Components">
             <file name="DetailsViewTopComponent.settings" url="DetailsViewTopComponentSettings.xml"/>
             <file name="DuplicateResultsTopComponent.settings" url="DuplicateResultsTopComponentSettings.xml"/>
+            <file name="LoanTopComponent.settings" url="LoanTopComponentSettings.xml"/>
             <file name="ManageUsersTopComponent.settings" url="ManageUsersTopComponentSettings.xml"/>
             <file name="NavigationTreeTopComponent.settings" url="NavigationTreeTopComponentSettings.xml"/>
             <file name="SearchWindowTopComponent.settings" url="SearchWindowTopComponentSettings.xml"/>
@@ -282,6 +263,7 @@
         <folder name="Modes">
             <folder name="editor">
                 <file name="DetailsViewTopComponent.wstcref" url="DetailsViewTopComponentWstcref.xml"/>
+                <file name="LoanTopComponent.wstcref" url="LoanTopComponentWstcref.xml"/>
                 <file name="ManageUsersTopComponent.wstcref" url="ManageUsersTopComponentWstcref.xml"/>
                 <file name="SearchWindowTopComponent.wstcref" url="SearchWindowTopComponentWstcref.xml"/>
                 <file name="StatisticsTopComponent.wstcref" url="StatisticsTopComponentWstcref.xml"/>

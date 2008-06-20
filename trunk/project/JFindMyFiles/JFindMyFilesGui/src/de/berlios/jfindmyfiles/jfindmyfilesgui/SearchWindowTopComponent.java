@@ -41,7 +41,7 @@ final class SearchWindowTopComponent extends TopComponent {
         initComponents();
         setName(NbBundle.getMessage(SearchWindowTopComponent.class, "CTL_SearchWindowTopComponent"));
         setToolTipText(NbBundle.getMessage(SearchWindowTopComponent.class, "HINT_SearchWindowTopComponent"));
-        //setIcon(Utilities.loadImage("", true));
+    //setIcon(Utilities.loadImage("", true));
     }
 
     @SuppressWarnings("unchecked")
@@ -71,7 +71,7 @@ final class SearchWindowTopComponent extends TopComponent {
                         Restrictions.ilike("description", sText, MatchMode.ANYWHERE)));
             } else if (casein) { //only case sensitive not in descriptions
                 crit.add(Restrictions.ilike("name", sText, MatchMode.ANYWHERE));
-            } else if(inDescription){ //in description but not case sensitive
+            } else if (inDescription) { //in description but not case sensitive
                 crit.add(Restrictions.or(Restrictions.like("name", sText, MatchMode.ANYWHERE),
                         Restrictions.like("description", sText, MatchMode.ANYWHERE)));
             } else { //only in name not in descriptions and not case sensitive
@@ -286,15 +286,17 @@ final class SearchWindowTopComponent extends TopComponent {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jbtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSearchActionPerformed
-    new Thread(new Runnable() {
+    if (!searching) {
+        new Thread(new Runnable() {
 
-        public void run() {
-            //NOTE: race condition!
-            searching = true;
-            search();
-            searching = false;
-        }
-    }).start();
+            public void run() {
+                //NOTE: race condition!
+                searching = true;
+                search();
+                searching = false;
+            }
+        }).start();
+    }
 }//GEN-LAST:event_jbtnSearchActionPerformed
 
 private void jrdbDiskGroupOnlyStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jrdbDiskGroupOnlyStateChanged
