@@ -21,12 +21,9 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 
 import de.berlios.jfindmyfiles.catalog.entities.Media;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionRemoveFromCatalog;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionScanForDuplicates;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionSearchForItems;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.utils.GuiUtils;
 import java.awt.Image;
 import org.openide.nodes.AbstractNode;
-import org.openide.nodes.Children;
 import org.openide.util.Lookup;
 import org.openide.util.Utilities;
 import org.openide.util.actions.SystemAction;
@@ -47,7 +44,7 @@ public class DiskNode extends AbstractNode {
         setName(media.getName());
 
         Lookup lo = Lookups.forPath("/Actions");//TODO: sort actions correctly and add separators
-        sysact = new SystemAction[]{lo.lookup(ActionRemoveFromCatalog.class), lo.lookup(ActionSearchForItems.class)};
+        sysact = new SystemAction[]{lo.lookup(ActionRemoveFromCatalog.class)};
     }
 
     @Override

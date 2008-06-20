@@ -27,6 +27,7 @@ import de.berlios.jfindmyfiles.readingfiles.pluginapi.PluginCache;
 import de.berlios.jfindmyfiles.readingfiles.pluginapi.Reader;
 import de.berlios.jfindmyfiles.readingfiles.utils.ReadingUtils;
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Stack;
 import java.util.Vector;
 import org.hibernate.Session;
@@ -148,25 +149,37 @@ public class MediaReader {
     }
 
     private void fireReadingStarted(ReadingEvent evt) {
-        for (ReadingListener l : listeners) {
+        Vector<ReadingListener> copy = new Vector<ReadingListener>(listeners.size());
+        copy.addAll(listeners);
+
+        for (ReadingListener l : copy) {
             l.readingStarted(evt);
         }
     }
 
     private void fireReadingStopped(ReadingEvent evt) {
-        for (ReadingListener l : listeners) {
+        Vector<ReadingListener> copy = new Vector<ReadingListener>(listeners.size());
+        copy.addAll(listeners);
+
+        for (ReadingListener l : copy) {
             l.readingStopped(evt);
         }
     }
 
     private void fireReadingFile(ReadingEvent evt) {
-        for (ReadingListener l : listeners) {
+        Vector<ReadingListener> copy = new Vector<ReadingListener>(listeners.size());
+        copy.addAll(listeners);
+        
+        for (ReadingListener l : copy) {
             l.readingFile(evt);
         }
     }
 
     private void fireReadingAborted(ReadingEvent evt) {
-        for (ReadingListener l : listeners) {
+        Vector<ReadingListener> copy = new Vector<ReadingListener>(listeners.size());
+        copy.addAll(listeners);
+        
+        for (ReadingListener l : copy) {
             l.readingAborted(evt);
         }
     }

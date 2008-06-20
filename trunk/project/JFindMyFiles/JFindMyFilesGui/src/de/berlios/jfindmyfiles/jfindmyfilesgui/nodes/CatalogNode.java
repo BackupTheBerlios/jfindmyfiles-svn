@@ -28,7 +28,6 @@ import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionExport;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionImport;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionRenumberDisks;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionScanForDuplicates;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionSearchForItems;
 import java.awt.Image;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
@@ -52,18 +51,17 @@ public class CatalogNode extends AbstractNode {
 
         CatalogEngine eng = Lookup.getDefault().lookup(CatalogEngine.class);
         setName(eng.getProperties().getName());
-        
+
         Lookup lo = Lookups.forPath("/Actions");//TODO: sort actions correctly and add separators
         sysact = new SystemAction[]{lo.lookup(ActionCatalogProperties.class),
                     lo.lookup(ActionRenumberDisks.class), lo.lookup(ActionScanForDuplicates.class),
-                    lo.lookup(ActionSearchForItems.class), lo.lookup(ActionAddNewDisk.class), 
-                    lo.lookup(ActionAddNewDiskGroup.class), lo.lookup(ActionClose.class), 
+                    lo.lookup(ActionAddNewDisk.class), lo.lookup(ActionAddNewDiskGroup.class), lo.lookup(ActionClose.class),
                     lo.lookup(ActionExport.class), lo.lookup(ActionImport.class)
                 };
-        
-        
-        //Collections.sort(sysact);
-        //Arrays.sort(sysact);
+
+
+    //Collections.sort(sysact);
+    //Arrays.sort(sysact);
     }
 
     @Override

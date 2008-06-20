@@ -48,7 +48,7 @@ import org.openide.windows.WindowManager;
  *
  * @author  ei10635
  */
-public class NewDiskDlg extends javax.swing.JDialog implements ReadingListener {
+public class NewDiskDlg extends javax.swing.JDialog {
 
     private String currentSelectedPath;
     private NewDiskDlg me = this;
@@ -64,7 +64,8 @@ public class NewDiskDlg extends javax.swing.JDialog implements ReadingListener {
         super(parent, modal);
         eng = Lookup.getDefault().lookup(CatalogEngine.class);
         initComponents();
-        scanningDlg = new ActiveScanningDlg(WindowManager.getDefault().getMainWindow(), true);
+        scanningDlg = new ActiveScanningDlg(WindowManager.getDefault().getMainWindow(), true, this);
+        jffDiskNumber.setText("" + eng.getProperties().getDiskNumber());
     //TODO: get the available plugins and create the popup menu
     }
 
@@ -95,18 +96,19 @@ public class NewDiskDlg extends javax.swing.JDialog implements ReadingListener {
 
                 public void actionPerformed(ActionEvent e) {
                     currentSelectedPath = ((JToggleButton) e.getSource()).getText();
+                    jtfDiskName.setText(currentSelectedPath);
                     isMedia = true;
                 }
             });
             jbtngrpDrives.add(toggle);
             jpButtons.add(toggle);
         }
-        toggle = new JToggleButton();
-        toggle.setIcon(new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x22/button-folder.png"))); // NOI18N
-        toggle.setMaximumSize(new Dimension(100, 24));
+        toggle = new JToggleButton("..."); // NOI18N
+        //toggle.setIcon(new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x22/button-folder.png"))); // NOI18N
+        //toggle.setMaximumSize(new Dimension(100, 24));
         toggle.setMinimumSize(new Dimension(24, 24));
         toggle.setSize(toggle.getWidth(), 24);
-        
+
         toggle.setHorizontalTextPosition(SwingConstants.CENTER);
         toggle.setVerticalTextPosition(SwingConstants.BOTTOM);
         toggle.addActionListener(new ActionListener() {
@@ -120,7 +122,9 @@ public class NewDiskDlg extends javax.swing.JDialog implements ReadingListener {
                 if (jfc.showOpenDialog(me) == JFileChooser.APPROVE_OPTION) {
                     File f = jfc.getSelectedFile();
                     currentSelectedPath = f.getAbsolutePath();
+                    ((JToggleButton) e.getSource()).setIcon(FileSystemView.getFileSystemView().getSystemIcon(f));
                     ((JToggleButton) e.getSource()).setText(f.getName());
+                    jtfDiskName.setText(f.getName());
                     isMedia = false;
                 }
             }
@@ -366,9 +370,15 @@ private void jtbSelectedPluginsActionPerformed(java.awt.event.ActionEvent evt) {
 private void jbtnScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnScanActionPerformed
     MediaReader r = Lookup.getDefault().lookup(MediaReader.class);
     r.addListener(scanningDlg);
-    r.addListener(this);
-    r.read(new File(currentSelectedPath), calculateHash, isMedia, jtfDiskName.getText().trim(), (DiskGroup) jcbxCatalog.getSelectedItem());
 
+    SwingUtilities.invokeLater(new Runnable() {
+
+        public void run() {
+            setVisible(false);
+            scanningDlg.showCentered(ask4Description, showAgain);
+        }
+    });
+    r.read(new File(currentSelectedPath), calculateHash, isMedia, jtfDiskName.getText().trim(), (DiskGroup) jcbxCatalog.getSelectedItem());
 }//GEN-LAST:event_jbtnScanActionPerformed
 
 private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
@@ -414,38 +424,4 @@ private void jchkShowAgainStateChanged(javax.swing.event.ChangeEvent evt) {//GEN
     private javax.swing.JToggleButton jtbSelectedPlugins;
     private javax.swing.JTextField jtfDiskName;
     // End of variables declaration//GEN-END:variables
-    public void readingStarted(ReadingEvent evt) {
-        SwingUtilities.invokeLater(new Runnable() {
-
-            public void run() {
-                scanningDlg.showCentered();
-            }
-        });
-    }
-
-    public void readingFile(ReadingEvent evt) {
-        //DO NOTHING
-    }
-
-    public void readingStopped(ReadingEvent evt) {
-        //TODO: ask for description
-        /*if(ask4Description) {
-        AskDescriptionDlg dlg = new AskDescriptionDlg(WindowManager.getDefault().getMainWindow(), true);
-        dlg.showCentered();
-        /*
-        Session s = eng.sessionFactory.getCurrentSession();
-        s.beginTransaction();
-        evt.getMedia().setDescription("");
-        s.getTransaction().commit();
-        }*/
-        Lookup.getDefault().lookup(MediaReader.class).removeListener(this);
-        if (!showAgain) {
-            dispose();
-        }
-    }
-
-    public void readingAborted(ReadingEvent evt) {
-        JOptionPane.showMessageDialog(this, "", "", JOptionPane.ERROR_MESSAGE);
-        Lookup.getDefault().lookup(MediaReader.class).removeListener(this);
-    }
 }

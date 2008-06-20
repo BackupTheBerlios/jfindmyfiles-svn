@@ -19,21 +19,14 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 
-import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs.SearchDlg;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
-import org.openide.windows.WindowManager;
 
 public final class ActionFindInThisDiskGroup extends CallableSystemAction {
 
     public void performAction() {
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {//TODO: get the current disk group and pass it on to the dialog
-                new SearchDlg(WindowManager.getDefault().getMainWindow(), true, new DiskGroup()).showCentered();
-            }
-        });
+        //TODO:
     }
 
     public String getName() {

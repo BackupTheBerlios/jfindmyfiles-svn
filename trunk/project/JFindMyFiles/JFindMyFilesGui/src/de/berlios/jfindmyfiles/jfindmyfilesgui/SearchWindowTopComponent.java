@@ -16,8 +16,8 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
+import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
-import org.openide.util.Utilities;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 //import org.openide.util.Utilities;
@@ -36,6 +36,7 @@ final class SearchWindowTopComponent extends TopComponent {
     private static final String PREFERRED_ID = "SearchWindowTopComponent";
 
     private SearchWindowTopComponent() {
+        eng = Lookup.getDefault().lookup(CatalogEngine.class);
         obtainDiskGroupNames();
         initComponents();
         setName(NbBundle.getMessage(SearchWindowTopComponent.class, "CTL_SearchWindowTopComponent"));
@@ -81,10 +82,10 @@ final class SearchWindowTopComponent extends TopComponent {
             sText = sText.replaceAll("*", "%");
             }*/
 
-            /*if (jrdbEntireCatalog.isSelected()) {
-            DiskGroup dg = (DiskGroup) jcbxDiskGroups.getSelectedItem();
-            crit.add(Restrictions.eq("disk.group", "" + dg));
-            }*/
+            if (jrdbDiskGroupOnly.isSelected()) {
+                DiskGroup dg = (DiskGroup) jcbxDiskGroups.getSelectedItem();
+                crit.add(Restrictions.eq("disk.group.id", dg.getId()));
+            }
 
             for (Object o : crit.list()) {
                 o.equals(null);
@@ -288,7 +289,10 @@ private void jbtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     new Thread(new Runnable() {
 
         public void run() {
+            //NOTE: race condition!
+            searching = true;
             search();
+            searching = false;
         }
     }).start();
 }//GEN-LAST:event_jbtnSearchActionPerformed

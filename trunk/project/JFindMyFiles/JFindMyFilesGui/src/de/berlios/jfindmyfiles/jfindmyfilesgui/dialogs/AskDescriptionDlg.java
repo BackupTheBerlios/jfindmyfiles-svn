@@ -5,15 +5,24 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngine;
+import de.berlios.jfindmyfiles.catalog.entities.Media;
+import org.hibernate.Session;
+import org.openide.util.Lookup;
+
 /**
  *
  * @author  Knitter
  */
 public class AskDescriptionDlg extends javax.swing.JDialog {
 
+    private ActiveScanningDlg acDlg;
+    private Media media;
     /** Creates new form AskDescriptionDlg */
-    public AskDescriptionDlg(java.awt.Frame parent, boolean modal) {
+    public AskDescriptionDlg(java.awt.Frame parent, boolean modal, ActiveScanningDlg acDlg, Media media) {
         super(parent, modal);
+        this.acDlg = acDlg;
+        this.media = media;
         initComponents();
     }
 
@@ -54,6 +63,11 @@ public class AskDescriptionDlg extends javax.swing.JDialog {
         });
 
         jbtnOK.setText(org.openide.util.NbBundle.getMessage(AskDescriptionDlg.class, "AskDescriptionDlg.jbtnOK.text")); // NOI18N
+        jbtnOK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtnOKActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -92,7 +106,22 @@ public class AskDescriptionDlg extends javax.swing.JDialog {
 
 private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
     dispose();
+    acDlg.advance();
 }//GEN-LAST:event_jbtnCancelActionPerformed
+
+private void jbtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOKActionPerformed
+    CatalogEngine eng = Lookup.getDefault().lookup(CatalogEngine.class);
+    Session s = eng.sessionFactory.getCurrentSession();
+    s.beginTransaction();
+    //media = (Media)s.load(Media.class, media.getId());
+    media = (Media)s.get(Media.class, media.getId());
+    media.setDescription(jtaDescription.getText().trim());
+    s.saveOrUpdate(media);
+    s.getTransaction().commit();
+    dispose();
+    acDlg.advance();
+    
+}//GEN-LAST:event_jbtnOKActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;

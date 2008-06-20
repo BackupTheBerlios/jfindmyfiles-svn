@@ -22,7 +22,9 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 import de.berlios.jfindmyfiles.readingfiles.MediaReader;
 import de.berlios.jfindmyfiles.readingfiles.ReadingEvent;
 import de.berlios.jfindmyfiles.readingfiles.ReadingListener;
+import javax.swing.SwingUtilities;
 import org.openide.util.Lookup;
+import org.openide.windows.WindowManager;
 
 /**
  *
@@ -30,16 +32,29 @@ import org.openide.util.Lookup;
  */
 public class ActiveScanningDlg extends javax.swing.JDialog implements ReadingListener {
 
+    private NewDiskDlg nDskDlg;
+    private boolean ask4desc;
+    private boolean showAgain;
+    private boolean stop = true;
+    private ActiveScanningDlg me = this;
+
     /** Creates new form ActiveScanningDlg */
-    public ActiveScanningDlg(java.awt.Frame parent, boolean modal) {
+    public ActiveScanningDlg(java.awt.Frame parent, boolean modal, NewDiskDlg nDskDlg) {
         super(parent, modal);
+        this.nDskDlg = nDskDlg;
         initComponents();
     }
 
-    public void showCentered() {
+    public void showCentered(boolean ask4desc, boolean showAgain) {
+        this.ask4desc = ask4desc;
+        this.showAgain = showAgain;
         setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
                 getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
         setVisible(true);
+    }
+
+    public void advance() {
+        stop = false;
     }
 
     /** This method is called from within the constructor to
@@ -114,14 +129,30 @@ private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         jpbReadingProgress.setString(evt.getCurrentFileName());
     }
 
-    public void readingStopped(ReadingEvent evt) {
+    @SuppressWarnings("empty-statement")
+    public void readingStopped(final ReadingEvent evt) {
+        //NOTE: look for concurrent modification
         Lookup.getDefault().lookup(MediaReader.class).removeListener(this);
+        if (ask4desc) {
+            SwingUtilities.invokeLater(new Runnable() {
+
+                public void run() {
+                    setVisible(false);
+                    stop = true;
+                    new AskDescriptionDlg(WindowManager.getDefault().getMainWindow(), true, me, evt.getMedia()).showCentered();
+                }
+            });
+        }
+
         dispose();
+        //NOTE: can this code really block the execution, infinite loop?
+        while (stop);
+        if (showAgain) {
+            nDskDlg.setVisible(true);
+        }
     }
 
     public void readingAborted(ReadingEvent evt) {
-        /*Lookup.getDefault().lookup(MediaReader.class).removeListener(this);
-        dispose();*/
         readingStopped(evt);
     }
 }

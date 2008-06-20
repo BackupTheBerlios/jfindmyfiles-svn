@@ -50,8 +50,10 @@
         <folder name="Window">
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-DetailsViewAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-DuplicateResultsAction.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-ManageUsersAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-NavigationTreeAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-SearchWindowAction.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-StatisticsAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionDescriptionWindow.instance"/>
         </folder>
         <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionDelete.instance"/>
@@ -217,6 +219,9 @@
             <file name="DuplicateResultsAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-DuplicateResultsAction.instance"/>
             </file>
+            <file name="ManageUsersAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-ManageUsersAction.instance"/>
+            </file>
             <file name="NavigationTreeAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-NavigationTreeAction.instance"/>
             </file>
@@ -225,6 +230,9 @@
                 <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-SearchWindowAction.instance"/>
             </file>
             <file name="Separator4.instance_hidden"/>
+            <file name="StatisticsAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-StatisticsAction.instance"/>
+            </file>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionDescriptionWindow.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionDescriptionWindow.instance"/>
             </file>
@@ -266,13 +274,17 @@
         <folder name="Components">
             <file name="DetailsViewTopComponent.settings" url="DetailsViewTopComponentSettings.xml"/>
             <file name="DuplicateResultsTopComponent.settings" url="DuplicateResultsTopComponentSettings.xml"/>
+            <file name="ManageUsersTopComponent.settings" url="ManageUsersTopComponentSettings.xml"/>
             <file name="NavigationTreeTopComponent.settings" url="NavigationTreeTopComponentSettings.xml"/>
             <file name="SearchWindowTopComponent.settings" url="SearchWindowTopComponentSettings.xml"/>
+            <file name="StatisticsTopComponent.settings" url="StatisticsTopComponentSettings.xml"/>
         </folder>
         <folder name="Modes">
             <folder name="editor">
                 <file name="DetailsViewTopComponent.wstcref" url="DetailsViewTopComponentWstcref.xml"/>
+                <file name="ManageUsersTopComponent.wstcref" url="ManageUsersTopComponentWstcref.xml"/>
                 <file name="SearchWindowTopComponent.wstcref" url="SearchWindowTopComponentWstcref.xml"/>
+                <file name="StatisticsTopComponent.wstcref" url="StatisticsTopComponentWstcref.xml"/>
             </folder>
             <folder name="leftSlidingSide">
                 <file name="NavigationTreeTopComponent.wstcref" url="NavigationTreeTopComponentWstcref.xml"/>
