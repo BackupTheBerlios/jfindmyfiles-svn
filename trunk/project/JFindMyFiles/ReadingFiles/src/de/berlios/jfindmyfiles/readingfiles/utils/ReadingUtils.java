@@ -96,6 +96,6 @@ public class ReadingUtils {
      */
     public static String stripFileExtension(String filename) {
         int x = -1;
-        return ((x = filename.lastIndexOf(".")) > 0 ? filename.substring(0, x) : "").toLowerCase();
+        return ((x = filename.lastIndexOf(".")) > 0 ? filename.substring(0, x) : filename).toLowerCase();
     }
 }

@@ -1,0 +1,7 @@
+name,creation-date,description,total-size,disk-number,total-folders
+label-id,name
+group-id,name,description,capacity,groups/*ids separdos por ponto e virgula*/,parent-id
+media-id,name,capacity,last_modified,description,free-space,location,files/*ids separdos por ponto e virgula*/,labels/*ids separdos por ponto e virgula*/,type
+file-id,name,absolute-path,last-modified,description,hidden,size,extension,image-thumb,video-preview,audio-clip,is-file,children,parent-id,media-id
+user-id,firstname,surname,loans/*ids separdos por ponto e virgula*/
+loan-id,loaned-date,returned-date,user-id,media-id
