@@ -3,5 +3,6 @@ OpenIDE-Module: de.berlios.jfindmyfiles.jfindmyfilesgui
 OpenIDE-Module-Install: de/berlios/jfindmyfiles/jfindmyfilesgui/Installer.class
 OpenIDE-Module-Layer: de/berlios/jfindmyfiles/jfindmyfilesgui/layer.xml
 OpenIDE-Module-Localizing-Bundle: de/berlios/jfindmyfiles/jfindmyfilesgui/Bundle.properties
+OpenIDE-Module-Requires: org.netbeans.api.javahelp.Help
 OpenIDE-Module-Specification-Version: 1.0
 

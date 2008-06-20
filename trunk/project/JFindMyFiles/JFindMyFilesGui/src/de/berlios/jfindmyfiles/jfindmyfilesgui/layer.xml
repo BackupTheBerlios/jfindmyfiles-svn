@@ -99,6 +99,7 @@
             </file>
         </folder>
         <folder name="Edit">
+            <file name="Separator2.instance_hidden"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDisk.shadow">
                 <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDisk.instance"/>
                 <attr name="position" intvalue="800"/>
@@ -235,6 +236,13 @@
         <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-PluginsOptionsCategory.instance"/>
     </folder>
     <folder name="Recent"/>
+    <folder name="Services">
+        <folder name="JavaHelp">
+            <file name="jfindmyfilesgui-helpset.xml" url="jfindmyfilesgui-helpset.xml">
+                <attr name="position" stringvalue="3412"/>
+            </file>
+        </folder>
+    </folder>
     <folder name="Shortcuts">
         <file name="S-N.shadow">
             <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionNewCatalog.instance"/>
