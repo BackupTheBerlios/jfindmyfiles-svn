@@ -19,6 +19,9 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
@@ -26,7 +29,17 @@ import org.openide.util.actions.CallableSystemAction;
 public final class ActionLaunchFile extends CallableSystemAction {
 
     public void performAction() {
-    // TODO implement action body
+        if(Desktop.isDesktopSupported()) {
+            Desktop d = Desktop.getDesktop();
+            try {
+                d.open(new File(""));
+            } catch (IOException ex) {
+                //TODO: proper logging
+                //TODO: message for file not found or action not allowed
+            }
+        } else {
+            //TODO: message for operation not supporteds
+        }
     }
 
     public String getName() {

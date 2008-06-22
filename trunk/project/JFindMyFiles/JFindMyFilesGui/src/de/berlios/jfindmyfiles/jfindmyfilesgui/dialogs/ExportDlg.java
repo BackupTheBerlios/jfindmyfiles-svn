@@ -369,8 +369,8 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
             jpProgressBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpProgressBarLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
-                .addComponent(jpbExportProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addComponent(jpbExportProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jpProgressBarLayout.setVerticalGroup(
             jpProgressBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

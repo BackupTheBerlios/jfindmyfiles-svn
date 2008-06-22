@@ -51,6 +51,7 @@
                 <package>de.berlios.jfindmyfiles.readingfiles</package>
                 <package>de.berlios.jfindmyfiles.readingfiles.pluginapi</package>
                 <package>de.berlios.jfindmyfiles.readingfiles.plugins</package>
+                <package>de.berlios.jfindmyfiles.readingfiles.utils</package>
             </public-packages>
         </data>
     </configuration>

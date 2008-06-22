@@ -5,6 +5,7 @@
     <total-size></total-size>
     <disk-number></disk-number>
     <total-folders></total-folders>
+	<total-files></total-files>
     <label-list>
         <label id="">
             <name></name>

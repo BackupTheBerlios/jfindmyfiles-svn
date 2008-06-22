@@ -111,6 +111,10 @@ public class XML extends ExportEngine {
             hd.startElement("", "", "total-folders", atts);
             hd.characters(aux.toCharArray(), 0, aux.length());
             hd.endElement("", "", "total-folders");
+            aux = String.valueOf(props.getTotalFiles());
+            hd.startElement("", "", "total-files", atts);
+            hd.characters(aux.toCharArray(), 0, aux.length());
+            hd.endElement("", "", "total-files");            
             //END CATALOG INFO
             //START LABEL LIST
             lAux = s.createQuery("from Label").list();
@@ -279,6 +283,7 @@ public class XML extends ExportEngine {
                     hd.characters(aux.toCharArray(), 0, aux.length());
                     hd.endElement("", "", "size");
                     hd.startElement("", "", "extension", atts);
+                    aux = f.getExtension() != null ? f.getExtension() : "";
                     hd.characters(aux.toCharArray(), 0, aux.length());
                     hd.endElement("", "", "extension");
                     //TODO: image, video and audio data
@@ -295,7 +300,7 @@ public class XML extends ExportEngine {
                     hd.endElement("", "", "sha1");
 
                     hd.startElement("", "", "children", atts);//ids separados por ponto e virgula
-                    //TODO:
+                    //TODO: add elements
                     hd.endElement("", "", "children");
 
                     hd.startElement("", "", "parent-id", atts);
@@ -303,6 +308,7 @@ public class XML extends ExportEngine {
                     hd.characters(aux.toCharArray(), 0, aux.length());
                     hd.endElement("", "", "parent-id");
                     hd.startElement("", "", "media-id", atts);
+                    aux = f.getDisk() != null ? String.valueOf(f.getDisk().getId()) : "";
                     hd.characters(aux.toCharArray(), 0, aux.length());
                     hd.endElement("", "", "media-id");
                     hd.endElement("", "", "file");

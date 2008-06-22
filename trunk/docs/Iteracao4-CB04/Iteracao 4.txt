@@ -12,7 +12,10 @@ tipo de motor de base de dados a usar para guardar o catálogo.
 Implementar um sistema que permita identificar ficheiros duplicados no catálogo.
 
 <==== Documentos produzidos ===================================================>
-Nenhum
+Spikes:
+	ExecutarFicheiro - permitiu testar a forma de executar um ficheiro, a 
+		partir de uma aplicação Java, usando a nova API introduzinda na versão 
+		6 da plataforma Java.
 <====
 A utilização da tecnologia Hibernate, com a sua linguagem de pesquisas própria, 
 permitirá facilmente atingir os objectivos base pretendidos para esta iteração.

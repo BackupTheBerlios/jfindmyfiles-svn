@@ -12,7 +12,7 @@ import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
-import org.openide.util.Exceptions;
+import java.util.Properties;
 import org.openide.util.NbPreferences;
 
 /**
@@ -22,9 +22,12 @@ import org.openide.util.NbPreferences;
 public class PluginCache {
 
     private Hashtable<String, Reader> cache;
+    private Properties active;
 
     public PluginCache() {
         cache = new Hashtable<String, Reader>();
+        //TODO:
+        active = new Properties();
         loadPlugins();
     }
 

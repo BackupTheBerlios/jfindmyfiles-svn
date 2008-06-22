@@ -14,9 +14,6 @@ Iteração 2:
 	- Abrir catálogo
 	- Fechar catálogo
 	- Manter registo de catálogos recentes
-	
-Iteração 3:
-	- Desenhar diagrama da API
 
 Iteração 4:
 	- pesquisa de ficheiros duplicados em todo o catálogo
@@ -26,12 +23,9 @@ Iteração 5:
 	- alterar algumas user stories para incluirem todas as opções de menu que apareceram sem justificação
 
 Iteração 6:
-	- exportar dados para CSV
 	- importar dados de XML
 	- importar dados de outra base de dados
 	- importar dados de CSV
-	- exportar para XLS
-	- exportar para ODS
 	- importar dados de outras aplicações
 
 TODOS:
@@ -39,4 +33,3 @@ TODOS:
 	indicar nos textos a origem de algumas afirmações, citar bibliografia
 NOTAS:
 	Atenção ao nome dos paineis e componentes na internacionalização
-	Criar painel para escolher a língua?

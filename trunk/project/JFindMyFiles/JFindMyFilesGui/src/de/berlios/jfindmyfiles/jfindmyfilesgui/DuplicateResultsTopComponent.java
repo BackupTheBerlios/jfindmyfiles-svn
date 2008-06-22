@@ -6,6 +6,7 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.catalog.entities.FileWrapper;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.SearchParentNode;
 import java.awt.BorderLayout;
 import java.io.Serializable;
 import java.util.logging.Logger;
@@ -33,7 +34,7 @@ public final class DuplicateResultsTopComponent extends TopComponent {
     private static final String PREFERRED_ID = "DuplicateResultsTopComponent";
 
     private DuplicateResultsTopComponent() {
-        //initComponents();
+        myInitComponents();
         setName(NbBundle.getMessage(DuplicateResultsTopComponent.class, "CTL_DuplicateResultsTopComponent"));
         setToolTipText(NbBundle.getMessage(DuplicateResultsTopComponent.class, "HINT_DuplicateResultsTopComponent"));
     }
@@ -42,13 +43,7 @@ public final class DuplicateResultsTopComponent extends TopComponent {
         setLayout(new BorderLayout());
         add(view, BorderLayout.CENTER);
         view.setRootVisible(true);
-        //manager.setRootContext(new CatalogNode());
-        //Code from the feed reader example, needs to be rewritten
-        /*try {
-        //manager.setRootContext(new RssNode.RootRssNode());
-        } catch (DataObjectNotFoundException ex) {
-        ErrorManager.getDefault().notify(ex);
-        }*/
+        manager.setRootContext(new SearchParentNode());
 
         ActionMap map = getActionMap();
     //map.put("delete", ExplorerUtils.actionDelete(manager, true));

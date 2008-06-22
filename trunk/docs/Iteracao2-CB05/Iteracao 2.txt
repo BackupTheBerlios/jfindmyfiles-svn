@@ -10,19 +10,8 @@ analisados.
 
 Será também incorporado o código da iteração anterior.
 <==== Documentos produzidos ===================================================>
-Casos de Uso:
-	Diagrama 1 - Casos de uso referentes à iteração presente: catálogos e 
-		etiquetas;
-	Diagrama 2 - Casos de uso referentes à integração da iteração anterior: 
-		leitura de dados e obtenção de informação sobre ficheiros.
-	Diagrama 1.png e Diagrama 2.png - Ficheiros obtidos pela exportação dos 
-		diagramas correspondentes.
-	Report - Pasta com relatório de Casos de Uso onde se incluem a descrição 
-		dos casos e todas as informações que os caracterizam.
-
 Modelo de dados:
 	DER.dia - Diagrama Entidade Relacionamento em formato Dia;
-	DER.wmf - Imagem obtido por exportação do ficheiro DER.dia;
 	
 Spikes:
 	Prototipo - Protótipo de aplicação
@@ -161,30 +150,3 @@ No que toca a funcionalidades, a iteração não obteve o sucesso desejado,
 ficando por implementar o código que permita ver o conteúdo dos nós 
 seleccionados e que possibilite que alterações à base de dados sejam mostradas 
 ao utilizador em tempo real.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -46,3 +46,4 @@ JCalendar - Widget para mostrar calendários
 JFreeChart - Sistema de geração de gráficos
 JExcelApi, utilização por definir.
 jacksum
+metadata-extractor-2.3.1.jar

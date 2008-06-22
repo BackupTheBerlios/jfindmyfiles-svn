@@ -8,8 +8,10 @@ Spikes:
 	normal. Permite verificar os métodos de obtenção de dados e a possibiliade 
 	de extender os dados padrão a novos dados e/ou novos ficheiros.
 Outros documentos:
-	DecricaoAPI - documento com a descrição da API e principais ideias por 
-	detrás da mesma.
+	DecricaoAPI - projecto de netbeans com diagramas de classes que descrevem a 
+		API e principais ideias por detrás da mesma.
+	pluginapi.png, plugins.png, readingfiles.png - imagens obtidas pela 
+		exportação dos diagramas de classes.
 	example.amc - Ficheiro de Ant Movie Catalog usado para testar a API.
 	DSC00165.JPG - Imagem JPG usada para testar a API
 
