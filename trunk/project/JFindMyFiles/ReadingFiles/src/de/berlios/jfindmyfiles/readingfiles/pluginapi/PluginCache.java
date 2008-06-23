@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.prefs.Preferences;
 import org.openide.util.NbPreferences;
 
 /**
@@ -24,13 +25,14 @@ import org.openide.util.NbPreferences;
 public class PluginCache {
 
     private Hashtable<String, Reader> cache;
-    private Properties active;
+    private Hashtable<String, Boolean> active;
     private static final Logger logger = Logger.getLogger(PluginCache.class.getName());
-
+    private Preferences p;
+    
     public PluginCache() {
         cache = new Hashtable<String, Reader>();
         //TODO: how to know if a given plugin is active
-        active = new Properties();
+        p = NbPreferences.forModule(PluginCache.class);
         loadPlugins();
     }
 
@@ -63,6 +65,7 @@ public class PluginCache {
                             tClass = Class.forName(existing[z], true, ucl);
                             reader = (Reader) tClass.newInstance();
                             cache.put(reader.pluginFor(), reader);
+                            active.put(reader.getName(), p.getBoolean(reader.getName(), false));
                         }
                     }
                 }
@@ -71,6 +74,7 @@ public class PluginCache {
             tClass = Class.forName("de.berlios.jfindmyfiles.readingfiles.plugins.AntMovieCataloferPlugin");
             reader = (Reader) tClass.newInstance();
             cache.put(reader.pluginFor(), reader);
+            active.put(reader.getName(), p.getBoolean(reader.getName(), false));
             
             tClass = Class.forName("de.berlios.jfindmyfiles.readingfiles.plugins.JPGPlugin");
             reader = (Reader) tClass.newInstance();
@@ -100,5 +104,9 @@ public class PluginCache {
             temp.add(r);
         }
         return temp;
+    }
+    
+    public boolean isActive(String name) {
+        return active.get(name);
     }
 }

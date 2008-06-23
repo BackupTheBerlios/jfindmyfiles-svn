@@ -23,6 +23,8 @@ import de.berlios.jfindmyfiles.catalog.entities.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -33,6 +35,7 @@ public class CatalogEngine {
     public SessionFactory sessionFactory;
     private CatalogProperties properties;
     private Vector<CatalogEngineListener> listeners;
+    private static final Logger logger = Logger.getLogger(CatalogEngine.class.getName());
 
     /**
      * Empty construtor so that this class can be instanciated using reflection 
@@ -116,8 +119,8 @@ public class CatalogEngine {
 
             sessionFactory = hConfig.buildSessionFactory();
 
-        } catch (Throwable ex) {//TODO: proper logging
-            System.err.println("HIBERNATE: Initial SessionFactory creation failed." + ex);
+        } catch (Exception ex) {
+            logger.log(Level.SEVERE, "HIBERNATE: Initial SessionFactory creation failed.", ex);
             throw new ExceptionInInitializerError(ex);
         }
 

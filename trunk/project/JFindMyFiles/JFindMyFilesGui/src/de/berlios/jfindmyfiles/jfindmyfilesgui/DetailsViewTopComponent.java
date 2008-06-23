@@ -23,13 +23,10 @@ import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
 import de.berlios.jfindmyfiles.catalog.entities.FileWrapper;
 import de.berlios.jfindmyfiles.catalog.entities.Media;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.CatalogNode;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.DiskGroupNode;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.DiskNode;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.FileWrapperNode;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.logging.Logger;
+import javax.swing.table.AbstractTableModel;
 import org.openide.explorer.view.NodeTableModel;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
@@ -54,6 +51,9 @@ final class DetailsViewTopComponent extends TopComponent implements LookupListen
     private Lookup.Result diskResult = null;
     private Lookup.Result groupResult = null;
     private Lookup.Result fileResult = null;
+    //
+    private Object[] sItem = new Object[4];
+    private int sItemIndex;
 
     private DetailsViewTopComponent() {
         ntModel = new NodeTableModel();
@@ -61,6 +61,7 @@ final class DetailsViewTopComponent extends TopComponent implements LookupListen
         setName(NbBundle.getMessage(DetailsViewTopComponent.class, "CTL_DetailsViewTopComponent"));
         setToolTipText(NbBundle.getMessage(DetailsViewTopComponent.class, "HINT_DetailsViewTopComponent"));
 //        setIcon(Utilities.loadImage(ICON_PATH, true));
+        sItem[0] = Lookup.getDefault().lookup(CatalogEngine.class);
     }
 
     /** This method is called from within the constructor to
@@ -81,11 +82,11 @@ final class DetailsViewTopComponent extends TopComponent implements LookupListen
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jscpDetailsScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .add(org.jdesktop.layout.GroupLayout.TRAILING, jscpDetailsScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jscpDetailsScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .add(jscpDetailsScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -130,18 +131,6 @@ final class DetailsViewTopComponent extends TopComponent implements LookupListen
 
     @Override
     public void componentOpened() {
-        /*diskResult = Utilities.actionsGlobalContext().lookup(new Lookup.Template(DiskNode.class));
-        diskResult.addLookupListener(this);
-        
-        catalogResult = Utilities.actionsGlobalContext().lookup(new Lookup.Template(CatalogNode.class));
-        catalogResult.addLookupListener(this);
-        
-        fileResult = Utilities.actionsGlobalContext().lookup(new Lookup.Template(FileWrapperNode.class));
-        fileResult.addLookupListener(this);
-        
-        groupResult = Utilities.actionsGlobalContext().lookup(new Lookup.Template(DiskGroupNode.class));
-        groupResult.addLookupListener(this);*/
-
         diskResult = Utilities.actionsGlobalContext().lookup(new Lookup.Template(Media.class));
         diskResult.addLookupListener(this);
 
@@ -188,15 +177,47 @@ final class DetailsViewTopComponent extends TopComponent implements LookupListen
     }
 
     public void resultChanged(LookupEvent evt) {
-        System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> EVENT! EVENT! EVENT! EVENT! EVENT! EVENT!");
-        Lookup.Result r = (Lookup.Result) evt.getSource();
-        Collection c = r.allInstances();
+        Collection c = ((Lookup.Result) evt.getSource()).allInstances();
+        Object o;
         if (!c.isEmpty()) {
-            /*            APIObject o = (APIObject) c.iterator().next();
-            jLabel1.setText(Integer.toString(o.getIndex()));
-            jLabel2.setText(o.getDate().toString());*/
-            System.err.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> SELECTED: " + c.iterator().next());
+            o = c.iterator().next();
+            if (o instanceof CatalogEngine) {
+                sItemIndex = 0;
+            } else if (o instanceof DiskGroup) {
+                sItem[1] = o;
+                sItemIndex = 1;
+            } else if (o instanceof Media) {
+                sItem[2] = o;
+                sItemIndex = 2;
+            } else if (o instanceof FileWrapper) {
+                sItem[3] = o;
+                sItemIndex = 3;
+            }
         }
-        //ntModel.setNodes(null);
+    }
+
+    private class NodeModel extends AbstractTableModel {
+
+        public int getRowCount() {
+           return 10;
+        }
+
+        public int getColumnCount() {
+/*            switch(sItemIndex) {
+                case 0://CatalogEngine
+                    return;
+                case 1://Group
+                    return;
+                case 2://Media
+                    return;
+                case 3://File
+                    return;
+            }*/
+            return 0;
+        }
+
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            throw new UnsupportedOperationException("Not supported yet.");
+        }
     }
 }
