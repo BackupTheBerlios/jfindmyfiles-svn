@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.openide.util.NbPreferences;
 
 /**
@@ -23,10 +25,11 @@ public class PluginCache {
 
     private Hashtable<String, Reader> cache;
     private Properties active;
+    private static final Logger logger = Logger.getLogger(PluginCache.class.getName());
 
     public PluginCache() {
         cache = new Hashtable<String, Reader>();
-        //TODO:
+        //TODO: how to know if a given plugin is active
         active = new Properties();
         loadPlugins();
     }
@@ -73,13 +76,13 @@ public class PluginCache {
             reader = (Reader) tClass.newInstance();
             cache.put(reader.pluginFor(), reader);
         } catch (MalformedURLException ex) {
-            //TODO: logging
+            logger.log(Level.WARNING, "Unable to read plugin cache", ex);
         } catch (ClassNotFoundException ex) {
-            //TODO: logging
+            logger.log(Level.WARNING, "Unable to read plugin cache", ex);
         } catch (InstantiationException ex) {
-            //TODO: logging
+            logger.log(Level.WARNING, "Unable to read plugin cache", ex);
         } catch (IllegalAccessException ex) {
-            //TODO: logging
+            logger.log(Level.WARNING, "Unable to read plugin cache", ex);
         }
     }
 

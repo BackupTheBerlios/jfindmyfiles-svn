@@ -12,7 +12,7 @@ relevantes pode constituir uma ajuda na percepção da estrutura do código e deve
 ser feita sempre que possível.
 
 Além das notas aqui descritas, devem ser seguidas as conveções para a linguagem 
-java definidas pela sun, http://java.sun.com/docs/codeconv/
+java definidas pela sun[1]
 
 Métodos que não sejam implementados terão de ter no seu corpo um comentário de 
 linha no formato: //TODO: <mensagem>
@@ -23,3 +23,5 @@ throw new UnsupportedOperationException("Not implemented yet"); //NO I18N
 Caso seja necessário acrescentar notas no código, por exemplo e linhas de 
 código que se pensam mudar mais tarde ou remover, deverá ser colocado um 
 comentário de linha com o formato: //NOTE: <mensagem>
+
+[1] - http://java.sun.com/docs/codeconv/

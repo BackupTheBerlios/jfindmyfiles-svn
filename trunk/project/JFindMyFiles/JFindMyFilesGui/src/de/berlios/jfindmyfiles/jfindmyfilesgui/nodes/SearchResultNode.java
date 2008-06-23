@@ -38,7 +38,7 @@ public class SearchResultNode extends AbstractNode {
 
     @Override
     public SystemAction[] getActions(boolean bool) {
-        //TODO:
+        //TODO: system action
         return new SystemAction[]{};
     }
 }

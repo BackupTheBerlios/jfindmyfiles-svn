@@ -11,7 +11,9 @@ analisados.
 Será também incorporado o código da iteração anterior.
 <==== Documentos produzidos ===================================================>
 Modelo de dados:
-	DER.dia - Diagrama Entidade Relacionamento em formato Dia;
+	Diagrama de Classes - Projecto Netbeans com o modelo de dados.
+	entities diagram.png - Imagem obtida pela exportação do diagrama do modelo 
+		de dados
 	
 Spikes:
 	Prototipo - Protótipo de aplicação

@@ -41,7 +41,6 @@ import org.openide.util.lookup.Lookups;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 //import org.openide.util.Utilities;
-
 /**
  * Top component which displays an explorer like tree with currently opened 
  * catalogs and all stored information.
@@ -54,9 +53,7 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
     private static NavigationTreeTopComponent instance;
     /** path to the icon used by the component and its open action */
 //    static final String ICON_PATH = "SET/PATH/TO/ICON/HERE";
-    private static final String PREFERRED_ID = "NavigationTreeTopComponent";
-    
-    //
+    private static final String PREFERRED_ID = "NavigationTreeTopComponent";    //
     private CatalogEngine eng;
 
     private NavigationTreeTopComponent() {
@@ -72,17 +69,7 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
         setLayout(new BorderLayout());
         add(view, BorderLayout.CENTER);
         view.setRootVisible(true);
-      //manager.setRootContext(new CatalogNode());
-    //Code from the feed reader example, needs to be rewritten
-        /*try {
-    //manager.setRootContext(new RssNode.RootRssNode());
-    } catch (DataObjectNotFoundException ex) {
-    ErrorManager.getDefault().notify(ex);
-    }*/
-    
-    ActionMap map = getActionMap();
-    //map.put("delete", ExplorerUtils.actionDelete(manager, true));
-    //associateLookup(ExplorerUtils.createLookup(manager, map));
+        associateLookup(ExplorerUtils.createLookup(manager, getActionMap()));
     }
 
     /** This method is called from within the constructor to
@@ -184,7 +171,7 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
     public void catalogOpened(CatalogEngineEvent evt) {
         manager.setRootContext(new CatalogNode(evt.getName(), false));//TODO:
     }
-    
+
     public void catalogClosed(CatalogEngineEvent evt) {
         try {
             manager.getRootContext().destroy(); //TODO:
@@ -192,7 +179,7 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
             Exceptions.printStackTrace(ex);
         }
     }
-    
+
     public void diskGroupAdded(CatalogEngineEvent evt) {
         throw new UnsupportedOperationException("Not supported yet.");
     }

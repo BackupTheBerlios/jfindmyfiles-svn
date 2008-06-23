@@ -22,23 +22,29 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
+import org.openide.windows.WindowManager;
 
 public final class ActionLaunchFile extends CallableSystemAction {
+    
+    private static final Logger logger = Logger.getLogger(ActionLaunchFile.class.getName());
 
     public void performAction() {
         if(Desktop.isDesktopSupported()) {
-            Desktop d = Desktop.getDesktop();
-            try {
-                d.open(new File(""));
+            Desktop dsk = Desktop.getDesktop();
+            try {//TODO: get the file
+                dsk.open(new File(""));
             } catch (IOException ex) {
-                //TODO: proper logging
-                //TODO: message for file not found or action not allowed
+                logger.log(Level.FINE, "Operation not supported or file not found", ex);//TODO: i18n
+                JOptionPane.showMessageDialog(WindowManager.getDefault().getMainWindow(), "", "", JOptionPane.ERROR_MESSAGE);
             }
-        } else {
-            //TODO: message for operation not supporteds
+        } else {//TODO: i18n
+            JOptionPane.showMessageDialog(WindowManager.getDefault().getMainWindow(), "", "", JOptionPane.INFORMATION_MESSAGE);
         }
     }
 

@@ -28,13 +28,19 @@ import de.berlios.jfindmyfiles.exportengine.XLS;
 import de.berlios.jfindmyfiles.exportengine.XML;
 import java.awt.CardLayout;
 import java.awt.Component;
+import java.awt.Desktop;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.SwingConstants;
+import org.openide.util.Exceptions;
 import org.openide.util.Utilities;
 
 /**
@@ -52,6 +58,8 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
     private Integer[] values = new Integer[]{0, 1, 2, 3, 4, 5};
     private File selectedFile;
     private int visiblePanel = 0,  previousPanel = 0;
+    private static final Logger logger = Logger.getLogger(ExportDlg.class.getName());
+    private boolean openAfterExport;
 
     /** Creates new form ExportDlg */
     public ExportDlg(java.awt.Frame parent, boolean modal) {
@@ -527,9 +535,8 @@ private void jcbxSelectTemplateActionPerformed(java.awt.event.ActionEvent evt) {
 }//GEN-LAST:event_jcbxSelectTemplateActionPerformed
 
 private void jchkOpenAfterStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jchkOpenAfterStateChanged
-//TODO: open file after exporting
+    openAfterExport = jchkOpenAfter.isSelected();
 }//GEN-LAST:event_jchkOpenAfterStateChanged
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
@@ -581,11 +588,20 @@ private void jchkOpenAfterStateChanged(javax.swing.event.ChangeEvent evt) {//GEN
             lay.previous(jpExportOptions);
         }
         visiblePanel = previousPanel;
+        if (openAfterExport) {
+            if (Desktop.isDesktopSupported()) {
+                try {
+                    Desktop.getDesktop().open(selectedFile);
+                } catch (IOException ex) {
+                    logger.log(Level.FINE, "Desktop not supported", ex);
+                }
+            }
+        }
     }
 
     public void exportError() {
-        //TODO: show error message
-        throw new UnsupportedOperationException("Not supported yet.");
+        //TODO: i18n
+        JOptionPane.showMessageDialog(this, "", "", JOptionPane.ERROR_MESSAGE);
     }
 
     /**
@@ -628,13 +644,13 @@ private void jchkOpenAfterStateChanged(javax.swing.event.ChangeEvent evt) {//GEN
             return this;
         }
     }
-    
+
     private class Template {
-        
+
         private ImageIcon preview;
         private String author;
         private String name;
-        
+
         public Template(ImageIcon preview, String author, String name) {
             this.preview = preview;
             this.author = author;
@@ -652,7 +668,7 @@ private void jchkOpenAfterStateChanged(javax.swing.event.ChangeEvent evt) {//GEN
         public ImageIcon getPreview() {
             return preview;
         }
-        
+
         @Override
         public String toString() {
             return name;

@@ -26,7 +26,7 @@ import org.openide.util.actions.CallableSystemAction;
 public final class ActionFindInThisDiskGroup extends CallableSystemAction {
 
     public void performAction() {
-        //TODO:
+        //TODO: perform find in disk group option
     }
 
     public String getName() {

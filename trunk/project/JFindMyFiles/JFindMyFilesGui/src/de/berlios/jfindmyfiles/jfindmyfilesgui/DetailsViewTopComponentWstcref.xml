@@ -22,5 +22,5 @@
 <tc-ref version="2.0" >
     <module name="de.berlios.jfindmyfiles.jfindmyfilesgui" spec="1.0"/>
     <tc-id id="DetailsViewTopComponent"/>
-    <state opened="true"/>
+    <state opened="false"/>
 </tc-ref>

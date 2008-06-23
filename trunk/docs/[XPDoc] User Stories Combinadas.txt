@@ -27,8 +27,8 @@ ficar preso a apenas um tipo de base de dados.
 - Deve ser possível procurar ficheiros duplicados, o nome não deve ser limitação.
 
 CB05: ST4, ST5, ST7
-- O programa tem de permitir criar catálogos, abrir catálogos, manter um registo 
-de catálogos recentes, fechar e guardar catálogos.
+- O programa tem de permitir criar catálogos, abrir catálogos, fechar e guardar 
+catálogos.
 - Os discos e pastas podem ser catalogados usando etiquetas, o sistema deve ser 
 independente das categorias e grupos de discos e permitir que o mesmo disco 
 tenha mais que uma categoria.

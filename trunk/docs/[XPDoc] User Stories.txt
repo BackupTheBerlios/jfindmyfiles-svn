@@ -11,8 +11,8 @@ Quando se trata de um disco amovível deve existir a possibilidade de guardar a
 localização física do disco.
 
 ST4:
-O programa tem de permitir criar catálogos, abrir catálogos, manter um registo 
-de catálogos recentes, fechar e guardar catálogos.
+O programa tem de permitir criar catálogos, abrir catálogos, fechar e guardar 
+catálogos.
 
 ST5:
 Os discos e pastas podem ser catalogados usando etiquetas, o sistema deve ser 

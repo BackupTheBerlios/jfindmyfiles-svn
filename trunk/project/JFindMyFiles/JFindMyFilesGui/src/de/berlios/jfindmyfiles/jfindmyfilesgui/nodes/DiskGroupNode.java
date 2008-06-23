@@ -42,7 +42,7 @@ public class DiskGroupNode extends AbstractNode {
     private SystemAction[] sysact;
 
     public DiskGroupNode(DiskGroup group, boolean leaf) {
-        super((leaf ? Children.LEAF : new DiskGroupChildren(group.getId())));
+        super((leaf ? Children.LEAF : new DiskGroupChildren(group.getId())), Lookups.singleton(group));
         setName(group.getName());
 
         Lookup lo = Lookups.forPath("/Actions");//TODO: sort actions correctly and add separators

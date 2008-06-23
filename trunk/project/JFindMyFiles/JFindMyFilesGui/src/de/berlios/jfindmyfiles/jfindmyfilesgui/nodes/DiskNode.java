@@ -27,6 +27,7 @@ import org.openide.nodes.AbstractNode;
 import org.openide.util.Lookup;
 import org.openide.util.Utilities;
 import org.openide.util.actions.SystemAction;
+import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.Lookups;
 
 /**
@@ -39,7 +40,7 @@ public class DiskNode extends AbstractNode {
     private Media media;
 
     public DiskNode(Media media) {
-        super(new DiskChildren(media.getId(), true));
+        super(new DiskChildren(media.getId(), true), Lookups.singleton(media));
         this.media = media;
         setName(media.getName());
 

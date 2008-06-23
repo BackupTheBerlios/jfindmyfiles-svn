@@ -18,6 +18,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
@@ -33,6 +35,7 @@ public class JPGPlugin implements Reader {
     private ImageIcon ic;
     private BufferedImage bimg;
     private ByteArrayOutputStream bas;
+    private static final Logger logger = Logger.getLogger(JPGPlugin.class.getName());
 
     public JPGPlugin() {
         ic = new ImageIcon();
@@ -101,10 +104,9 @@ public class JPGPlugin implements Reader {
 
             return new DescriptionValues(buf.toString(), data, null, null, null);
         } catch (JpegProcessingException ex) {
-            //TODO: logging
+            logger.log(Level.WARNING, "JPGPlugin failed", ex);
         } catch (IOException ex) {
-            //TODO: logging
-            //Logger.getLogger(JPGPlugin.class.getName()).log(Level.SEVERE, null, ex);
+            logger.log(Level.WARNING, "JPGPlugin failed", ex);
         }
         return new DescriptionValues();
     }
