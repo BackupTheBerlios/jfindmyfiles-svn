@@ -285,7 +285,6 @@ private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_jbtnCancelActionPerformed
 
 private void jbtnOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnOKActionPerformed
-    //TODO: better control over detached object
     if (changed) {
         changed = false;
         props.setCreationDate(jdcCreatedOn.getDate());

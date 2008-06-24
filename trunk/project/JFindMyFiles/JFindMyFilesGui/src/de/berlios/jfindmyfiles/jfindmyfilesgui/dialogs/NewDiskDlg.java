@@ -351,10 +351,12 @@ public class NewDiskDlg extends javax.swing.JDialog {
 
 private void jtbSelectedPluginsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtbSelectedPluginsActionPerformed
     //TODO: show plugin panel
-    //WindowManager.getDefault().getMainWindow().
+    //WindowManager.getDefault().getMainWindow()
     if (jtbSelectedPlugins.isSelected()) {
-        jpopPlugins.setLocation(getParent().getX() + this.getX() + jtbSelectedPlugins.getX() + jtbSelectedPlugins.getWidth(),
-                getParent().getY() + this.getY() + jtbSelectedPlugins.getY() + jtbSelectedPlugins.getHeight() + 48);
+        jpopPlugins.setLocation((int)(getParent().getBounds().getX() + this.getBounds().getX() + 
+                jtbSelectedPlugins.getBounds().getX()) + jtbSelectedPlugins.getWidth(),
+                (int)(getParent().getBounds().getY() + this.getBounds().getY() + 
+                jtbSelectedPlugins.getBounds().getY()) + jtbSelectedPlugins.getHeight());
         jpopPlugins.setVisible(true);
     } else {
         jpopPlugins.setVisible(false);

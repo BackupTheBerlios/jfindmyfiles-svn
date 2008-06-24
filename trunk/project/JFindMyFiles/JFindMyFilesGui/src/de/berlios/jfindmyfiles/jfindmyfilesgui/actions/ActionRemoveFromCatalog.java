@@ -19,12 +19,20 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import org.openide.util.HelpCtx;
+import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
 
 public final class ActionRemoveFromCatalog extends CallableSystemAction {
 
+    private CatalogEngine eng;
+    
+    public ActionRemoveFromCatalog() {
+        super();
+        eng = Lookup.getDefault().lookup(CatalogEngine.class);
+    }
     public void performAction() {
         // TODO implement action body
     }
@@ -47,4 +55,9 @@ public final class ActionRemoveFromCatalog extends CallableSystemAction {
     protected boolean asynchronous() {
         return false;
     }
+    
+   @Override
+   public boolean isEnabled() {
+       return eng.isOpened();
+   }
 }

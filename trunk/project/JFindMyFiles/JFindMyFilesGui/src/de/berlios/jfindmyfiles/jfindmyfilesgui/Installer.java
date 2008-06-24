@@ -22,6 +22,7 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui;
 import javax.swing.JOptionPane;
 import org.openide.modules.ModuleInstall;
 import org.openide.util.NbBundle;
+import org.openide.util.NbPreferences;
 import org.openide.windows.WindowManager;
 
 /**
@@ -32,10 +33,13 @@ public class Installer extends ModuleInstall {
 
     @Override
     public boolean closing() {
-        return JOptionPane.OK_OPTION ==
-                JOptionPane.showConfirmDialog(WindowManager.getDefault().getMainWindow(), 
-                NbBundle.getMessage(CatalogOptionsCategory.class, "Installer.ClosingMessage"), 
-                NbBundle.getMessage(CatalogOptionsCategory.class, "Installer.ClosingTitle"),
-                JOptionPane.YES_NO_CANCEL_OPTION);
+        if (NbPreferences.forModule(MiscPanel.class).getBoolean("confirmexit", true)) {
+            return JOptionPane.OK_OPTION ==
+                    JOptionPane.showConfirmDialog(WindowManager.getDefault().getMainWindow(),
+                    NbBundle.getMessage(CatalogOptionsCategory.class, "Installer.ClosingMessage"),
+                    NbBundle.getMessage(CatalogOptionsCategory.class, "Installer.ClosingTitle"),
+                    JOptionPane.YES_NO_CANCEL_OPTION);
+        }
+        return true;
     }
 }

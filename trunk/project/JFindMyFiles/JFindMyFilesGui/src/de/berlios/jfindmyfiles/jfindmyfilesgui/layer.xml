@@ -39,7 +39,8 @@
         <folder name="Search">
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionFindInThisDiskGroup.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionScanForDuplicates.instance"/>
-            </folder>
+                <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionSearch.instance"/>
+        </folder>
         <folder name="View">
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionCatalogProperties.instance"/>
         </folder>
@@ -170,6 +171,10 @@
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionScanForDuplicates.shadow">
                 <attr name="originalFile" stringvalue="Actions/Search/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionScanForDuplicates.instance"/>
                 <attr name="position" intvalue="1750"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionSearch.shadow">
+                <attr name="originalFile" stringvalue="Actions/Search/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionSearch.instance"/>
+                <attr name="position" intvalue="550"/>
             </file>
             <file name="org-netbeans-core-windows-actions-RecentViewListAction.shadow_hidden"/>
             <file name="org-openide-actions-GotoAction.shadow_hidden"/>

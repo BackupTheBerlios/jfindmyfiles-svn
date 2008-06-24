@@ -31,6 +31,13 @@ import org.openide.util.actions.CallableSystemAction;
 import org.openide.windows.WindowManager;
 
 public final class ActionRenameDisk extends CallableSystemAction {
+    
+    private CatalogEngine eng;
+    
+    public ActionRenameDisk() {
+        super();
+        eng = Lookup.getDefault().lookup(CatalogEngine.class);
+    }
 
     public void performAction() {
         String name = JOptionPane.showInputDialog(WindowManager.getDefault().getMainWindow(), "New name:");//TODO: i18n
@@ -61,5 +68,10 @@ public final class ActionRenameDisk extends CallableSystemAction {
     @Override
     protected boolean asynchronous() {
         return false;
+    }
+    
+    @Override
+    public boolean isEnabled() {
+        return eng.isOpened();
     }
 }

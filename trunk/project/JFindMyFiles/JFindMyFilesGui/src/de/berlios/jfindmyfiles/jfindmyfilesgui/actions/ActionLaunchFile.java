@@ -19,6 +19,7 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
@@ -26,6 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import org.openide.util.HelpCtx;
+import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
 import org.openide.windows.WindowManager;
@@ -33,6 +35,12 @@ import org.openide.windows.WindowManager;
 public final class ActionLaunchFile extends CallableSystemAction {
     
     private static final Logger logger = Logger.getLogger(ActionLaunchFile.class.getName());
+    private CatalogEngine eng;
+    
+    public ActionLaunchFile() {
+        super();
+        eng = Lookup.getDefault().lookup(CatalogEngine.class);
+    }
 
     public void performAction() {
         if(Desktop.isDesktopSupported()) {
@@ -66,5 +74,10 @@ public final class ActionLaunchFile extends CallableSystemAction {
     @Override
     protected boolean asynchronous() {
         return false;
+    }
+    
+    @Override
+    public boolean isEnabled() {
+        return eng.isOpened();
     }
 }
