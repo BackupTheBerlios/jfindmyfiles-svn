@@ -6,7 +6,10 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
 import de.berlios.jfindmyfiles.readingfiles.pluginapi.PluginCache;
 import de.berlios.jfindmyfiles.readingfiles.pluginapi.Reader;
+import java.io.File;
 import java.util.List;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.table.AbstractTableModel;
 import org.openide.util.Lookup;
 import org.openide.util.NbPreferences;
@@ -15,29 +18,26 @@ final class PluginsPanel extends javax.swing.JPanel {
 
     private final PluginsPanelController controller;
     private PluginCache cache;
+    private List<Reader> values;
 
-    PluginsPanel(PluginsPanelController controller) {
+    PluginsPanel(final PluginsPanelController controller) {
         this.controller = controller;
         cache = Lookup.getDefault().lookup(PluginCache.class);
         initComponents();
-    // TODO listen to changes in form fields and call controller.changed()
-        /*jtfPluginFolder.getDocument().addDocumentListener(new DocumentListener() {
-    
-    public void insertUpdate(DocumentEvent e) {
-    throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
-    public void removeUpdate(DocumentEvent e) {
-    throw new UnsupportedOperationException("Not supported yet.");
-    }
-    
-    public void changedUpdate(DocumentEvent e) {
-    throw new UnsupportedOperationException("Not supported yet.");
-    }
-    });*/
-    }
+        jtfPluginFolder.getDocument().addDocumentListener(new DocumentListener() {
 
-    private void myInitComponents() {
+            public void insertUpdate(DocumentEvent e) {
+                controller.changed();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                controller.changed();
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                controller.changed();
+            }
+        });
     }
 
     /** This method is called from within the constructor to
@@ -66,17 +66,7 @@ final class PluginsPanel extends javax.swing.JPanel {
             }
         });
 
-        jtbPluginList.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        jtbPluginList.setModel(new PluginsPanel.PluginModel());
         jtbPluginList.setRowSelectionAllowed(false);
         jscpPluginList.setViewportView(jtbPluginList);
 
@@ -118,13 +108,18 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_jbtnBrowseActionPerformed
 
     void load() {
-        jtfPluginFolder.setText(NbPreferences.forModule(PluginCache.class).get("PluginFolder","")); // NOI18N
-        //TODO: load plugin definition
+        jtfPluginFolder.setText(NbPreferences.forModule(PluginCache.class).get("PluginFolder", 
+                System.getProperty("user.home") + File.separator + "jfmf" + File.separator +
+                "plugins")); // NOI18N
     }
 
     void store() {
         NbPreferences.forModule(PluginCache.class).put("PluginFolder", jtfPluginFolder.getText().trim()); // NOI18N
-        //TODO: save plugin definition
+        Reader r;
+        for(int z = values.size(); z-- > 0;) {
+            r =  values.get(z);
+            NbPreferences.forModule(PluginCache.class).putBoolean(r.pluginFor() , r.isActive());
+        }
     }
 
     boolean valid() {
@@ -142,7 +137,6 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
     private class PluginModel extends AbstractTableModel {
 
-        private List<Reader> values;
         private int rowCount;
         
         public PluginModel() {
@@ -171,7 +165,7 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                 case 2:
                     return values.get(rowIndex).getAuthor();
                 case 3:
-                    return null;//TODO: create an object that can represent if the plugin is active or not
+                    return values.get(rowIndex).isActive();
             }
             return null;
         }
@@ -194,6 +188,14 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         @Override
         public boolean isCellEditable(int l, int c) {
             return c == 3;
-        }        
+        }
+        
+        @Override
+        public void setValueAt(Object value, int rowIndex, int columnIndex) {
+            if(columnIndex == 3) {
+                values.get(rowIndex).setActive((Boolean)value);
+                controller.changed();
+            }
+        }
     }
 }

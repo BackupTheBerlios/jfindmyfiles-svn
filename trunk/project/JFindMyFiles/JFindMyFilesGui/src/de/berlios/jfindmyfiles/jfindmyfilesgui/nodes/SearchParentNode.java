@@ -34,7 +34,6 @@ public class SearchParentNode extends AbstractNode {
 
     @Override
     public SystemAction[] getActions(boolean bool) {
-        //TODO: system actions
         return new SystemAction[]{};
     }
 }

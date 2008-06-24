@@ -2,19 +2,63 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import org.openide.util.NbPreferences;
 
 final class MiscPanel extends javax.swing.JPanel {
 
     private final MiscOptionsPanelController controller;
 
-    MiscPanel(MiscOptionsPanelController controller) {
+    MiscPanel(final MiscOptionsPanelController controller) {
         this.controller = controller;
         initComponents();
-        // TODO listen to changes in form fields and call controller.changed()
+        jtfEmail.getDocument().addDocumentListener(new DocumentListener() {
+
+            public void insertUpdate(DocumentEvent e) {
+                controller.changed();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                controller.changed();
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                controller.changed();
+            }
+        });
+
+        jtfUserName.getDocument().addDocumentListener(new DocumentListener() {
+
+            public void insertUpdate(DocumentEvent e) {
+                controller.changed();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                controller.changed();
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                controller.changed();
+            }
+        });
+
+        jtfWebAddress.getDocument().addDocumentListener(new DocumentListener() {
+
+            public void insertUpdate(DocumentEvent e) {
+                controller.changed();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                controller.changed();
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                controller.changed();
+            }
+        });
     }
 
     /** This method is called from within the constructor to
@@ -58,10 +102,20 @@ final class MiscPanel extends javax.swing.JPanel {
 
         jchkConfirmExit.setSelected(true);
         org.openide.awt.Mnemonics.setLocalizedText(jchkConfirmExit, org.openide.util.NbBundle.getMessage(MiscPanel.class, "MiscPanel.jchkConfirmExit.text")); // NOI18N
+        jchkConfirmExit.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jchkConfirmExitStateChanged(evt);
+            }
+        });
 
         org.openide.awt.Mnemonics.setLocalizedText(jlblRememberedCatalogs, org.openide.util.NbBundle.getMessage(MiscPanel.class, "MiscPanel.jlblRememberedCatalogs.text")); // NOI18N
 
         jspRememberCatalogs.setModel(new javax.swing.SpinnerNumberModel(0, 0, 10, 1));
+        jspRememberCatalogs.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                jspRememberCatalogsStateChanged(evt);
+            }
+        });
 
         org.openide.awt.Mnemonics.setLocalizedText(jlblDisabeRememberCatalogsTip, org.openide.util.NbBundle.getMessage(MiscPanel.class, "MiscPanel.jlblDisabeRememberCatalogsTip.text")); // NOI18N
 
@@ -143,6 +197,14 @@ final class MiscPanel extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+private void jchkConfirmExitStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jchkConfirmExitStateChanged
+    controller.changed();
+}//GEN-LAST:event_jchkConfirmExitStateChanged
+
+private void jspRememberCatalogsStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jspRememberCatalogsStateChanged
+    controller.changed();
+}//GEN-LAST:event_jspRememberCatalogsStateChanged
 
     void load() {
         jtfUserName.setText(NbPreferences.forModule(MiscPanel.class).get("name", ""));

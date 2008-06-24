@@ -7,6 +7,7 @@ importar os dados para a base de dados corrente.
 
 Spikes:
 	SimpleExport
+	TemplateExport
 Outros documentos:
 	exemplo.xml
 	exemplo.csv

@@ -12,7 +12,6 @@ import java.net.URLClassLoader;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.prefs.Preferences;
@@ -25,20 +24,19 @@ import org.openide.util.NbPreferences;
 public class PluginCache {
 
     private Hashtable<String, Reader> cache;
-    private Hashtable<String, Boolean> active;
     private static final Logger logger = Logger.getLogger(PluginCache.class.getName());
     private Preferences p;
     
     public PluginCache() {
         cache = new Hashtable<String, Reader>();
-        //TODO: how to know if a given plugin is active
         p = NbPreferences.forModule(PluginCache.class);
         loadPlugins();
     }
 
     private void loadPlugins() {
         String baseFolder = NbPreferences.forModule(PluginCache.class).get("PluginFolder", 
-                System.getProperty("user.home") + File.pathSeparator + "JFindMyFiles Plugins");
+                System.getProperty("user.home") + File.separator + "jfmf" + File.separator +
+                "plugins");
         
         Class tClass = null;
         Reader reader = null;
@@ -65,7 +63,7 @@ public class PluginCache {
                             tClass = Class.forName(existing[z], true, ucl);
                             reader = (Reader) tClass.newInstance();
                             cache.put(reader.pluginFor(), reader);
-                            active.put(reader.getName(), p.getBoolean(reader.getName(), false));
+                            reader.setActive(p.getBoolean(reader.pluginFor(), false));
                         }
                     }
                 }
@@ -74,7 +72,7 @@ public class PluginCache {
             tClass = Class.forName("de.berlios.jfindmyfiles.readingfiles.plugins.AntMovieCataloferPlugin");
             reader = (Reader) tClass.newInstance();
             cache.put(reader.pluginFor(), reader);
-            active.put(reader.getName(), p.getBoolean(reader.getName(), false));
+            reader.setActive(p.getBoolean(reader.pluginFor(), false));
             
             tClass = Class.forName("de.berlios.jfindmyfiles.readingfiles.plugins.JPGPlugin");
             reader = (Reader) tClass.newInstance();
@@ -104,9 +102,5 @@ public class PluginCache {
             temp.add(r);
         }
         return temp;
-    }
-    
-    public boolean isActive(String name) {
-        return active.get(name);
     }
 }

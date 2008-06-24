@@ -62,11 +62,11 @@ public final class DuplicateResultsTopComponent extends TopComponent {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 379, Short.MAX_VALUE)
+            .addGap(0, 177, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 226, Short.MAX_VALUE)
+            .addGap(0, 70, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -144,12 +144,11 @@ public final class DuplicateResultsTopComponent extends TopComponent {
     }
     
     public void startSearching() {
-        CatalogEngine eng = Lookup.getDefault().lookup(CatalogEngine.class);
-        String hash = "";//TODO: get proper hash value
+        //TODO: searchig for duplicates
+        /*CatalogEngine eng = Lookup.getDefault().lookup(CatalogEngine.class);
         Session s = eng.sessionFactory.getCurrentSession();
         s.beginTransaction();
         s.createCriteria(FileWrapper.class).add(Restrictions.like("sha1", hash, MatchMode.EXACT)).list();
-        s.getTransaction().commit();
-        
+        s.getTransaction().commit();*/
     }
 }

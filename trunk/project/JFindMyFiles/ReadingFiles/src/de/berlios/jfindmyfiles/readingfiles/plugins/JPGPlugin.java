@@ -29,13 +29,14 @@ import javax.swing.ImageIcon;
  */
 public class JPGPlugin implements Reader {
 
+    private static final Logger logger = Logger.getLogger(JPGPlugin.class.getName());
     private static final String NAME = "JPG Reader";
     private static final String AUTHOR = "JFindMyFiles";
     private static final String EXT = "jpg";
+    private boolean active;
     private ImageIcon ic;
     private BufferedImage bimg;
     private ByteArrayOutputStream bas;
-    private static final Logger logger = Logger.getLogger(JPGPlugin.class.getName());
 
     public JPGPlugin() {
         ic = new ImageIcon();
@@ -109,5 +110,13 @@ public class JPGPlugin implements Reader {
             logger.log(Level.WARNING, "JPGPlugin failed", ex);
         }
         return new DescriptionValues();
+    }
+    
+    public boolean isActive() {
+        return active;
+    }
+    
+    public void setActive(boolean active) {
+        this.active = active;
     }
 }

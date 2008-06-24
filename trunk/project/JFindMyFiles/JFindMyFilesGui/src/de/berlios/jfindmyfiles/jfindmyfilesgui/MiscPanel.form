@@ -180,6 +180,9 @@
           <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/Bundle.properties" key="MiscPanel.jchkConfirmExit.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jchkConfirmExitStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jlblRememberedCatalogs">
       <Properties>
@@ -194,6 +197,9 @@
           <SpinnerModel initial="0" maximum="10" minimum="0" numberType="java.lang.Integer" stepSize="1" type="number"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="jspRememberCatalogsStateChanged"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jlblDisabeRememberCatalogsTip">
       <Properties>

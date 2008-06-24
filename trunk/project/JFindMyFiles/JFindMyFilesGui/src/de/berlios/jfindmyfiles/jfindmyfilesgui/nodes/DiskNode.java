@@ -27,7 +27,6 @@ import org.openide.nodes.AbstractNode;
 import org.openide.util.Lookup;
 import org.openide.util.Utilities;
 import org.openide.util.actions.SystemAction;
-import org.openide.util.lookup.AbstractLookup;
 import org.openide.util.lookup.Lookups;
 
 /**
@@ -50,8 +49,7 @@ public class DiskNode extends AbstractNode {
 
     @Override
     public Image getIcon(int type) {
-        //return Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-drive-optical.png"); // NOI18N
-        return Utilities.loadImage(GuiUtils.findIconForType(media.getType())); // NOI18N
+        return Utilities.loadImage(GuiUtils.findIconForType(media.getType()));
     }
 
     @Override

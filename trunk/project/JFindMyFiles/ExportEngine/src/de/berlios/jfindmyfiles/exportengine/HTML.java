@@ -29,9 +29,9 @@ public class HTML extends ExportEngine {
     
     File destination;
     String name;
-    String template;
+    Template template;
     
-    public HTML(File destination, String name, String template) {
+    public HTML(File destination, String name, Template template) {
         this.destination = destination;
         this.name = name;
         this.template = template;

@@ -19,6 +19,7 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.exportengine.CSV;
 import de.berlios.jfindmyfiles.exportengine.ExportListener;
 import de.berlios.jfindmyfiles.exportengine.HTML;
@@ -26,21 +27,26 @@ import de.berlios.jfindmyfiles.exportengine.ODS;
 import de.berlios.jfindmyfiles.exportengine.SQL;
 import de.berlios.jfindmyfiles.exportengine.XLS;
 import de.berlios.jfindmyfiles.exportengine.XML;
+import de.berlios.jfindmyfiles.exportengine.Template;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.awt.Desktop;
 import java.io.File;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.Properties;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.ListCellRenderer;
 import javax.swing.SwingConstants;
-import org.openide.util.Exceptions;
+import org.openide.util.Lookup;
 import org.openide.util.Utilities;
 
 /**
@@ -49,32 +55,77 @@ import org.openide.util.Utilities;
  */
 public class ExportDlg extends javax.swing.JDialog implements ExportListener {
 
-    /*private static final int EXPORT_CVS = 0;
-    private static final int EXPORT_HTML = 1;
-    private static final int EXPORT_ODS = 2;
-    private static final int EXPORT_XLS = 3;
-    private static final int EXPORT_XML = 4;
-    private static final int EXPORT_SQL = 5;*/
+    private static final Logger logger = Logger.getLogger(ExportDlg.class.getName());
     private Integer[] values = new Integer[]{0, 1, 2, 3, 4, 5};
     private File selectedFile;
     private int visiblePanel = 0,  previousPanel = 0;
-    private static final Logger logger = Logger.getLogger(ExportDlg.class.getName());
     private boolean openAfterExport;
+    private Vector<Template> temps;
 
     /** Creates new form ExportDlg */
     public ExportDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
+        temps = new Vector<Template>();
+        try {
+            startUp();
+        } catch (IOException ex) {
+            logger.log(Level.WARNING, "Error reading templates", ex); //TODO: i18n
+        }
         initComponents();
+        updateDetails();
+    }
+
+    private void updateDetails() {
+        Template tpl = (Template) jcbxSelectTemplate.getSelectedItem();
+        if (tpl != null) {
+            jlblPreview.setIcon(new ImageIcon(tpl.getFolder() + File.separator + "preview.jpg"));
+            jlblTemplateAuthorValue.setText(tpl.getAuthor());
+            jlblVersionValue.setText(tpl.getVersion());
+            jlblTypeValue.setText(tpl.getType() == Template.COMPLETE ? "Complete" : "Single");//TODO: i18n);
+        }
+    }
+
+    private void startUp() throws IOException {
+        String base = System.getProperty("user.home") + File.separator +
+                "jfmf" + File.separator + "templates";
+        System.out.println("Trying: " + base);
+        File folder = new File(base);
+        File[] list;
+        int y;
+        Properties p;
+
+        if (folder.isDirectory() && folder.exists()) {
+            System.out.println("Folder exists");
+            File[] templates = folder.listFiles();
+            if (templates != null) {
+                for (int z = templates.length; z-- > 0;) {
+                    if (templates[z].isDirectory()) {
+                        list = templates[z].listFiles();
+                        if (list != null) {
+                            for (y = list.length; y-- > 0;) {
+                                if (list[y].getName().equals(templates[z].getName() + ".properties")) {
+                                    p = new Properties();
+                                    p.load(new FileReader(list[y]));
+                                    temps.add(new Template(p.getProperty("name"),
+                                            p.getProperty("author"),
+                                            p.getProperty("version"),
+                                            p.getProperty("type").equals("single") ? Template.SINGLE : Template.COMPLETE,
+                                            templates[z]));
+                                    break;
+
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public void showCentered() {
         setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
                 getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
         setVisible(true);
-    }
-
-    private void loadTemplates() {
-        //TODO: read template directory and load them in
     }
 
     /** This method is called from within the constructor to
@@ -110,10 +161,14 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
         jbtnTemplateBrowse = new javax.swing.JButton();
         jpTemplateDetails = new javax.swing.JPanel();
         jlblSelectTemplate = new javax.swing.JLabel();
-        jcbxSelectTemplate = new javax.swing.JComboBox();
+        jcbxSelectTemplate = new JComboBox(temps);
         jsDetailsSeparator = new javax.swing.JSeparator();
         jlblTemplateAuthor = new javax.swing.JLabel();
         jlblTemplateAuthorValue = new javax.swing.JLabel();
+        jlblVersion = new javax.swing.JLabel();
+        jlblType = new javax.swing.JLabel();
+        jlblVersionValue = new javax.swing.JLabel();
+        jlblTypeValue = new javax.swing.JLabel();
         jchkTemplateOpenAfter = new javax.swing.JCheckBox();
         jpProgressBar = new javax.swing.JPanel();
         jpbExportProgress = new javax.swing.JProgressBar();
@@ -192,11 +247,11 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
                 .addContainerGap()
                 .addGroup(jpFileExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jchkOpenAfter)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 369, Short.MAX_VALUE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 388, Short.MAX_VALUE)
                     .addGroup(jpFileExportLayout.createSequentialGroup()
                         .addComponent(jlblInclude)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE))
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE))
                     .addGroup(jpFileExportLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jpFileExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,7 +263,7 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
                     .addGroup(jpFileExportLayout.createSequentialGroup()
                         .addComponent(jlblDestination)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfDestination, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                        .addComponent(jtfDestination, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnBrowse)))
                 .addContainerGap())
@@ -283,6 +338,14 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
 
         jlblTemplateAuthorValue.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jlblTemplateAuthorValue.text")); // NOI18N
 
+        jlblVersion.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jlblVersion.text")); // NOI18N
+
+        jlblType.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jlblType.text")); // NOI18N
+
+        jlblVersionValue.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jlblVersionValue.text")); // NOI18N
+
+        jlblTypeValue.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jlblTypeValue.text")); // NOI18N
+
         javax.swing.GroupLayout jpTemplateDetailsLayout = new javax.swing.GroupLayout(jpTemplateDetails);
         jpTemplateDetails.setLayout(jpTemplateDetailsLayout);
         jpTemplateDetailsLayout.setHorizontalGroup(
@@ -290,15 +353,23 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
             .addGroup(jpTemplateDetailsLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jpTemplateDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jsDetailsSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 169, Short.MAX_VALUE)
+                    .addComponent(jsDetailsSeparator, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
                     .addGroup(jpTemplateDetailsLayout.createSequentialGroup()
                         .addComponent(jlblSelectTemplate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jcbxSelectTemplate, 0, 117, Short.MAX_VALUE))
+                        .addComponent(jcbxSelectTemplate, 0, 136, Short.MAX_VALUE))
                     .addGroup(jpTemplateDetailsLayout.createSequentialGroup()
                         .addComponent(jlblTemplateAuthor)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jlblTemplateAuthorValue, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)))
+                        .addComponent(jlblTemplateAuthorValue, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE))
+                    .addGroup(jpTemplateDetailsLayout.createSequentialGroup()
+                        .addComponent(jlblVersion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jlblVersionValue))
+                    .addGroup(jpTemplateDetailsLayout.createSequentialGroup()
+                        .addComponent(jlblType)
+                        .addGap(18, 18, 18)
+                        .addComponent(jlblTypeValue)))
                 .addContainerGap())
         );
         jpTemplateDetailsLayout.setVerticalGroup(
@@ -314,7 +385,15 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
                 .addGroup(jpTemplateDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlblTemplateAuthor)
                     .addComponent(jlblTemplateAuthorValue))
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpTemplateDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblVersion)
+                    .addComponent(jlblVersionValue))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jpTemplateDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblType)
+                    .addComponent(jlblTypeValue))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         jchkTemplateOpenAfter.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jchkTemplateOpenAfter.text")); // NOI18N
@@ -341,7 +420,7 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
                         .addGroup(jpTemplateExportLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jchkTemplateOpenAfter)
                             .addGroup(jpTemplateExportLayout.createSequentialGroup()
-                                .addComponent(jtfTemplateDestination, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)
+                                .addComponent(jtfTemplateDestination, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jbtnTemplateBrowse)))))
                 .addContainerGap())
@@ -378,7 +457,7 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
             .addGroup(jpProgressBarLayout.createSequentialGroup()
                 .addGap(46, 46, 46)
                 .addComponent(jpbExportProgress, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         jpProgressBarLayout.setVerticalGroup(
             jpProgressBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -421,7 +500,7 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jpExportType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jpExportOptions, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE))
+                        .addComponent(jpExportOptions, javax.swing.GroupLayout.DEFAULT_SIZE, 424, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jbtnExport)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -480,7 +559,9 @@ private void jbtnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             cvs.export();
             break;
         case 1://HTML
-            HTML html = new HTML(selectedFile, "", "");//TODO: get the proper values for HTML export
+            HTML html = new HTML(selectedFile,
+                    Lookup.getDefault().lookup(CatalogEngine.class).getProperties().getName(),
+                    (Template) jcbxSelectTemplate.getSelectedItem());
             html.addListener(this);
             html.export();
             break;
@@ -527,11 +608,11 @@ private void jbtnTemplateBrowseActionPerformed(java.awt.event.ActionEvent evt) {
 }//GEN-LAST:event_jbtnTemplateBrowseActionPerformed
 
 private void jchkTemplateOpenAfterStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jchkTemplateOpenAfterStateChanged
-    //TODO: open HTML file after exporting
+    openAfterExport = true;
 }//GEN-LAST:event_jchkTemplateOpenAfterStateChanged
 
 private void jcbxSelectTemplateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbxSelectTemplateActionPerformed
-//Change the selected template
+    updateDetails();
 }//GEN-LAST:event_jcbxSelectTemplateActionPerformed
 
 private void jchkOpenAfterStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jchkOpenAfterStateChanged
@@ -560,6 +641,10 @@ private void jchkOpenAfterStateChanged(javax.swing.event.ChangeEvent evt) {//GEN
     private javax.swing.JLabel jlblTemplateAuthor;
     private javax.swing.JLabel jlblTemplateAuthorValue;
     private javax.swing.JLabel jlblTemplateDestination;
+    private javax.swing.JLabel jlblType;
+    private javax.swing.JLabel jlblTypeValue;
+    private javax.swing.JLabel jlblVersion;
+    private javax.swing.JLabel jlblVersionValue;
     private javax.swing.JList jlstExportTypes;
     private javax.swing.JPanel jpExportOptions;
     private javax.swing.JPanel jpExportType;
@@ -596,6 +681,7 @@ private void jchkOpenAfterStateChanged(javax.swing.event.ChangeEvent evt) {//GEN
                     logger.log(Level.FINE, "Desktop not supported", ex);
                 }
             }
+            openAfterExport = false;
         }
     }
 
@@ -642,36 +728,6 @@ private void jchkOpenAfterStateChanged(javax.swing.event.ChangeEvent evt) {//GEN
             setIcon(images[selectedIndex]);
             setFont(list.getFont());
             return this;
-        }
-    }
-
-    private class Template {
-
-        private ImageIcon preview;
-        private String author;
-        private String name;
-
-        public Template(ImageIcon preview, String author, String name) {
-            this.preview = preview;
-            this.author = author;
-            this.name = name;
-        }
-
-        public String getAuthor() {
-            return author;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public ImageIcon getPreview() {
-            return preview;
-        }
-
-        @Override
-        public String toString() {
-            return name;
         }
     }
 }

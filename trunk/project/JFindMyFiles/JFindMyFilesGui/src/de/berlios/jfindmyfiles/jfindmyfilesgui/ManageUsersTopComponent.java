@@ -2,28 +2,34 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngine;
+import de.berlios.jfindmyfiles.catalog.entities.User;
 import java.io.Serializable;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.logging.Logger;
+import javax.swing.table.AbstractTableModel;
+import org.hibernate.Session;
+import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
 //import org.openide.util.Utilities;
-
 /**
  * Top component which displays something.
  */
 final class ManageUsersTopComponent extends TopComponent {
 
     private static ManageUsersTopComponent instance;
+    private CatalogEngine eng;
     /** path to the icon used by the component and its open action */
 //    static final String ICON_PATH = "SET/PATH/TO/ICON/HERE";
-
     private static final String PREFERRED_ID = "ManageUsersTopComponent";
 
     private ManageUsersTopComponent() {
+        eng = Lookup.getDefault().lookup(CatalogEngine.class);
         initComponents();
         setName(NbBundle.getMessage(ManageUsersTopComponent.class, "CTL_ManageUsersTopComponent"));
         setToolTipText(NbBundle.getMessage(ManageUsersTopComponent.class, "HINT_ManageUsersTopComponent"));
@@ -39,70 +45,52 @@ final class ManageUsersTopComponent extends TopComponent {
     private void initComponents() {
 
         jToolBar1 = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jbtnAddUser = new javax.swing.JButton();
+        jbtnRemoveUser = new javax.swing.JButton();
+        jscpUsers = new javax.swing.JScrollPane();
+        jtUsers = new javax.swing.JTable();
 
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton1, org.openide.util.NbBundle.getMessage(ManageUsersTopComponent.class, "ManageUsersTopComponent.jButton1.text")); // NOI18N
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton1);
+        jbtnAddUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/user-add.png"))); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jbtnAddUser, org.openide.util.NbBundle.getMessage(ManageUsersTopComponent.class, "ManageUsersTopComponent.jbtnAddUser.text")); // NOI18N
+        jbtnAddUser.setFocusable(false);
+        jbtnAddUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnAddUser.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jbtnAddUser);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton2, org.openide.util.NbBundle.getMessage(ManageUsersTopComponent.class, "ManageUsersTopComponent.jButton2.text")); // NOI18N
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton2);
+        jbtnRemoveUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/user-remove.png"))); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jbtnRemoveUser, org.openide.util.NbBundle.getMessage(ManageUsersTopComponent.class, "ManageUsersTopComponent.jbtnRemoveUser.text")); // NOI18N
+        jbtnRemoveUser.setFocusable(false);
+        jbtnRemoveUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbtnRemoveUser.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar1.add(jbtnRemoveUser);
 
-        org.openide.awt.Mnemonics.setLocalizedText(jButton3, org.openide.util.NbBundle.getMessage(ManageUsersTopComponent.class, "ManageUsersTopComponent.jButton3.text")); // NOI18N
-        jButton3.setFocusable(false);
-        jButton3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar1.add(jButton3);
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        jtUsers.setModel(new UserTableModel());
+        jscpUsers.setViewportView(jtUsers);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jToolBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addComponent(jscpUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jscpUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JButton jbtnAddUser;
+    private javax.swing.JButton jbtnRemoveUser;
+    private javax.swing.JScrollPane jscpUsers;
+    private javax.swing.JTable jtUsers;
     // End of variables declaration//GEN-END:variables
     /**
      * Gets default instance. Do not use directly: reserved for *.settings files only,
@@ -167,6 +155,57 @@ final class ManageUsersTopComponent extends TopComponent {
 
         public Object readResolve() {
             return ManageUsersTopComponent.getDefault();
+        }
+    }
+
+    private class UserTableModel extends AbstractTableModel {
+
+        private List<User> users;
+
+        public UserTableModel() {
+            users = new LinkedList<User>();
+            Session s = eng.sessionFactory.getCurrentSession();
+            s.beginTransaction();
+            users.addAll(s.createQuery("from User").list());
+            s.getTransaction().commit();
+        }
+
+        public int getRowCount() {
+            return users.size();
+        }
+
+        public int getColumnCount() {
+            return 3;
+        }
+
+        public Object getValueAt(int rowIndex, int columnIndex) {
+            switch (columnIndex) {
+                case 0:
+                    return users.get(rowIndex).getId();
+                case 1:
+                    return users.get(rowIndex).getFirstname();
+                case 2:
+                    return users.get(rowIndex).getSurname();
+            }
+            return null;
+        }
+
+        @Override
+        public Class getColumnClass(int columnIndex) {
+            switch (columnIndex) {
+                case 0:
+                    return Long.class;
+                case 1:
+                    return String.class;
+                case 2:
+                    return String.class;
+            }
+            return Object.class;
+        }
+
+        @Override
+        public boolean isCellEditable(int rowIndex, int columnIndex) {
+            return columnIndex == 0;
         }
     }
 }

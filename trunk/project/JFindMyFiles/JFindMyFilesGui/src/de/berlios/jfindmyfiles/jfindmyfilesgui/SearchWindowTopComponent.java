@@ -357,12 +357,12 @@ private void jrdbDiskGroupOnlyStateChanged(javax.swing.event.ChangeEvent evt) {/
 
     @Override
     public void componentOpened() {
-        // TODO add custom code on component opening
+        searching = false;
     }
 
     @Override
     public void componentClosed() {
-        // TODO add custom code on component closing
+        searching = false;
     }
 
     /** replaces this in object stream */
