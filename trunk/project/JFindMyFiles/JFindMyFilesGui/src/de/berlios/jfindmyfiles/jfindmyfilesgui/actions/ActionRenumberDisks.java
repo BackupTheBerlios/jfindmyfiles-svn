@@ -19,14 +19,23 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import org.openide.util.HelpCtx;
+import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
 
 public final class ActionRenumberDisks extends CallableSystemAction {
 
+    private CatalogEngine eng;
+
+    public ActionRenumberDisks() {
+        super();
+        eng = Lookup.getDefault().lookup(CatalogEngine.class);
+    }
+
     public void performAction() {
-    // TODO implement action body
+        // TODO implement action body
     }
 
     public String getName() {
@@ -36,7 +45,6 @@ public final class ActionRenumberDisks extends CallableSystemAction {
     @Override
     protected void initialize() {
         super.initialize();
-        // see org.openide.util.actions.SystemAction.iconResource() Javadoc for more details
         putValue("noIconInMenu", Boolean.TRUE);
     }
 
@@ -47,5 +55,10 @@ public final class ActionRenumberDisks extends CallableSystemAction {
     @Override
     protected boolean asynchronous() {
         return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return eng.isOpened();
     }
 }

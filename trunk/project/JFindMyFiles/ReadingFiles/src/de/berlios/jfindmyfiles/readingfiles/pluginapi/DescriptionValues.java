@@ -21,6 +21,9 @@ package de.berlios.jfindmyfiles.readingfiles.pluginapi;
 
 import javax.swing.ImageIcon;
 
+/**
+ * Utility class that aggregates the information extracted by a Reader.
+ */
 public class DescriptionValues {
 
     private String description;
@@ -29,6 +32,9 @@ public class DescriptionValues {
     private byte[] video;
     private ImageIcon icon;
     
+    /**
+     * Default constructor creating empty attributes.
+     */
     public DescriptionValues() {
         this("", null, null, null, null);
     }
@@ -41,22 +47,48 @@ public class DescriptionValues {
         this.icon = icon;
     }
 
+    /**
+     * Gets audio data.
+     * 
+     * @return byte[] or null if this plugin doesn't provide audio data.
+     */
     public byte[] getAudio() {
         return audio;
     }
 
+    /**
+     * Gets the text description
+     * 
+     * @return String with the description or an empty string if no textual 
+     * description was gathered.
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Gets the custom icon for this file type.
+     * 
+     * @return ImageIcon representing the icon or null if no icon is available.
+     */
     public ImageIcon getIcon() {
         return icon;
     }
 
+    /**
+     * Gets image data.
+     * 
+     * @return byte[] or null if this plugin doesn't provide image data.
+     */
     public byte[] getImage() {
         return image;
     }
 
+    /**
+     * Gets video data.
+     * 
+     * @return byte[] or null if this plugin doesn't provide video data.
+     */
     public byte[] getVideo() {
         return video;
     }

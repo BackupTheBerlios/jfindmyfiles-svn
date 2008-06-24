@@ -19,14 +19,23 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs.ExportDlg;
 import org.openide.util.HelpCtx;
+import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
 import org.openide.windows.WindowManager;
 
 public final class ActionExport extends CallableSystemAction {
 
+    private CatalogEngine eng;
+    
+    public ActionExport() {
+        super();
+        eng = Lookup.getDefault().lookup(CatalogEngine.class);
+    }
+    
     public void performAction() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -37,11 +46,6 @@ public final class ActionExport extends CallableSystemAction {
 
     public String getName() {
         return NbBundle.getMessage(ActionExport.class, "CTL_ActionExport");
-    }
-
-    @Override
-    protected void initialize() {
-        super.initialize();
     }
     
     @Override
@@ -56,5 +60,10 @@ public final class ActionExport extends CallableSystemAction {
     @Override
     protected boolean asynchronous() {
         return false;
+    }
+    
+    @Override
+    public boolean isEnabled() {
+        return eng.isOpened();
     }
 }

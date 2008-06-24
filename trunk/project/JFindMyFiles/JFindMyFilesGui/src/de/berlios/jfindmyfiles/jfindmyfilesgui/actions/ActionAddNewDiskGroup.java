@@ -20,31 +20,34 @@
 package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
+import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
 import javax.swing.JOptionPane;
 import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
+import org.openide.util.Utilities;
 import org.openide.util.actions.CallableSystemAction;
 import org.openide.windows.WindowManager;
 
 public final class ActionAddNewDiskGroup extends CallableSystemAction {
 
-    public void performAction() {
-        String name = JOptionPane.showInputDialog(WindowManager.getDefault().getMainWindow(), NbBundle.getMessage(ActionAddNewDiskGroup.class, "AddNewDiskGroupInputMessage"));
+    private CatalogEngine eng;
 
+    public ActionAddNewDiskGroup() {
+        super();
+        eng = Lookup.getDefault().lookup(CatalogEngine.class);
+    }
+
+    public void performAction() {
+        String name = JOptionPane.showInputDialog(WindowManager.getDefault().getMainWindow(),
+                NbBundle.getMessage(ActionAddNewDiskGroup.class, "AddNewDiskGroupInputMessage"));
         if (name != null && !name.isEmpty()) {
-            CatalogEngine eng = Lookup.getDefault().lookup(CatalogEngine.class);
-            eng.addDiskGroup(name, "", null);//TODO: get the correct group
+            eng.addDiskGroup(name, "", Utilities.actionsGlobalContext().lookup(DiskGroup.class));
         }
     }
 
     public String getName() {
         return NbBundle.getMessage(ActionAddNewDiskGroup.class, "CTL_ActionAddNewDiskGroup");
-    }
-
-    @Override
-    protected void initialize() {
-        super.initialize();
     }
 
     @Override
@@ -59,5 +62,9 @@ public final class ActionAddNewDiskGroup extends CallableSystemAction {
     @Override
     protected boolean asynchronous() {
         return false;
+    }
+
+    public boolean isActive() {
+        return eng.isOpened();
     }
 }

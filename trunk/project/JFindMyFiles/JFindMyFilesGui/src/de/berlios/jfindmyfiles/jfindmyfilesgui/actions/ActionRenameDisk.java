@@ -19,14 +19,29 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngine;
+import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
+import javax.swing.JOptionPane;
+import org.hibernate.Session;
 import org.openide.util.HelpCtx;
+import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
+import org.openide.util.Utilities;
 import org.openide.util.actions.CallableSystemAction;
+import org.openide.windows.WindowManager;
 
 public final class ActionRenameDisk extends CallableSystemAction {
 
     public void performAction() {
-    // TODO implement action body
+        String name = JOptionPane.showInputDialog(WindowManager.getDefault().getMainWindow(), "New name:");//TODO: i18n
+        if (name != null && !name.isEmpty()) {
+            Session s = Lookup.getDefault().lookup(CatalogEngine.class).sessionFactory.getCurrentSession();
+            s.beginTransaction();
+            DiskGroup g = Utilities.actionsGlobalContext().lookup(DiskGroup.class);
+            g.setName(name);
+            s.merge(g);
+            s.getTransaction().commit();
+        }
     }
 
     public String getName() {
@@ -36,7 +51,6 @@ public final class ActionRenameDisk extends CallableSystemAction {
     @Override
     protected void initialize() {
         super.initialize();
-        // see org.openide.util.actions.SystemAction.iconResource() Javadoc for more details
         putValue("noIconInMenu", Boolean.TRUE);
     }
 

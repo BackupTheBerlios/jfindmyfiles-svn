@@ -45,8 +45,6 @@ public class CatalogNode extends AbstractNode {
     private SystemAction[] sysact;
 
     public CatalogNode(String name, boolean created) {
-        //super(Children.create(new CatalogChildNodesFactory(), true));
-        //TODO: populate child nodes
         super(created ? Children.LEAF : new CatalogChildren(null), Lookups.singleton(Lookup.getDefault().lookup(CatalogEngine.class)));
 
         CatalogEngine eng = Lookup.getDefault().lookup(CatalogEngine.class);
@@ -58,10 +56,6 @@ public class CatalogNode extends AbstractNode {
                     lo.lookup(ActionAddNewDisk.class), lo.lookup(ActionAddNewDiskGroup.class), lo.lookup(ActionClose.class),
                     lo.lookup(ActionExport.class), lo.lookup(ActionImport.class)
                 };
-
-
-    //Collections.sort(sysact);
-    //Arrays.sort(sysact);
     }
 
     @Override

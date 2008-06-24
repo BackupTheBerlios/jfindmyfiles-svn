@@ -22,14 +22,36 @@ package de.berlios.jfindmyfiles.readingfiles;
 import java.util.EventListener;
 
 /**
- *
- * @author Knitter
+ * Provides reading events
  */
 public interface ReadingListener extends EventListener {
     
+    /**
+     * Reading has started.
+     * 
+     * @param evt reading event.
+     */
     void readingStarted(ReadingEvent evt);
+    
+    /**
+     * Identifies the file currently being read.
+     * 
+     * @param evt reading event.
+     */
     void readingFile(ReadingEvent evt);
+    
+    /**
+     * Reading has stopped normally.
+     * 
+     * @param evt reading event.
+     */
     void readingStopped(ReadingEvent evt);
+    
+    /**
+     * The reading was aborted.
+     * 
+     * @param evt reading event.
+     */
     void readingAborted(ReadingEvent evt);
 
 }

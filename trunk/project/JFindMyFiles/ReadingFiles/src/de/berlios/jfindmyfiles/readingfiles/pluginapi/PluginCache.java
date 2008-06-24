@@ -18,8 +18,8 @@ import java.util.prefs.Preferences;
 import org.openide.util.NbPreferences;
 
 /**
- *
- * @author Knitter
+ * Controller class responsible for loading and providing the existing plugins 
+ * to any other entity that queries for them.
  */
 public class PluginCache {
 
@@ -27,6 +27,9 @@ public class PluginCache {
     private static final Logger logger = Logger.getLogger(PluginCache.class.getName());
     private Preferences p;
     
+    /**
+     * Constructs the cache loading all available plugins.
+     */
     public PluginCache() {
         cache = new Hashtable<String, Reader>();
         p = NbPreferences.forModule(PluginCache.class);
@@ -88,14 +91,34 @@ public class PluginCache {
         }
     }
 
+    /**
+     * Gets the available plugin, if any, for the given extension.
+     * 
+     * @param extension string representing the extension that identifies the 
+     * reader.
+     * 
+     * @return Reader for the extension or null if non exists.
+     * 
+     * @see Hashtable.get(Object key)
+     */
     public Reader readerFor(String extension) {
         return cache.get(extension);
     }
 
+    /**
+     * Provides the number of registered and loaded plugins.
+     * 
+     * @return int with the number of plugins loaded at creation time.
+     */
     public int pluginCount() {
         return cache.size();
     }
 
+    /**
+     * Returns all loaded plugins.
+     * 
+     * @return List with all plugins.
+     */
     public List<Reader> listAll() {
         ArrayList<Reader> temp = new ArrayList<Reader>();
         for (Reader r : cache.values()) {

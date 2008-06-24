@@ -13,13 +13,17 @@ Iteração 2:
 	- Abrir catálogo
 	- Fechar catálogo
 	- Menus na descrição da iteração
-
+Iteração 3:
+	- sistema de segurança para evitar execução de código não seguro.
+	- Manual do programador
+	
 Iteração 4:
 	- pesquisa de ficheiros duplicados em todo o catálogo
 	
 Iteração 5:
 	- menus de contexto sensíveis
 	- alterar algumas user stories para incluirem todas as opções de menu que apareceram sem justificação
+	- barras de ferramentas
 
 Iteração 6:
 	- importar dados de XML

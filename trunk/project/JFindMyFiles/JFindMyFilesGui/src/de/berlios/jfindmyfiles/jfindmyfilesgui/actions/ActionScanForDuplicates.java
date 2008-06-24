@@ -19,31 +19,38 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import org.openide.util.HelpCtx;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
 import org.openide.windows.TopComponent;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.DuplicateResultsTopComponent;
+import org.openide.util.Lookup;
 
 public final class ActionScanForDuplicates extends CallableSystemAction {
-
+    
+    private CatalogEngine eng;
+    
+    public ActionScanForDuplicates() {
+        super();
+        eng = Lookup.getDefault().lookup(CatalogEngine.class);
+    }
+    
     public void performAction() {
         TopComponent win = DuplicateResultsTopComponent.findInstance();
         win.open();
         win.requestActive();
-        ((DuplicateResultsTopComponent)win).startSearching();//TODO: get hash from selected files
+        ((DuplicateResultsTopComponent)win).startSearching();
     }
 
     public String getName() {
         return NbBundle.getMessage(ActionScanForDuplicates.class, "CTL_ActionScanForDuplicates");
     }
-
+    
     @Override
-    protected void initialize() {
-        super.initialize();
-        // see org.openide.util.actions.SystemAction.iconResource() Javadoc for more details
-        putValue("noIconInMenu", Boolean.TRUE);
-    }
+    protected String iconResource() {
+        return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-search.png";
+    }    
 
     public HelpCtx getHelpCtx() {
         return HelpCtx.DEFAULT_HELP;
@@ -52,5 +59,10 @@ public final class ActionScanForDuplicates extends CallableSystemAction {
     @Override
     protected boolean asynchronous() {
         return false;
+    }
+    
+    @Override
+    public boolean isEnabled() {
+        return eng.isOpened();
     }
 }

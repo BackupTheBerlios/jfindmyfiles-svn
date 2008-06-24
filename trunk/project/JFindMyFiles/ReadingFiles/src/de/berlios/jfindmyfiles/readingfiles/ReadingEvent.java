@@ -23,8 +23,7 @@ import de.berlios.jfindmyfiles.catalog.entities.Media;
 import java.util.EventObject;
 
 /**
- *
- * @author Knitter
+ * Reading event for all listeners.
  */
 public class ReadingEvent extends EventObject {
     
@@ -37,10 +36,21 @@ public class ReadingEvent extends EventObject {
         this.media = media;
     }
     
+    /**
+     * Gets the name of the current file.
+     * 
+     * @return String representing the file being read or null if this event 
+     * does not represent a file being read.
+     */
     public String getCurrentFileName() {
         return currentFileName;
     }
     
+    /**
+     * Gets the media being scanned.
+     * 
+     * @return Media being scanned.
+     */
     public Media getMedia() {
         return media;
     }

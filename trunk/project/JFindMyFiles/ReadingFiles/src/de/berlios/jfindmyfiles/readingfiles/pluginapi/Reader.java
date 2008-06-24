@@ -21,6 +21,11 @@ package de.berlios.jfindmyfiles.readingfiles.pluginapi;
 
 import java.io.File;
 
+/**
+ * This interface define the behavior of a file reader. An extension that reads 
+ * information on files unknown to the application or provides extra 
+ * information on those files already known.
+ */
 public interface Reader {
     
     /**

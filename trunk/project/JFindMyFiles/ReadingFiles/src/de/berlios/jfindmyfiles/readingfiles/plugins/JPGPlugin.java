@@ -24,8 +24,7 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 /**
- *
- * @author Knitter
+ * Plugin that allows the reading of JPG image files
  */
 public class JPGPlugin implements Reader {
 
@@ -44,6 +43,10 @@ public class JPGPlugin implements Reader {
         bas = new ByteArrayOutputStream();
     }
 
+    /**
+     * 
+     * @return
+     */
     public String getName() {
         return NAME;
     }
@@ -51,6 +54,7 @@ public class JPGPlugin implements Reader {
     public String getAuthor() {
         return AUTHOR;
     }
+
 
     public String pluginFor() {
         return EXT;

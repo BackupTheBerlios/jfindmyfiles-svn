@@ -36,6 +36,7 @@ public class CatalogEngine {
     private CatalogProperties properties;
     private Vector<CatalogEngineListener> listeners;
     private static final Logger logger = Logger.getLogger(CatalogEngine.class.getName());
+    private boolean opened;
 
     /**
      * Empty construtor so that this class can be instanciated using reflection 
@@ -118,9 +119,10 @@ public class CatalogEngine {
             }
 
             sessionFactory = hConfig.buildSessionFactory();
-
+            opened = true;
         } catch (Exception ex) {
             logger.log(Level.SEVERE, "HIBERNATE: Initial SessionFactory creation failed.", ex);
+            opened = false;
             throw new ExceptionInInitializerError(ex);
         }
 
@@ -180,6 +182,7 @@ public class CatalogEngine {
         if (sessionFactory != null) {
             sessionFactory.close();
             sessionFactory = null;
+            opened = false;
             fireCatalogClosed(new CatalogEngineEvent(this, properties.getName(), null, null, null, null));
         }
     }
@@ -187,7 +190,12 @@ public class CatalogEngine {
     public CatalogProperties getProperties() {
         return properties;
     }
-
+    
+    public boolean isOpened() {
+        return opened;
+    }
+    
+    /*XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
     public void addDiskGroup(String name, String description, DiskGroup parent) {
         Session cSession = sessionFactory.getCurrentSession();
         cSession.beginTransaction();

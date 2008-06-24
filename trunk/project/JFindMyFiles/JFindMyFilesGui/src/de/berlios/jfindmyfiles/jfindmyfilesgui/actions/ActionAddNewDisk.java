@@ -19,18 +19,33 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs.NewDiskDlg;
 import org.openide.util.HelpCtx;
+import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
 import org.openide.windows.WindowManager;
 
 public final class ActionAddNewDisk extends CallableSystemAction {
 
+    private CatalogEngine eng;
+    
+    public ActionAddNewDisk() {
+        super();
+        eng = Lookup.getDefault().lookup(CatalogEngine.class);    
+    }
+    
+    /**
+     * Action to be performed by this action class.
+     * An ActionAddNewDisk will open a JDialog allowing the user to scan a new 
+     * disk or folder and add the information gathered to the database.
+     */
     public void performAction() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new NewDiskDlg(WindowManager.getDefault().getMainWindow(), true).showCentered();
+                new NewDiskDlg(WindowManager.getDefault().getMainWindow(), 
+                        true).showCentered();
             }
         });
     }
@@ -38,15 +53,11 @@ public final class ActionAddNewDisk extends CallableSystemAction {
     public String getName() {
         return NbBundle.getMessage(ActionAddNewDisk.class, "CTL_ActionAddNewDisk");
     }
-
-    @Override
-    protected void initialize() {
-        super.initialize();
-    }
     
     @Override
     protected String iconResource() {
-        return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-drive-optical.png";
+        return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/" +
+                "icon-media-drive-optical.png";
     }
     
     public HelpCtx getHelpCtx() {
@@ -56,5 +67,10 @@ public final class ActionAddNewDisk extends CallableSystemAction {
     @Override
     protected boolean asynchronous() {
         return false;
+    }
+    
+    @Override
+    public boolean isEnabled() {
+        return eng.isOpened();
     }
 }

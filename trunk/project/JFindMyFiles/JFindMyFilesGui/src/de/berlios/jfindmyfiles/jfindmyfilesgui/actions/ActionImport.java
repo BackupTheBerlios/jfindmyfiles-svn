@@ -38,11 +38,6 @@ public final class ActionImport extends CallableSystemAction {
     public String getName() {
         return NbBundle.getMessage(ActionImport.class, "CTL_ActionImport");
     }
-
-    @Override
-    protected void initialize() {
-        super.initialize();
-    }
     
     @Override
     protected String iconResource() {

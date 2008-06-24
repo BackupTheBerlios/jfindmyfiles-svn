@@ -15,8 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Knitter
+ * Plugin that provides description from Ant Movie Catalog database files.
  */
 public class AntMovieCatalogerPlugin implements Reader {
 

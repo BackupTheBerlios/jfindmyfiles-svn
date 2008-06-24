@@ -26,7 +26,7 @@ import org.openide.util.actions.CallableSystemAction;
 public final class ActionRemoveFromCatalog extends CallableSystemAction {
 
     public void performAction() {
-    // TODO implement action body
+        // TODO implement action body
     }
 
     public String getName() {
@@ -36,7 +36,6 @@ public final class ActionRemoveFromCatalog extends CallableSystemAction {
     @Override
     protected void initialize() {
         super.initialize();
-        // see org.openide.util.actions.SystemAction.iconResource() Javadoc for more details
         putValue("noIconInMenu", Boolean.TRUE);
     }
 

@@ -27,8 +27,7 @@ import jonelo.jacksum.JacksumAPI;
 import jonelo.jacksum.algorithm.AbstractChecksum;
 
 /**
- *
- * @author Knitter
+ * Utility class that provides several useful methods used when reading files.
  */
 public class ReadingUtils {
 
@@ -50,7 +49,7 @@ public class ReadingUtils {
      * Calculates a file's hashing code using the SHA-1 algorithm.
      * It uses the Jacksum library to compute the hash code.
      * 
-     * @param file File to calculate the hash for.
+     * @param file the file to calculate the hash for.
      * @return A String with the calculated hash code or an empty string if an 
      * error occorred.
      */
@@ -71,8 +70,8 @@ public class ReadingUtils {
      * Some assumptions are made regarding drive naming in MS Windows operationg 
      * systems. Such assumptions may provide incorrect results.
      * 
-     * @param absolutepath the absolute path to the file
-     * @return an int define by the <code>CatalogConstants</code> interface
+     * @param absolutepath the absolute path to the file.
+     * @return an int define by the <code>CatalogConstants</code> interface.
      * 
      * @see de.berlios.jfindmyfiles.catalog.CatalogConstants
      */
@@ -90,9 +89,14 @@ public class ReadingUtils {
     }
 
     /**
+     * Removes the file extension from a filename.
+     * Note that, given a file with, at least, a dot and no extension, the text 
+     * after the last dot will be removed, thus the resulting name can be 
+     * invalid.
      * 
-     * @param filename
-     * @return
+     * @param filename the name of the file to be read.
+     * @return String constructed by removind the text after the last dot, or 
+     * an empty string if the filename had no dots.
      */
     public static String stripFileExtension(String filename) {
         int x = -1;

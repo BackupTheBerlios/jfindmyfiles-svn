@@ -49,15 +49,21 @@ como a FastMD5, garante o requisito de que a aplicação terá de ser
 multiplataforma.
 <==== Avaliação ===============================================================>
 Não foi resolvido o problema das pesquisas com expressões regulares.
-Dado que se pretende independência do motor de bases de dados que apoia o 
+Uma vez que se pretende independência do motor de bases de dados que apoia o 
 sistema de persistência, não poderá ser usada nenhuma funcionalidade da 
 linguagem SQL que não seja standard. Assim, não é possível tirar partido do 
 suporte para expressões regulares que alguns motores de bases de dados oferecem.
-[...]
 
 A introdução do algoritmo de cálculo do código hash provocou um aumento da 
 memória consumida e do tempo necessário para efectuar a leitura dos dados dos 
-ficheiros.
+ficheiros. Quando o suporte a ser lido contém muitos ficheiros e pastas é 
+possível que a memória, definida por omissão para a JVM, não seja suficiente 
+para a execução do processo de leitura.
+
+O sistema que permite abrir/executar um ficheiro, está dependente do sistema
+operativo. Apesar de ser ter usado uma funcionalidade da plataforma Java, 
+presente desde o Java 6, não é feita nenhuma garantia que a funcionalidade 
+esteja disponível em todos os sistemas operativos e plataformas.
 
 
 
