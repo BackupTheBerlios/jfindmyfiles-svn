@@ -1,0 +1,5 @@
+Manual de Programador para o Sistema de Extensões
+
+Para ser possível criar uma extensão ao sistema de leitura de ficheiros, o 
+programador terá criar uma classe Java que cumpra o contracto definido pela 
+interface Reader no package de.berlio.jfindmyfiles.......
