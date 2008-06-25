@@ -64,12 +64,6 @@
     <folder name="Menu">
         <folder name="Actions">
             <attr name="position" intvalue="700"/>
-            <folder name="File Management">
-                <attr name="position" intvalue="600"/>
-                <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionDelete.shadow">
-                    <attr name="originalFile" stringvalue="Actions/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionDelete.instance"/>
-                </file>
-            </folder>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionEditDescription.shadow">
                 <attr name="originalFile" stringvalue="Actions/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionEditDescription.instance"/>
                 <attr name="position" intvalue="300"/>
@@ -77,10 +71,6 @@
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionLaunchFile.shadow">
                 <attr name="originalFile" stringvalue="Actions/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionLaunchFile.instance"/>
                 <attr name="position" intvalue="200"/>
-            </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionProperties.shadow">
-                <attr name="originalFile" stringvalue="Actions/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionProperties.instance"/>
-                <attr name="position" intvalue="800"/>
             </file>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRemoveFromCatalog.shadow">
                 <attr name="originalFile" stringvalue="Actions/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRemoveFromCatalog.instance"/>
@@ -94,11 +84,7 @@
                 <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
                 <attr name="position" intvalue="500"/>
             </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-separatorBefore.instance">
-                <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
-                <attr name="position" intvalue="750"/>
-            </file>
-        </folder>
+            </folder>
         <folder name="Edit">
             <file name="Separator2.instance_hidden"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDisk.shadow">

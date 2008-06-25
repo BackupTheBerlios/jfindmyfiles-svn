@@ -16,6 +16,8 @@ import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Restrictions;
+import org.netbeans.api.progress.ProgressHandle;
+import org.netbeans.api.progress.ProgressHandleFactory;
 import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
@@ -31,8 +33,6 @@ final class SearchWindowTopComponent extends TopComponent {
     private DefaultListModel listModel;
     private boolean searching;
     private static SearchWindowTopComponent instance;
-    /** path to the icon used by the component and its open action */
-//    static final String ICON_PATH = "SET/PATH/TO/ICON/HERE";
     private static final String PREFERRED_ID = "SearchWindowTopComponent";
 
     private SearchWindowTopComponent() {
@@ -55,45 +55,41 @@ final class SearchWindowTopComponent extends TopComponent {
 
     @SuppressWarnings("unchecked")
     private void search() {
-        if (!searching) {
-            searching = true;
-            listModel.clear();
+        listModel.clear();
+        boolean inDescription = jchkSearchInDesc.isSelected();
+        boolean casein = jchkCaseSensitive.isSelected();
+        String sText = jtfSearchText.getText().trim();
+        Session s = eng.sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        Criteria crit = s.createCriteria(FileWrapper.class);
 
-            boolean inDescription = jchkSearchInDesc.isSelected();
-            boolean casein = jchkCaseSensitive.isSelected();
-            String sText = jtfSearchText.getText().trim();
-            Session s = eng.sessionFactory.getCurrentSession();
-            s.beginTransaction();
-            Criteria crit = s.createCriteria(FileWrapper.class);
-
-            if (casein && inDescription) {//case sensitive and in description
-                crit.add(Restrictions.or(Restrictions.ilike("name", sText, MatchMode.ANYWHERE),
-                        Restrictions.ilike("description", sText, MatchMode.ANYWHERE)));
-            } else if (casein) { //only case sensitive not in descriptions
-                crit.add(Restrictions.ilike("name", sText, MatchMode.ANYWHERE));
-            } else if (inDescription) { //in description but not case sensitive
-                crit.add(Restrictions.or(Restrictions.like("name", sText, MatchMode.ANYWHERE),
-                        Restrictions.like("description", sText, MatchMode.ANYWHERE)));
-            } else { //only in name not in descriptions and not case sensitive
-                crit.add(Restrictions.like("name", sText, MatchMode.ANYWHERE));
-            }
-
-            /*if (jchkUseReGex.isSelected()) {//NOTE: don't really know if this is necessary.
-            sText = sText.replaceAll("*", "%");
-            }*/
-
-            if (jrdbDiskGroupOnly.isSelected()) {
-                DiskGroup dg = (DiskGroup) jcbxDiskGroups.getSelectedItem();
-                crit.add(Restrictions.eq("disk.group.id", dg.getId()));
-            }
-
-            for (Object o : crit.list()) {
-                o.equals(null);
-                listModel.addElement(o);
-            }
-            s.getTransaction().commit();
-            searching = false;
+        if (casein && inDescription) {//case sensitive and in description
+            crit.add(Restrictions.or(Restrictions.ilike("name", sText, MatchMode.ANYWHERE),
+                    Restrictions.ilike("description", sText, MatchMode.ANYWHERE)));
+        } else if (casein) { //only case sensitive not in descriptions
+            crit.add(Restrictions.ilike("name", sText, MatchMode.ANYWHERE));
+        } else if (inDescription) { //in description but not case sensitive
+            crit.add(Restrictions.or(Restrictions.like("name", sText, MatchMode.ANYWHERE),
+                    Restrictions.like("description", sText, MatchMode.ANYWHERE)));
+        } else { //only in name not in descriptions and not case sensitive
+            crit.add(Restrictions.like("name", sText, MatchMode.ANYWHERE));
         }
+
+        /*if (jchkUseReGex.isSelected()) {//NOTE: don't really know if this is necessary.
+        sText = sText.replaceAll("*", "%");
+        }*/
+
+        if (jrdbDiskGroupOnly.isSelected()) {
+            DiskGroup dg = (DiskGroup) jcbxDiskGroups.getSelectedItem();
+            crit.add(Restrictions.eq("disk.group.id", dg.getId()));
+        }
+
+        for (Object o : crit.list()) {
+            o.equals(null);
+            listModel.addElement(o);
+        }
+        s.getTransaction().commit();
+
     }
 
     /** This method is called from within the constructor to
@@ -292,7 +288,10 @@ private void jbtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             public void run() {
                 //NOTE: race condition!
                 searching = true;
+                ProgressHandle p = ProgressHandleFactory.createHandle("searching...");//TODO: i18n
+                p.start();
                 search();
+                p.finish();
                 searching = false;
             }
         }).start();

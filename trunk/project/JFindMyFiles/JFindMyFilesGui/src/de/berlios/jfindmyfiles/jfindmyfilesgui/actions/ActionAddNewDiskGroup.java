@@ -64,7 +64,8 @@ public final class ActionAddNewDiskGroup extends CallableSystemAction {
         return false;
     }
 
-    public boolean isActive() {
+    @Override
+    public boolean isEnabled() {
         return eng.isOpened();
     }
 }

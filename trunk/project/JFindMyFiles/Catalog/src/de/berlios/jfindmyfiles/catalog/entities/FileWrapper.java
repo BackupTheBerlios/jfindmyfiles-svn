@@ -19,7 +19,9 @@
  */
 package de.berlios.jfindmyfiles.catalog.entities;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -89,9 +91,7 @@ public class FileWrapper {
         if (children == null) {
             children = new LinkedHashSet();
         }
-
         children.add(child);
-
     }
 
     /**
@@ -102,6 +102,14 @@ public class FileWrapper {
         if (children != null) {
             children.remove(child);
         }
+    }
+
+    public List<FileWrapper> getChildrenList() {
+        ArrayList<FileWrapper> temp = new ArrayList<FileWrapper>(children.size());
+        for (Object o : children) {
+            temp.add((FileWrapper) o);
+        }
+        return temp;
     }
 
     public String getAbsolutePath() {
@@ -151,11 +159,11 @@ public class FileWrapper {
     public void setExtension(String extension) {
         this.extension = extension;
     }
-    
+
     public String getSha1() {
         return sha1;
     }
-    
+
     public void setSha1(String sha1) {
         this.sha1 = sha1;
     }

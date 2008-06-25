@@ -266,6 +266,7 @@ public class CatalogEngine {
         return rs;
     }
 
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     public void addListener(CatalogEngineListener l) {
         if (listeners == null) {
             listeners = new Vector<CatalogEngineListener>();
