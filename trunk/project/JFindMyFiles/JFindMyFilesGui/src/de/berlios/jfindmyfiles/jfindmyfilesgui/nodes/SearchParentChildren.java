@@ -39,6 +39,7 @@ public class SearchParentChildren extends Children.Keys {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     protected void addNotify() {
         List keys = items;
         setKeys(keys);

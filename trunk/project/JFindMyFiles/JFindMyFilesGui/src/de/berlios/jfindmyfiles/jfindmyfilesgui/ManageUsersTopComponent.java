@@ -161,7 +161,8 @@ final class ManageUsersTopComponent extends TopComponent {
     private class UserTableModel extends AbstractTableModel {
 
         private List<User> users;
-
+        
+        @SuppressWarnings("unchecked")
         public UserTableModel() {
             users = new LinkedList<User>();
             Session s = eng.sessionFactory.getCurrentSession();

@@ -25,12 +25,12 @@ import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
 import de.berlios.jfindmyfiles.catalog.entities.FileWrapper;
 import de.berlios.jfindmyfiles.catalog.entities.Media;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
 import javax.swing.table.AbstractTableModel;
 import org.hibernate.Session;
-import org.openide.explorer.view.NodeTableModel;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
@@ -128,6 +128,7 @@ final class DetailsViewTopComponent extends TopComponent {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public void componentOpened() {
         diskResult = Utilities.actionsGlobalContext().lookup(new Lookup.Template(Media.class));
         diskResult.addLookupListener(nModel);
@@ -184,8 +185,10 @@ final class DetailsViewTopComponent extends TopComponent {
             super();
             loadCatalogChildren();
             sItem[0] = eng;
+            catalogChildren = new ArrayList();
         }
 
+        @SuppressWarnings("unchecked")
         private void loadCatalogChildren() {
             Session s = eng.sessionFactory.getCurrentSession();
             s.beginTransaction();
@@ -201,10 +204,9 @@ final class DetailsViewTopComponent extends TopComponent {
                 case 1://Group
                     return ((DiskGroup) sItem[1]).getGroupList().size() + ((DiskGroup) sItem[1]).getDiskList().size();
                 case 2://Media
-                    ((Media) sItem[2]).getFileList().size();
-                    return 0;
+                    return ((Media) sItem[2]).getFileList().size();
                 case 3://File
-                    ((FileWrapper) sItem[3]).getChildrenList().size();
+                    return ((FileWrapper) sItem[3]).getChildrenList().size();
                 default:
                     return 0;
             }
@@ -387,6 +389,8 @@ final class DetailsViewTopComponent extends TopComponent {
                         case 2://size;
                         case 3://lastModified;
                             return long.class;
+                        default:
+                            return Object.class;
                     }
                 default:
                     return Object.class;

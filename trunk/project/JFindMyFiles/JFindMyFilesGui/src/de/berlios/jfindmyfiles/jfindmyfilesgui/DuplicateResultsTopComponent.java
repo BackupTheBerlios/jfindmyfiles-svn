@@ -4,19 +4,13 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
-import de.berlios.jfindmyfiles.catalog.CatalogEngine;
-import de.berlios.jfindmyfiles.catalog.entities.FileWrapper;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.SearchParentNode;
 import java.awt.BorderLayout;
 import java.io.Serializable;
 import java.util.logging.Logger;
 import javax.swing.ActionMap;
-import org.hibernate.Session;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Restrictions;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.view.BeanTreeView;
-import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
@@ -29,8 +23,6 @@ public final class DuplicateResultsTopComponent extends TopComponent {
     private final ExplorerManager manager = new ExplorerManager();
     private final BeanTreeView view = new BeanTreeView();
     private static DuplicateResultsTopComponent instance;
-    /** path to the icon used by the component and its open action */
-//    static final String ICON_PATH = "SET/PATH/TO/ICON/HERE";
     private static final String PREFERRED_ID = "DuplicateResultsTopComponent";
 
     private DuplicateResultsTopComponent() {
