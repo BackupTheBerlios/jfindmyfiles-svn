@@ -65,7 +65,7 @@ de memória durante a execução. Um pesquisa a uma pasta com pouco mais de uma
 centena de ficheiros e pastas resultava no consumo total da memória disponível 
 por omissão à JVM(64MB), como se pode ver na imagem em anexo[TODO:INDICAR ANEXO]
 
-Foi desenvolvido um segundo algoritmo, desta vez iterativo, e recurrendo ao uso 
+Foi desenvolvido um segundo algoritmo, desta vez iterativo, e recorrendo ao uso 
 de pilhas, que, mesmo na sua versão não optimizada, conseguia obter informações 
 em pastas com 43 mil ficheiros e mais de 4500 pastas.
 Este algoritmo permite também e de forma mais simples a obtenção de valores 
