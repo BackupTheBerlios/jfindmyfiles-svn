@@ -20,9 +20,9 @@
 package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
 import de.berlios.jfindmyfiles.catalog.CatalogConstants;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import javax.swing.JFileChooser;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import org.openide.util.NbPreferences;
 
 final class CatalogOptionsPanel extends javax.swing.JPanel {
@@ -32,19 +32,81 @@ final class CatalogOptionsPanel extends javax.swing.JPanel {
     CatalogOptionsPanel(CatalogOptionsPanelController controller) {
         this.controller = controller;
         initComponents();
-    // TODO listen to changes in form fields and call controller.changed()
-         /*   jbtnBrowse.addActionListener(new ActionListener() {
-    
-    public void actionPerformed(ActionEvent e) {
-    //throw new UnsupportedOperationException("Not supported yet.");
-    }
-    });
-    jtfDefaultLocation.setEnabled(jchkUserinternalDB.isSelected());
-    jtfHostname.setEnabled(state);
-    jtfUsername.setEnabled(state);
-    jpfPassword.setEnabled(state);
-    jffPort.setEnabled(state);
-    jcbxDatabase.setEnabled(state);*/
+
+        jtfDefaultLocation.getDocument().addDocumentListener(new DocumentListener() {
+
+            public void insertUpdate(DocumentEvent e) {
+                invokeController();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                invokeController();
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                invokeController();
+            }
+        });
+
+        jtfHostname.getDocument().addDocumentListener(new DocumentListener() {
+
+            public void insertUpdate(DocumentEvent e) {
+                invokeController();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                invokeController();
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                invokeController();
+            }
+        });
+
+        jtfUsername.getDocument().addDocumentListener(new DocumentListener() {
+
+            public void insertUpdate(DocumentEvent e) {
+                invokeController();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                invokeController();
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                invokeController();
+            }
+        });
+
+        jpfPassword.getDocument().addDocumentListener(new DocumentListener() {
+
+            public void insertUpdate(DocumentEvent e) {
+                invokeController();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                invokeController();
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                invokeController();
+            }
+        });
+
+        jffPort.getDocument().addDocumentListener(new DocumentListener() {
+
+            public void insertUpdate(DocumentEvent e) {
+                invokeController();
+            }
+
+            public void removeUpdate(DocumentEvent e) {
+                invokeController();
+            }
+
+            public void changedUpdate(DocumentEvent e) {
+                invokeController();
+            }
+        });
     }
 
     /**
@@ -70,6 +132,14 @@ final class CatalogOptionsPanel extends javax.swing.JPanel {
         jcbxDatabase.setEnabled(state);
         jbtnBrowse.setEnabled(!state);
         jtfDefaultLocation.setEnabled(!state);
+    }
+
+    /**
+     * Calls <code>controller.changed()</code> in order to inform this panel's controller 
+     * that some changes happen and need to be stored.
+     */
+    private void invokeController() {
+        controller.changed();
     }
 
     /** This method is called from within the constructor to
@@ -144,6 +214,11 @@ final class CatalogOptionsPanel extends javax.swing.JPanel {
 
         jcbxDatabase.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Firebird", "PostgreSQL", "MsSQL", "MySQL" }));
         jcbxDatabase.setEnabled(false);
+        jcbxDatabase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcbxDatabaseActionPerformed(evt);
+            }
+        });
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
@@ -157,13 +232,13 @@ final class CatalogOptionsPanel extends javax.swing.JPanel {
                         .add(12, 12, 12)
                         .add(jlblDefaultLocation)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jtfDefaultLocation, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                        .add(jtfDefaultLocation, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 304, Short.MAX_VALUE)
                         .add(6, 6, 6)
                         .add(jbtnBrowse))
                     .add(layout.createSequentialGroup()
                         .add(jLabel1)
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
-                        .add(jSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 389, Short.MAX_VALUE))
+                        .add(jSeparator1, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 412, Short.MAX_VALUE))
                     .add(layout.createSequentialGroup()
                         .add(10, 10, 10)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
@@ -231,10 +306,14 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     JFileChooser jfc = new JFileChooser(System.getProperty("user.home"));
     jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
     jfc.setMultiSelectionEnabled(false);
-    if(jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+    if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
         jtfDefaultLocation.setText(jfc.getSelectedFile().getAbsolutePath());
     }
 }//GEN-LAST:event_jbtnBrowseActionPerformed
+
+private void jcbxDatabaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcbxDatabaseActionPerformed
+    invokeController();
+}//GEN-LAST:event_jcbxDatabaseActionPerformed
     
     void load() {
         jchkUserinternalDB.setSelected(NbPreferences.forModule(CatalogOptionsPanel.class).getBoolean("internaldb", true));

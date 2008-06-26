@@ -4,6 +4,7 @@
  */
 package de.berlios.jfindmyfiles.readingfiles.pluginapi;
 
+import de.berlios.jfindmyfiles.readingfiles.plugins.AntMovieCatalogerPlugin;
 import de.berlios.jfindmyfiles.readingfiles.utils.ReadingUtils;
 import java.io.File;
 import java.net.MalformedURLException;
@@ -71,11 +72,10 @@ public class PluginCache {
                     }
                 }
             }
-            //Provided plugins. - Could be the same as an URL search
-            tClass = Class.forName("de.berlios.jfindmyfiles.readingfiles.plugins.AntMovieCataloferPlugin");
-            reader = (Reader) tClass.newInstance();
-            cache.put(reader.pluginFor(), reader);
-            reader.setActive(p.getBoolean(reader.pluginFor(), false));
+            //Provided plugins
+            AntMovieCatalogerPlugin ant = new AntMovieCatalogerPlugin();
+            cache.put(ant.pluginFor(), ant);
+            reader.setActive(p.getBoolean(ant.pluginFor(), false));
             
             tClass = Class.forName("de.berlios.jfindmyfiles.readingfiles.plugins.JPGPlugin");
             reader = (Reader) tClass.newInstance();

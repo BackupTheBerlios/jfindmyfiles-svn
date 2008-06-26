@@ -30,12 +30,12 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jlblName" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jtfName" pref="492" max="32767" attributes="0"/>
+                      <Component id="jtfName" pref="515" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jchkUserinternalDB" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jSeparator1" pref="394" max="32767" attributes="0"/>
+                      <Component id="jSeparator1" pref="399" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="12" pref="12" max="12" attributes="0"/>
@@ -44,14 +44,14 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jlblDestination" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jtfDestination" pref="416" max="32767" attributes="0"/>
+                              <Component id="jtfDestination" pref="458" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jbtnBrowse" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
-                      <Component id="jlbError" pref="316" max="32767" attributes="0"/>
+                      <Component id="jlbError" pref="381" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jbtnOpen" linkSize="1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>

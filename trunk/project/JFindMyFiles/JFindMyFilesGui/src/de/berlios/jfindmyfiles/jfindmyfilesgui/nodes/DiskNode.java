@@ -22,7 +22,13 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 import de.berlios.jfindmyfiles.catalog.entities.Media;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.utils.GuiUtils;
 import java.awt.Image;
+import java.lang.reflect.InvocationTargetException;
 import org.openide.nodes.AbstractNode;
+import org.openide.nodes.Node;
+import org.openide.nodes.Node.Property;
+import org.openide.nodes.PropertySupport;
+import org.openide.nodes.Sheet;
+import org.openide.util.Exceptions;
 import org.openide.util.Utilities;
 import org.openide.util.actions.SystemAction;
 import org.openide.util.lookup.Lookups;
@@ -40,7 +46,23 @@ public class DiskNode extends AbstractNode {
         this.media = media;
         setName(media.getName());
     }
-
+    
+    @Override
+    protected Sheet createSheet() {
+        Sheet s = Sheet.createDefault();
+        try {
+            
+            Sheet.Set sSet = Sheet.createPropertiesSet();
+            Property p = new PropertySupport.Reflection(media, String.class, "name");
+            //DiskNameProperty p = new DiskNameProperty(media.getName(), "", media.getName());
+            sSet.put(p);
+            s.put(sSet);
+        } catch (NoSuchMethodException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+        return s;
+    }
+     
     @Override
     public Image getIcon(int type) {
         return Utilities.loadImage(GuiUtils.findIconForType(media.getType()));
