@@ -53,6 +53,7 @@ public class DiskNode extends AbstractNode {
         try {
             
             Sheet.Set sSet = Sheet.createPropertiesSet();
+            //Property p = new PropertySupport.Reflection(media, String.class, "name");
             Property p = new PropertySupport.Reflection(media, String.class, "name");
             //DiskNameProperty p = new DiskNameProperty(media.getName(), "", media.getName());
             sSet.put(p);

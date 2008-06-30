@@ -5,10 +5,19 @@
 package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
 import de.berlios.jfindmyfiles.catalog.entities.Media;
+import java.awt.Component;
 import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Logger;
+import javax.swing.JLabel;
+import javax.swing.JTable;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
+import javax.swing.table.TableCellRenderer;
+import org.openide.explorer.propertysheet.PropertyPanel;
 import org.openide.explorer.view.NodeTableModel;
 import org.openide.nodes.Node;
+import org.openide.nodes.Node.Property;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
@@ -28,11 +37,19 @@ final class WindowTestingTopComponent extends TopComponent implements LookupList
 
     private WindowTestingTopComponent() {
         ntModel = new NodeTableModel();
+        ntModel.addTableModelListener(new TableModelListener() {
+
+            public void tableChanged(TableModelEvent e) {
+                System.err.println("TABLE CHANGED: " + e.getType());
+                System.err.println("VALUE CLASS: " + ntModel.getColumnClass(e.getColumn()));
+            }
+        });
         Lookup.Result r = Utilities.actionsGlobalContext().lookup(new Lookup.Template(Media.class));
         r.addLookupListener(this);
         initComponents();
         setName(NbBundle.getMessage(WindowTestingTopComponent.class, "CTL_WindowTestingTopComponent"));
         setToolTipText(NbBundle.getMessage(WindowTestingTopComponent.class, "HINT_WindowTestingTopComponent"));
+        jTable1.setDefaultRenderer(Property.class, new PropertyCellRenderer());
 //        setIcon(Utilities.loadImage(ICON_PATH, true));
     }
 
@@ -136,8 +153,42 @@ final class WindowTestingTopComponent extends TopComponent implements LookupList
         TopComponent.Registry registry = TopComponent.getRegistry();
         Node[] act = registry.getActivatedNodes();
         ntModel.setNodes(act);
-        for(Node n : act) {
+        for (Node n : act) {
             System.out.println(n);
         }
+    }
+
+    class PropertyCellRenderer implements TableCellRenderer {
+
+        public Component getTableCellRendererComponent(JTable table,
+                Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            try {
+                PropertyPanel panel = new PropertyPanel((Property) value);
+                panel.setPreferences(PropertyPanel.PREF_TABLEUI);
+                System.err.println("VALUE FROM PROPERTY: " + ((Property) value).getValue());
+                return panel;
+            } catch (IllegalAccessException ex) {
+                System.err.println("EXCEPTION");
+                return null;
+            } catch (InvocationTargetException ex) {
+                System.err.println("EXCEPTION");
+                return null;
+            }
+        }
+    }
+    
+    class MyPropertyCellRenderer extends JLabel implements TableCellRenderer {
+
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            try {
+                Property p = (Property) value;
+                setText((String) p.getValue());
+                return this;
+            } catch (IllegalAccessException ex) {
+                return null;
+            } catch (InvocationTargetException ex) {
+                return null;
+            }
+        }        
     }
 }
