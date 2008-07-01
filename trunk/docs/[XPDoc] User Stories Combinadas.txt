@@ -26,7 +26,7 @@ regulares.
 ficar preso a apenas um tipo de base de dados.
 - Deve ser possível procurar ficheiros duplicados, o nome não deve ser limitação.
 
-CB05: ST4, ST5, ST7
+CB05: ST4, ST5, ST7, ST24
 - O programa tem de permitir criar catálogos, abrir catálogos, fechar e guardar 
 catálogos.
 - Os discos e pastas podem ser catalogados usando etiquetas, o sistema deve ser 
@@ -34,6 +34,8 @@ independente das categorias e grupos de discos e permitir que o mesmo disco
 tenha mais que uma categoria.
 - A aplicação deve permitir ser distribuida em mais que uma língua, deve ser 
 internacionalizável.
+- São necessárias algumas funcões de manutenção, como a possibilidade de 
+alterar a numeração dos discos catalogados.
 
 CB06: ST11
 - Quero exportar um catálogo completo ou um subconjunto para um conjunto de 

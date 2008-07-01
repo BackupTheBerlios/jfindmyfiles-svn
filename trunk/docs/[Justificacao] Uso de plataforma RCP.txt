@@ -5,7 +5,7 @@ A rápida prototipagem e avaliação de conceitos é também limitada por esse tipo
 de tarefas que, embora não estejam associadas ao problema a testar, são necessárias 
 implementar para que a ideia possa ser correctamente avaliada.
 
-Plataformas de desenvolvimento de aplicações ricas, Rich Client Platform, RCP, 
+Plataformas de desenvolvimento de aplicações ricas, Rich Client Platform, 
 são frameworks que permitem retirar das mãos do programador a necessidade de 
 repetir as tarefas comuns a todas as aplicações desktop. Estas frameworks 
 fornecem serviços como gestão de janelas, menus, definições da aplicação, 
@@ -16,8 +16,8 @@ a escolha e utilização de uma plataforma de desenvolvimento. A plataforma a
 escolher terá de satisfazer os requisitos apresentados para o projecto.
 
 Foram inicialmente consideradas 4 plataformas de desenvolvimento. São elas, 
-a biblioteca Microsoft Foundation Class, MFC, a Eclipse Rich Client Platform, 
-Eclipse RCP, a Spring Rich Client Platform, Spring-rich e a Netbeans Platform.
+a biblioteca Microsoft Foundation Class[1], a Eclipse Rich Client Platform[2], 
+a Spring Rich Client Platform[3], Spring-rich e a Netbeans Platform[4].
 
 Dado a necessidade de uma aplicação multiplataforma a plataforma MFC foi 
 imediatamente abandonada visto ser destinada apenas a sistemas operativos Windows. 
@@ -37,7 +37,3 @@ Das quatro plataformas iniciais sobram assim para análise a Eclipse RCP e a
 Netbeans platform.
 
 [REFERÊNCIAS]
-[1]http://msdn2.microsoft.com/en-us/visualc/aa442855.aspx
-[2]http://msdn2.microsoft.com/en-us/library/dd5497wx(VS.80).aspx
-[3]http://msdn2.microsoft.com/en-us/library/188ht7d8(VS.80).aspx
-[4]http://www.netbeans.org/features/platform/index.html

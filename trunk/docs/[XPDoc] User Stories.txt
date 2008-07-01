@@ -59,7 +59,7 @@ com opções de pesquisa, introdução de descrições, alteração do nome,
 exportação e importação.
  
 ST15:
-Se a localização do ficheiro estiver acessível deve ser possível abri-la.
+Se a localização do ficheiro estiver acessível deve ser possível abri-lo.
 
 ST16:
 O sistema de leitura de informações de ficheiro tem de permitir ser expandido 
@@ -90,5 +90,9 @@ Deve ser possível adicionar, remover e editar os dados de utilizadores, bem como
 ver os empréstimos actuais e passados feitos a esse utilizador.
 
 ST23:
-A aplicação deverá correr em qualquer sistema operativo, desde Windows XP/Vista, 
-Linux a Mac OS X.
+A aplicação deverá correr em qualquer um dos sistemas operativos mais usados, 
+desde Windows XP/Vista, Linux a Mac OS X.
+
+ST24:
+São necessárias algumas funcões de manutenção, como a possibilidade de 
+alterar a numeração dos discos catalogados.

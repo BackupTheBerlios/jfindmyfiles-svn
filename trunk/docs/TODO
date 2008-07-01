@@ -1,12 +1,6 @@
 - Contextualizar as referências existentes.
-- Na justificação da plataforma NB VS Eclipse RCP falta indicar o nome da revista.
--> http://en.wikipedia.org/wiki/Path_%28computing%29#Uniform_Naming_Convention
-- Configurar logger
-
+- Na justificação da plataforma NB VS Eclipse RCP falta indicar o nome da revista.
 http://www.xylax.net/hibernate/onetomany.html
-http://www.hibernate.org/hib_docs/v3/reference/en/html_single/#mapping
-http://www.hibernate.org/hib_docs/v3/reference/en/html/tutorial.html
-
 Image taken from: http://www.drewnoakes.com/code/exif/index.html
 
 Iteração 2:
@@ -14,7 +8,6 @@ Iteração 2:
 	- Fechar catálogo
 	- Menus na descrição da iteração
 Iteração 3:
-	- sistema de segurança para evitar execução de código não seguro.
 	- Manual do programador
 	
 Iteração 4:
@@ -23,16 +16,5 @@ Iteração 4:
 Iteração 5:
 	- menus de contexto sensíveis
 	- alterar algumas user stories para incluirem todas as opções de menu que apareceram sem justificação
-	- barras de ferramentas
-
-Iteração 6:
-	- importar dados de XML
-	- importar dados de outra base de dados
-	- importar dados de CSV
-	- importar dados de outras aplicações
-
+	- barras de ferramentas
 TODOS:
-	criar pasta JFindMyFiles Plugins na home do utilizador
-	indicar nos textos a origem de algumas afirmações, citar bibliografia
-NOTAS:
-	Atenção ao nome dos paineis e componentes na internacionalização
