@@ -11,9 +11,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.table.TableCellRenderer;
 import javax.swing.event.TableModelEvent;
-import org.openide.explorer.propertysheet.PropertyPanel;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.TableCellRenderer;
 import org.openide.explorer.propertysheet.PropertyPanel;
 import org.openide.explorer.view.NodeTableModel;
@@ -41,16 +40,17 @@ final class WindowTestingTopComponent extends TopComponent implements LookupList
         ntModel.addTableModelListener(new TableModelListener() {
 
             public void tableChanged(TableModelEvent e) {
-                System.err.println("TABLE CHANGED: " + e.getType());
                 System.err.println("VALUE CLASS: " + ntModel.getColumnClass(e.getColumn()));
             }
         });
-        Lookup.Result r = Utilities.actionsGlobalContext().lookup(new Lookup.Template(Media.class));
+        Lookup.Result r = Utilities.actionsGlobalContext().lookup(new Lookup.Template<Media>(Media.class));
         r.addLookupListener(this);
         initComponents();
         setName(NbBundle.getMessage(WindowTestingTopComponent.class, "CTL_WindowTestingTopComponent"));
         setToolTipText(NbBundle.getMessage(WindowTestingTopComponent.class, "HINT_WindowTestingTopComponent"));
-        jTable1.setDefaultRenderer(Property.class, new PropertyCellRenderer());
+        //
+        //WORK DAMN YOU!!!!!!!!!!!!!!!!!!!
+        jTable1.setDefaultRenderer(Node.Property.class, new MyPropertyCellRenderer());
 //        setIcon(Utilities.loadImage(ICON_PATH, true));
     }
 
@@ -64,26 +64,49 @@ final class WindowTestingTopComponent extends TopComponent implements LookupList
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jTable1.setDefaultRenderer(Node.Property.class, new PropertyCellRenderer());
-        jTable1.setDefaultRenderer(Media.class, new MediaCellRenderer());
+        jpTableView = new javax.swing.JPanel();
 
         jTable1.setModel(ntModel);
         jScrollPane1.setViewportView(jTable1);
+
+        jpTableView.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(WindowTestingTopComponent.class, "WindowTestingTopComponent.jpTableView.border.title"))); // NOI18N
+
+        javax.swing.GroupLayout jpTableViewLayout = new javax.swing.GroupLayout(jpTableView);
+        jpTableView.setLayout(jpTableViewLayout);
+        jpTableViewLayout.setHorizontalGroup(
+            jpTableViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 364, Short.MAX_VALUE)
+        );
+        jpTableViewLayout.setVerticalGroup(
+            jpTableViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jpTableView, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpTableView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JPanel jpTableView;
     // End of variables declaration//GEN-END:variables
     /**
      * Gets default instance. Do not use directly: reserved for *.settings files only,
@@ -123,7 +146,7 @@ final class WindowTestingTopComponent extends TopComponent implements LookupList
 
     @Override
     public void componentOpened() {
-        Lookup.Result r = Utilities.actionsGlobalContext().lookup(new Lookup.Template(Media.class));
+        Lookup.Result r = Utilities.actionsGlobalContext().lookup(new Lookup.Template<Media>(Media.class));
         r.addLookupListener(this);
     }
 
@@ -156,6 +179,7 @@ final class WindowTestingTopComponent extends TopComponent implements LookupList
         TopComponent.Registry registry = TopComponent.getRegistry();
         Node[] act = registry.getActivatedNodes();
         ntModel.setNodes(act);
+        ntModel.fireTableStructureChanged();
         for (Node n : act) {
             System.out.println(n);
         }
@@ -163,8 +187,7 @@ final class WindowTestingTopComponent extends TopComponent implements LookupList
 
     class PropertyCellRenderer implements TableCellRenderer {
 
-        public Component getTableCellRendererComponent(JTable table,
-                Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
             try {
                 PropertyPanel panel = new PropertyPanel((Property) value);
                 panel.setPreferences(PropertyPanel.PREF_TABLEUI);
@@ -179,7 +202,7 @@ final class WindowTestingTopComponent extends TopComponent implements LookupList
             }
         }
     }
-    
+
     class MyPropertyCellRenderer extends JLabel implements TableCellRenderer {
 
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -192,6 +215,6 @@ final class WindowTestingTopComponent extends TopComponent implements LookupList
             } catch (InvocationTargetException ex) {
                 return null;
             }
-        }        
+        }
     }
 }
