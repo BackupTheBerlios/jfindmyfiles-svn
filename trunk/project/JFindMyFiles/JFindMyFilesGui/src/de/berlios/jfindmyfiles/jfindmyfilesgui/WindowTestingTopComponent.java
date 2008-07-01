@@ -11,8 +11,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JTable;
+import javax.swing.table.TableCellRenderer;
 import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
+import org.openide.explorer.propertysheet.PropertyPanel;
 import javax.swing.table.TableCellRenderer;
 import org.openide.explorer.propertysheet.PropertyPanel;
 import org.openide.explorer.view.NodeTableModel;
@@ -63,6 +64,8 @@ final class WindowTestingTopComponent extends TopComponent implements LookupList
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jTable1.setDefaultRenderer(Node.Property.class, new PropertyCellRenderer());
+        jTable1.setDefaultRenderer(Media.class, new MediaCellRenderer());
 
         jTable1.setModel(ntModel);
         jScrollPane1.setViewportView(jTable1);

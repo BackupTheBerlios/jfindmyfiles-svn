@@ -38,6 +38,9 @@
               <Connection code="ntModel" type="code"/>
             </Property>
           </Properties>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_CreateCodePost" type="java.lang.String" value="jTable1.setDefaultRenderer(Node.Property.class, new PropertyCellRenderer());&#xd;&#xa;jTable1.setDefaultRenderer(Media.class, new MediaCellRenderer());"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
