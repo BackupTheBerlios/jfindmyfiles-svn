@@ -50,17 +50,17 @@ public class DiskNode extends AbstractNode {
     @Override
     protected Sheet createSheet() {
         Sheet s = Sheet.createDefault();
-        try {
+        //try {
             
             Sheet.Set sSet = Sheet.createPropertiesSet();
             //Property p = new PropertySupport.Reflection(media, String.class, "name");
-            Property p = new PropertySupport.Reflection(media, String.class, "name");
-            //DiskNameProperty p = new DiskNameProperty(media.getName(), "", media.getName());
+            //Property p = new PropertySupport.Reflection(media, String.class, "name");
+            DiskNameProperty p = new DiskNameProperty(media.getName(), "", media.getName());
             sSet.put(p);
             s.put(sSet);
-        } catch (NoSuchMethodException ex) {
-            Exceptions.printStackTrace(ex);
-        }
+        //} catch (NoSuchMethodException ex) {
+          //  Exceptions.printStackTrace(ex);
+        //}
         return s;
     }
      
@@ -77,5 +77,9 @@ public class DiskNode extends AbstractNode {
     @Override
     public SystemAction[] getActions(boolean bool) {
         return new SystemAction[]{};
+    }
+    
+    public Object getValue() {
+        return null;
     }
 }

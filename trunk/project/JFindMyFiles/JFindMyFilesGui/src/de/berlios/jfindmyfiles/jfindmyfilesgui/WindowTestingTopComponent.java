@@ -4,17 +4,31 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngine;
+import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
+import de.berlios.jfindmyfiles.catalog.entities.FileWrapper;
 import de.berlios.jfindmyfiles.catalog.entities.Media;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.CatalogNode;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.DiskGroupNode;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.DiskNode;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.FileWrapperNode;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Component;
 import java.io.Serializable;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
+import java.util.List;
 import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
+import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
+import org.hibernate.Session;
 import org.openide.explorer.propertysheet.PropertyPanel;
+import org.openide.explorer.propertysheet.PropertySheet;
 import org.openide.explorer.view.NodeTableModel;
 import org.openide.nodes.Node;
 import org.openide.nodes.Node.Property;
@@ -29,7 +43,7 @@ import org.openide.windows.WindowManager;
 /**
  * Top component which displays something.
  */
-final class WindowTestingTopComponent extends TopComponent implements LookupListener {
+final class WindowTestingTopComponent extends TopComponent implements /*ExplorerManager.Provider,*/ LookupListener {
 
     private NodeTableModel ntModel;
     private static WindowTestingTopComponent instance;
@@ -46,11 +60,12 @@ final class WindowTestingTopComponent extends TopComponent implements LookupList
         Lookup.Result r = Utilities.actionsGlobalContext().lookup(new Lookup.Template<Media>(Media.class));
         r.addLookupListener(this);
         initComponents();
+        smallInit();
         setName(NbBundle.getMessage(WindowTestingTopComponent.class, "CTL_WindowTestingTopComponent"));
         setToolTipText(NbBundle.getMessage(WindowTestingTopComponent.class, "HINT_WindowTestingTopComponent"));
         //
         //WORK DAMN YOU!!!!!!!!!!!!!!!!!!!
-        jTable1.setDefaultRenderer(Node.Property.class, new MyPropertyCellRenderer());
+        //jTable1.setDefaultRenderer(Node.Property.class, new AnotherPropertyCellRenderer());
 //        setIcon(Utilities.loadImage(ICON_PATH, true));
     }
 
@@ -64,49 +79,17 @@ final class WindowTestingTopComponent extends TopComponent implements LookupList
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jpTableView = new javax.swing.JPanel();
+
+        setLayout(new java.awt.BorderLayout());
 
         jTable1.setModel(ntModel);
         jScrollPane1.setViewportView(jTable1);
 
-        jpTableView.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(WindowTestingTopComponent.class, "WindowTestingTopComponent.jpTableView.border.title"))); // NOI18N
-
-        javax.swing.GroupLayout jpTableViewLayout = new javax.swing.GroupLayout(jpTableView);
-        jpTableView.setLayout(jpTableViewLayout);
-        jpTableViewLayout.setHorizontalGroup(
-            jpTableViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 364, Short.MAX_VALUE)
-        );
-        jpTableViewLayout.setVerticalGroup(
-            jpTableViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jpTableView, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpTableView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        add(jScrollPane1, java.awt.BorderLayout.SOUTH);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JPanel jpTableView;
     // End of variables declaration//GEN-END:variables
     /**
      * Gets default instance. Do not use directly: reserved for *.settings files only,
@@ -178,13 +161,46 @@ final class WindowTestingTopComponent extends TopComponent implements LookupList
     public void resultChanged(LookupEvent arg0) {
         TopComponent.Registry registry = TopComponent.getRegistry();
         Node[] act = registry.getActivatedNodes();
+        //Node[] act = registry.getCurrentNodes();
         ntModel.setNodes(act);
-        ntModel.fireTableStructureChanged();
+        //ntModel.fireTableStructureChanged();
+        ps.setNodes(act);
         for (Node n : act) {
             System.out.println(n);
         }
     }
+    
+    PropertySheet ps = new PropertySheet();
+    
+    private void smallInit() {
+        add(ps, BorderLayout.NORTH);
+        /*jTable1.setModel(new AbstractTableModel() {
 
+            public int getRowCount() {
+                return 5;
+            }
+
+            public int getColumnCount() {
+                return 10;
+            }
+
+            public Object getValueAt(int rowIndex, int columnIndex) {
+                return "value";
+            }
+        });*/
+        jTable1.setDefaultRenderer(Node.Property.class, new AnotherPropertyCellRenderer());
+        jTable1.setModel(ntModel);
+    }
+
+    class AnotherPropertyCellRenderer extends JLabel implements TableCellRenderer {
+
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            setText("example");
+            setBackground(Color.GREEN);
+            return this;
+        }
+    }    
+    
     class PropertyCellRenderer implements TableCellRenderer {
 
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {

@@ -10,6 +10,9 @@ import de.berlios.jfindmyfiles.jfindmyfilesgui.utils.GuiUtils;
 import java.awt.Image;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
+import org.openide.nodes.PropertySupport;
+import org.openide.nodes.Sheet;
+import org.openide.util.Exceptions;
 import org.openide.util.Utilities;
 import org.openide.util.lookup.Lookups;
 
@@ -26,6 +29,23 @@ public class FileWrapperNode extends AbstractNode {
         this.folder = folder;
         setName(folder.getName());
     }
+    
+    @Override
+    protected Sheet createSheet() {
+        Sheet s = Sheet.createDefault();
+        try {
+            
+            Sheet.Set sSet = Sheet.createPropertiesSet();
+            //Property p = new PropertySupport.Reflection(media, String.class, "name");
+            Property p = new PropertySupport.Reflection(folder, String.class, "name");
+            //DiskNameProperty p = new DiskNameProperty(media.getName(), "", media.getName());
+            sSet.put(p);
+            s.put(sSet);
+        } catch (NoSuchMethodException ex) {
+            Exceptions.printStackTrace(ex);
+        }
+        return s;
+    }    
 
     @Override
     public Image getIcon(int type) {
