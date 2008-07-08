@@ -46,6 +46,8 @@
         <folder name="Window">
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-DetailsViewAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-DuplicateResultsAction.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-FileListAction.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-FilePropertiesAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-LoanAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-ManageUsersAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-NavigationTreeAction.instance"/>
@@ -187,6 +189,12 @@
             <file name="DuplicateResultsAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-DuplicateResultsAction.instance"/>
             </file>
+            <file name="FileListAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-FileListAction.instance"/>
+            </file>
+            <file name="FilePropertiesAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-FilePropertiesAction.instance"/>
+            </file>
             <file name="LoanAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-LoanAction.instance"/>
             </file>
@@ -253,6 +261,8 @@
         <folder name="Components">
             <file name="DetailsViewTopComponent.settings" url="DetailsViewTopComponentSettings.xml"/>
             <file name="DuplicateResultsTopComponent.settings" url="DuplicateResultsTopComponentSettings.xml"/>
+            <file name="FileListTopComponent.settings" url="FileListTopComponentSettings.xml"/>
+            <file name="FilePropertiesTopComponent.settings" url="FilePropertiesTopComponentSettings.xml"/>
             <file name="LoanTopComponent.settings" url="LoanTopComponentSettings.xml"/>
             <file name="ManageUsersTopComponent.settings" url="ManageUsersTopComponentSettings.xml"/>
             <file name="NavigationTreeTopComponent.settings" url="NavigationTreeTopComponentSettings.xml"/>
@@ -263,6 +273,7 @@
         <folder name="Modes">
             <folder name="editor">
                 <file name="DetailsViewTopComponent.wstcref" url="DetailsViewTopComponentWstcref.xml"/>
+                <file name="FileListTopComponent.wstcref" url="FileListTopComponentWstcref.xml"/>
                 <file name="LoanTopComponent.wstcref" url="LoanTopComponentWstcref.xml"/>
                 <file name="ManageUsersTopComponent.wstcref" url="ManageUsersTopComponentWstcref.xml"/>
                 <file name="SearchWindowTopComponent.wstcref" url="SearchWindowTopComponentWstcref.xml"/>
@@ -274,6 +285,9 @@
             </folder>
             <folder name="output">
                 <file name="DuplicateResultsTopComponent.wstcref" url="DuplicateResultsTopComponentWstcref.xml"/>
+            </folder>
+            <folder name="properties">
+                <file name="FilePropertiesTopComponent.wstcref" url="FilePropertiesTopComponentWstcref.xml"/>
             </folder>
         </folder>
     </folder>

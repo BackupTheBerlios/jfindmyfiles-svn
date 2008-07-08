@@ -47,16 +47,11 @@ final class DetailsViewTopComponent extends TopComponent {
 
     private static DetailsViewTopComponent instance;
     private static final String PREFERRED_ID = "DetailsViewTopComponent";
-    private NodeModel nModel;
     private CatalogEngine eng;
-    private Lookup.Result catalogResult = null;
-    private Lookup.Result diskResult = null;
-    private Lookup.Result groupResult = null;
-    private Lookup.Result fileResult = null;
+
 
     private DetailsViewTopComponent() {
         eng = Lookup.getDefault().lookup(CatalogEngine.class);
-        nModel = new NodeModel();
         initComponents();
         setName(NbBundle.getMessage(DetailsViewTopComponent.class, "CTL_DetailsViewTopComponent"));
         setToolTipText(NbBundle.getMessage(DetailsViewTopComponent.class, "HINT_DetailsViewTopComponent"));
@@ -70,26 +65,18 @@ final class DetailsViewTopComponent extends TopComponent {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jscpDetailsScroll = new javax.swing.JScrollPane();
-        jtDetailsTable = new javax.swing.JTable();
-
-        jtDetailsTable.setModel(nModel);
-        jscpDetailsScroll.setViewportView(jtDetailsTable);
-
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(org.jdesktop.layout.GroupLayout.TRAILING, jscpDetailsScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+            .add(0, 468, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(jscpDetailsScroll, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+            .add(0, 342, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jscpDetailsScroll;
-    private javax.swing.JTable jtDetailsTable;
     // End of variables declaration//GEN-END:variables
     /**
      * Gets default instance. Do not use directly: reserved for *.settings files only,
@@ -130,29 +117,12 @@ final class DetailsViewTopComponent extends TopComponent {
     @Override
     @SuppressWarnings("unchecked")
     public void componentOpened() {
-        diskResult = Utilities.actionsGlobalContext().lookup(new Lookup.Template(Media.class));
-        diskResult.addLookupListener(nModel);
 
-        catalogResult = Utilities.actionsGlobalContext().lookup(new Lookup.Template(CatalogEngine.class));
-        catalogResult.addLookupListener(nModel);
-
-        fileResult = Utilities.actionsGlobalContext().lookup(new Lookup.Template(FileWrapper.class));
-        fileResult.addLookupListener(nModel);
-
-        groupResult = Utilities.actionsGlobalContext().lookup(new Lookup.Template(DiskGroup.class));
-        groupResult.addLookupListener(nModel);
     }
 
     @Override
     public void componentClosed() {
-        diskResult.removeLookupListener(nModel);
-        diskResult = null;
-        catalogResult.removeLookupListener(nModel);
-        catalogResult = null;
-        fileResult.removeLookupListener(nModel);
-        fileResult = null;
-        groupResult.removeLookupListener(nModel);
-        groupResult = null;
+
     }
 
     /** replaces this in object stream */
@@ -172,250 +142,6 @@ final class DetailsViewTopComponent extends TopComponent {
 
         public Object readResolve() {
             return DetailsViewTopComponent.getDefault();
-        }
-    }
-
-    private class NodeModel extends AbstractTableModel implements LookupListener {
-
-        private List catalogChildren;
-        private Object[] sItem = new Object[4];
-        private int sItemIndex;
-
-        public NodeModel() {
-            super();
-            loadCatalogChildren();
-            sItem[0] = eng;
-            catalogChildren = new ArrayList();
-        }
-
-        @SuppressWarnings("unchecked")
-        private void loadCatalogChildren() {
-            Session s = eng.sessionFactory.getCurrentSession();
-            s.beginTransaction();
-            catalogChildren.addAll(s.createQuery("from DiskGroup where parent.id is null").list());
-            catalogChildren.addAll(s.createQuery("from Media where group.id is null").list());
-            s.getTransaction().commit();
-        }
-
-        public int getRowCount() {
-            switch (sItemIndex) {
-                case 0://Catalog
-                    return catalogChildren.size();
-                case 1://Group
-                    return ((DiskGroup) sItem[1]).getGroupList().size() + ((DiskGroup) sItem[1]).getDiskList().size();
-                case 2://Media
-                    return ((Media) sItem[2]).getFileList().size();
-                case 3://File
-                    return ((FileWrapper) sItem[3]).getChildrenList().size();
-                default:
-                    return 0;
-            }
-        }
-
-        public int getColumnCount() {
-            switch (sItemIndex) {
-                case 0://CatalogEngine
-                    return 7;
-                case 1://Group
-                    return 7;
-                case 2://Media
-                case 3://File
-                    return 6;
-                default:
-                    return 0;
-            }
-        }
-
-        public Object getValueAt(int rowIndex, int columnIndex) {
-            Object o = null;
-            switch (sItemIndex) {
-                case 0://CatalogEngine
-                    o = catalogChildren.get(rowIndex);
-                    if (o instanceof DiskGroup) {
-                        switch (columnIndex) {
-                            case 0: //name;
-                                return ((DiskGroup) o).getName();
-                            case 1: //capacity;
-                                return ((DiskGroup) o).getCapacity();
-                            case 2: //freeSpace;
-                            case 3: //lastModified;
-                                return 0;
-                            case 6: //type;
-                                return "Disk Group";//TODO: i18n
-                            case 4: //description;
-                                return ((DiskGroup) o).getDescription();
-                            case 5: //location;
-                                return "";
-                        }
-                    } else {
-                        switch (columnIndex) {
-                            case 0: //name;
-                                return ((Media) o).getName();
-                            case 1: //capacity;
-                                return ((Media) o).getCapacity();
-                            case 2: //freeSpace;
-                                return ((Media) o).getFreeSpace();
-                            case 3: //lastModified;
-                                return ((Media) o).getLastModified();
-                            case 4: //type;
-                                return CatalogConstants.getTypeName(((Media) o).getType());
-                            case 5: //location;
-                                return ((Media) o).getLocation();
-                            case 6: //description;
-                                return ((Media) o).getDescription();
-                        }
-                    }
-                    return new Object();
-                case 1://Group
-                    if (rowIndex < ((DiskGroup) sItem[1]).getGroupList().size()) {
-                        o = ((DiskGroup) sItem[1]).getGroupList().get(rowIndex);
-                    } else {
-                        o = ((DiskGroup) sItem[1]).getDiskList().get(rowIndex - ((DiskGroup) sItem[1]).getGroupList().size());
-                    }
-                    if (o instanceof DiskGroup) {
-                        switch (columnIndex) {
-                            case 0: //name;
-                                return ((DiskGroup) o).getName();
-                            case 1: //description;
-                                return ((DiskGroup) o).getDescription();
-                            case 2: //capacity;
-                                return ((DiskGroup) o).getCapacity();
-                            case 3: //lastModified;
-                            case 4: //freeSpace;
-                                return 0;
-                            case 5: //location;
-                                return "";
-                            case 6: //type;
-                                return "Disk Group";//TODO: i18n
-                        }
-                    } else {
-                        switch (columnIndex) {
-                            case 0: //name;
-                                return ((Media) o).getName();
-                            case 1: //description;
-                                return ((Media) o).getDescription();
-                            case 2: //capacity;
-                                return ((Media) o).getCapacity();
-                            case 3: //lastModified;
-                                return ((Media) o).getLastModified();
-                            case 4: //freeSpace;
-                                return ((Media) o).getFreeSpace();
-                            case 5: //location;
-                                return ((Media) o).getLocation();
-                            case 6: //type;
-                                return CatalogConstants.getTypeName(((Media) o).getType());
-                        }
-                    }
-                    return new Object();
-                case 2://Media
-                case 3://File
-                    if (o instanceof Media) {
-                        switch (columnIndex) {
-                            case 0://name
-                                return ((Media) o).getName();
-                            case 1://extension;
-                                return "";
-                            case 2://size;
-                                return ((Media) o).getCapacity() - ((Media) o).getFreeSpace();
-                            case 3://lastModified;
-                                return ((Media) o).getLastModified();
-                            case 4://sha1;
-                                return "";
-                            case 5://description;
-                                return ((Media) o).getDescription();
-                        }
-                    } else {
-                        switch (columnIndex) {
-                            case 0://name
-                                return ((FileWrapper) o).getName();
-                            case 1://extension;
-                                return ((FileWrapper) o).getExtension();
-                            case 2://size;
-                                return ((FileWrapper) o).getSize();
-                            case 3://lastModified;
-                                return ((FileWrapper) o).getLastModified();
-                            case 4://sha1;
-                                return ((FileWrapper) o).getSha1();
-                            case 5://description;
-                                return ((FileWrapper) o).getDescription();
-                        }
-                    }
-                    return new Object();
-                default:
-                    return new Object();
-            }
-        }
-
-        @Override
-        public Class getColumnClass(int columnIndex) {
-            Object o = null;
-            switch (sItemIndex) {
-                case 0://CatalogEngine
-                    switch (columnIndex) {
-                        case 1: //capacity;
-                        case 2: //freeSpace;
-                        case 3: //lastModified;
-                            return long.class;
-                        case 0: //name;
-                        case 6: //type;
-                        case 4: //description;
-                        case 5: //location;
-                            return String.class;
-                        default:
-                            return Object.class;
-                    }
-                case 1://Group
-                    switch (columnIndex) {
-                        case 0: //name;
-                        case 1: //description;
-                        case 5: //location;
-                        case 6: //type;
-                            return String.class;
-                        case 2: //capacity;
-                        case 3: //lastModified;
-                        case 4: //freeSpace;
-                            return long.class;
-                        default:
-                            return Object.class;
-                    }
-                case 2://Media
-                case 3://File
-                    switch (columnIndex) {
-                        case 0://name
-                        case 1://extension;
-                        case 4://sha1;
-                        case 5://description;
-                            return String.class;
-                        case 2://size;
-                        case 3://lastModified;
-                            return long.class;
-                        default:
-                            return Object.class;
-                    }
-                default:
-                    return Object.class;
-            }
-        }
-
-        public void resultChanged(LookupEvent evt) {
-            Collection c = ((Lookup.Result) evt.getSource()).allInstances();
-            Object o;
-            if (!c.isEmpty()) {
-                o = c.iterator().next();
-                if (o instanceof CatalogEngine) {
-                    sItemIndex = 0;
-                } else if (o instanceof DiskGroup) {
-                    sItem[1] = o;
-                    sItemIndex = 1;
-                } else if (o instanceof Media) {
-                    sItem[2] = o;
-                    sItemIndex = 2;
-                } else if (o instanceof FileWrapper) {
-                    sItem[3] = o;
-                    sItemIndex = 3;
-                }
-                fireTableDataChanged();
-            }
         }
     }
 }

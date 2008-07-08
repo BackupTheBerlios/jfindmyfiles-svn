@@ -26,4 +26,8 @@ public class WindowTestingAction extends AbstractAction {
         win.open();
         win.requestActive();
     }
+    
+    public boolean isEnabled() {
+        return false;
+    }
 }

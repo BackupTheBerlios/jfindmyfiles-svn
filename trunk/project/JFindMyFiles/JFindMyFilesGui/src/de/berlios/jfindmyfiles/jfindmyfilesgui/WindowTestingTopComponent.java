@@ -27,6 +27,8 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.TableCellRenderer;
 import org.hibernate.Session;
+import org.netbeans.api.tableview.TableView;
+import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.propertysheet.PropertyPanel;
 import org.openide.explorer.propertysheet.PropertySheet;
 import org.openide.explorer.view.NodeTableModel;
@@ -43,12 +45,14 @@ import org.openide.windows.WindowManager;
 /**
  * Top component which displays something.
  */
-final class WindowTestingTopComponent extends TopComponent implements /*ExplorerManager.Provider,*/ LookupListener {
+final class WindowTestingTopComponent extends TopComponent implements ExplorerManager.Provider, LookupListener {
 
     private NodeTableModel ntModel;
     private static WindowTestingTopComponent instance;
     private static final String PREFERRED_ID = "WindowTestingTopComponent";
-
+    private org.netbeans.api.tableview.NodeTableModel ntm2;
+    private ExplorerManager man;
+    
     private WindowTestingTopComponent() {
         ntModel = new NodeTableModel();
         ntModel.addTableModelListener(new TableModelListener() {
@@ -57,15 +61,27 @@ final class WindowTestingTopComponent extends TopComponent implements /*Explorer
                 System.err.println("VALUE CLASS: " + ntModel.getColumnClass(e.getColumn()));
             }
         });
+
+
         Lookup.Result r = Utilities.actionsGlobalContext().lookup(new Lookup.Template<Media>(Media.class));
         r.addLookupListener(this);
         initComponents();
+        ntm2 = new org.netbeans.api.tableview.NodeTableModel();
+        ntm2.addTableModelListener(new TableModelListener() {
+
+            public void tableChanged(TableModelEvent e) {
+                System.err.println("VALUE CLASS: " + ntModel.getColumnClass(e.getColumn()));
+            }
+        });
+        
+        TableView tf = new TableView(ntm2);
+        add(tf, BorderLayout.NORTH);
         smallInit();
         setName(NbBundle.getMessage(WindowTestingTopComponent.class, "CTL_WindowTestingTopComponent"));
         setToolTipText(NbBundle.getMessage(WindowTestingTopComponent.class, "HINT_WindowTestingTopComponent"));
-        //
-        //WORK DAMN YOU!!!!!!!!!!!!!!!!!!!
-        //jTable1.setDefaultRenderer(Node.Property.class, new AnotherPropertyCellRenderer());
+    //
+    //WORK DAMN YOU!!!!!!!!!!!!!!!!!!!
+    //jTable1.setDefaultRenderer(Node.Property.class, new AnotherPropertyCellRenderer());
 //        setIcon(Utilities.loadImage(ICON_PATH, true));
     }
 
@@ -164,32 +180,32 @@ final class WindowTestingTopComponent extends TopComponent implements /*Explorer
         //Node[] act = registry.getCurrentNodes();
         ntModel.setNodes(act);
         //ntModel.fireTableStructureChanged();
-        ps.setNodes(act);
+        //ps.setNodes(act);
+        //ntm2.setNodes(act);
         for (Node n : act) {
             System.out.println(n);
         }
     }
-    
     PropertySheet ps = new PropertySheet();
-    
+
     private void smallInit() {
-        add(ps, BorderLayout.NORTH);
+        /*add(ps, BorderLayout.NORTH);
         /*jTable1.setModel(new AbstractTableModel() {
-
-            public int getRowCount() {
-                return 5;
-            }
-
-            public int getColumnCount() {
-                return 10;
-            }
-
-            public Object getValueAt(int rowIndex, int columnIndex) {
-                return "value";
-            }
+        
+        public int getRowCount() {
+        return 5;
+        }
+        
+        public int getColumnCount() {
+        return 10;
+        }
+        
+        public Object getValueAt(int rowIndex, int columnIndex) {
+        return "value";
+        }
         });*/
-        jTable1.setDefaultRenderer(Node.Property.class, new AnotherPropertyCellRenderer());
-        jTable1.setModel(ntModel);
+        /*jTable1.setDefaultRenderer(Node.Property.class, new AnotherPropertyCellRenderer());
+        jTable1.setModel(ntModel);*/
     }
 
     class AnotherPropertyCellRenderer extends JLabel implements TableCellRenderer {
@@ -199,8 +215,8 @@ final class WindowTestingTopComponent extends TopComponent implements /*Explorer
             setBackground(Color.GREEN);
             return this;
         }
-    }    
-    
+    }
+
     class PropertyCellRenderer implements TableCellRenderer {
 
         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -232,5 +248,13 @@ final class WindowTestingTopComponent extends TopComponent implements /*Explorer
                 return null;
             }
         }
+    }
+
+    public ExplorerManager getExplorerManager() {
+        if(man == null) {
+            NavigationTreeTopComponent c = NavigationTreeTopComponent.findInstance();
+            man = c.getExplorerManager();
+        }
+        return man;
     }
 }
