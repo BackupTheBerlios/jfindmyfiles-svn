@@ -1,0 +1,30 @@
+Este questionário tem por objectivo a avaliação de usabilidade do sistema JFindMyFiles. As informações serão usadas apenas para garantir que o sistema vai de encontro às necessidades dos utilizadores e não serão fornecidas a terceiros.
+Os dados pessoais pedidos, servem para fins meramente estatísticos, pretendendo dar uma ideia dos individuos que preencheram os testes.
+
+Idade: Menos de 18 anos/Menos de 25 anos/35 anos ou menos/Mais de 35 anos
+Sexo: Masculino/Feminino
+Habilitações:
+Profissão:
+Com que frequência usa o computador? Pelo menos 1 vez por semana/Pelo menos 3 vezes por semana/Pelo menos 5 dias por semana
+Aproximadamente, durante quanto tempo por sessão, usa o computador? 1 hora/3 horas/6 horas/Mais de 8 horas
+Utiliza ou já utilizou uma ferramenta de catalogação de ficheiros? (Aplicações semelhantes ao Picasaa mas com objectivos genéricos, e não focados em imagens): Sim/Não
+Se respondeu que sim por favor indique qual, se respondeu que não passe à pergunta seguinte:
+Sente necessidade de uma aplicação que permita gerir os seus ficheiros digitais: Sim/Não
+
+Tarefas: Dificuldade sentida de 1 a 3, Dificil, Acessível, Fácil
+	Abra um catálogo existente, presente no desktop
+	Procure um ficheiro pelo nome e pela descrição...
+	Verifique se exitem ficheiros iguais no catálogo
+	Adicione um grupo de discos ao catálog e lei uma pasta do seu computador para dentro desse catálogo, sugere-se uma pasta pequena para maior rapidez
+	Altere o nome do autor, usado por omissão, na criação de catálogos
+	Exporte os dados, usando um dos templates HTML disponíveis
+
+Por favor indique o grau de concordância com as seguintes afirmações: Concordo Plenamente/Concordo/Discordo/Discordo Plenamente/Sem opinião
+		O sistema JFindMyFiles é de fácil utilização.
+		O sistema JFindMyFiles é dificil de aprender.
+		As mensagens do sistema JFindMyFiles são de fácil compreensão.					
+		A ajuda do sistema JFindMyFiles é útil.
+Se pudesse mudar 3 coisas no JFindMyFiles o que mudaria: i/ii/iii                                                                                                                                                       
+Situações que achou fácil de usar no  JFindMyFiles:
+Diga situações em que sentiu dificuldades:
+Tem algum comentário e/ou sugestão a fazer?

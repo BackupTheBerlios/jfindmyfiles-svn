@@ -23,14 +23,10 @@ Subversion - Cliente linha de comandos do sistema de versões Subversion. Versão
 	para sistemas operativos baseados em  Linux.
 URL: http://subversion.tigris.org
 
-OpenOffice - Pacote de produtividade.
-URL: http://www.openoffice.org
+SmartSVN - Cliente gráfico, multi-plataforma, do sistema de versões Subversion.
 
 Notepad++ - Editor de texto para sistemas operativos Windows
 URL: http://notepad-plus.sourceforge.net
-
-DIA - Editor de diagramas, versão Windows
-UTL: http://dia-installer.de/index_en.html
 
 Bibliotecas Externas/Outras Tecnologias
 
@@ -42,6 +38,5 @@ URL: http://xtest.netbeans.org
 
 HSQLDB - Motor de base de dado em Java
 JCalendar - Widget para mostrar calendários
-JFreeChart - Sistema de geração de gráficos
 jacksum
 metadata-extractor-2.3.1.jar

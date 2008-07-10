@@ -1,1 +1,47 @@
+A organização de dados seja do que tipo forem é uma necessidade constante nos dias de hoje. Deste modo surjiram sistemas (aplicações/software) capazes de organizar esses dados catalogando-os. Existem sistemas semelhantes ao JfindMyFiles tais como o  Where Is It,  Argentum MyFiles entre outros. Alguns funcionam em Windows , outros em Linux e outros em Mac. O que existe em comum entre a maioria deles é:
+?	possuir o objectivo de organizar os dados criando um ou mais catálogos consoante o utilizador quiser;
+?	localizar os dados mais rápido;
+?	funcionarem só no Windows;
+?	funcionarem em qualquer drive (CD-Roms, drives removíveis);
+
+	Em baixo está representada uma tabela com alguns sistemas existentes e suas funcionalidades.
+
+----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
+							| Where Is It	| Argentum MyFiles	| cdCat	| DiskCatalogMaker	| CDFinder	| CDWinder	| Tellico	|
+----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
+Concebidos para ajudá-lo 	|				|					|		|					|			|			|			|
+a manter e organizar um 	|	X			|	X				|	X	|	X				|	X		|	X		|	X		|
+catálogo de seu computador	|
+----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
+CD-ROMs/DVDs				|	X			|	X				|	X	|					|			|			|			|
+----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
+Suporte para Drives 		|				|					|		|					|			|			|			|
+Removíveis					|	X			|	X				|	X	|					|			|			|			|
+----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
+Permite a criação de mais 	|				|					|		|					|			|			|			|
+que um catálogo				|	X			|					|		|					|			|			|	X		|
+----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
+Permite ler qualquer tipo 	|				|					|		|					|			|			|			|
+de dados					|	X			|	X				|		|	X				|			|			|	X		|
+----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
+Descrições detalhadas		|	X			|	X				|	X	|					|			|			|			|
+----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
+Permite Localizar itens		|	X			|	X				|	X	|	X				|			|			|	X		|
+----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
+Licença						|				|					|		|					|			|			|			|
+----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
+Suporte para Linux			|				|					|		|					|			|			|	X		|
+----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
+Suporte para Mac			|				|					|	X	|	X				|			|			|			|
+----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
+Suporte para Windows		|	X			|	X				|	X	|					|			|	X		|			|
+----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
+
+Bibliografia
+http://hp.vector.co.jp/authors/VA008942/library/diskcatalogmaker/
+http://www.cdfinder.de/
+http://en.wikipedia.org/wiki/CDFinder
+http://en.wikipedia.org/wiki/CDWinder
+http://www.whereisit-soft.com
+http://www.argentuma.com/myfiles.html
 

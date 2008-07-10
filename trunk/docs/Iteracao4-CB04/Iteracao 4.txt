@@ -16,6 +16,7 @@ Spikes:
 	ExecutarFicheiro - permitiu testar a forma de executar um ficheiro, a 
 		partir de uma aplicação Java, usando a nova API introduzinda na versão 
 		6 da plataforma Java.
+	CRC - permite verificar a criação de códigos de hash para um ficheiro.
 <====
 A utilização da tecnologia Hibernate, com a sua linguagem de pesquisas própria, 
 permitirá facilmente atingir os objectivos base pretendidos para esta iteração.
