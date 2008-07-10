@@ -13,7 +13,7 @@ Sente necessidade de uma aplicação que permita gerir os seus ficheiros digitais:
 
 Tarefas: Dificuldade sentida de 1 a 3, Dificil, Acessível, Fácil
 	Abra um catálogo existente, presente no desktop
-	Procure um ficheiro pelo nome e pela descrição...
+	Procure um ficheiro pelo nome e pela descrição usando o texto "pdf"...
 	Verifique se exitem ficheiros iguais no catálogo
 	Adicione um grupo de discos ao catálog e lei uma pasta do seu computador para dentro desse catálogo, sugere-se uma pasta pequena para maior rapidez
 	Altere o nome do autor, usado por omissão, na criação de catálogos
@@ -28,3 +28,6 @@ Se pudesse mudar 3 coisas no JFindMyFiles o que mudaria: i/ii/iii
 Situações que achou fácil de usar no  JFindMyFiles:
 Diga situações em que sentiu dificuldades:
 Tem algum comentário e/ou sugestão a fazer?
+
+Link para o questionário no google:
+http://spreadsheets.google.com/viewform?key=pMbt2KLGQrvAXfJNhWNEfdg&hl=en
