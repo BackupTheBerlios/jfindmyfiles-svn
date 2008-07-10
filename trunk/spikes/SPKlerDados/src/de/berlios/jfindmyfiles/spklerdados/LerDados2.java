@@ -21,6 +21,7 @@ import javax.swing.UIManager;
  */
 public class LerDados2 extends javax.swing.JFrame {
 
+    File fi;
     /** Creates new form LerDados2 */
     public LerDados2() {
         initComponents();
@@ -370,6 +371,7 @@ public class LerDados2 extends javax.swing.JFrame {
         jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
         if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             jtfFolder.setText(jfc.getSelectedFile().getAbsolutePath());
+            fi = jfc.getSelectedFile();
         }
     }//GEN-LAST:event_jbtnBrowseActionPerformed
 
@@ -390,8 +392,9 @@ public class LerDados2 extends javax.swing.JFrame {
      * if(9
     }*/
         
-        String mesg = (new File("C:\\").isDirectory()? "Sim" : "nao");
-        JOptionPane.showMessageDialog(this, mesg);
+        //String mesg = (new File("C:\\").isDirectory()? "Sim" : "nao");
+        //JOptionPane.showMessageDialog(this, mesg);
+        jtaresults.setText(String.valueOf(iterativeCalc(fi)));
     }//GEN-LAST:event_jbtnSomethingActionPerformed
 
     /**
