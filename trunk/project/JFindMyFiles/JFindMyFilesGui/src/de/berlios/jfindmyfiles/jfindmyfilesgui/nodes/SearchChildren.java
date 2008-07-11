@@ -18,14 +18,14 @@ import org.openide.util.Lookup;
  *
  * @author Knitter
  */
-public class SearchParentChildren extends Children.Keys {
+public class SearchChildren extends Children.Keys {
 
     private SearchParentNode parent;
     private CatalogEngine eng;
     private List items;
 
     @SuppressWarnings("unchecked")
-    public SearchParentChildren(SearchParentNode parent) {
+    public SearchChildren(SearchParentNode parent) {
         eng = Lookup.getDefault().lookup(CatalogEngine.class);
         items = new LinkedList();
         this.parent = parent;

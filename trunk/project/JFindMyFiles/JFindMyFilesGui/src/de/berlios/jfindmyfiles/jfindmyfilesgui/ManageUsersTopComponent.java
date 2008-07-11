@@ -24,8 +24,6 @@ final class ManageUsersTopComponent extends TopComponent {
 
     private static ManageUsersTopComponent instance;
     private CatalogEngine eng;
-    /** path to the icon used by the component and its open action */
-//    static final String ICON_PATH = "SET/PATH/TO/ICON/HERE";
     private static final String PREFERRED_ID = "ManageUsersTopComponent";
 
     private ManageUsersTopComponent() {
@@ -33,7 +31,6 @@ final class ManageUsersTopComponent extends TopComponent {
         initComponents();
         setName(NbBundle.getMessage(ManageUsersTopComponent.class, "CTL_ManageUsersTopComponent"));
         setToolTipText(NbBundle.getMessage(ManageUsersTopComponent.class, "HINT_ManageUsersTopComponent"));
-//        setIcon(Utilities.loadImage(ICON_PATH, true));
     }
 
     /** This method is called from within the constructor to
@@ -81,8 +78,8 @@ final class ManageUsersTopComponent extends TopComponent {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jToolBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jscpUsers, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jscpUsers, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -128,16 +125,6 @@ final class ManageUsersTopComponent extends TopComponent {
         return TopComponent.PERSISTENCE_ALWAYS;
     }
 
-    @Override
-    public void componentOpened() {
-        // TODO add custom code on component opening
-    }
-
-    @Override
-    public void componentClosed() {
-        // TODO add custom code on component closing
-    }
-
     /** replaces this in object stream */
     @Override
     public Object writeReplace() {
@@ -161,7 +148,7 @@ final class ManageUsersTopComponent extends TopComponent {
     private class UserTableModel extends AbstractTableModel {
 
         private List<User> users;
-        
+
         @SuppressWarnings("unchecked")
         public UserTableModel() {
             users = new LinkedList<User>();
@@ -176,37 +163,48 @@ final class ManageUsersTopComponent extends TopComponent {
         }
 
         public int getColumnCount() {
-            return 3;
+            return 2;
         }
 
         public Object getValueAt(int rowIndex, int columnIndex) {
             switch (columnIndex) {
                 case 0:
-                    return users.get(rowIndex).getId();
-                case 1:
                     return users.get(rowIndex).getFirstname();
-                case 2:
+                case 1:
                     return users.get(rowIndex).getSurname();
+                default:
+                    return null;
             }
-            return null;
         }
 
         @Override
         public Class getColumnClass(int columnIndex) {
             switch (columnIndex) {
                 case 0:
-                    return Long.class;
                 case 1:
                     return String.class;
-                case 2:
-                    return String.class;
+                default:
+                    return Object.class;
             }
-            return Object.class;
         }
 
         @Override
         public boolean isCellEditable(int rowIndex, int columnIndex) {
-            return columnIndex == 0;
+            return true;
+        }
+        
+        @Override
+        public void setValueAt(Object aValue, int rowIndex, int columnIndex) {
+            switch (columnIndex) {
+                case 0:
+                    users.get(rowIndex).setFirstname(aValue.toString());
+                    fireTableCellUpdated(rowIndex, columnIndex);
+                    break;
+                case 1:
+                    users.get(rowIndex).setSurname(aValue.toString());
+                    fireTableCellUpdated(rowIndex, columnIndex);
+                    break;
+            }
         }
     }
 }

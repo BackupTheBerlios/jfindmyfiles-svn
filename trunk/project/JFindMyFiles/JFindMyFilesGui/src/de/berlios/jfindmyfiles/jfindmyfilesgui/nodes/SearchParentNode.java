@@ -6,6 +6,7 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 
 import java.awt.Image;
 import org.openide.nodes.AbstractNode;
+import org.openide.nodes.Children;
 import org.openide.util.Utilities;
 import org.openide.util.actions.SystemAction;
 
@@ -15,16 +16,17 @@ import org.openide.util.actions.SystemAction;
  */
 public class SearchParentNode extends AbstractNode {
 
-    private SystemAction[] sysact;
+    //private SystemAction[] sysact;
     
     public SearchParentNode() {
-        super(new SearchParentChildren(null));
+        super(Children.LEAF);
+        //super(new SearchChildren(null));TODO: squash the damn bug
         setName("Duplicates Found");//TODO: i18n
     }
 
     @Override
     public Image getIcon(int type) {
-        return Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-search.png"); // NOI18N
+        return Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-search.png");
     }
 
     @Override

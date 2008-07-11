@@ -34,9 +34,9 @@ import org.openide.util.Utilities;
  * @author  knitter
  */
 public class ImportDlg extends javax.swing.JDialog {
-    private Integer[] values = new Integer[]{0, 1, 2, 3, 4, 5};
-    private File selectedFile;
-    private int visiblePanel = 0,  previousPanel = 0;    
+    //private Integer[] values = new Integer[]{0, 1, 2, 3, 4, 5};
+    private Integer[] values = new Integer[]{0};
+    private File selectedFile;   
 
     /** Creates new form ImportDlg */
     public ImportDlg(java.awt.Frame parent, boolean modal) {
@@ -66,10 +66,19 @@ public class ImportDlg extends javax.swing.JDialog {
         jscImportTypes = new javax.swing.JScrollPane();
         jlstImportTypes = new JList(values);
         jpImportDetails = new javax.swing.JPanel();
-        jpGeneralDetails = new javax.swing.JPanel();
-        jpDatabaseDetails = new javax.swing.JPanel();
         jpProgressBar = new javax.swing.JPanel();
         jpbExporting = new javax.swing.JProgressBar();
+        jpGeneralDetails = new javax.swing.JPanel();
+        jlblFile = new javax.swing.JLabel();
+        jtfFile = new javax.swing.JTextField();
+        jbtnBrowse = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
+        jchkImportAudio = new javax.swing.JCheckBox();
+        jchkImportImage = new javax.swing.JCheckBox();
+        jchkImportVideo = new javax.swing.JCheckBox();
+        jchkImportCustomIcons = new javax.swing.JCheckBox();
+        jlblInclude = new javax.swing.JLabel();
+        jpDatabaseDetails = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -84,9 +93,10 @@ public class ImportDlg extends javax.swing.JDialog {
 
         jbtnImport.setText(org.openide.util.NbBundle.getMessage(ImportDlg.class, "ImportDlg.jbtnImport.text")); // NOI18N
 
-        jpImportTypes.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
+        jpImportTypes.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ImportDlg.class, "ImportDlg.jpImportTypes.border.title"))); // NOI18N
 
         jlstImportTypes.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jlstImportTypes.setCellRenderer(new Renderer());
         jscImportTypes.setViewportView(jlstImportTypes);
 
         javax.swing.GroupLayout jpImportTypesLayout = new javax.swing.GroupLayout(jpImportTypes);
@@ -100,39 +110,12 @@ public class ImportDlg extends javax.swing.JDialog {
         );
         jpImportTypesLayout.setVerticalGroup(
             jpImportTypesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpImportTypesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jscImportTypes, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpImportTypesLayout.createSequentialGroup()
+                .addComponent(jscImportTypes, javax.swing.GroupLayout.DEFAULT_SIZE, 316, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jpImportDetails.setLayout(new java.awt.CardLayout());
-
-        javax.swing.GroupLayout jpGeneralDetailsLayout = new javax.swing.GroupLayout(jpGeneralDetails);
-        jpGeneralDetails.setLayout(jpGeneralDetailsLayout);
-        jpGeneralDetailsLayout.setHorizontalGroup(
-            jpGeneralDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
-        );
-        jpGeneralDetailsLayout.setVerticalGroup(
-            jpGeneralDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 357, Short.MAX_VALUE)
-        );
-
-        jpImportDetails.add(jpGeneralDetails, "card4");
-
-        javax.swing.GroupLayout jpDatabaseDetailsLayout = new javax.swing.GroupLayout(jpDatabaseDetails);
-        jpDatabaseDetails.setLayout(jpDatabaseDetailsLayout);
-        jpDatabaseDetailsLayout.setHorizontalGroup(
-            jpDatabaseDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 394, Short.MAX_VALUE)
-        );
-        jpDatabaseDetailsLayout.setVerticalGroup(
-            jpDatabaseDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 357, Short.MAX_VALUE)
-        );
-
-        jpImportDetails.add(jpDatabaseDetails, "card3");
 
         jpbExporting.setIndeterminate(true);
         jpbExporting.setString(org.openide.util.NbBundle.getMessage(ImportDlg.class, "ImportDlg.jpbExporting.string")); // NOI18N
@@ -155,7 +138,91 @@ public class ImportDlg extends javax.swing.JDialog {
                 .addContainerGap(183, Short.MAX_VALUE))
         );
 
-        jpImportDetails.add(jpProgressBar, "card4");
+        jpImportDetails.add(jpProgressBar, "ProgessBar");
+
+        jpGeneralDetails.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ImportDlg.class, "ImportDlg.jpGeneralDetails.border.title"))); // NOI18N
+
+        jlblFile.setText(org.openide.util.NbBundle.getMessage(ImportDlg.class, "ImportDlg.jlblFile.text")); // NOI18N
+
+        jtfFile.setText(org.openide.util.NbBundle.getMessage(ImportDlg.class, "ImportDlg.jtfFile.text")); // NOI18N
+
+        jbtnBrowse.setText(org.openide.util.NbBundle.getMessage(ImportDlg.class, "ImportDlg.jbtnBrowse.text")); // NOI18N
+
+        jchkImportAudio.setText(org.openide.util.NbBundle.getMessage(ImportDlg.class, "ImportDlg.jchkImportAudio.text")); // NOI18N
+
+        jchkImportImage.setText(org.openide.util.NbBundle.getMessage(ImportDlg.class, "ImportDlg.jchkImportImage.text")); // NOI18N
+
+        jchkImportVideo.setText(org.openide.util.NbBundle.getMessage(ImportDlg.class, "ImportDlg.jchkImportVideo.text")); // NOI18N
+
+        jchkImportCustomIcons.setText(org.openide.util.NbBundle.getMessage(ImportDlg.class, "ImportDlg.jchkImportCustomIcons.text")); // NOI18N
+
+        jlblInclude.setText(org.openide.util.NbBundle.getMessage(ImportDlg.class, "ImportDlg.jlblInclude.text")); // NOI18N
+
+        javax.swing.GroupLayout jpGeneralDetailsLayout = new javax.swing.GroupLayout(jpGeneralDetails);
+        jpGeneralDetails.setLayout(jpGeneralDetailsLayout);
+        jpGeneralDetailsLayout.setHorizontalGroup(
+            jpGeneralDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpGeneralDetailsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpGeneralDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpGeneralDetailsLayout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addGroup(jpGeneralDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jchkImportCustomIcons)
+                            .addComponent(jchkImportVideo)
+                            .addComponent(jchkImportImage)
+                            .addComponent(jchkImportAudio)))
+                    .addGroup(jpGeneralDetailsLayout.createSequentialGroup()
+                        .addComponent(jlblFile)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jtfFile, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbtnBrowse))
+                    .addGroup(jpGeneralDetailsLayout.createSequentialGroup()
+                        .addComponent(jlblInclude)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jpGeneralDetailsLayout.setVerticalGroup(
+            jpGeneralDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpGeneralDetailsLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jpGeneralDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlblFile)
+                    .addComponent(jbtnBrowse)
+                    .addComponent(jtfFile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jpGeneralDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jlblInclude)
+                    .addGroup(jpGeneralDetailsLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jchkImportAudio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jchkImportImage)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jchkImportVideo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jchkImportCustomIcons)
+                .addContainerGap(174, Short.MAX_VALUE))
+        );
+
+        jpImportDetails.add(jpGeneralDetails, "GeneralDetails");
+
+        javax.swing.GroupLayout jpDatabaseDetailsLayout = new javax.swing.GroupLayout(jpDatabaseDetails);
+        jpDatabaseDetails.setLayout(jpDatabaseDetailsLayout);
+        jpDatabaseDetailsLayout.setHorizontalGroup(
+            jpDatabaseDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 394, Short.MAX_VALUE)
+        );
+        jpDatabaseDetailsLayout.setVerticalGroup(
+            jpDatabaseDetailsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 357, Short.MAX_VALUE)
+        );
+
+        jpImportDetails.add(jpDatabaseDetails, "DatabaseDetails");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -202,9 +269,17 @@ private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 }//GEN-LAST:event_jbtnCancelActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton jbtnBrowse;
     private javax.swing.JButton jbtnCancel;
     private javax.swing.JButton jbtnHelp;
     private javax.swing.JButton jbtnImport;
+    private javax.swing.JCheckBox jchkImportAudio;
+    private javax.swing.JCheckBox jchkImportCustomIcons;
+    private javax.swing.JCheckBox jchkImportImage;
+    private javax.swing.JCheckBox jchkImportVideo;
+    private javax.swing.JLabel jlblFile;
+    private javax.swing.JLabel jlblInclude;
     private javax.swing.JList jlstImportTypes;
     private javax.swing.JPanel jpDatabaseDetails;
     private javax.swing.JPanel jpGeneralDetails;
@@ -213,6 +288,7 @@ private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private javax.swing.JPanel jpProgressBar;
     private javax.swing.JProgressBar jpbExporting;
     private javax.swing.JScrollPane jscImportTypes;
+    private javax.swing.JTextField jtfFile;
     // End of variables declaration//GEN-END:variables
     /**
      * Renderer class for showing icons on the list of existing export options
@@ -223,11 +299,11 @@ private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
         public Renderer() {
             images = new ImageIcon[]{
-                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-csv.png")),
+                        /*new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-csv.png")),
                         new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-html.png")),
                         new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-ods.png")),
                         new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-sql.png")),
-                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-xls.png")),
+                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-xls.png")),*/
                         new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-xml.png"))
                     };
 

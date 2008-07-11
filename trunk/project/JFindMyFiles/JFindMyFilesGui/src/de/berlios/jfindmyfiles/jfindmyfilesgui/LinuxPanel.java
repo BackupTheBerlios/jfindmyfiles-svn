@@ -41,6 +41,7 @@ final class LinuxPanel extends javax.swing.JPanel {
         jbtnRemove = new javax.swing.JButton();
         jchkScanMedia = new javax.swing.JCheckBox();
         jSeparator1 = new javax.swing.JSeparator();
+        jLabel1 = new javax.swing.JLabel();
 
         jlstFolders.setModel(model);
         jscpFolders.setViewportView(jlstFolders);
@@ -72,6 +73,9 @@ final class LinuxPanel extends javax.swing.JPanel {
 
         org.openide.awt.Mnemonics.setLocalizedText(jchkScanMedia, org.openide.util.NbBundle.getMessage(LinuxPanel.class, "LinuxPanel.jchkScanMedia.text")); // NOI18N
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/dialog-warning.png"))); // NOI18N
+        org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(LinuxPanel.class, "LinuxPanel.jLabel1.text")); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -79,20 +83,21 @@ final class LinuxPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
                     .addComponent(jchkScanMedia)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jlblMountFolder)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtfMountFolder, javax.swing.GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE))
+                                .addComponent(jtfMountFolder, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE))
                             .addComponent(jscpFolders, javax.swing.GroupLayout.DEFAULT_SIZE, 398, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jbtnRemove, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jbtnAdd, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jtbnBrowse, javax.swing.GroupLayout.Alignment.TRAILING))))
+                            .addComponent(jtbnBrowse, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addComponent(jLabel1))
                 .addContainerGap())
         );
 
@@ -112,13 +117,15 @@ final class LinuxPanel extends javax.swing.JPanel {
                             .addComponent(jlblMountFolder)
                             .addComponent(jtfMountFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jscpFolders, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))
+                        .addComponent(jscpFolders, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jtbnBrowse)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnAdd)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnRemove)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -164,6 +171,7 @@ private void jbtnRemoveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbtnAdd;
     private javax.swing.JButton jbtnRemove;

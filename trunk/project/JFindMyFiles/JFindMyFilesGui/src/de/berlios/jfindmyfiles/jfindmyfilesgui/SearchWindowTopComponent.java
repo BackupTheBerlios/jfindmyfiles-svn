@@ -282,19 +282,19 @@ final class SearchWindowTopComponent extends TopComponent {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jbtnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSearchActionPerformed
+    //NOTE: race condition!
     if (!searching) {
+        searching = true;
         new Thread(new Runnable() {
 
             public void run() {
-                //NOTE: race condition!
-                searching = true;
                 ProgressHandle p = ProgressHandleFactory.createHandle("searching...");//TODO: i18n
                 p.start();
                 search();
                 p.finish();
-                searching = false;
             }
         }).start();
+        searching = false;
     }
 }//GEN-LAST:event_jbtnSearchActionPerformed
 

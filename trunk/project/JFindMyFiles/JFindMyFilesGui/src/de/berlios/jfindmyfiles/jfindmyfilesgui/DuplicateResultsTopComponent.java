@@ -10,11 +10,12 @@ import java.io.Serializable;
 import java.util.logging.Logger;
 import javax.swing.ActionMap;
 import org.openide.explorer.ExplorerManager;
+import org.openide.explorer.ExplorerUtils;
 import org.openide.explorer.view.BeanTreeView;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
-//import org.openide.util.Utilities;
+
 /**
  * Top component which displays something.
  */
@@ -38,8 +39,8 @@ public final class DuplicateResultsTopComponent extends TopComponent {
         manager.setRootContext(new SearchParentNode());
 
         ActionMap map = getActionMap();
-    //map.put("delete", ExplorerUtils.actionDelete(manager, true));
-    //associateLookup(ExplorerUtils.createLookup(manager, map));
+        //map.put("delete", ExplorerUtils.actionDelete(manager, true));
+        associateLookup(ExplorerUtils.createLookup(manager, map));
     }
 
     /** This method is called from within the constructor to
@@ -101,16 +102,6 @@ public final class DuplicateResultsTopComponent extends TopComponent {
         return TopComponent.PERSISTENCE_ALWAYS;
     }
 
-    @Override
-    public void componentOpened() {
-        // TODO add custom code on component opening
-    }
-
-    @Override
-    public void componentClosed() {
-        // TODO add custom code on component closing
-    }
-
     /** replaces this in object stream */
     @Override
     public Object writeReplace() {
@@ -130,11 +121,11 @@ public final class DuplicateResultsTopComponent extends TopComponent {
             return DuplicateResultsTopComponent.getDefault();
         }
     }
-    
+
     public ExplorerManager getExplorerManager() {
         return manager;
     }
-    
+
     public void startSearching() {
         //TODO: searchig for duplicates
         /*CatalogEngine eng = Lookup.getDefault().lookup(CatalogEngine.class);

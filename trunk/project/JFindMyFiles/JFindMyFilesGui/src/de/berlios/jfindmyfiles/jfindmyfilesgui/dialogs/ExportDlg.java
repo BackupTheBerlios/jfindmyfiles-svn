@@ -56,7 +56,8 @@ import org.openide.util.Utilities;
 public class ExportDlg extends javax.swing.JDialog implements ExportListener {
 
     private static final Logger logger = Logger.getLogger(ExportDlg.class.getName());
-    private Integer[] values = new Integer[]{0, 1, 2, 3, 4, 5};
+    //private Integer[] values = new Integer[]{0, 1, 2, 3, 4, 5};
+    private Integer[] values = new Integer[]{0, 1, 2};
     private File selectedFile;
     private int visiblePanel = 0,  previousPanel = 0;
     private boolean openAfterExport;
@@ -263,7 +264,7 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
                     .addGroup(jpFileExportLayout.createSequentialGroup()
                         .addComponent(jlblDestination)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfDestination, javax.swing.GroupLayout.DEFAULT_SIZE, 275, Short.MAX_VALUE)
+                        .addComponent(jtfDestination, javax.swing.GroupLayout.DEFAULT_SIZE, 253, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnBrowse)))
                 .addContainerGap())
@@ -295,7 +296,7 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
                 .addContainerGap(115, Short.MAX_VALUE))
         );
 
-        jpExportOptions.add(jpFileExport, "card2");
+        jpExportOptions.add(jpFileExport, "FileExport");
 
         jpTemplateExport.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jpTemplateExport.border.title"))); // NOI18N
 
@@ -444,7 +445,7 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
                 .addContainerGap(91, Short.MAX_VALUE))
         );
 
-        jpExportOptions.add(jpTemplateExport, "card3");
+        jpExportOptions.add(jpTemplateExport, "TemplateExport");
 
         jpbExportProgress.setIndeterminate(true);
         jpbExportProgress.setString(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jpbExportProgress.string")); // NOI18N
@@ -467,7 +468,7 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
                 .addContainerGap(158, Short.MAX_VALUE))
         );
 
-        jpExportOptions.add(jpProgressBar, "card4");
+        jpExportOptions.add(jpProgressBar, "ProgressBar");
 
         jbtnCancel.setText(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jbtnCancel.text")); // NOI18N
         jbtnCancel.addActionListener(new java.awt.event.ActionListener() {
@@ -701,9 +702,9 @@ private void jchkOpenAfterStateChanged(javax.swing.event.ChangeEvent evt) {//GEN
             images = new ImageIcon[]{
                         new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-csv.png")),
                         new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-html.png")),
-                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-ods.png")),
+                        /*new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-ods.png")),
                         new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-sql.png")),
-                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-xls.png")),
+                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-xls.png")),*/
                         new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-xml.png"))
                     };
 

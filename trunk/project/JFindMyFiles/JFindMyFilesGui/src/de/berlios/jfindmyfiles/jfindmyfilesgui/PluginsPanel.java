@@ -8,6 +8,7 @@ import de.berlios.jfindmyfiles.readingfiles.pluginapi.PluginCache;
 import de.berlios.jfindmyfiles.readingfiles.pluginapi.Reader;
 import java.io.File;
 import java.util.List;
+import javax.swing.JFileChooser;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.table.AbstractTableModel;
@@ -19,6 +20,7 @@ final class PluginsPanel extends javax.swing.JPanel {
     private final PluginsPanelController controller;
     private PluginCache cache;
     private List<Reader> values;
+    private PluginModel model;
 
     PluginsPanel(final PluginsPanelController controller) {
         this.controller = controller;
@@ -66,7 +68,7 @@ final class PluginsPanel extends javax.swing.JPanel {
             }
         });
 
-        jtbPluginList.setModel(new PluginsPanel.PluginModel());
+        jtbPluginList.setModel(model = new PluginsPanel.PluginModel());
         jtbPluginList.setRowSelectionAllowed(false);
         jscpPluginList.setViewportView(jtbPluginList);
 
@@ -77,12 +79,14 @@ final class PluginsPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jscpPluginList, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jscpPluginList, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
+                        .addGap(5, 5, 5))
                     .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 413, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlblPluginFolder)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfPluginFolder, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                        .addComponent(jtfPluginFolder, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jbtnBrowse)))
                 .addContainerGap())
@@ -104,17 +108,29 @@ final class PluginsPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnBrowseActionPerformed
-// TODO add your handling code here:
+    JFileChooser jfc = new JFileChooser(jtfPluginFolder.getText().trim());
+    jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+    jfc.setMultiSelectionEnabled(false);
+    if (jfc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+        jtfPluginFolder.setText(jfc.getSelectedFile().getAbsolutePath());
+    }
 }//GEN-LAST:event_jbtnBrowseActionPerformed
 
     void load() {
         jtfPluginFolder.setText(NbPreferences.forModule(PluginCache.class).get("PluginFolder", 
-                System.getProperty("user.home") + File.separator + "jfmf" + File.separator +
-                "plugins")); // NOI18N
+                System.getProperty("user.home") + File.separator + ".jfmfuserfiles" + File.separator +
+                "Plugins")); // NOI18N
+        
+        Reader r;
+        for(int z = values.size(); z-- > 0;) {
+            r =  values.get(z);
+            r.setActive(NbPreferences.forModule(PluginCache.class).getBoolean(r.pluginFor(), false));
+        }
+        model.fireTableDataChanged();
     }
 
     void store() {
-        NbPreferences.forModule(PluginCache.class).put("PluginFolder", jtfPluginFolder.getText().trim()); // NOI18N
+        NbPreferences.forModule(PluginCache.class).put("PluginFolder", jtfPluginFolder.getText().trim()); // NOI18N       
         Reader r;
         for(int z = values.size(); z-- > 0;) {
             r =  values.get(z);
@@ -123,7 +139,7 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }
 
     boolean valid() {
-        return true;
+        return !jtfPluginFolder.getText().trim().isEmpty();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -136,18 +152,14 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     // End of variables declaration//GEN-END:variables
 
     private class PluginModel extends AbstractTableModel {
-
-        private int rowCount;
         
         public PluginModel() {
-            super();
-            values = cache.listAll();            
-            rowCount = cache.pluginCount();
+            values = cache.listAll();
         }
         
         @Override
         public int getRowCount() {
-            return rowCount;
+            return values.size();
         }
 
         @Override
@@ -195,6 +207,23 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             if(columnIndex == 3) {
                 values.get(rowIndex).setActive((Boolean)value);
                 controller.changed();
+                super.fireTableCellUpdated(rowIndex, columnIndex);
+            }
+        }
+        
+        @Override
+        public String getColumnName(int column) {
+            switch(column) {//TODO: i18n
+                case 0:
+                    return "Plugin Name";
+                case 1:
+                    return "File Type";
+                case 2:
+                    return "Author";
+                case 3:
+                    return "Active";
+                default:
+                    return "";
             }
         }
     }

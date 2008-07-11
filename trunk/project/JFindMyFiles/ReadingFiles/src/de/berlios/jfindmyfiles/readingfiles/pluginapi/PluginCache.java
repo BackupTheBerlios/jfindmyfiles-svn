@@ -5,6 +5,7 @@
 package de.berlios.jfindmyfiles.readingfiles.pluginapi;
 
 import de.berlios.jfindmyfiles.readingfiles.plugins.AntMovieCatalogerPlugin;
+import de.berlios.jfindmyfiles.readingfiles.plugins.JPGPlugin;
 import de.berlios.jfindmyfiles.readingfiles.utils.ReadingUtils;
 import java.io.File;
 import java.net.MalformedURLException;
@@ -39,8 +40,8 @@ public class PluginCache {
 
     private void loadPlugins() {
         String baseFolder = NbPreferences.forModule(PluginCache.class).get("PluginFolder", 
-                System.getProperty("user.home") + File.separator + "jfmf" + File.separator +
-                "plugins");
+                System.getProperty("user.home") + File.separator + ".jfmfuserfiles" 
+                + File.separator + "Plugins");
         
         Class tClass = null;
         Reader reader = null;
@@ -75,11 +76,12 @@ public class PluginCache {
             //Provided plugins
             AntMovieCatalogerPlugin ant = new AntMovieCatalogerPlugin();
             cache.put(ant.pluginFor(), ant);
-            reader.setActive(p.getBoolean(ant.pluginFor(), false));
+            ant.setActive(p.getBoolean(ant.pluginFor(), false));
             
-            tClass = Class.forName("de.berlios.jfindmyfiles.readingfiles.plugins.JPGPlugin");
-            reader = (Reader) tClass.newInstance();
-            cache.put(reader.pluginFor(), reader);
+            JPGPlugin jpgp = new JPGPlugin();
+            cache.put(jpgp.pluginFor(), jpgp);
+            jpgp.setActive(p.getBoolean(jpgp.pluginFor(), false));
+            
         } catch (MalformedURLException ex) {
             logger.log(Level.WARNING, "Unable to read plugin cache", ex);
         } catch (ClassNotFoundException ex) {

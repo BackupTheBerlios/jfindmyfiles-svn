@@ -46,8 +46,6 @@
         <folder name="Window">
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-DetailsViewAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-DuplicateResultsAction.instance"/>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-FileListAction.instance"/>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-FilePropertiesAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-LoanAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-ManageUsersAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-NavigationTreeAction.instance"/>

@@ -30,7 +30,7 @@ public class JPGPlugin implements Reader {
 
     private static final Logger logger = Logger.getLogger(JPGPlugin.class.getName());
     private static final String NAME = "JPG Reader";
-    private static final String AUTHOR = "JFindMyFiles";
+    private static final String AUTHOR = "JFindMyFiles Team";
     private static final String EXT = "jpg";
     private boolean active;
     private ImageIcon ic;

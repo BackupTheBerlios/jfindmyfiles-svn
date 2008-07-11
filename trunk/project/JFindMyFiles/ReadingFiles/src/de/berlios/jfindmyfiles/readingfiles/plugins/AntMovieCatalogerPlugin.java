@@ -21,7 +21,7 @@ public class AntMovieCatalogerPlugin implements Reader {
 
     private static final Logger logger = Logger.getLogger(JPGPlugin.class.getName());
     private static final String NAME = "Ant Movie Cataloger Reader";
-    private static final String AUTHOR = "JFindMyFiles";
+    private static final String AUTHOR = "JFindMyFiles Team";
     private static final String EXT = "amc";
     private boolean active;
 
