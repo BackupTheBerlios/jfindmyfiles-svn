@@ -24,13 +24,18 @@ import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
 import de.berlios.jfindmyfiles.catalog.entities.FileWrapper;
 import de.berlios.jfindmyfiles.catalog.entities.Media;
+import java.awt.BorderLayout;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.table.AbstractTableModel;
 import org.hibernate.Session;
+import org.openide.explorer.ExplorerManager;
+import org.openide.explorer.view.ListView;
+import org.openide.nodes.Node;
 import org.openide.util.Lookup;
 import org.openide.util.LookupEvent;
 import org.openide.util.LookupListener;
@@ -43,18 +48,30 @@ import org.openide.windows.WindowManager;
 /**
  * Top component which displays something.
  */
-final class DetailsViewTopComponent extends TopComponent {
+final class DetailsViewTopComponent extends TopComponent implements ExplorerManager.Provider, LookupListener {
 
     private static DetailsViewTopComponent instance;
     private static final String PREFERRED_ID = "DetailsViewTopComponent";
-    private CatalogEngine eng;
-
+    private ExplorerManager manager;
+    private ListView view;
+    private Lookup.Result engineLookup;
+    private Lookup.Result mediaLookup;
+    private Lookup.Result fileLookup;
+    private Lookup.Result groupLookup;
 
     private DetailsViewTopComponent() {
-        eng = Lookup.getDefault().lookup(CatalogEngine.class);
-        initComponents();
+        myInitComponents();
+        addLookupListeners();
         setName(NbBundle.getMessage(DetailsViewTopComponent.class, "CTL_DetailsViewTopComponent"));
         setToolTipText(NbBundle.getMessage(DetailsViewTopComponent.class, "HINT_DetailsViewTopComponent"));
+
+    }
+
+    private void myInitComponents() {
+        manager = new ExplorerManager();
+        setLayout(new BorderLayout());
+        view = new ListView();
+        add(view, BorderLayout.CENTER);
     }
 
     /** This method is called from within the constructor to
@@ -69,15 +86,16 @@ final class DetailsViewTopComponent extends TopComponent {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 468, Short.MAX_VALUE)
+            .add(0, 358, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-            .add(0, 342, Short.MAX_VALUE)
+            .add(0, 92, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
+
     /**
      * Gets default instance. Do not use directly: reserved for *.settings files only,
      * i.e. deserialization routines; otherwise you could get a non-deserialized instance.
@@ -117,12 +135,40 @@ final class DetailsViewTopComponent extends TopComponent {
     @Override
     @SuppressWarnings("unchecked")
     public void componentOpened() {
-
+        addLookupListeners();
     }
 
     @Override
     public void componentClosed() {
+        engineLookup.removeLookupListener(this);
+        engineLookup = null;
+        groupLookup.removeLookupListener(this);
+        groupLookup = null;
+        mediaLookup.removeLookupListener(this);
+        mediaLookup = null;
+        fileLookup.removeLookupListener(this);
+        fileLookup = null;
+    }
 
+    private void addLookupListeners() {
+        if (engineLookup == null) {
+            engineLookup = Utilities.actionsGlobalContext().lookup(new Lookup.Template<CatalogEngine>(CatalogEngine.class));
+            engineLookup.addLookupListener(this);
+        }
+        if (groupLookup == null) {
+            groupLookup = Utilities.actionsGlobalContext().lookup(new Lookup.Template<DiskGroup>(DiskGroup.class));
+            groupLookup.addLookupListener(this);
+        }
+        if (mediaLookup == null) {
+
+
+            mediaLookup = Utilities.actionsGlobalContext().lookup(new Lookup.Template<Media>(Media.class));
+            mediaLookup.addLookupListener(this);
+        }
+        if (fileLookup == null) {
+            fileLookup = Utilities.actionsGlobalContext().lookup(new Lookup.Template<FileWrapper>(FileWrapper.class));
+            fileLookup.addLookupListener(this);
+        }
     }
 
     /** replaces this in object stream */
@@ -142,6 +188,21 @@ final class DetailsViewTopComponent extends TopComponent {
 
         public Object readResolve() {
             return DetailsViewTopComponent.getDefault();
+        }
+    }
+
+    public ExplorerManager getExplorerManager() {
+        return manager;
+    }
+
+    public void resultChanged(LookupEvent arg0) {
+        //NOTE: Why is this always on step behind?
+        //TODO: BUG! When one expands more than one node wihtout making a selections
+        //the node is always one node behind the current selection.
+        TopComponent.Registry registry = TopComponent.getRegistry();
+        Node[] act = registry.getActivatedNodes();
+        if (act.length > 0) {
+            manager.setRootContext(act[0]);
         }
     }
 }
