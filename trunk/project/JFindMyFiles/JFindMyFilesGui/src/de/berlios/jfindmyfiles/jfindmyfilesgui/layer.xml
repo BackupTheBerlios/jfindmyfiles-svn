@@ -26,6 +26,7 @@
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDisk.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDiskGroup.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRenumberDisks.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-SomeAction.instance"/>
         </folder>
         <folder name="File">
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionClose.instance"/>
@@ -55,7 +56,6 @@
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-WindowTestingAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionDescriptionWindow.instance"/>
         </folder>
-        <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionDelete.instance"/>
         <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionEditDescription.instance"/>
         <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionLaunchFile.instance"/>
         <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionProperties.instance"/>
@@ -131,6 +131,10 @@
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpen.shadow">
                 <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpenCatalog.instance"/>
                 <attr name="position" intvalue="1325"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-SomeAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-SomeAction.instance"/>
+                <attr name="position" intvalue="1200"/>
             </file>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-separatorAfter.instance">
                 <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
@@ -262,9 +266,6 @@
             </file>
             <file name="OpenCatalog.shadow">
                     <attr name="originalFile" stringvalue="Action/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpenCatalog.instance"/>
-            </file>
-            <file name="Delete.shadow">
-                    <attr name="originalFile" stringvalue="Action/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionDelete.instance"/>
             </file>
             <file name="Description.shadow">
                     <attr name="originalFile" stringvalue="Action/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionEditDescription.instance"/>

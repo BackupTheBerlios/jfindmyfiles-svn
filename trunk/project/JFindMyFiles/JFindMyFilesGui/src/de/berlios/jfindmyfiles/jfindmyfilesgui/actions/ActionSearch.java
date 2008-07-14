@@ -17,6 +17,7 @@ public final class ActionSearch extends CallableSystemAction {
     public ActionSearch() {
         super();
         eng = Lookup.getDefault().lookup(CatalogEngine.class);
+        putValue("iconBase", "");
     }
 
     public void performAction() {
