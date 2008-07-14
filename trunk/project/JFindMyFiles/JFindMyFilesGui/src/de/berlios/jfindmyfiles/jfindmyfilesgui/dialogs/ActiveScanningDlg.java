@@ -76,7 +76,7 @@ public class ActiveScanningDlg extends javax.swing.JDialog implements ReadingLis
         jpbReadingProgress.setString(org.openide.util.NbBundle.getMessage(ActiveScanningDlg.class, "ActiveScanningDlg.jpbReadingProgress.string")); // NOI18N
         jpbReadingProgress.setStringPainted(true);
 
-        jbtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/button-stop.png"))); // NOI18N
+        jbtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/general/button-stop.png"))); // NOI18N
         jbtnCancel.setText(org.openide.util.NbBundle.getMessage(ActiveScanningDlg.class, "ActiveScanningDlg.jbtnCancel.text")); // NOI18N
         jbtnCancel.setFocusPainted(false);
         jbtnCancel.setMargin(new java.awt.Insets(0, 0, 0, 0));

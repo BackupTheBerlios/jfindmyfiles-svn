@@ -37,7 +37,8 @@ public final class ActionProperties extends CallableSystemAction {
     protected void initialize() {
         super.initialize();
         // see org.openide.util.actions.SystemAction.iconResource() Javadoc for more details
-        putValue("noIconInMenu", Boolean.TRUE);
+        //putValue("noIconInMenu", Boolean.TRUE);
+        putValue("iconBase", "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/actions/empty.png");
     }
 
     public HelpCtx getHelpCtx() {

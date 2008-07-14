@@ -21,6 +21,8 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
 import de.berlios.jfindmyfiles.catalog.CatalogConstants;
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.utils.CatalogFilter;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.utils.CatalogView;
 import java.io.File;
 import javax.swing.JFileChooser;
 import org.openide.util.Lookup;
@@ -121,6 +123,7 @@ public class OpenCatalogDlg extends javax.swing.JDialog {
         jtfUsername.setEnabled(state);
         jpfPassword.setEnabled(state);
         jffPort.setEnabled(state);
+        jcbxDatabase.setEnabled(state);
     }
 
     /** This method is called from within the constructor to
@@ -401,6 +404,8 @@ private void jbtnBrowseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
     jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
     jfc.setMultiSelectionEnabled(false);
+    jfc.setFileFilter(new CatalogFilter());
+    jfc.setFileView(new CatalogView());
     if (jfc.showOpenDialog(me) == JFileChooser.APPROVE_OPTION) {
         jtfDestination.setText(jfc.getSelectedFile().getAbsolutePath());
         jtfName.setText(findCatalogName(jfc.getSelectedFile()));

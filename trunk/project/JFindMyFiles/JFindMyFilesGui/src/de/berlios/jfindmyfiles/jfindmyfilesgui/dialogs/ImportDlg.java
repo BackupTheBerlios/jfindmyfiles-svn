@@ -17,7 +17,6 @@
  *  along with JFindMyFiles.  If not, see 
  * <http://www.gnu.org/licenses/gpl.html>.
  */
-
 package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
 import java.awt.Component;
@@ -36,20 +35,20 @@ import org.openide.util.Utilities;
 public class ImportDlg extends javax.swing.JDialog {
     //private Integer[] values = new Integer[]{0, 1, 2, 3, 4, 5};
     private Integer[] values = new Integer[]{0};
-    private File selectedFile;   
+    private File selectedFile;
 
     /** Creates new form ImportDlg */
     public ImportDlg(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-    
+
     public void showCentered() {
         setLocation(getParent().getX() + (getParent().getWidth() / 2) - (getWidth() / 2),
                 getParent().getY() + (getParent().getHeight() / 2) - (getHeight() / 2));
         setVisible(true);
-    }  
-    
+    }
+
     /** This method is called from within the constructor to
      * initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is
@@ -66,8 +65,6 @@ public class ImportDlg extends javax.swing.JDialog {
         jscImportTypes = new javax.swing.JScrollPane();
         jlstImportTypes = new JList(values);
         jpImportDetails = new javax.swing.JPanel();
-        jpProgressBar = new javax.swing.JPanel();
-        jpbExporting = new javax.swing.JProgressBar();
         jpGeneralDetails = new javax.swing.JPanel();
         jlblFile = new javax.swing.JLabel();
         jtfFile = new javax.swing.JTextField();
@@ -79,6 +76,8 @@ public class ImportDlg extends javax.swing.JDialog {
         jchkImportCustomIcons = new javax.swing.JCheckBox();
         jlblInclude = new javax.swing.JLabel();
         jpDatabaseDetails = new javax.swing.JPanel();
+        jpProgressBar = new javax.swing.JPanel();
+        jpbExporting = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -116,29 +115,6 @@ public class ImportDlg extends javax.swing.JDialog {
         );
 
         jpImportDetails.setLayout(new java.awt.CardLayout());
-
-        jpbExporting.setIndeterminate(true);
-        jpbExporting.setString(org.openide.util.NbBundle.getMessage(ImportDlg.class, "ImportDlg.jpbExporting.string")); // NOI18N
-        jpbExporting.setStringPainted(true);
-
-        javax.swing.GroupLayout jpProgressBarLayout = new javax.swing.GroupLayout(jpProgressBar);
-        jpProgressBar.setLayout(jpProgressBarLayout);
-        jpProgressBarLayout.setHorizontalGroup(
-            jpProgressBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpProgressBarLayout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
-                .addComponent(jpbExporting, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
-        );
-        jpProgressBarLayout.setVerticalGroup(
-            jpProgressBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpProgressBarLayout.createSequentialGroup()
-                .addGap(155, 155, 155)
-                .addComponent(jpbExporting, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(183, Short.MAX_VALUE))
-        );
-
-        jpImportDetails.add(jpProgressBar, "ProgessBar");
 
         jpGeneralDetails.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ImportDlg.class, "ImportDlg.jpGeneralDetails.border.title"))); // NOI18N
 
@@ -224,6 +200,29 @@ public class ImportDlg extends javax.swing.JDialog {
 
         jpImportDetails.add(jpDatabaseDetails, "DatabaseDetails");
 
+        jpbExporting.setIndeterminate(true);
+        jpbExporting.setString(org.openide.util.NbBundle.getMessage(ImportDlg.class, "ImportDlg.jpbExporting.string")); // NOI18N
+        jpbExporting.setStringPainted(true);
+
+        javax.swing.GroupLayout jpProgressBarLayout = new javax.swing.GroupLayout(jpProgressBar);
+        jpProgressBar.setLayout(jpProgressBarLayout);
+        jpProgressBarLayout.setHorizontalGroup(
+            jpProgressBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpProgressBarLayout.createSequentialGroup()
+                .addContainerGap(41, Short.MAX_VALUE)
+                .addComponent(jpbExporting, javax.swing.GroupLayout.PREFERRED_SIZE, 304, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
+        );
+        jpProgressBarLayout.setVerticalGroup(
+            jpProgressBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpProgressBarLayout.createSequentialGroup()
+                .addGap(155, 155, 155)
+                .addComponent(jpbExporting, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(183, Short.MAX_VALUE))
+        );
+
+        jpImportDetails.add(jpProgressBar, "ProgessBar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -267,7 +266,6 @@ public class ImportDlg extends javax.swing.JDialog {
 private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed
     dispose();
 }//GEN-LAST:event_jbtnCancelActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JButton jbtnBrowse;
@@ -299,12 +297,12 @@ private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
         public Renderer() {
             images = new ImageIcon[]{
-                        /*new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-csv.png")),
-                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-html.png")),
-                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-ods.png")),
-                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-sql.png")),
-                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-xls.png")),*/
-                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-xml.png"))
+                        /*new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/importexport/export-import-csv.png")),
+                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/importexport/export-import-html.png")),
+                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/importexport/export-import-ods.png")),
+                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/importexport/export-import-sql.png")),
+                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/importexport/export-import-xls.png")),*/
+                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/importexport/export-import-xml.png"))
                     };
 
             setOpaque(true);

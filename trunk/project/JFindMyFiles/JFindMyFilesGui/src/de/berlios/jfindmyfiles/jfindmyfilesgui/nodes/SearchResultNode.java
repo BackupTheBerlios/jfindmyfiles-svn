@@ -28,7 +28,7 @@ public class SearchResultNode extends AbstractNode {
 
     @Override
     public Image getIcon(int type) {
-        return Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-duplicates.png"); // NOI18N
+        return Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/nodes/duplicates.png");
     }
 
     @Override

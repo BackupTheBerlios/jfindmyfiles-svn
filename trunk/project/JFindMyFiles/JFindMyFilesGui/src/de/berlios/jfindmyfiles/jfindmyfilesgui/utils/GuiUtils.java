@@ -11,17 +11,17 @@ public abstract class GuiUtils {
     public static String findIconForType(int type) {
         switch(type) {
             case CatalogConstants.CDROM:
-                return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-drive-optical.png";
+                return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/nodes/media-drive-optical.png";
             case CatalogConstants.DVDROM:
-                return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-drive-optical.png";
+                return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/nodes/media-drive-optical.png";
             case CatalogConstants.FLOPPY:
-                return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-floppy.png";
+                return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/nodes/media-floppy.png";
             case CatalogConstants.FOLDER:
-                return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-folder.png";
+                return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/nodes/media-folder.png";
             case CatalogConstants.HDD:
-                return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-harddisk.png";
+                return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/nodes/harddisk.png";
             default:
-                return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-media-unknown.png";
+                return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/nodes/media-drive-optical.png";
                 
         }
     }

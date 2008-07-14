@@ -700,12 +700,12 @@ private void jchkOpenAfterStateChanged(javax.swing.event.ChangeEvent evt) {//GEN
 
         public Renderer() {
             images = new ImageIcon[]{
-                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-csv.png")),
-                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-html.png")),
-                        /*new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-ods.png")),
-                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-sql.png")),
-                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-xls.png")),*/
-                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x48/export-import-xml.png"))
+                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/importexport/export-import-csv.png")),
+                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/importexport/export-import-html.png")),
+                        /*new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/importexport/export-import-ods.png")),
+                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/importexport/export-import-sql.png")),
+                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/importexport/export-import-xls.png")),*/
+                        new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/importexport/export-import-xml.png"))
                     };
 
             setOpaque(true);

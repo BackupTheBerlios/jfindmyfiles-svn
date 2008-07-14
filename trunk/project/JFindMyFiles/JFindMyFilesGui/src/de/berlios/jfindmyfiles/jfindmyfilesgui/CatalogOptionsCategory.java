@@ -30,7 +30,7 @@ public final class CatalogOptionsCategory extends OptionsCategory {
 
     @Override
     public Icon getIcon() {
-        return new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x32/options-storage-config.png"));
+        return new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/general/options-storage-config.png"));
     }
 
     public String getCategoryName() {

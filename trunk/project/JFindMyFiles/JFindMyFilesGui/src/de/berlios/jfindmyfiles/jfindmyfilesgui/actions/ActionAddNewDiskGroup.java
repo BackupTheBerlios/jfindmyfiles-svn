@@ -49,11 +49,17 @@ public final class ActionAddNewDiskGroup extends CallableSystemAction {
     public String getName() {
         return NbBundle.getMessage(ActionAddNewDiskGroup.class, "CTL_ActionAddNewDiskGroup");
     }
-
+    
     @Override
+    protected void initialize() {
+        super.initialize();
+        putValue("iconBase", "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/actions/disk-group.png");
+    }
+
+    /*@Override
     protected String iconResource() {
         return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-disk-group.png";
-    }
+    }*/
 
     public HelpCtx getHelpCtx() {
         return HelpCtx.DEFAULT_HELP;

@@ -57,7 +57,7 @@
                           <Component id="jtfMountFolder" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                      <Component id="jscpFolders" pref="165" max="32767" attributes="0"/>
+                      <Component id="jscpFolders" pref="163" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jtbnBrowse" min="-2" max="-2" attributes="0"/>
@@ -147,7 +147,7 @@
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-          <Image iconType="3" name="/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/dialog-warning.png"/>
+          <Image iconType="3" name="/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/general/dialog-warning.png"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
           <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/Bundle.properties" key="LinuxPanel.jLabel1.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>

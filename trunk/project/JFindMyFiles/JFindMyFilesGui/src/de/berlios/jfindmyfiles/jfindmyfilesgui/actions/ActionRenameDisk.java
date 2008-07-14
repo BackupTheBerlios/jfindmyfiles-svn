@@ -58,7 +58,7 @@ public final class ActionRenameDisk extends CallableSystemAction {
     @Override
     protected void initialize() {
         super.initialize();
-        putValue("noIconInMenu", Boolean.TRUE);
+        putValue("iconBase", "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/actions/rename.png");
     }
 
     public HelpCtx getHelpCtx() {

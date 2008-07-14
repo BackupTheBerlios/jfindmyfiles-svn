@@ -44,7 +44,7 @@ public final class ActionRemoveFromCatalog extends CallableSystemAction {
     @Override
     protected void initialize() {
         super.initialize();
-        putValue("noIconInMenu", Boolean.TRUE);
+        putValue("iconBase", "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/actions/empty.png");
     }
 
     public HelpCtx getHelpCtx() {

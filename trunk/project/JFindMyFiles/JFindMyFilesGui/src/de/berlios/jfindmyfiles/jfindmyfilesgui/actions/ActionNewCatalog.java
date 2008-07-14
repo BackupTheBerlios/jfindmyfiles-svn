@@ -42,12 +42,13 @@ public final class ActionNewCatalog extends CallableSystemAction {
     @Override
     protected void initialize() {
         super.initialize();
+        putValue("iconBase", "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/actions/new.png");
     }
     
-    @Override
+    /*@Override
     protected String iconResource() {
         return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/menu-new-folder.png";
-    }    
+    }*/    
 
     public HelpCtx getHelpCtx() {
         return HelpCtx.DEFAULT_HELP;

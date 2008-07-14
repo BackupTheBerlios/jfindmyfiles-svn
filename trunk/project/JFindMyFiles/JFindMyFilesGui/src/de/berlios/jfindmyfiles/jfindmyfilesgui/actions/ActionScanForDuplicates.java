@@ -49,7 +49,7 @@ public final class ActionScanForDuplicates extends CallableSystemAction {
     
     @Override
     protected String iconResource() {
-        return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-search.png";
+        return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/actions/seach-duplicates.png";
     }    
 
     public HelpCtx getHelpCtx() {

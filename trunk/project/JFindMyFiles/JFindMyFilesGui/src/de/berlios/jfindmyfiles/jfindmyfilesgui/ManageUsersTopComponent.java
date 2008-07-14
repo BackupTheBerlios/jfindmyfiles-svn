@@ -50,14 +50,14 @@ final class ManageUsersTopComponent extends TopComponent {
         jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
 
-        jbtnAddUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/user-add.png"))); // NOI18N
+        jbtnAddUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/general/user-add.png"))); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(jbtnAddUser, org.openide.util.NbBundle.getMessage(ManageUsersTopComponent.class, "ManageUsersTopComponent.jbtnAddUser.text")); // NOI18N
         jbtnAddUser.setFocusable(false);
         jbtnAddUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jbtnAddUser.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         jToolBar1.add(jbtnAddUser);
 
-        jbtnRemoveUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/user-remove.png"))); // NOI18N
+        jbtnRemoveUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/general/user-remove.png"))); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(jbtnRemoveUser, org.openide.util.NbBundle.getMessage(ManageUsersTopComponent.class, "ManageUsersTopComponent.jbtnRemoveUser.text")); // NOI18N
         jbtnRemoveUser.setFocusable(false);
         jbtnRemoveUser.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);

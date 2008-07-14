@@ -17,7 +17,6 @@ public final class ActionSearch extends CallableSystemAction {
     public ActionSearch() {
         super();
         eng = Lookup.getDefault().lookup(CatalogEngine.class);
-        putValue("iconBase", "");
     }
 
     public void performAction() {
@@ -31,12 +30,13 @@ public final class ActionSearch extends CallableSystemAction {
     @Override
     protected void initialize() {
         super.initialize();
+        putValue("iconBase", "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/actions/find.png");
     }
     
-    @Override
+    /*@Override
     protected String iconResource() {
         return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/menu-find.png";
-    }
+    }*/
     
     public HelpCtx getHelpCtx() {
         return HelpCtx.DEFAULT_HELP;

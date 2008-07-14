@@ -127,6 +127,7 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
 
         jlblCreatedOn.setText(org.openide.util.NbBundle.getMessage(CatalogPropertiesDlg.class, "CatalogPropertiesDlg.jlblCreatedOn.text")); // NOI18N
 
+        jlblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/general/properties-catalog.png"))); // NOI18N
         jlblIcon.setText(org.openide.util.NbBundle.getMessage(CatalogPropertiesDlg.class, "CatalogPropertiesDlg.jlblIcon.text")); // NOI18N
 
         jdcCreatedOn.addPropertyChangeListener(new java.beans.PropertyChangeListener() {

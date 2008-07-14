@@ -98,7 +98,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
             jbtngrpDrives.add(toggle);
             jpButtons.add(toggle);
         }
-        toggle = new JToggleButton("..."); // NOI18N
+        toggle = new JToggleButton("Browse"); //TODO i18n
         //toggle.setIcon(new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x22/button-folder.png"))); // NOI18N
         //toggle.setMaximumSize(new Dimension(100, 24));
         toggle.setMinimumSize(new Dimension(24, 24));
@@ -216,6 +216,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
         });
 
         jtbSelectedPlugins.setIcon(new ImageIcon(Utilities.loadImage("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/button-show-plugins.png")));
+        jtbSelectedPlugins.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/general/button-show-plugins.png"))); // NOI18N
         jtbSelectedPlugins.setText(org.openide.util.NbBundle.getMessage(NewDiskDlg.class, "NewDiskDlg.jtbSelectedPlugins.text")); // NOI18N
         jtbSelectedPlugins.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jtbSelectedPlugins.addActionListener(new java.awt.event.ActionListener() {

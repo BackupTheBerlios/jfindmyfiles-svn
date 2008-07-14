@@ -73,7 +73,7 @@ final class LinuxPanel extends javax.swing.JPanel {
 
         org.openide.awt.Mnemonics.setLocalizedText(jchkScanMedia, org.openide.util.NbBundle.getMessage(LinuxPanel.class, "LinuxPanel.jchkScanMedia.text")); // NOI18N
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/dialog-warning.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/general/dialog-warning.png"))); // NOI18N
         org.openide.awt.Mnemonics.setLocalizedText(jLabel1, org.openide.util.NbBundle.getMessage(LinuxPanel.class, "LinuxPanel.jLabel1.text")); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -117,7 +117,7 @@ final class LinuxPanel extends javax.swing.JPanel {
                             .addComponent(jlblMountFolder)
                             .addComponent(jtfMountFolder, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jscpFolders, javax.swing.GroupLayout.DEFAULT_SIZE, 165, Short.MAX_VALUE))
+                        .addComponent(jscpFolders, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jtbnBrowse)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
