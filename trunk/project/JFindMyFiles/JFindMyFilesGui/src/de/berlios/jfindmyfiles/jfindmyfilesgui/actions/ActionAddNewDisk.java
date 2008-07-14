@@ -57,14 +57,13 @@ public final class ActionAddNewDisk extends CallableSystemAction {
     @Override
     protected void initialize() {
         super.initialize();
-        putValue("iconBase", "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/actions/new-disk.png");
+        //putValue("iconBase", "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/actions/new-disk.png");
     }
     
-    /*@Override
+    @Override
     protected String iconResource() {
-        return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/" +
-                "icon-media-drive-optical.png";
-    }*/
+        return "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/actions/new-disk.png";
+    }
     
     public HelpCtx getHelpCtx() {
         return HelpCtx.DEFAULT_HELP;

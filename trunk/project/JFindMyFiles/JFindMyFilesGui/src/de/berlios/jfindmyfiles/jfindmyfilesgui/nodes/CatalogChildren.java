@@ -5,6 +5,8 @@
 package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
+import de.berlios.jfindmyfiles.catalog.CatalogEngineEvent;
+import de.berlios.jfindmyfiles.catalog.CatalogEngineListener;
 import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
 import de.berlios.jfindmyfiles.catalog.entities.Media;
 import java.util.LinkedList;
@@ -18,7 +20,7 @@ import org.openide.util.Lookup;
  *
  * @author Knitter
  */
-public class CatalogChildren extends Children.Keys {
+public class CatalogChildren extends Children.Keys implements CatalogEngineListener {
 
     private CatalogNode parent;
     private List items;
@@ -29,6 +31,7 @@ public class CatalogChildren extends Children.Keys {
         this.parent = parent;
         items = new LinkedList();
         eng = Lookup.getDefault().lookup(CatalogEngine.class);
+        eng.addListener(this);
         Session s = eng.sessionFactory.getCurrentSession();
         s.beginTransaction();
         items.addAll(s.createQuery("from DiskGroup where parent.id is null").list());
@@ -62,5 +65,38 @@ public class CatalogChildren extends Children.Keys {
             return new Node[]{in};
         }
         return null;
+    }
+
+    public void catalogCreated(CatalogEngineEvent evt) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void catalogOpened(CatalogEngineEvent evt) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void catalogClosed(CatalogEngineEvent evt) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void diskGroupAdded(CatalogEngineEvent evt) {
+        items.add(evt.getNewDiskGroup());
+        addNotify();
+    }
+
+    public void diskGroupRemoved(CatalogEngineEvent evt) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void diskGroupRenamed(CatalogEngineEvent evt) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void diskAdded(CatalogEngineEvent evt) {
+        //throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    public void diskRemoved(CatalogEngineEvent evt) {
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
 }

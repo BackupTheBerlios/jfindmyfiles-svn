@@ -20,6 +20,8 @@
 package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
+import de.berlios.jfindmyfiles.catalog.CatalogEngineEvent;
+import de.berlios.jfindmyfiles.catalog.CatalogEngineListener;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionAddNewDisk;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionAddNewDiskGroup;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionCatalogProperties;

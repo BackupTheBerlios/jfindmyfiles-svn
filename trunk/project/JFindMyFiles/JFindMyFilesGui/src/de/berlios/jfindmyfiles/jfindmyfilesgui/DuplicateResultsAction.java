@@ -18,8 +18,8 @@ public class DuplicateResultsAction extends AbstractAction {
     
     public DuplicateResultsAction() {
         super(NbBundle.getMessage(DuplicateResultsAction.class, "CTL_DuplicateResultsAction"));
-        putValue(SMALL_ICON, new ImageIcon(Utilities.loadImage("de/berlios/" +
-                "jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-search.png", true)));
+        /*putValue(SMALL_ICON, new ImageIcon(Utilities.loadImage("de/berlios/" +
+                "jfindmyfiles/jfindmyfilesgui/resources/images/x16/icon-search.png", true)));*/
     }
 
     public void actionPerformed(ActionEvent evt) {

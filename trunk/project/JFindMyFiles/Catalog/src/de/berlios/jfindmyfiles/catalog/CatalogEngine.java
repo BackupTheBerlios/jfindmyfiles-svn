@@ -205,6 +205,7 @@ public class CatalogEngine {
         dg.setParent(parent);
         cSession.save(dg);
         cSession.getTransaction().commit();
+        fireDiskGroupAdded(new CatalogEngineEvent(this, "", null, dg, null, null));
     }
 
     public void addLabel(String name) {
@@ -267,20 +268,20 @@ public class CatalogEngine {
     }
 
     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    public void addListener(CatalogEngineListener l) {
+    public synchronized void addListener(CatalogEngineListener l) {
         if (listeners == null) {
             listeners = new Vector<CatalogEngineListener>();
         }
         listeners.add(l);
     }
     
-    public void removeListener(CatalogEngineListener l) {
+    public synchronized void removeListener(CatalogEngineListener l) {
         if(listeners != null) {
             listeners.remove(l);
         }
     }
 
-    private void fireCatalogCreated(CatalogEngineEvent evt) {
+    private synchronized void fireCatalogCreated(CatalogEngineEvent evt) {
         if (listeners != null) {
             for (CatalogEngineListener l : listeners) {
                 l.catalogCreated(evt);
@@ -288,7 +289,7 @@ public class CatalogEngine {
         }
     }
 
-    private void fireCatalogOpened(CatalogEngineEvent evt) {
+    private synchronized void fireCatalogOpened(CatalogEngineEvent evt) {
         if (listeners != null) {
             for (CatalogEngineListener l : listeners) {
                 l.catalogOpened(evt);
@@ -296,14 +297,21 @@ public class CatalogEngine {
         }
     }
 
-    private void fireCatalogClosed(CatalogEngineEvent evt) {
+    private synchronized void fireCatalogClosed(CatalogEngineEvent evt) {
         if (listeners != null) {
             for (CatalogEngineListener l : listeners) {
                 l.catalogClosed(evt);
             }
         }
     }
-
+    
+    private synchronized void fireDiskGroupAdded(CatalogEngineEvent evt) {
+        if (listeners != null) {
+            for (CatalogEngineListener l : listeners) {
+                l.diskGroupAdded(evt);
+            }
+        }
+    }
     /**
      * In overriding the finalize method we try to garantee that data is 
      * flushed and all resources are released.

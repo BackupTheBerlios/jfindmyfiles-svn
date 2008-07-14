@@ -181,22 +181,22 @@ final class NavigationTreeTopComponent extends TopComponent implements ExplorerM
     }
 
     public void diskGroupAdded(CatalogEngineEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void diskGroupRemoved(CatalogEngineEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void diskGroupRenamed(CatalogEngineEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void diskAdded(CatalogEngineEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
 
     public void diskRemoved(CatalogEngineEvent evt) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //throw new UnsupportedOperationException("Not supported yet.");
     }
 }

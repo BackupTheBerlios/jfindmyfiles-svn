@@ -26,7 +26,6 @@
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDisk.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDiskGroup.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRenumberDisks.instance"/>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-SomeAction.instance"/>
         </folder>
         <folder name="File">
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionClose.instance"/>
@@ -36,6 +35,9 @@
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpenCatalog.instance"/>
         </folder>
         <folder name="Help"/>
+        <folder name="Other">
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-SomeAction.instance"/>
+        </folder>
         <folder name="Search">
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionFindInThisDiskGroup.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionScanForDuplicates.instance"/>
@@ -112,6 +114,10 @@
             <file name="org-openide-actions-UndoAction.instance_hidden"/>
         </folder>
         <folder name="File">
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-SomeAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Other/de-berlios-jfindmyfiles-jfindmyfilesgui-SomeAction.instance"/>
+                <attr name="position" intvalue="1200"/>
+            </file>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionClose.shadow">
                 <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionClose.instance"/>
                 <attr name="position" intvalue="1850"/>
@@ -131,10 +137,6 @@
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpen.shadow">
                 <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpenCatalog.instance"/>
                 <attr name="position" intvalue="1325"/>
-            </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-SomeAction.shadow">
-                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-SomeAction.instance"/>
-                <attr name="position" intvalue="1200"/>
             </file>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-separatorAfter.instance">
                 <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
@@ -252,11 +254,13 @@
     </folder>
     <folder name="Toolbars">
         <folder name="JFindMyFiles">
-            <file name="NewDisk.shadow">
+            <attr name="de-berlios-jfindmyfiles-jfindmyfilesgui-SomeAction.shadow/Description.shadow" boolvalue="true"/>
+            <attr name="originalFile" stringvalue="Action/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDisk.instance" boolvalue="true"/>
+            <!-- <file name="NewDisk.shadow">
                     <attr name="originalFile" stringvalue="Action/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDisk.instance"/>
-            </file>
+            </file> -->
             <file name="NewDiskGroup.shadow">
-                    <attr name="originalFile" stringvalue="Action/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDiskGroup.instance"/>
+                    <attr name="originalFile" stringvalue="Action/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDiskGroup.instance" boolvalue="true"/>
             </file>
             <file name="RenumberDisks.shadow">
                     <attr name="originalFile" stringvalue="Action/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRenumberDisks.instance"/>
@@ -281,6 +285,9 @@
             </file>
             <file name="RenameDisk.shadow">
                     <attr name="originalFile" stringvalue="Action/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRenameDisk.instance"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-SomeAction.shadow">
+                <attr name="originalFile" stringvalue="Actions/Other/de-berlios-jfindmyfiles-jfindmyfilesgui-SomeAction.instance"/>
             </file>
         </folder>
     </folder>
