@@ -15,7 +15,12 @@ import javax.swing.filechooser.FileView;
  */
 public class CatalogView extends FileView {
 
-    private static final ImageIcon icon = new ImageIcon("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/general/catalog.png");
+    private static ImageIcon fIcon;
+    
+    public CatalogView() {
+         fIcon = new ImageIcon("/de/berlios/jfindmyfiles/jfindmyfilesgui/" +
+                 "resources/icons/general/catalog.png");
+    }
 
     @Override
     public String getTypeDescription(File f) {
@@ -25,19 +30,16 @@ public class CatalogView extends FileView {
 
     @Override
     public Icon getIcon(File f) {
-        boolean found = false;
-
         if (f.isDirectory()) {
             File[] lst = f.listFiles();
             if (lst != null) {
                 for (File f2 : lst) {
-                    if (f2.getName().equalsIgnoreCase("jfindmyfiles.catalog")) {
-                        found = true;
-                        break;
+                    if (f2.getName().equalsIgnoreCase("jfindmyfiles.catalog") && f2.isHidden()) {
+                        return fIcon;
                     }
                 }
             }
         }
-        return found ? icon : null;
+        return null;
     }
 }

@@ -60,7 +60,7 @@
         <user id="">
             <firstname></firstname>
 			<surname></surname>
-            <!-- <loans><!-- ids separdos por ponto e virgula --> <!--  </loans> -->
+            <!-- <loans> ids separdos por ponto e virgula </loans> -->
         </user>
     </user-list>
     <loan-list>
