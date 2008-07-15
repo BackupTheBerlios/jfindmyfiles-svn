@@ -30,7 +30,7 @@ public class FileWrapperNode extends AbstractNode {
         setName(folder.getName());
     }
     
-    @Override
+   /* @Override
     protected Sheet createSheet() {
         Sheet s = Sheet.createDefault();
         try {
@@ -45,7 +45,7 @@ public class FileWrapperNode extends AbstractNode {
             Exceptions.printStackTrace(ex);
         }
         return s;
-    }    
+    } */   
 
     @Override
     public Image getIcon(int type) {

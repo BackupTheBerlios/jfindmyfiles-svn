@@ -20,31 +20,34 @@
  -->
 <!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.1//EN" "http://www.netbeans.org/dtds/filesystem-1_1.dtd">
 <filesystem>
-    <!-- <attr name="Menu\File\Separator2.instance\position" intvalue="1425"/> -->
     <folder name="Actions">
         <folder name="Edit">
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDisk.instance"/>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDiskGroup.instance"/>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRenumberDisks.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcEditDescription.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewDisk.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewGroup.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcRemove.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcRename.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcRenumberDisks.instance"/>
         </folder>
         <folder name="File">
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionClose.instance"/>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionExport.instance"/>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionImport.instance"/>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionNewCatalog.instance"/>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpenCatalog.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcClose.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcExport.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcImport.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewCatalog.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcOpenCatalog.instance"/>
         </folder>
         <folder name="Help"/>
-        <folder name="Other">
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-SomeAction.instance"/>
-        </folder>
         <folder name="Search">
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionFindInThisDiskGroup.instance"/>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionScanForDuplicates.instance"/>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionSearch.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcSearch.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcSearchDuplicates.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcSearchInGroup.instance"/>
+        </folder>
+        <folder name="Tools">
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcLaunchFile.instance"/>
         </folder>
         <folder name="View">
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionCatalogProperties.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcCatalogProperties.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcItemProperties.instance"/>
         </folder>
         <folder name="Window">
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-DetailsViewAction.instance"/>
@@ -56,51 +59,38 @@
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-SingleViewAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-StatisticsAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-WindowTestingAction.instance"/>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionDescriptionWindow.instance"/>
         </folder>
-        <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionEditDescription.instance"/>
-        <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionLaunchFile.instance"/>
-        <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionProperties.instance"/>
-        <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRemoveFromCatalog.instance"/>
-        <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRenameDisk.instance"/>
-    </folder>
+        </folder>
     <folder name="Menu">
-        <folder name="Actions">
-            <attr name="position" intvalue="700"/>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionEditDescription.shadow">
-                <attr name="originalFile" stringvalue="Actions/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionEditDescription.instance"/>
-                <attr name="position" intvalue="300"/>
-            </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionLaunchFile.shadow">
-                <attr name="originalFile" stringvalue="Actions/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionLaunchFile.instance"/>
-                <attr name="position" intvalue="200"/>
-            </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRemoveFromCatalog.shadow">
-                <attr name="originalFile" stringvalue="Actions/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRemoveFromCatalog.instance"/>
-                <attr name="position" intvalue="700"/>
-            </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRenameDisk.shadow">
-                <attr name="originalFile" stringvalue="Actions/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRenameDisk.instance"/>
-                <attr name="position" intvalue="400"/>
-            </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-separatorAfter.instance">
-                <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
-                <attr name="position" intvalue="500"/>
-            </file>
-        </folder>
         <folder name="Edit">
             <file name="Separator2.instance_hidden"/>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDisk.shadow">
-                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDisk.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcEditDescription.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcEditDescription.instance"/>
+                <attr name="position" intvalue="1000"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewDisk.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewDisk.instance"/>
                 <attr name="position" intvalue="800"/>
             </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDiskGroup.shadow">
-                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDiskGroup.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewGroup.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewGroup.instance"/>
                 <attr name="position" intvalue="850"/>
             </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRenumberDisks.shadow">
-                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRenumberDisks.instance"/>
-                <attr name="position" intvalue="1350"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcRemove.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcRemove.instance"/>
+                <attr name="position" intvalue="1200"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcRename.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcRename.instance"/>
+                <attr name="position" intvalue="1100"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcRenumberDisks-separatorBefore.instance">
+                <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                <attr name="position" intvalue="1250"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcRenumberDisks.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcRenumberDisks.instance"/>
+                <attr name="position" intvalue="1300"/>
             </file>
             <file name="org-netbeans-core-actions-JumpNextAction.shadow_hidden"/>
             <file name="org-netbeans-core-actions-JumpPrevAction.shadow_hidden"/>
@@ -114,33 +104,33 @@
             <file name="org-openide-actions-UndoAction.instance_hidden"/>
         </folder>
         <folder name="File">
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-SomeAction.shadow">
-                <attr name="originalFile" stringvalue="Actions/Other/de-berlios-jfindmyfiles-jfindmyfilesgui-SomeAction.instance"/>
-                <attr name="position" intvalue="1200"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcClose-separatorBefore.instance">
+                <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                <attr name="position" intvalue="1362"/>
             </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionClose.shadow">
-                <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionClose.instance"/>
-                <attr name="position" intvalue="1850"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcClose.shadow">
+                <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcClose.instance"/>
+                <attr name="position" intvalue="1375"/>
             </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionExport.shadow">
-                <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionExport.instance"/>
-                <attr name="position" intvalue="2375"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcExport.shadow">
+                <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcExport.instance"/>
+                <attr name="position" intvalue="2562"/>
             </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionImport.shadow">
-                <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionImport.instance"/>
-                <attr name="position" intvalue="2250"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcImport-separatorAfter.instance">
+                <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                <attr name="position" intvalue="2575"/>
             </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionNewCatalog.shadow">
-                <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionNewCatalog.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcImport.shadow">
+                <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcImport.instance"/>
+                <attr name="position" intvalue="2550"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewCatalog.shadow">
+                <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewCatalog.instance"/>
                 <attr name="position" intvalue="1300"/>
             </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpen.shadow">
-                <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpenCatalog.instance"/>
-                <attr name="position" intvalue="1325"/>
-            </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-separatorAfter.instance">
-                <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
-                <attr name="position" intvalue="2125"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcOpenCatalog.shadow">
+                <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcOpenCatalog.instance"/>
+                <attr name="position" intvalue="1350"/>
             </file>
         </folder>
         <file name="GoTo_hidden"/>
@@ -153,35 +143,53 @@
                 <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
                 <attr name="position" intvalue="700"/>
             </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionFindInThisDiskGroup.shadow">
-                <attr name="originalFile" stringvalue="Actions/Search/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionFindInThisDiskGroup.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcSearch.shadow">
+                <attr name="originalFile" stringvalue="Actions/Search/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcSearch.instance"/>
+                <attr name="position" intvalue="600"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcSearchDuplicates.shadow">
+                <attr name="originalFile" stringvalue="Actions/Search/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcSearchDuplicates.instance"/>
+                <attr name="position" intvalue="800"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcSearchInGroup.shadow">
+                <attr name="originalFile" stringvalue="Actions/Search/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcSearchInGroup.instance"/>
                 <attr name="position" intvalue="650"/>
-            </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionScanForDuplicates.shadow">
-                <attr name="originalFile" stringvalue="Actions/Search/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionScanForDuplicates.instance"/>
-                <attr name="position" intvalue="1750"/>
-            </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionSearch.shadow">
-                <attr name="originalFile" stringvalue="Actions/Search/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionSearch.instance"/>
-                <attr name="position" intvalue="550"/>
             </file>
             <file name="org-netbeans-core-windows-actions-RecentViewListAction.shadow_hidden"/>
             <file name="org-openide-actions-GotoAction.shadow_hidden"/>
         </folder>
+        <folder name="Tools">
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcLaunchFile-separatorAfter.instance">
+                <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                <attr name="position" intvalue="50"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcLaunchFile.shadow">
+                <attr name="originalFile" stringvalue="Actions/Tools/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcLaunchFile.instance"/>
+                <attr name="position" intvalue="0"/>
+            </file>
+        </folder>
         <folder name="View">
             <file name="Separator1.instance_hidden"/>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionCatalogsInfo.shadow">
-                <attr name="originalFile" stringvalue="Actions/View/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionCatalogProperties.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcCatalogProperties.shadow">
+                <attr name="originalFile" stringvalue="Actions/View/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcCatalogProperties.instance"/>
                 <attr name="position" intvalue="0"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcItemProperties-separatorAfter.instance">
+                <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
+                <attr name="position" intvalue="75"/>
+            </file>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcItemProperties.shadow">
+                <attr name="originalFile" stringvalue="Actions/View/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcItemProperties.instance"/>
+                <attr name="position" intvalue="50"/>
             </file>
             <file name="org-netbeans-core-actions-HTMLViewAction.instance_hidden"/>
             <file name="org-netbeans-core-actions-LogAction.instance_hidden"/>
         </folder>
         <folder name="Window">
-            <attr name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionDescriptionWindow.shadow/DetailsViewAction.shadow" boolvalue="true"/>
-            <attr name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionDescriptionWindow.shadow/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-separatorAfter.instance" boolvalue="true"/>
+            <!-- <attr name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionDescriptionWindow.shadow/DetailsViewAction.shadow" boolvalue="true"/> -->
+            <!-- <attr name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionDescriptionWindow.shadow/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-separatorAfter.instance" boolvalue="true"/> -->
             <attr name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionNextWindow.shadow/DetailsViewAction.shadow" boolvalue="true"/>
-            <attr name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionNextWindow.shadow/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionDescriptionWindow.shadow" boolvalue="true"/>
+            <!-- <attr name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionNextWindow.shadow/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionDescriptionWindow.shadow" boolvalue="true"/> -->
             <attr name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-separatorAfter.instance/DetailsViewAction.shadow" boolvalue="true"/>
             <attr name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-separatorBefore.instance/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionNextWindow.shadow" boolvalue="true"/>
             <file name="CloneDocumentAction.shadow_hidden"/>
@@ -217,9 +225,6 @@
             <file name="WindowTestingAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-WindowTestingAction.instance"/>
             </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionDescriptionWindow.shadow">
-                <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionDescriptionWindow.instance"/>
-            </file>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-separatorAfter.instance">
                 <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
             </file>
@@ -245,49 +250,67 @@
         </folder>
     </folder>
     <folder name="Shortcuts">
-        <file name="S-N.shadow">
-            <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionNewCatalog.instance"/>
+        <file name="D-D.shadow">
+            <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewDisk.instance"/>
         </file>
-        <file name="S-O.shadow">
-            <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpenCatalog.instance"/>
+        <file name="D-E.shadow">
+            <attr name="originalFile" stringvalue="Actions/Tools/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcLaunchFile.instance"/>
+        </file>
+        <file name="D-G.shadow">
+            <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewGroup.instance"/>
+        </file>
+        <file name="D-L.shadow">
+            <attr name="originalFile" stringvalue="Actions/Tools/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcLaunchFile.instance"/>
+        </file>
+        <file name="D-N.shadow">
+            <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewCatalog.instance"/>
+        </file>
+        <file name="D-O.shadow">
+            <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcOpenCatalog.instance"/>
+        </file>
+        <file name="D-S.shadow">
+            <attr name="originalFile" stringvalue="Actions/Search/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcSearch.instance"/>
+        </file>
+        <file name="DS-R.shadow">
+            <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcRename.instance"/>
         </file>
     </folder>
     <folder name="Toolbars">
         <folder name="JFindMyFiles">
-            <attr name="de-berlios-jfindmyfiles-jfindmyfilesgui-SomeAction.shadow/Description.shadow" boolvalue="true"/>
-            <attr name="originalFile" stringvalue="Action/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDisk.instance" boolvalue="true"/>
-            <!-- <file name="NewDisk.shadow">
-                    <attr name="originalFile" stringvalue="Action/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDisk.instance"/>
-            </file> -->
-            <file name="NewDiskGroup.shadow">
-                    <attr name="originalFile" stringvalue="Action/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionAddNewDiskGroup.instance" boolvalue="true"/>
+            <attr name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcEditDescription.shadow/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcRemove.shadow" boolvalue="true"/>
+            <attr name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewCatalog.shadow/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcOpenCatalog.shadow" boolvalue="true"/>
+            <attr name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewDisk.shadow/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewGroup.shadow" boolvalue="true"/>
+            <attr name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewGroup.shadow/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcEditDescription.shadow" boolvalue="true"/>
+            <attr name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcOpenCatalog.shadow/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewDisk.shadow" boolvalue="true"/>
+            <attr name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcRemove.shadow/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcSearch.shadow" boolvalue="true"/>
+            <attr name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcRename.shadow/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewCatalog.shadow" boolvalue="true"/>
+            <attr name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcSearch.shadow/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcLaunchFile.shadow" boolvalue="true"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcEditDescription.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcEditDescription.instance"/>
             </file>
-            <file name="RenumberDisks.shadow">
-                    <attr name="originalFile" stringvalue="Action/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRenumberDisks.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcLaunchFile.shadow">
+                <attr name="originalFile" stringvalue="Actions/Tools/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcLaunchFile.instance"/>
             </file>
-            <file name="NewCatalog.shadow">
-                    <attr name="originalFile" stringvalue="Action/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionNewCatalog.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewCatalog.shadow">
+                <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewCatalog.instance"/>
             </file>
-            <file name="OpenCatalog.shadow">
-                    <attr name="originalFile" stringvalue="Action/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionOpenCatalog.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewDisk.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewDisk.instance"/>
             </file>
-            <file name="Description.shadow">
-                    <attr name="originalFile" stringvalue="Action/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionEditDescription.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewGroup.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcNewGroup.instance"/>
             </file>
-            <file name="LaunchFile.shadow">
-                    <attr name="originalFile" stringvalue="Action/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionLaunchFile.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcOpenCatalog.shadow">
+                <attr name="originalFile" stringvalue="Actions/File/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcOpenCatalog.instance"/>
             </file>
-            <file name="Properties.shadow">
-                    <attr name="originalFile" stringvalue="Action/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionProperties.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcRemove.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcRemove.instance"/>
             </file>
-            <file name="RemoveFromCatalog.shadow">
-                    <attr name="originalFile" stringvalue="Action/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRemoveFromCatalog.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcRename.shadow">
+                <attr name="originalFile" stringvalue="Actions/Edit/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcRename.instance"/>
             </file>
-            <file name="RenameDisk.shadow">
-                    <attr name="originalFile" stringvalue="Action/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-ActionRenameDisk.instance"/>
-            </file>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-SomeAction.shadow">
-                <attr name="originalFile" stringvalue="Actions/Other/de-berlios-jfindmyfiles-jfindmyfilesgui-SomeAction.instance"/>
+            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcSearch.shadow">
+                <attr name="originalFile" stringvalue="Actions/Search/de-berlios-jfindmyfiles-jfindmyfilesgui-actions-AcSearch.instance"/>
             </file>
         </folder>
     </folder>
@@ -295,8 +318,6 @@
         <folder name="Components">
             <file name="DetailsViewTopComponent.settings" url="DetailsViewTopComponentSettings.xml"/>
             <file name="DuplicateResultsTopComponent.settings" url="DuplicateResultsTopComponentSettings.xml"/>
-            <file name="FileListTopComponent.settings" url="FileListTopComponentSettings.xml"/>
-            <file name="FilePropertiesTopComponent.settings" url="FilePropertiesTopComponentSettings.xml"/>
             <file name="LoanTopComponent.settings" url="LoanTopComponentSettings.xml"/>
             <file name="ManageUsersTopComponent.settings" url="ManageUsersTopComponentSettings.xml"/>
             <file name="NavigationTreeTopComponent.settings" url="NavigationTreeTopComponentSettings.xml"/>
@@ -308,7 +329,6 @@
         <folder name="Modes">
             <folder name="editor">
                 <file name="DetailsViewTopComponent.wstcref" url="DetailsViewTopComponentWstcref.xml"/>
-                <file name="FileListTopComponent.wstcref" url="FileListTopComponentWstcref.xml"/>
                 <file name="LoanTopComponent.wstcref" url="LoanTopComponentWstcref.xml"/>
                 <file name="ManageUsersTopComponent.wstcref" url="ManageUsersTopComponentWstcref.xml"/>
                 <file name="SearchWindowTopComponent.wstcref" url="SearchWindowTopComponentWstcref.xml"/>
@@ -321,9 +341,6 @@
             </folder>
             <folder name="output">
                 <file name="DuplicateResultsTopComponent.wstcref" url="DuplicateResultsTopComponentWstcref.xml"/>
-            </folder>
-            <folder name="properties">
-                <file name="FilePropertiesTopComponent.wstcref" url="FilePropertiesTopComponentWstcref.xml"/>
             </folder>
         </folder>
     </folder>

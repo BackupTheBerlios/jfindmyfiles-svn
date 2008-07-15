@@ -20,11 +20,11 @@
 package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 
 import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionAddNewDisk;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionAddNewDiskGroup;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionProperties;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionRemoveFromCatalog;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionRenumberDisks;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.AcItemProperties;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.AcNewDisk;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.AcNewGroup;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.AcRemove;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.AcRenumberDisks;
 import java.awt.Image;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
@@ -46,8 +46,8 @@ public class DiskGroupNode extends AbstractNode {
         setName(group.getName());
 
         Lookup lo = Lookups.forPath("/Actions");//TODO: sort actions correctly and add separators
-        sysact = new SystemAction[]{lo.lookup(ActionRemoveFromCatalog.class), lo.lookup(ActionProperties.class),
-                    lo.lookup(ActionRenumberDisks.class), lo.lookup(ActionAddNewDisk.class), lo.lookup(ActionAddNewDiskGroup.class)
+        sysact = new SystemAction[]{lo.lookup(AcRemove.class), lo.lookup(AcItemProperties.class),
+                    lo.lookup(AcRenumberDisks.class), lo.lookup(AcNewDisk.class), lo.lookup(AcNewGroup.class)
                 };
     }
 

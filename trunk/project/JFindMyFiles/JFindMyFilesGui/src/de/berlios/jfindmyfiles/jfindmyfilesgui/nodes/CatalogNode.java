@@ -22,14 +22,14 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.catalog.CatalogEngineEvent;
 import de.berlios.jfindmyfiles.catalog.CatalogEngineListener;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionAddNewDisk;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionAddNewDiskGroup;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionCatalogProperties;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionClose;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionExport;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionImport;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionRenumberDisks;
-import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.ActionScanForDuplicates;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.AcCatalogProperties;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.AcClose;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.AcExport;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.AcImport;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.AcNewDisk;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.AcNewGroup;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.AcRenumberDisks;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.AcSearchDuplicates;
 import java.awt.Image;
 import org.openide.nodes.AbstractNode;
 import org.openide.nodes.Children;
@@ -55,10 +55,10 @@ public class CatalogNode extends AbstractNode {
         setName(eng.getProperties().getName());
 
         Lookup lo = Lookups.forPath("/Actions");//TODO: sort actions correctly and add separators
-        sysact = new SystemAction[]{lo.lookup(ActionCatalogProperties.class),
-                    lo.lookup(ActionRenumberDisks.class), lo.lookup(ActionScanForDuplicates.class),
-                    lo.lookup(ActionAddNewDisk.class), lo.lookup(ActionAddNewDiskGroup.class), lo.lookup(ActionClose.class),
-                    lo.lookup(ActionExport.class), lo.lookup(ActionImport.class)
+        sysact = new SystemAction[]{lo.lookup(AcCatalogProperties.class),
+                    lo.lookup(AcRenumberDisks.class), lo.lookup(AcSearchDuplicates.class),
+                    lo.lookup(AcNewDisk.class), lo.lookup(AcNewGroup.class), lo.lookup(AcClose.class),
+                    lo.lookup(AcExport.class), lo.lookup(AcImport.class)
                 };
     }
 
@@ -66,15 +66,15 @@ public class CatalogNode extends AbstractNode {
     protected Sheet createSheet() {
         Sheet s = Sheet.createDefault();
         /*try {
-
-            Sheet.Set sSet = Sheet.createPropertiesSet();
-            //Property p = new PropertySupport.Reflection(media, String.class, "name");
-            Property p = new PropertySupport.Reflection(media, String.class, "name");
-            //DiskNameProperty p = new DiskNameProperty(media.getName(), "", media.getName());
-            sSet.put(p);
-            s.put(sSet);
+        
+        Sheet.Set sSet = Sheet.createPropertiesSet();
+        //Property p = new PropertySupport.Reflection(media, String.class, "name");
+        Property p = new PropertySupport.Reflection(media, String.class, "name");
+        //DiskNameProperty p = new DiskNameProperty(media.getName(), "", media.getName());
+        sSet.put(p);
+        s.put(sSet);
         } catch (NoSuchMethodException ex) {
-            Exceptions.printStackTrace(ex);
+        Exceptions.printStackTrace(ex);
         }*/
         return s;
     }

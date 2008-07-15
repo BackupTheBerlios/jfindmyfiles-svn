@@ -23,6 +23,7 @@ import de.berlios.jfindmyfiles.catalog.entities.*;
 import java.util.Date;
 import java.util.List;
 import java.util.Vector;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.hibernate.Session;
@@ -34,7 +35,8 @@ public class CatalogEngine {
     /* Constants for the available dabatabase engines*/
     public SessionFactory sessionFactory;
     private CatalogProperties properties;
-    private Vector<CatalogEngineListener> listeners;
+//    private Vector<CatalogEngineListener> listeners;
+    private CopyOnWriteArrayList<CatalogEngineListener> listeners;
     private static final Logger logger = Logger.getLogger(CatalogEngine.class.getName());
     private boolean opened;
 
@@ -44,6 +46,7 @@ public class CatalogEngine {
      */
     public CatalogEngine() {
         //DO NOTHING
+        listeners = new CopyOnWriteArrayList<CatalogEngineListener>();
     }
 
     private void recreateConnection(String dbname, String dburl, String port,
@@ -170,7 +173,7 @@ public class CatalogEngine {
         properties = new CatalogProperties();
         properties.setName(dbname);
         properties.setCreationDate(new Date());
-        cSession.save(properties);        
+        cSession.save(properties);
         cSession.getTransaction().commit();
         fireCatalogCreated(new CatalogEngineEvent(this, dbname, null, null, null, null));
     }
@@ -190,11 +193,11 @@ public class CatalogEngine {
     public CatalogProperties getProperties() {
         return properties;
     }
-    
+
     public boolean isOpened() {
         return opened;
     }
-    
+
     /*XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
     public void addDiskGroup(String name, String description, DiskGroup parent) {
         Session cSession = sessionFactory.getCurrentSession();
@@ -268,50 +271,51 @@ public class CatalogEngine {
     }
 
     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    public synchronized void addListener(CatalogEngineListener l) {
-        if (listeners == null) {
-            listeners = new Vector<CatalogEngineListener>();
-        }
-        listeners.add(l);
-    }
-    
-    public synchronized void removeListener(CatalogEngineListener l) {
-        if(listeners != null) {
-            listeners.remove(l);
-        }
+    public void addListener(CatalogEngineListener l) {
+            if (listeners == null) {
+                listeners = new CopyOnWriteArrayList<CatalogEngineListener>();
+            }
+            listeners.add(l);
     }
 
-    private synchronized void fireCatalogCreated(CatalogEngineEvent evt) {
-        if (listeners != null) {
-            for (CatalogEngineListener l : listeners) {
-                l.catalogCreated(evt);
+    public void removeListener(CatalogEngineListener l) {
+            if (listeners != null) {
+                listeners.remove(l);
             }
-        }
     }
 
-    private synchronized void fireCatalogOpened(CatalogEngineEvent evt) {
-        if (listeners != null) {
-            for (CatalogEngineListener l : listeners) {
-                l.catalogOpened(evt);
+    private void fireCatalogCreated(CatalogEngineEvent evt) {
+            if (listeners != null) {
+                for (CatalogEngineListener l : listeners) {
+                    l.catalogCreated(evt);
+                }
             }
-        }
     }
 
-    private synchronized void fireCatalogClosed(CatalogEngineEvent evt) {
-        if (listeners != null) {
-            for (CatalogEngineListener l : listeners) {
-                l.catalogClosed(evt);
+    private void fireCatalogOpened(CatalogEngineEvent evt) {
+            if (listeners != null) {
+                for (CatalogEngineListener l : listeners) {
+                    l.catalogOpened(evt);
+                }
             }
-        }
     }
-    
-    private synchronized void fireDiskGroupAdded(CatalogEngineEvent evt) {
-        if (listeners != null) {
-            for (CatalogEngineListener l : listeners) {
-                l.diskGroupAdded(evt);
+
+    private void fireCatalogClosed(CatalogEngineEvent evt) {
+            if (listeners != null) {
+                for (CatalogEngineListener l : listeners) {
+                    l.catalogClosed(evt);
+                }
             }
-        }
     }
+
+    private void fireDiskGroupAdded(CatalogEngineEvent evt) {
+            if (listeners != null) {
+                for (CatalogEngineListener l : listeners) {
+                    l.diskGroupAdded(evt);
+                }
+            }
+    }
+
     /**
      * In overriding the finalize method we try to garantee that data is 
      * flushed and all resources are released.

@@ -15,7 +15,7 @@ import javax.swing.filechooser.FileView;
  */
 public class CatalogView extends FileView {
 
-    private static final ImageIcon icon = new ImageIcon();
+    private static final ImageIcon icon = new ImageIcon("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/general/catalog.png");
 
     @Override
     public String getTypeDescription(File f) {
