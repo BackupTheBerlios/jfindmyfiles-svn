@@ -48,6 +48,7 @@ public class AskDescriptionDlg extends javax.swing.JDialog {
         jbtnOK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle(org.openide.util.NbBundle.getMessage(AskDescriptionDlg.class, "AskDescriptionDlg.title")); // NOI18N
 
         jlblDescription.setText(org.openide.util.NbBundle.getMessage(AskDescriptionDlg.class, "AskDescriptionDlg.jlblDescription.text")); // NOI18N
 

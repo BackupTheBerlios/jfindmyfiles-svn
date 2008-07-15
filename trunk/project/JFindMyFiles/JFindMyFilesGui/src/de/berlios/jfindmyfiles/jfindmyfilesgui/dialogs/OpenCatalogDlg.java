@@ -24,6 +24,7 @@ import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.utils.CatalogFilter;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.utils.CatalogView;
 import java.io.File;
+import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
@@ -159,6 +160,7 @@ public class OpenCatalogDlg extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(org.openide.util.NbBundle.getMessage(OpenCatalogDlg.class, "NewCatalogDlg.title")); // NOI18N
+        setIconImage(null);
 
         jpDatabaseSettings.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.jpDatabaseSettings.border.title"))); // NOI18N
         jpDatabaseSettings.setEnabled(false);
