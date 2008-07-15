@@ -19,6 +19,8 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngineEvent;
+import de.berlios.jfindmyfiles.catalog.CatalogEngineListener;
 import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.AcItemProperties;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.AcNewDisk;
@@ -37,14 +39,15 @@ import org.openide.util.lookup.Lookups;
  *
  * @author knitter
  */
-public class DiskGroupNode extends AbstractNode {
+public class DiskGroupNode extends AbstractNode implements CatalogEngineListener {
 
     private SystemAction[] sysact;
+    private DiskGroup group;
 
     public DiskGroupNode(DiskGroup group, boolean leaf) {
         super((leaf ? Children.LEAF : new DiskGroupChildren(group.getId())), Lookups.singleton(group));
         setName(group.getName());
-
+        this.group = group;
         Lookup lo = Lookups.forPath("/Actions");//TODO: sort actions correctly and add separators
         sysact = new SystemAction[]{lo.lookup(AcRemove.class), lo.lookup(AcItemProperties.class),
                     lo.lookup(AcRenumberDisks.class), lo.lookup(AcNewDisk.class), lo.lookup(AcNewGroup.class)
@@ -64,5 +67,41 @@ public class DiskGroupNode extends AbstractNode {
     @Override
     public SystemAction[] getActions(boolean bool) {
         return new SystemAction[]{};
+    }
+
+    public void catalogCreated(CatalogEngineEvent evt) {
+        //ignore
+    }
+
+    public void catalogOpened(CatalogEngineEvent evt) {
+        //ignore
+    }
+
+    public void catalogClosed(CatalogEngineEvent evt) {
+        //ignore
+    }
+
+    public void diskGroupAdded(CatalogEngineEvent evt) {
+        //ignore
+    }
+
+    public void diskGroupRemoved(CatalogEngineEvent evt) {
+        //ignore
+    }
+
+    @SuppressWarnings("unchecked")
+    public void diskGroupRenamed(CatalogEngineEvent evt) {
+        if(evt.getNewDiskGroup().getId().equals(group.getId())) {
+            group = evt.getNewDiskGroup();
+            setName(group.getName());
+        }
+    }
+
+    public void diskAdded(CatalogEngineEvent evt) {
+        //ignore
+    }
+
+    public void diskRemoved(CatalogEngineEvent evt) {
+        //ignore
     }
 }

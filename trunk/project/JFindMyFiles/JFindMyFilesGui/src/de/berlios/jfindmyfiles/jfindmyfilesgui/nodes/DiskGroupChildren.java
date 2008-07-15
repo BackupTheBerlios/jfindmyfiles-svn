@@ -2,10 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
+import de.berlios.jfindmyfiles.catalog.CatalogEngineEvent;
+import de.berlios.jfindmyfiles.catalog.CatalogEngineListener;
 import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
 import de.berlios.jfindmyfiles.catalog.entities.Media;
 import java.util.LinkedList;
@@ -19,7 +20,7 @@ import org.openide.util.Lookup;
  *
  * @author Knitter
  */
-public class DiskGroupChildren extends Children.Keys {
+public class DiskGroupChildren extends Children.Keys implements CatalogEngineListener {
 
     private Long parentId;
     private List items;
@@ -30,6 +31,7 @@ public class DiskGroupChildren extends Children.Keys {
         this.parentId = parentId;
         items = new LinkedList();
         eng = Lookup.getDefault().lookup(CatalogEngine.class);
+        eng.addListener(this);
         Session s = eng.sessionFactory.getCurrentSession();
         s.beginTransaction();
         items.addAll(s.createQuery("from DiskGroup group where group.parent.id = ?").setLong(0, parentId).list());
@@ -64,4 +66,51 @@ public class DiskGroupChildren extends Children.Keys {
         return null;
     }
 
+    public void catalogCreated(CatalogEngineEvent evt) {
+        //ignore
+    }
+
+    public void catalogOpened(CatalogEngineEvent evt) {
+        //ignore
+    }
+
+    public void catalogClosed(CatalogEngineEvent evt) {
+        //ignore
+    }
+
+    @SuppressWarnings("unchecked")
+    public void diskGroupAdded(CatalogEngineEvent evt) {
+        if (evt.getNewDiskGroup().getId().equals(parentId)) {
+            items.add(evt.getNewDiskGroup());
+            addNotify();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void diskGroupRemoved(CatalogEngineEvent evt) {
+        if (evt.getNewDiskGroup().getId().equals(parentId)) {
+            items.remove(evt.getNewDiskGroup());
+            addNotify();
+        }
+    }
+
+    public void diskGroupRenamed(CatalogEngineEvent evt) {
+        //ignore
+    }
+
+    @SuppressWarnings("unchecked")
+    public void diskAdded(CatalogEngineEvent evt) {
+        if (evt.getNewDisk().getGroup().getId().equals(parentId)) {
+            items.add(evt.getNewDisk());
+            addNotify();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public void diskRemoved(CatalogEngineEvent evt) {
+        if (evt.getNewDisk().getGroup().getId().equals(parentId)) {
+            items.remove(evt.getNewDisk());
+            addNotify();
+        }
+    }
 }

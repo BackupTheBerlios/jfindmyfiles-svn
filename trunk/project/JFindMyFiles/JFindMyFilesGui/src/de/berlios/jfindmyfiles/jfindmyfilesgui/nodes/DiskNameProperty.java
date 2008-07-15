@@ -16,6 +16,7 @@ public class DiskNameProperty extends PropertySupport {
 
     private String value;
     
+    @SuppressWarnings("unchecked")
     public DiskNameProperty(String displayName, String shortDescription, String value) {
         super("name", String.class, displayName, shortDescription, true, false);
         this.value = value;

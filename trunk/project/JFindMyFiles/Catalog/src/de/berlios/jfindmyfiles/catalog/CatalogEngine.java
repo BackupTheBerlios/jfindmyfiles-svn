@@ -187,6 +187,7 @@ public class CatalogEngine {
             sessionFactory = null;
             opened = false;
             fireCatalogClosed(new CatalogEngineEvent(this, properties.getName(), null, null, null, null));
+            listeners.clear();
         }
     }
 

@@ -1,3 +1,7 @@
 Usability Engineering, Jakob Nielsen,Academic Press Limited, 19937
 Agile Software Development, Principles, Patterns and Practices, Robert C. Martin, Prentice Hall, 2002
 Agile Development with ICONIX process, People, Process, and Pragamatism,DougRosenberg, Matt Stephens and Mark Collins-Cope, Apress, 2005
+
+Descrição de Swing: http://java.sun.com/j2se/1.5.0/docs/guide/swing/
+Descrição de Wiki: http://en.wikipedia.org/wiki/Wiki
+www.extremeprogramming.org

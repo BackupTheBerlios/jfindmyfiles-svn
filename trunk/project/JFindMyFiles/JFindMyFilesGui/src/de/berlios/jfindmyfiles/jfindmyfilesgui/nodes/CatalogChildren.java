@@ -37,7 +37,7 @@ public class CatalogChildren extends Children.Keys implements CatalogEngineListe
         items.addAll(s.createQuery("from DiskGroup where parent.id is null").list());
         items.addAll(s.createQuery("from Media where group.id is null").list());
         s.getTransaction().commit();
-    }  
+    }
 
     @Override
     @SuppressWarnings("unchecked")
@@ -57,7 +57,7 @@ public class CatalogChildren extends Children.Keys implements CatalogEngineListe
             s.getTransaction().commit();
 
             DiskGroupNode gn = new DiskGroupNode((DiskGroup) key, rs.isEmpty());
-            
+
             return new Node[]{gn};
         }
         if (key instanceof Media) {
@@ -68,35 +68,54 @@ public class CatalogChildren extends Children.Keys implements CatalogEngineListe
     }
 
     public void catalogCreated(CatalogEngineEvent evt) {
-        //throw new UnsupportedOperationException("Not supported yet.");
+        //ignore
     }
 
     public void catalogOpened(CatalogEngineEvent evt) {
-        //throw new UnsupportedOperationException("Not supported yet.");
+        //ignore
     }
 
     public void catalogClosed(CatalogEngineEvent evt) {
-        //throw new UnsupportedOperationException("Not supported yet.");
+        //ignore
     }
 
+    //TODO: not tested!
+    @SuppressWarnings("unchecked")
     public void diskGroupAdded(CatalogEngineEvent evt) {
-        items.add(evt.getNewDiskGroup());
-        addNotify();
+        if (evt.getNewDiskGroup().getParent() == null) {
+            items.add(evt.getNewDiskGroup());
+            addNotify();
+        }
     }
 
+    @SuppressWarnings("unchecked")
     public void diskGroupRemoved(CatalogEngineEvent evt) {
-        //throw new UnsupportedOperationException("Not supported yet.");
+        if (evt.getNewDiskGroup().getParent() == null) {
+            items.remove(evt.getNewDiskGroup());
+            addNotify();
+        }
     }
 
+    @SuppressWarnings("unchecked")
     public void diskGroupRenamed(CatalogEngineEvent evt) {
-        //throw new UnsupportedOperationException("Not supported yet.");
+        if (evt.getNewDiskGroup().getParent() == null) {
+            addNotify();
+        }
     }
 
+    @SuppressWarnings("unchecked")
     public void diskAdded(CatalogEngineEvent evt) {
-        //throw new UnsupportedOperationException("Not supported yet.");
+        if (evt.getNewDisk().getGroup() == null) {
+            items.add(evt.getNewDisk());
+            addNotify();
+        }
     }
 
+    @SuppressWarnings("unchecked")
     public void diskRemoved(CatalogEngineEvent evt) {
-        //throw new UnsupportedOperationException("Not supported yet.");
+        if (evt.getNewDisk().getGroup() == null) {
+            items.remove(evt.getNewDisk());
+            addNotify();
+        }
     }
 }
