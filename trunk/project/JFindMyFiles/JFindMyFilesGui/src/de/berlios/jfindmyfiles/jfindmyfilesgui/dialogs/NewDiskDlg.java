@@ -99,8 +99,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
             jpButtons.add(toggle);
         }
         toggle = new JToggleButton("Browse"); //TODO i18n
-        //toggle.setIcon(new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x22/button-folder.png"))); // NOI18N
-        //toggle.setMaximumSize(new Dimension(100, 24));
+//TODO: abrir uma pasta e pedir o icone do sistema operativo para colocar aqui.
         toggle.setMinimumSize(new Dimension(24, 24));
         toggle.setSize(toggle.getWidth(), 24);
 

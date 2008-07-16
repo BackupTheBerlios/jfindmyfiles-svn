@@ -1,0 +1,89 @@
+Testes de Usabilidade ao sistema JFindMyFiles - I
+
+Este questionário tem por objectivo a avaliação de usabilidade do sistema JFindMyFiles. As informações serão usadas apenas para garantir que o sistema vai de encontro às necessidades dos utilizadores e não serão fornecidas a terceiros.
+Os dados pessoais pedidos, servem para fins meramente estatísticos, pretendendo dar uma ideia dos indivíduos que preencheram os testes.
+
+* Denota perguntas de resposta obrigatória.
+
+Idade: *
+    Menos de 18 anos
+    Menos de 25 anos
+    35 anos ou menos
+    Mais de 35 anos
+
+
+Sexo *
+	Masculino
+    Feminio
+
+
+Habilitações *:
+
+Profissão *:
+
+Com que frequência usa o computador? *
+    Pelo menos 1 vez por semana
+    Pelo menos 3 vezes por semana
+    Pelo menos 5 dias por semana
+
+
+Aproximadamente, durante quanto tempo por sessão, usa o computador? *
+    1 hora
+    3 horas
+    6 horas
+    Mais de 8 horas
+
+
+Utiliza ou já utilizou uma ferramenta de catalogação de ficheiros? *
+    Sim
+    Não
+
+
+Se respondeu "Sim" na pergunta anterior, por favor indique qual.
+Se respondeu "Não", passe à pergunta seguinte.
+
+Sente necessidade de uma aplicação que permita gerir os seus ficheiros digitais? *
+    Sim
+    Não
+
+
+O sistema JFindMyFiles é de fácil utilização. * 1- Concordo Plenamente/ 2 - Concordo/ 3 - Sem opinião/ 4 - Discordo/ 5 - Discordo Plenamente
+
+O sistema JFindMyFiles é difícil de aprender. * 1- Concordo Plenamente/ 2 - Concordo/ 3 - Sem opinião/ 4 - Discordo/ 5 - Discordo Plenamente
+
+As mensagens do sistema JFindMyFiles são de fácil compreensão. * 1- Concordo Plenamente/ 2 - Concordo/ 3 - Sem opinião/ 4 - Discordo/ 5 - Discordo Plenamente
+
+A ajuda do sistema JFindMyFiles é útil. * 1- Concordo Plenamente/ 2 - Concordo/ 3 - Sem opinião/ 4 - Discordo/ 5 - Discordo Plenamente
+
+Se pudesse mudar 3 coisas no JFindMyFiles, o que mudaria?
+
+Tem algum comentário e/ou sugestão a fazer?
+
+------------------------------
+
+Testes de Usabilidade ao sistema JFindMyFiles - II
+
+Neste questionário serão pedidas as avaliações das tarefas executadas no sistema JFindMyFiles.
+
+Classifique cada uma das tarefas de acordo com o seu grau de dificuldade, tendo em conta que o valor 1 significa "Muito Difícil" e valor 5, "Muito Fácil".
+
+Todas as perguntas são de preenchimento obrigatório.
+
+
+Abra um catálogo existente, (encontra um no seu ambiente de trabalho). *
+
+Verifique que extensões se encontram activas e desactive-as todas. *
+
+Adicione um grupo de discos ao catálogo. *
+
+Adicione um disco ao grupo que criou na tarefa anterior. *
+Verifique se existem ficheiros iguais no catálogo aberto. *
+Exporte os dados, usando um dos templates HTML disponíveis *
+
+Procure ficheiros com o nome "JFindMyFiles". Use as opções que achar relevantes. *
+
+Crie um catálogo novo usando os dados fornecidos. * Na sua folha estarão um conjunto de dados que permitirão ligar a uma base de dados.
+
+Altere os dados pessoais referentes ao autor do catálogo. *
+
+Adicione a pasta onde habitualmente se encontra montado o seu CD-ROM. * Esta tarefa deverá ser executada apenas por utilizadores em Linux
