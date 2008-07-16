@@ -21,10 +21,10 @@ Concebidos para ajudá-lo 	|				|					|		|					|			|			|			|
 a manter e organizar um 	|	X			|	X				|	X	|	X				|	X		|	X		|	X		|
 catálogo de seu computador	|               |                   |       |                   |           |           |           | 
 ----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
-CD-ROMs/DVDs				|	X			|	X				|	X	|					|	X		|			|			|
+CD-ROMs/DVDs				|	X			|	X				|	X	|					|	X		|	X		|			|
 ----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
 Suporte para Drives 		|				|					|		|					|			|			|			|
-Removíveis					|	X			|	X				|	X	|					|	X		|			|			|
+Removíveis					|	X			|	X				|	X	|					|	X		|	X		|			|
 ----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
 Permite a criação de mais 	|				|					|		|					|			|			|			|
 que um catálogo				|	X			|					|		|					|			|			|	X		|
@@ -34,7 +34,7 @@ de dados					|	X			|	X				|		|	X				|			|			|	X		|
 ----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
 Descrições detalhadas		|	X			|	X				|	X	|					|			|			|			|
 ----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
-Permite Localizar itens		|	X			|	X				|	X	|	X				|			|			|	X		|
+Permite Localizar itens		|	X			|	X				|	X	|	X				|	X		|	X		|	X		|
 ----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
 Licença						|				|					|		|					|			|			|			|
 ----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
@@ -50,9 +50,8 @@ Bibliografia:
 
 http://www.kde-apps.org/content/show.php/Tellico?content=10030
 http://hp.vector.co.jp/authors/VA008942/library/diskcatalogmaker/
-
-http://en.wikipedia.org/wiki/CDFinder
-http://en.wikipedia.org/wiki/CDWinder
+http://www.cdfinder.de/
+http://www.cdwinder.de/
 http://cdcat.sourceforge.net/
 http://www.whereisit-soft.com
 http://www.argentuma.com/myfiles.html
