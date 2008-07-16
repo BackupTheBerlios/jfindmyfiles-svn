@@ -1,0 +1,87 @@
+<html>
+	<head>
+		<link rel=Stylesheet href="style.css" type="text/css">
+		<title>
+			«CATALOG_NAME»
+		</title>
+	</head>
+
+	<body>
+			<table class="catalog">
+				<th class="catalog" colspan="2">«CATALOG_NAME» Data</th>
+				<tr>
+					<td>Description</td>
+					<td>«CATALOG_DESCRIPTION»</td>
+				</tr>
+				<tr>
+					<td>Disk Number</td>
+					<td>«CATALOG_DISKNUMBER»</td>
+				</tr>
+				<tr>
+					<td>Creation Date</td>
+					<td>«CATALOG_CREATION»</td>
+				</tr>
+				<tr>
+					<td>Total Files</td>
+					<td>«CATALOG_FILES»</td>
+				</tr>
+				<tr>
+					<td>Total Folders</td>
+					<td>«CATALOG_FOLDERS»</td>
+				</tr>
+				<tr>
+					<td>Total Size</td>
+					<td>«CATALOG_SIZE»</td>
+				</tr>
+			</table>
+
+			«DISKGROUP_START»
+			<table class="media">
+				<th class="media" colspan="2">«DISKGROUP_NAME» DiskGroup</th>
+				<tr>
+					<td>Description</td>
+					<td>«DISKGROUP_DESCRIPTION»</td>
+				</tr>
+				<tr>
+					<td>Capacity</td>
+					<td>«DISKGROUP_CAPACITY»</td>
+				</tr>
+			</table>
+			«DISKGROUP_END»
+			
+			«MEDIA_START»
+			<table class="media">
+				<th class="media" colspan="2">«MEDIA_NAME» Media</th>
+				<tr>
+					<td>Description</td>
+					<td>«MEDIA_DESCRIPTION»</td>
+				</tr>
+				<tr>
+					<td>Capacity</td>
+					<td>«MEDIA_CAPACITY»</td>
+				</tr>
+				<tr>
+					<td>Free Space</td>
+					<td>«MEDIA_FREESPACE»</td>
+				</tr>
+				<tr>
+					<td>Last Modified</td>
+					<td>«MEDIA_LASTMODIFIED»</td>
+				</tr>
+				<tr>
+					<td>Location</td>
+					<td>«MEDIA_LOCATION»</td>
+				</tr>
+				<!--«FILE_START»
+				<tr class="filewrapper">
+					<td>«FILE_NAME».«FILE_EXTENSION»</td>
+					<td>«FILE_DESCRIPTION»</td>
+					<td>«FILE_PATH»</td>
+					<td>«FILE_SIZE»</td>
+					<td>«FILE_LASTMODIFIED»</td>
+				</tr>
+				«FILE_END»--->
+			</table>
+			«MEDIA_END»
+	</body>
+</html>

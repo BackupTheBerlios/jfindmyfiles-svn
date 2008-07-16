@@ -47,7 +47,6 @@ Suporte para Windows		|	X			|	X				|	X	|					|			|	X		|			|
 
 
 Bibliografia:
-
 http://www.kde-apps.org/content/show.php/Tellico?content=10030
 http://hp.vector.co.jp/authors/VA008942/library/diskcatalogmaker/
 http://www.cdfinder.de/

@@ -1,0 +1,33 @@
+body{
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+	font-size: smaller;
+	text-align: center;
+}
+
+table.catalog{
+	background-color: #FAFAFA;
+	border: solid 1px #DDDDDD;
+	margin: 100px auto 15px;
+	padding: 10px;
+	width: 500px;
+}
+
+table.media{
+	background-color: #EAEAEA;
+	border: solid 1px #DDDDDD;
+	margin: 15px auto 15px;
+	padding: 10px;
+	width: 500px;
+}
+
+th.catalog{
+	background-color: #DDDDDD;
+	padding: 10px 0 10px 0;
+	text-align: center;
+}
+
+th.media{
+	background-color: #DDDDDD;
+	padding: 10px 0 10px 0;
+	text-align: center;
+}
