@@ -99,8 +99,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
             jpButtons.add(toggle);
         }
         toggle = new JToggleButton("Browse"); //TODO i18n
-//TODO: abrir uma pasta e pedir o icone do sistema operativo para colocar aqui.
-        toggle.setMinimumSize(new Dimension(24, 24));
+        toggle.setIcon(fsv.getSystemIcon(new File(System.getProperty("user.dir"))));
         toggle.setSize(toggle.getWidth(), 24);
 
         toggle.setHorizontalTextPosition(SwingConstants.CENTER);
@@ -181,6 +180,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
         jpopPlugins.add(jCheckBoxMenuItem1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle(org.openide.util.NbBundle.getMessage(NewDiskDlg.class, "NewDiskDlg.title")); // NOI18N
 
         jpButtons.setPreferredSize(new java.awt.Dimension(10, 50));
         jpButtons.setLayout(new javax.swing.BoxLayout(jpButtons, javax.swing.BoxLayout.LINE_AXIS));
@@ -214,9 +214,9 @@ public class NewDiskDlg extends javax.swing.JDialog {
             }
         });
 
-        jtbSelectedPlugins.setIcon(new ImageIcon(Utilities.loadImage("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x16/button-show-plugins.png")));
         jtbSelectedPlugins.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/general/button-show-plugins.png"))); // NOI18N
         jtbSelectedPlugins.setText(org.openide.util.NbBundle.getMessage(NewDiskDlg.class, "NewDiskDlg.jtbSelectedPlugins.text")); // NOI18N
+        jtbSelectedPlugins.setEnabled(false);
         jtbSelectedPlugins.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
         jtbSelectedPlugins.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -353,9 +353,9 @@ private void jtbSelectedPluginsActionPerformed(java.awt.event.ActionEvent evt) {
     //TODO: show plugin panel
     //WindowManager.getDefault().getMainWindow()
     if (jtbSelectedPlugins.isSelected()) {
-        jpopPlugins.setLocation((int)(getParent().getBounds().getX() + this.getBounds().getX() + 
+        jpopPlugins.setLocation((int) (getParent().getBounds().getX() + this.getBounds().getX() +
                 jtbSelectedPlugins.getBounds().getX()) + jtbSelectedPlugins.getWidth(),
-                (int)(getParent().getBounds().getY() + this.getBounds().getY() + 
+                (int) (getParent().getBounds().getY() + this.getBounds().getY() +
                 jtbSelectedPlugins.getBounds().getY()) + jtbSelectedPlugins.getHeight());
         jpopPlugins.setVisible(true);
     } else {
@@ -365,17 +365,19 @@ private void jtbSelectedPluginsActionPerformed(java.awt.event.ActionEvent evt) {
 }//GEN-LAST:event_jtbSelectedPluginsActionPerformed
 
 private void jbtnScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnScanActionPerformed
-    MediaReader r = Lookup.getDefault().lookup(MediaReader.class);
-    r.addListener(scanningDlg);
+    if (!currentSelectedPath.isEmpty() && new File(currentSelectedPath).exists()) {
+        MediaReader r = Lookup.getDefault().lookup(MediaReader.class);
+        r.addListener(scanningDlg);
 
-    SwingUtilities.invokeLater(new Runnable() {
+        SwingUtilities.invokeLater(new Runnable() {
 
-        public void run() {
-            setVisible(false);
-            scanningDlg.showCentered(ask4Description, showAgain);
-        }
-    });
-    r.read(new File(currentSelectedPath), calculateHash, isMedia, jtfDiskName.getText().trim(), (DiskGroup) jcbxCatalog.getSelectedItem());
+            public void run() {
+                setVisible(false);
+                scanningDlg.showCentered(ask4Description, showAgain);
+            }
+        });
+        r.read(new File(currentSelectedPath), calculateHash, isMedia, jtfDiskName.getText().trim(), (DiskGroup) jcbxCatalog.getSelectedItem());
+    }
 }//GEN-LAST:event_jbtnScanActionPerformed
 
 private void jbtnCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnCancelActionPerformed

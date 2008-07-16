@@ -8,6 +8,7 @@ import java.io.File;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.filechooser.FileView;
+import org.openide.util.Utilities;
 
 /**
  *
@@ -15,11 +16,11 @@ import javax.swing.filechooser.FileView;
  */
 public class CatalogView extends FileView {
 
-    private static ImageIcon fIcon;
+    private ImageIcon fIcon;
     
     public CatalogView() {
-         fIcon = new ImageIcon("/de/berlios/jfindmyfiles/jfindmyfilesgui/" +
-                 "resources/icons/general/catalog.png");
+         fIcon = new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/" +
+                 "resources/icons/general/catalog.png"));
     }
 
     @Override

@@ -5,6 +5,7 @@
 package de.berlios.jfindmyfiles.exportengine;
 
 import java.io.File;
+import java.util.Properties;
 
 /**
  *
@@ -19,8 +20,9 @@ public class Template {
     private String version;
     private int type;
     private File folder;
+    private Properties properties;
 
-    public Template(String name, String author, String version, int type, File folder) {
+    public Template(String name, String author, String version, int type, File folder, Properties properties) {
         if (type != SINGLE && type != COMPLETE) {
             throw new IllegalArgumentException("Invalid template type. " +
                     "Valid types are Template.SINGE and Template.COMPLETE");
@@ -30,6 +32,7 @@ public class Template {
         this.version = version;
         this.type = type;
         this.folder = folder;
+        this.properties = properties;
     }
 
     public File getFolder() {
@@ -48,6 +51,10 @@ public class Template {
         return type;
     }
 
+    public Properties getProperties() {
+        return properties;
+    }
+    
     public String getVersion() {
         return version;
     }

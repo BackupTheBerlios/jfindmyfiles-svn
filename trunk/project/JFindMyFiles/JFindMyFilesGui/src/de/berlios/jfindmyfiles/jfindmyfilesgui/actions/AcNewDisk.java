@@ -71,6 +71,7 @@ public final class AcNewDisk extends CallableSystemAction {
 
     @Override
     public boolean isEnabled() {
-        return eng.isOpened();
+        //return eng.isOpened();
+        return true;
     }
 }

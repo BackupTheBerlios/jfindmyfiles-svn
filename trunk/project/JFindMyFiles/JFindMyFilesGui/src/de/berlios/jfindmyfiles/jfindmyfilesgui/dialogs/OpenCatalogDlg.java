@@ -24,7 +24,6 @@ import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.utils.CatalogFilter;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.utils.CatalogView;
 import java.io.File;
-import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
@@ -60,7 +59,7 @@ public class OpenCatalogDlg extends javax.swing.JDialog {
 
     private boolean validateWihtMessages() {
         if (!jchkUserinternalDB.isSelected() && jtfName.getText().isEmpty()) {
-            jlbError.setText(org.openide.util.NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.empyname")); // NOI18N
+            jlbError.setText(org.openide.util.NbBundle.getMessage(OpenCatalogDlg.class, "OpenCatalogDlg.emptyname")); // NOI18N
 
             jlbError.setVisible(true);
             validate();

@@ -50,7 +50,7 @@ public class NewCatalogDlg extends javax.swing.JDialog {
 
     private boolean validateWihtMessages() {
         if (jtfName.getText().trim().isEmpty()) {
-            jlbError.setText(NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.empyname")); // NOI18N
+            jlbError.setText(NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.emptyname")); // NOI18N
 
             jlbError.setVisible(true);
             validate();

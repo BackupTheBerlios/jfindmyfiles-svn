@@ -80,6 +80,7 @@ public class ImportDlg extends javax.swing.JDialog {
         jpbExporting = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle(org.openide.util.NbBundle.getMessage(ImportDlg.class, "ImportDlg.title")); // NOI18N
 
         jbtnHelp.setText(org.openide.util.NbBundle.getMessage(ImportDlg.class, "ImportDlg.jbtnHelp.text")); // NOI18N
 

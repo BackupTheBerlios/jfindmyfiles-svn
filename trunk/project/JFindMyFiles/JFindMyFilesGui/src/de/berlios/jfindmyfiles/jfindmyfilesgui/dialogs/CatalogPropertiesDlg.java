@@ -100,7 +100,6 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
         jlblCatalogName = new javax.swing.JLabel();
         jlblCreatedOn = new javax.swing.JLabel();
         jlblIcon = new javax.swing.JLabel();
-        jlblIcon.setIcon(new ImageIcon(Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/images/x32/icon-catalog.png"))); // NOI18N
         jSeparator2 = new javax.swing.JSeparator();
         jdcCreatedOn = new com.toedter.calendar.JDateChooser();
         jSeparator1 = new javax.swing.JSeparator();
@@ -119,6 +118,7 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
         jbtnOK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle(org.openide.util.NbBundle.getMessage(CatalogPropertiesDlg.class, "CatalogPropertiesDlg.title")); // NOI18N
 
         jpCatalogData.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(CatalogPropertiesDlg.class, "CatalogPropertiesDlg.jpCatalogData.border.title"))); // NOI18N
 
@@ -127,6 +127,7 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
 
         jlblCreatedOn.setText(org.openide.util.NbBundle.getMessage(CatalogPropertiesDlg.class, "CatalogPropertiesDlg.jlblCreatedOn.text")); // NOI18N
 
+        jlblIcon.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlblIcon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/general/properties-catalog.png"))); // NOI18N
         jlblIcon.setText(org.openide.util.NbBundle.getMessage(CatalogPropertiesDlg.class, "CatalogPropertiesDlg.jlblIcon.text")); // NOI18N
 

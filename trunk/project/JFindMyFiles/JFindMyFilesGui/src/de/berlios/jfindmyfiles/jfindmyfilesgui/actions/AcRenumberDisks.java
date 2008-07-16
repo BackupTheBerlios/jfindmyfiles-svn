@@ -33,7 +33,7 @@ public final class AcRenumberDisks extends CallableSystemAction {
         super();
         eng = Lookup.getDefault().lookup(CatalogEngine.class);
     }
-    
+
     public void performAction() {
         // TODO implement action body
     }
@@ -57,8 +57,10 @@ public final class AcRenumberDisks extends CallableSystemAction {
     protected boolean asynchronous() {
         return false;
     }
-        @Override
+
+    @Override
     public boolean isEnabled() {
-        return eng.isOpened();
+        //return eng.isOpened();
+        return true;
     }
 }

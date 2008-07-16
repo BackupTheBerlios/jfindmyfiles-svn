@@ -20,10 +20,12 @@
 package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.SearchWindowTopComponent;
 import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
 import org.openide.util.actions.CallableSystemAction;
+import org.openide.windows.TopComponent;
 
 public final class AcSearch extends CallableSystemAction {
 
@@ -35,7 +37,9 @@ public final class AcSearch extends CallableSystemAction {
     }
 
     public void performAction() {
-        //tODO: implement body
+        TopComponent win = SearchWindowTopComponent.findInstance();
+        win.open();
+        win.requestActive();
     }
 
     public String getName() {

@@ -111,7 +111,7 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
                                             p.getProperty("author"),
                                             p.getProperty("version"),
                                             p.getProperty("type").equals("single") ? Template.SINGLE : Template.COMPLETE,
-                                            templates[z]));
+                                            templates[z], p));
                                     break;
 
                                 }
@@ -178,6 +178,7 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
         jbtnHelp = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.title")); // NOI18N
 
         jpExportType.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(ExportDlg.class, "ExportDlg.jpExportType.border.title"))); // NOI18N
 

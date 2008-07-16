@@ -86,13 +86,6 @@ public class CatalogEngine {
 
                     break;
                 case CatalogConstants.MYSQL:
-                    //TODO: remove this!
-                    username = "jfindmyfilesuser";
-                    password = "Jf1ndmYf1l3z!";
-                    dbname = "jfindmyfilesdb";
-                    dburl = "67.207.139.234";
-                    port = "3306";
-
                     hConfig.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQLDialect");
                     hConfig.setProperty("hibernate.connection.driver_class", "com.mysql.jdbc.Driver");
                     hConfig.setProperty("hibernate.connection.url", "jdbc:mysql://" + dburl + ":" + port + "/" + dbname);
@@ -267,6 +260,14 @@ public class CatalogEngine {
         Session cSession = sessionFactory.getCurrentSession();
         cSession.beginTransaction();
         List rs = cSession.createQuery("from DiskGroup").list();
+        cSession.getTransaction().commit();
+        return rs;
+    }
+    
+    public List getDisks() {
+        Session cSession = sessionFactory.getCurrentSession();
+        cSession.beginTransaction();
+        List rs = cSession.createQuery("from Media").list();
         cSession.getTransaction().commit();
         return rs;
     }

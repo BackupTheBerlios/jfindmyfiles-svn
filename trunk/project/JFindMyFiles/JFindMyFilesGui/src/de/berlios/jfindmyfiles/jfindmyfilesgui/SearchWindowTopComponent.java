@@ -26,7 +26,7 @@ import org.openide.windows.WindowManager;
 /**
  * Top component which displays something.
  */
-final class SearchWindowTopComponent extends TopComponent {
+public final class SearchWindowTopComponent extends TopComponent {
 
     private CatalogEngine eng;
     private Vector<DiskGroup> groups;
