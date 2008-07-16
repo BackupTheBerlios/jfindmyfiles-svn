@@ -1,8 +1,17 @@
-A organização de dados seja do que tipo forem é uma necessidade constante nos dias de hoje. Deste modo surjiram sistemas (aplicações/software) capazes de organizar esses dados catalogando-os. Existem sistemas semelhantes ao JfindMyFiles tais como o  Where Is It,  Argentum MyFiles entre outros. Alguns funcionam em Windows , outros em Linux e outros em Mac. O que existe em comum entre a maioria deles é:
+De forma a saber o que implementar na aplicação a desenvolver foi necessário efectuar um estudo sobre o que existe no mercado.
+Assim sendo, fez-se uma pesquisa pela internet e foram encontrados alguns sistemas (aplicações/software).
+Como a organização de dados seja do que tipo forem é uma necessidade constante nos dias de hoje, surjiram sistemas capazes de organizar esses dados catalogando-os. 
+Com a catalogação torna-se mais fácil localizar um ítem específico e cada utilizador organiza o seu catálogo à sua maneira. 
+Todos estes sistemas apresentam uma interface de fácil utilização tornando-se acessível para qualquer utilizador de modo a não perder tempo a pesquisar como funciona.
+Assim sendo, procurou-se implementar uma aplicação de fácil utilização, multiplataforma, com motor de pesquisa, permita criar mais do que 1 catálogo....
+
+Os sistemas semelhantes ao JFindMyFiles são por exemplo: o  Where Is It, o Argentum MyFiles entre outros. Alguns funcionam em Windows , outros em Linux e outros em Mac. 
+O que existe em comum entre a maioria deles é:
 ?	possuir o objectivo de organizar os dados criando um ou mais catálogos consoante o utilizador quiser;
 ?	localizar os dados mais rápido;
 ?	funcionarem só no Windows;
 ?	funcionarem em qualquer drive (CD-Roms, drives removíveis);
+
 
 	Em baixo está representada uma tabela com alguns sistemas existentes e suas funcionalidades.
 
@@ -11,7 +20,7 @@ A organização de dados seja do que tipo forem é uma necessidade constante nos di
 ----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
 Concebidos para ajudá-lo 	|				|					|		|					|			|			|			|
 a manter e organizar um 	|	X			|	X				|	X	|	X				|	X		|	X		|	X		|
-catálogo de seu computador	|
+catálogo de seu computador	|               |                   |       |                   |           |           |           | 
 ----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
 CD-ROMs/DVDs				|	X			|	X				|	X	|					|			|			|			|
 ----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
@@ -38,10 +47,12 @@ Suporte para Windows		|	X			|	X				|	X	|					|			|	X		|			|
 ----------------------------+---------------+-------------------+-------+-------------------+-----------+-----------+-----------+
 
 Bibliografia
+http://www.kde-apps.org/content/show.php/Tellico?content=10030
 http://hp.vector.co.jp/authors/VA008942/library/diskcatalogmaker/
 http://www.cdfinder.de/
 http://en.wikipedia.org/wiki/CDFinder
 http://en.wikipedia.org/wiki/CDWinder
+http://cdcat.sourceforge.net/
 http://www.whereisit-soft.com
 http://www.argentuma.com/myfiles.html
 
