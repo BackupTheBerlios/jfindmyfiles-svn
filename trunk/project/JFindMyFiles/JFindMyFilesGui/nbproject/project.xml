@@ -73,7 +73,7 @@
                         <specification-version>1.5.1</specification-version>
                     </run-dependency>
                 </dependency>
-                <dependency>
+                <!-- <dependency>
                     <code-name-base>org.netbeans.modules.tableview</code-name-base>
                     <build-prerequisite/>
                     <compile-dependency/>
@@ -81,7 +81,7 @@
                         <release-version>1</release-version>
                         <specification-version>0.3</specification-version>
                     </run-dependency>
-                </dependency>
+                </dependency> -->
                 <dependency>
                     <code-name-base>org.openide.awt</code-name-base>
                     <build-prerequisite/>

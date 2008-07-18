@@ -20,8 +20,10 @@
 package de.berlios.jfindmyfiles.catalog;
 
 import de.berlios.jfindmyfiles.catalog.entities.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Stack;
 import java.util.Vector;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.logging.Level;
@@ -29,6 +31,8 @@ import java.util.logging.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Restrictions;
 
 public class CatalogEngine {
 
@@ -263,7 +267,7 @@ public class CatalogEngine {
         cSession.getTransaction().commit();
         return rs;
     }
-    
+
     public List getDisks() {
         Session cSession = sessionFactory.getCurrentSession();
         cSession.beginTransaction();
@@ -274,48 +278,48 @@ public class CatalogEngine {
 
     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     public void addListener(CatalogEngineListener l) {
-            if (listeners == null) {
-                listeners = new CopyOnWriteArrayList<CatalogEngineListener>();
-            }
-            listeners.add(l);
+        if (listeners == null) {
+            listeners = new CopyOnWriteArrayList<CatalogEngineListener>();
+        }
+        listeners.add(l);
     }
 
     public void removeListener(CatalogEngineListener l) {
-            if (listeners != null) {
-                listeners.remove(l);
-            }
+        if (listeners != null) {
+            listeners.remove(l);
+        }
     }
 
     private void fireCatalogCreated(CatalogEngineEvent evt) {
-            if (listeners != null) {
-                for (CatalogEngineListener l : listeners) {
-                    l.catalogCreated(evt);
-                }
+        if (listeners != null) {
+            for (CatalogEngineListener l : listeners) {
+                l.catalogCreated(evt);
             }
+        }
     }
 
     private void fireCatalogOpened(CatalogEngineEvent evt) {
-            if (listeners != null) {
-                for (CatalogEngineListener l : listeners) {
-                    l.catalogOpened(evt);
-                }
+        if (listeners != null) {
+            for (CatalogEngineListener l : listeners) {
+                l.catalogOpened(evt);
             }
+        }
     }
 
     private void fireCatalogClosed(CatalogEngineEvent evt) {
-            if (listeners != null) {
-                for (CatalogEngineListener l : listeners) {
-                    l.catalogClosed(evt);
-                }
+        if (listeners != null) {
+            for (CatalogEngineListener l : listeners) {
+                l.catalogClosed(evt);
             }
+        }
     }
 
     private void fireDiskGroupAdded(CatalogEngineEvent evt) {
-            if (listeners != null) {
-                for (CatalogEngineListener l : listeners) {
-                    l.diskGroupAdded(evt);
-                }
+        if (listeners != null) {
+            for (CatalogEngineListener l : listeners) {
+                l.diskGroupAdded(evt);
             }
+        }
     }
 
     /**
@@ -327,5 +331,36 @@ public class CatalogEngine {
         if (sessionFactory != null && !sessionFactory.isClosed()) {
             sessionFactory.close();
         }
+    }
+
+    //TESTING:
+    public void addNewDisk(Media disk, List<FileWrapper> files) {
+        Session s = sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        s.save(disk);
+        for (FileWrapper f : files) {
+            s.save(f);
+        }
+        s.getTransaction().commit();
+    }
+    //TESTING:
+    public List<FileWrapper> searchDuplicates(String hash) {
+        Session s = sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        List rs = null;//TODO:s.createCriteria(FileWrapper.class).add(Restrictions.like("sha1", hash, MatchMode.EXACT)).list();
+        s.getTransaction().commit();
+        return rs;
+    }
+    
+    public List<FileWrapper> findDuplicates() {
+        List<FileWrapper> result = new ArrayList<FileWrapper>();
+        Session s = sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        result.addAll(s.createQuery("select f from FileWrapper f where sha1 in " +
+                "(select f2.sha1 from FileWrapper f2 group by f2.sha1 having " +
+                "( count(f2.sha1) > 1 AND f2.sha1 <> '' AND f2.sha1 is not null))").list());      
+        s.getTransaction().commit();
+        
+        return result;
     }
 }

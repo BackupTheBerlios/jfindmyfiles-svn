@@ -4,6 +4,7 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.SearchParentNode;
 import java.awt.BorderLayout;
 import java.io.Serializable;
@@ -12,6 +13,7 @@ import javax.swing.ActionMap;
 import org.openide.explorer.ExplorerManager;
 import org.openide.explorer.ExplorerUtils;
 import org.openide.explorer.view.BeanTreeView;
+import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
 import org.openide.windows.TopComponent;
 import org.openide.windows.WindowManager;
@@ -19,7 +21,7 @@ import org.openide.windows.WindowManager;
 /**
  * Top component which displays something.
  */
-public final class DuplicateResultsTopComponent extends TopComponent {
+public final class DuplicateResultsTopComponent extends TopComponent implements ExplorerManager.Provider {
 
     private final ExplorerManager manager = new ExplorerManager();
     private final BeanTreeView view = new BeanTreeView();
@@ -124,14 +126,5 @@ public final class DuplicateResultsTopComponent extends TopComponent {
 
     public ExplorerManager getExplorerManager() {
         return manager;
-    }
-
-    public void startSearching() {
-        //TODO: searchig for duplicates
-        /*CatalogEngine eng = Lookup.getDefault().lookup(CatalogEngine.class);
-        Session s = eng.sessionFactory.getCurrentSession();
-        s.beginTransaction();
-        s.createCriteria(FileWrapper.class).add(Restrictions.like("sha1", hash, MatchMode.EXACT)).list();
-        s.getTransaction().commit();*/
     }
 }

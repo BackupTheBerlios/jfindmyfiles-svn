@@ -6,7 +6,6 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 
 import java.awt.Image;
 import org.openide.nodes.AbstractNode;
-import org.openide.nodes.Children;
 import org.openide.util.Utilities;
 import org.openide.util.actions.SystemAction;
 
@@ -15,13 +14,17 @@ import org.openide.util.actions.SystemAction;
  * @author Knitter
  */
 public class SearchParentNode extends AbstractNode {
-
-    //private SystemAction[] sysact;
+    
+    private SearchChildren ch;
     
     public SearchParentNode() {
-        super(Children.LEAF);
-        //super(new SearchChildren(null));TODO: squash the damn bug
-        setName("Duplicates Found");//TODO: i18n
+        this(new SearchChildren());
+    }
+    
+    private SearchParentNode(SearchChildren ch) {
+       super(ch);
+       this.ch = ch;
+       setName("Duplicates Found: " + ch.getItemCount());//TODO: i18n
     }
 
     @Override

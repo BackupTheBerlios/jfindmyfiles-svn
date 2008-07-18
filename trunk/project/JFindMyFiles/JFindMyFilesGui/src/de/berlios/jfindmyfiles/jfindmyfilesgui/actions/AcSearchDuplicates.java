@@ -25,7 +25,6 @@ public final class AcSearchDuplicates extends CallableSystemAction {
         TopComponent win = DuplicateResultsTopComponent.findInstance();
         win.open();
         win.requestActive();
-        ((DuplicateResultsTopComponent) win).startSearching();
     }
 
     public String getName() {

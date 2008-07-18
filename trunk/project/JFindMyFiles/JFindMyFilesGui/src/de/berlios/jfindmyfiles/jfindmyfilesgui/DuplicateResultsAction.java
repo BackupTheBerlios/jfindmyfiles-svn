@@ -26,6 +26,5 @@ public class DuplicateResultsAction extends AbstractAction {
         TopComponent win = DuplicateResultsTopComponent.findInstance();
         win.open();
         win.requestActive();
-        ((DuplicateResultsTopComponent)win).startSearching();
     }
 }

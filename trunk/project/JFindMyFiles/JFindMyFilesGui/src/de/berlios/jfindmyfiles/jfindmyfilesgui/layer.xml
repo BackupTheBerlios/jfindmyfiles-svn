@@ -58,7 +58,6 @@
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-SearchWindowAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-SingleViewAction.instance"/>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-StatisticsAction.instance"/>
-            <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-WindowTestingAction.instance"/>
         </folder>
         </folder>
     <folder name="Menu">
@@ -222,9 +221,6 @@
             <file name="StatisticsAction.shadow">
                 <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-StatisticsAction.instance"/>
             </file>
-            <file name="WindowTestingAction.shadow">
-                <attr name="originalFile" stringvalue="Actions/Window/de-berlios-jfindmyfiles-jfindmyfilesgui-WindowTestingAction.instance"/>
-            </file>
             <file name="de-berlios-jfindmyfiles-jfindmyfilesgui-actions-separatorAfter.instance">
                 <attr name="instanceClass" stringvalue="javax.swing.JSeparator"/>
             </file>
@@ -324,8 +320,7 @@
             <file name="SearchWindowTopComponent.settings" url="SearchWindowTopComponentSettings.xml"/>
             <file name="SingleViewTopComponent.settings" url="SingleViewTopComponentSettings.xml"/>
             <file name="StatisticsTopComponent.settings" url="StatisticsTopComponentSettings.xml"/>
-            <file name="WindowTestingTopComponent.settings" url="WindowTestingTopComponentSettings.xml"/>
-        </folder>
+            </folder>
         <folder name="Modes">
             <folder name="editor">
                 <file name="DetailsViewTopComponent.wstcref" url="DetailsViewTopComponentWstcref.xml"/>
@@ -334,8 +329,7 @@
                 <file name="SearchWindowTopComponent.wstcref" url="SearchWindowTopComponentWstcref.xml"/>
                 <file name="SingleViewTopComponent.wstcref" url="SingleViewTopComponentWstcref.xml"/>
                 <file name="StatisticsTopComponent.wstcref" url="StatisticsTopComponentWstcref.xml"/>
-                <file name="WindowTestingTopComponent.wstcref" url="WindowTestingTopComponentWstcref.xml"/>
-            </folder>
+                </folder>
             <folder name="leftSlidingSide">
                 <file name="NavigationTreeTopComponent.wstcref" url="NavigationTreeTopComponentWstcref.xml"/>
             </folder>

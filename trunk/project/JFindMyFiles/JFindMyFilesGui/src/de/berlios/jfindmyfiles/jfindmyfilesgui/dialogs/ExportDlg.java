@@ -88,7 +88,7 @@ public class ExportDlg extends javax.swing.JDialog implements ExportListener {
 
     private void startUp() throws IOException {
         String base = System.getProperty("user.home") + File.separator +
-                "jfmf" + File.separator + "templates";
+                ".jfmfuserfiles" + File.separator + "Templates";
         System.out.println("Trying: " + base);
         File folder = new File(base);
         File[] list;

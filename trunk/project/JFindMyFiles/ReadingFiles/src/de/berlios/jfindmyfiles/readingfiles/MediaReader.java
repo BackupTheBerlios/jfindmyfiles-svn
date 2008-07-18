@@ -20,6 +20,7 @@
 package de.berlios.jfindmyfiles.readingfiles;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
+import de.berlios.jfindmyfiles.catalog.CompositeFile;
 import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
 import de.berlios.jfindmyfiles.catalog.entities.FileWrapper;
 import de.berlios.jfindmyfiles.catalog.entities.Media;
@@ -30,7 +31,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Stack;
 import java.util.Vector;
-import org.hibernate.Session;
 import org.openide.util.Lookup;
 
 public class MediaReader {
@@ -49,21 +49,20 @@ public class MediaReader {
 
             public void run() {
                 fireReadingStarted(new ReadingEvent(me, "", null));
-                Session s = Lookup.getDefault().lookup(CatalogEngine.class).sessionFactory.getCurrentSession();
+                CatalogEngine eng = Lookup.getDefault().lookup(CatalogEngine.class);
                 PluginCache cache = Lookup.getDefault().lookup(PluginCache.class);
-                s.beginTransaction();
                 Stack<CompositeFile> directories = new Stack<CompositeFile>();
                 File current, listing[];
                 CompositeFile cf;
                 long childSize = 0L, totalSize = 0L;
                 FileWrapper fw, temp;
+                ArrayList<FileWrapper> files = new ArrayList<FileWrapper>();
                 int z;
                 String tExt;
                 Reader reader;
                 Media container = new Media();
                 container.setName(mediaName);
                 container.setType(ReadingUtils.findFileType(file.getAbsolutePath()));
-                s.save(container);
 
                 if ((listing = file.listFiles()) != null) {
                     for (z = listing.length; z-- > 0;) {
@@ -80,7 +79,7 @@ public class MediaReader {
                                     (sha ? ReadingUtils.calculateSHA1HashString(listing[z]) : ""),
                                     (tExt = ReadingUtils.findExtension(listing[z].getName())), //TODO: same for other attributes
                                     (reader = cache.readerFor(tExt)) != null ? reader.read(listing[z]).getDescription() : "");
-                            s.save(temp);
+                            files.add(temp);
                             container.addFile(temp);
                         }
                     }
@@ -94,7 +93,7 @@ public class MediaReader {
                             current.getAbsolutePath(), 0, current.isFile(),
                             current.isHidden(), current.lastModified(),
                             container, cf.parent, "", "", "");//NOTE: should we hash a directory?
-                    s.save(fw);
+                    files.add(fw);
                     if ((listing = current.listFiles()) != null) {
                         for (z = listing.length; z-- > 0;) {
                             if (listing[z].isDirectory()) {
@@ -110,7 +109,7 @@ public class MediaReader {
                                         (sha ? ReadingUtils.calculateSHA1HashString(listing[z]) : ""),
                                         (tExt = ReadingUtils.findExtension(listing[z].getName())), //TODO: same for other attributes
                                         (reader = cache.readerFor(tExt)) != null ? reader.read(listing[z]).getDescription() : "");
-                                s.save(temp);
+                                files.add(temp);
                                 fw.addChild(temp);
                             }
                         }
@@ -119,12 +118,11 @@ public class MediaReader {
                     totalSize += childSize;
                 }
                 //TODO: capacity and other properties
-                if (abort) {
-                    s.getTransaction().rollback();
-                } else {
-                    s.getTransaction().commit();
+                if (!abort) {
+                    eng.addNewDisk(container, files);
                     fireReadingStopped(new ReadingEvent(me, "", container));
                 }
+                files.clear();
             }
         }).start();
     }
@@ -169,7 +167,7 @@ public class MediaReader {
     private void fireReadingFile(ReadingEvent evt) {
         Vector<ReadingListener> copy = new Vector<ReadingListener>(listeners.size());
         copy.addAll(listeners);
-        
+
         for (ReadingListener l : copy) {
             l.readingFile(evt);
         }
@@ -178,7 +176,7 @@ public class MediaReader {
     private void fireReadingAborted(ReadingEvent evt) {
         Vector<ReadingListener> copy = new Vector<ReadingListener>(listeners.size());
         copy.addAll(listeners);
-        
+
         for (ReadingListener l : copy) {
             l.readingAborted(evt);
         }
