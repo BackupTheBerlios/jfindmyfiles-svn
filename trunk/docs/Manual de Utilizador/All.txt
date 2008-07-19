@@ -1,0 +1,25 @@
+[Prefácio]
+	Este documento de ajuda destina-se a todos os utilizadores do sistema 
+	JFindMyfiles, e pretende ser um primeiro ponto de resolução das dúvidas que 
+	surjam.	
+[Introdução]
+	[O que é o JFindMyFiles]
+	JFindMyFiles é um software de computador que oferece a capacidade de gestão 
+	de ficheiros digitais.
+	[Conceitos Básicos]
+	A unidade básica é um catálogo, 
+[Utilização do programa]
+	[Os catálogos]
+		[Criar]
+		[Abrir]
+		[Guardar]
+		[Os diferentes tipos de base de dados]
+	[Adicionar novos ficheiros]
+	[Pesquisar informações]
+	[Importar dados]
+	[Exportar dados]
+		[Exportação simples]
+		[Exportar usando templates]
+		[Obter mais templates]
+[Perguntas Frequentes]
+[Sobre]
