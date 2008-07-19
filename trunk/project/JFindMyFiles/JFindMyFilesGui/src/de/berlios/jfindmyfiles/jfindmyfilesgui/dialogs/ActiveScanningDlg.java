@@ -81,11 +81,6 @@ public class ActiveScanningDlg extends javax.swing.JDialog implements ReadingLis
 
         jbtnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/general/button-stop.png"))); // NOI18N
         jbtnCancel.setText(org.openide.util.NbBundle.getMessage(ActiveScanningDlg.class, "ActiveScanningDlg.jbtnCancel.text")); // NOI18N
-        jbtnCancel.setFocusPainted(false);
-        jbtnCancel.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        jbtnCancel.setMaximumSize(new java.awt.Dimension(20, 19));
-        jbtnCancel.setMinimumSize(new java.awt.Dimension(20, 19));
-        jbtnCancel.setPreferredSize(new java.awt.Dimension(20, 19));
         jbtnCancel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jbtnCancelActionPerformed(evt);
@@ -98,19 +93,19 @@ public class ActiveScanningDlg extends javax.swing.JDialog implements ReadingLis
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jpbReadingProgress, javax.swing.GroupLayout.DEFAULT_SIZE, 441, Short.MAX_VALUE)
+                .addComponent(jpbReadingProgress, javax.swing.GroupLayout.DEFAULT_SIZE, 415, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jbtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jbtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jpbReadingProgress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jbtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jbtnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

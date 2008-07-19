@@ -1,25 +1,204 @@
 [Prefácio]
 	Este documento de ajuda destina-se a todos os utilizadores do sistema 
-	JFindMyfiles, e pretende ser um primeiro ponto de resolução das dúvidas que 
-	surjam.	
+	JFindMyfiles, e pretende ser um primeiro ponto de resolução das dúvidas 
+	que surjam.
+	
 [Introdução]
 	[O que é o JFindMyFiles]
-	JFindMyFiles é um software de computador que oferece a capacidade de gestão 
-	de ficheiros digitais.
+		JFindMyFiles é um software de computador, multi-plataforma e 
+		livre, que oferece a capacidade de catalogação e gestão de 
+		ficheiros digitais. Permitindo guardar informação sobre os 
+		ficheiros de computador, torna mais fácil e rápida a pesquisa e 
+		organização por parte do utilizador informações, entre outros.
+
 	[Conceitos Básicos]
-	A unidade básica é um catálogo, 
+		O programa organiza os dados em catálogos, e permite que os 
+		dispositivos de armazenamento sejam analizados no sentido de 
+		guardar informações sobre os ficheiros e pastas contidos.
+		Durante a fase de análise é possível usar extensões, criadas 
+		pelo utilizador, que fornecem descrições extra sobre os 
+		ficheiros lidos
+
+		Os suportes lidos são considerados discos para a aplicação, e 
+		podem ser organizados em grupos de discos.
+
 [Utilização do programa]
 	[Os catálogos]
 		[Criar]
+			Para criar um novo catálogo é necessário decidir 
+			primeiro o tipo de base de dados que será usada para 
+			guardar as informações.
+			
+			Estão disponíveis vários motores de bases de dados, que 
+			terão de ser configurados pelo utilizador, ou uma base 
+			de dados interna, sem qualquer necessidade de 
+			configuração para o utilizador. A escolha dependerá do 
+			objectivo e das características do utilizador.
+
+			Se não tem conhecimentos sobre instalação de servidores 
+			de bases de dados, é recomendado que escolha a opção de 
+			base de dados local. Se possui já um servidor que 
+			pretende usar, então poderá escolher a opção de rede e 
+			introduzir os dados referentes ao servidor.
+
+			Na opção de base de dados local, uma base de dados será 
+			composta por vários ficheiros em disco, durante a 
+			criação do catálogo será criada um pasta onde esses 
+			ficheiros irão residir. Por omissão essa pasta será 
+			criada na pasta pessoal do utilizador. Esta localização 
+			poderá ser alterada na janela de criação de novos 
+			catálogos ou nas opções da aplicação.
+
+			!Para os utilizadores com conhecimentos avançados é 
+			necessário salientar que, a opção de base de dados 
+			local, não deverá ser confundida com o uso de um 
+			servidor intalado na mesma máquina onde a aplicação 
+			está a ser executada. Um qualquer servidor, instalado 
+			localmente, é para a aplicação, uma base de dados de 
+			rede.
+
+			[Os diferentes tipos de base de dados]
+				O programa suporta alguns motores de bases de 
+				dados comuns. É assim possível escolher o 
+				servidor que mais se adequar à situação.
+
+				Ao escolher criar um novo catálogo tem a 
+				possibilidade de indicar qual o tipo de 
+				servidor que pretende usar. É necessário que 
+				este servidor esteja já configurado e que 
+				exista uma base de dados e um utilizador com as 
+				configurações que indicar. ! O programa não 
+				cria a base de dados, cria apenas as tabelas 
+				que a compoem, todas as configurações, como a 
+				instalação do servidor, criação de uma base de 
+				dados e criação de um utilizador com as 
+				permissões correctas, têm de ser feitas antes 
+				de se tentar criar um novo catálogo.
+
+				Actualmente, os servidores suportados são: 
+				MySQL, MSSQL 2005, Firebird, PostgreSQL. Não 
+				foi testa a versão 2008 do MSSQL, por esse 
+				motivo a mesma não é oficialmente suportada.
+			<imagem para criar>
+			<imagem das opções>
 		[Abrir]
+			Para abrir um catálogo, os passos são semalhantes à 
+			criação[LINK].
+			
+			Se estiver a usar a opção de base de dados local, 
+			poderá simplesmente navegar até à pasta que contém o 
+			catálogo e seleccionar essa pasta. O nome do catálogo 
+			será preenchido automaticamente.
+
+			<imagem para abrir>
 		[Guardar]
-		[Os diferentes tipos de base de dados]
+			Não existe uma opção especifica para guardar os dados. 
+			O programa regista todas as alterações que são feitas 
+			aos dados, não sendo por isso necessário ter o cuidado 
+			de guardar os dados.
+
 	[Adicionar novos ficheiros]
+		Novos ficheiros são adicionadas através da leitura de 
+		dispositivos de amazenamento. Não é possivel adicionar apenas 
+		um ficheiro, a adicção terá de ser sempre de novos discos, 
+		novas pastas, ou outro dispositivo de armazenamento acessível 
+		ao computador.
+
+		Ao adicionar um novo disco, é possível alterar o nome do disco 
+		que será guardado no catálogo, indicar o Grupo de Discos ao 
+		qual o novo disco será adicionado e indicar se será feito o 
+		cálculo do código SHA-1. Este código é usando em 
+		funcionalidades avançadas e embora a sua criação seja opcional, 
+		essas funcionalidades não estarão disponiveis em informações de 
+		ficheiros sem o código cálculado.
+
 	[Pesquisar informações]
+		É possível pesquisar ficheiros catalogados através do seu nome, 
+		ou de uma palavra ou frase presente na sua descrição. A 
+		pesquisa pode ser sensível a maiúsculas e ser restrita a um 
+		grupo de discos.
+		<imagem de janela de pesquisa>
+
 	[Importar dados]
+		A importação de dados está disponível para ficheiros XML,
+		previamente criados pelo JFindMyFiles.
+		Para importar dados exportados anteriormente, basta indicar o 
+		nome do ficheiro que contém os dados a exportar.
+
+		<imagem da janela de importação>
+
 	[Exportar dados]
+		A exportação de dados está diponível em duas opções, exportação 
+		simples, usada para exportar todos os dados para um ficheiro de 
+		texto num formato portável, XML ou CSV, e exportação usando 
+		templates.
+
 		[Exportação simples]
+			Para a exportação simples é apenas necessário indicar o 
+			nome do ficheiro destino.
+			Caso pretenda exportar imagens, videos ou clips de 
+			audio que existam no catálogo, os mesmos serão copiados 
+			para a pasta onde foi criado o ficheiro de exportação.
+
+			Tenha em atenção, que se pretender usar o ficheiro de 
+			exportação para mais tarde importar no JFindMyFiles, 
+			todos os ficheiros de audio, video e imagem, necessitam 
+			estar na mesma pasta que o ficheiro XML.
+
+			<imagem da janela de exportação>
 		[Exportar usando templates]
+			Para exportar os dados usando um template HTML, 
+			necessita ter alguns templates instalados.
+
+			Todos os recursos indicanos no template serão copiados 
+			para a pasta de destino da exportação.
+
+			<imagem da janela de exportação>
 		[Obter mais templates]
+			Caso pretende obter mais templates poderá consultar o 
+			sítio oficial da aplicação.
+
+		Instalar Templates
+			A instalação dos templates faz-se colocando a pasta do 
+			template na pasta configurada na janela de opções. Se 
+			não alterou a configuarção estará na sua pasta pessoal, 
+			dentro da pasta .jfmfuserfiles/Templates.
+
+			Caso o seu template venha compactado, descompacte-o e 
+			coloque a pasta com todos os ficheiros na pasta de 
+			templates.
+[Drives em Linux]
+	Em linux não é possível, até ao momento, determinar quais as drives 
+	correspondentes a dispositivos de CD-ROM/DVD-ROM, FLAHS, discos 
+	externos, etc.
+	Por isso existe na secção de opções, um conjunto de definições que pode 
+	usar para configurar quais as pastas que deseja que sejam identificas 
+	como dispositivos a ler.
+
 [Perguntas Frequentes]
+
+[Para Programadores e Designers]
+	Esta seçcão inclui algumas informações destinadas a utilizadores com 
+	conhecimentos avançados e que pretendam expandir a aplicação, quer 
+	criando extensões ao sistema de leitura, quer criando templates HTML 
+	para o sistema de exportação de dados.
+	
+	[Expandir o sistema de leitura]
+	
+	[Criar Templates de exportação]
+
 [Sobre]
+	JFindMyFiles surgiu da necessidade que os autores tinham de uma 
+	aplicação que lhes permitisse gerir os vários ficheiros que possuiam 
+	espalhados por dezenas de CDs, DVDs e outros suportes. Após a 
+	utilização de alguns sistemas de catalogação que se mostraram 
+	insuficientes, quer em funcionalidades quer por se limitarem a apenas 
+	um sistema operativo, os autores, decidiram propor o projecto à cadeira 
+	de Projecto Informático da Escola Superior de Tecnologia e Gestão do 
+	Intituto Politécnico de Leiria.
+
+	Autores: Patrícia Monteiro, Sérgio Lopes
+
+
+
+

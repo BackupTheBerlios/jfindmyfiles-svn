@@ -55,9 +55,9 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jpbReadingProgress" pref="441" max="32767" attributes="0"/>
+                  <Component id="jpbReadingProgress" pref="415" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jbtnCancel" min="-2" pref="20" max="-2" attributes="0"/>
+                  <Component id="jbtnCancel" min="-2" pref="46" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -66,11 +66,11 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jpbReadingProgress" alignment="0" min="-2" max="-2" attributes="1"/>
-                      <Component id="jbtnCancel" alignment="0" min="-2" pref="19" max="-2" attributes="1"/>
+                  <Group type="103" groupAlignment="1" attributes="0">
+                      <Component id="jpbReadingProgress" alignment="1" min="-2" max="-2" attributes="1"/>
+                      <Component id="jbtnCancel" alignment="1" min="-2" pref="26" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="13" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -92,19 +92,6 @@
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
               <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/dialogs/Bundle.properties" key="ActiveScanningDlg.jbtnCancel.text" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
-            </Property>
-            <Property name="focusPainted" type="boolean" value="false"/>
-            <Property name="margin" type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
-              <Insets value="[0, 0, 0, 0]"/>
-            </Property>
-            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[20, 19]"/>
-            </Property>
-            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[20, 19]"/>
-            </Property>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[20, 19]"/>
             </Property>
           </Properties>
           <Events>
