@@ -104,12 +104,12 @@
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jlblDiskName" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jtfDiskName" alignment="0" pref="282" max="32767" attributes="0"/>
+                              <Component id="jtfDiskName" alignment="0" pref="288" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jlblCatalog" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jcbxCatalog" alignment="0" pref="143" max="32767" attributes="0"/>
+                              <Component id="jcbxCatalog" alignment="0" pref="149" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>

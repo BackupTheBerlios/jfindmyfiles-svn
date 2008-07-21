@@ -19,6 +19,7 @@
  */
 package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 
+import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.catalog.CatalogEngineEvent;
 import de.berlios.jfindmyfiles.catalog.CatalogEngineListener;
 import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
@@ -48,6 +49,7 @@ public class DiskGroupNode extends AbstractNode implements CatalogEngineListener
         super((leaf ? Children.LEAF : new DiskGroupChildren(group.getId())), Lookups.singleton(group));
         setName(group.getName());
         this.group = group;
+        Lookup.getDefault().lookup(CatalogEngine.class).addListener(this);
         Lookup lo = Lookups.forPath("/Actions");//TODO: sort actions correctly and add separators
         sysact = new SystemAction[]{lo.lookup(AcRemove.class), lo.lookup(AcItemProperties.class),
                     lo.lookup(AcRenumberDisks.class), lo.lookup(AcNewDisk.class), lo.lookup(AcNewGroup.class)

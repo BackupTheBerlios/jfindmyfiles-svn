@@ -80,15 +80,17 @@ public class DiskGroupChildren extends Children.Keys implements CatalogEngineLis
 
     @SuppressWarnings("unchecked")
     public void diskGroupAdded(CatalogEngineEvent evt) {
-        if (evt.getNewDiskGroup().getId().equals(parentId)) {
+        if (evt.getNewDiskGroup().getParent() != null && evt.getNewDiskGroup().getParent().getId().equals(parentId)) {
             items.add(evt.getNewDiskGroup());
             addNotify();
         }
+        System.err.println("ADICIONADO GRUPO COM NOME:" + evt.getNewDiskGroup());
+        System.err.println("PERTENCE? " + parentId + "/" + evt.getNewDiskGroup().getParent() == null ? null : evt.getNewDiskGroup().getParent().getId());
     }
 
     @SuppressWarnings("unchecked")
     public void diskGroupRemoved(CatalogEngineEvent evt) {
-        if (evt.getOldDiskGroup().getId().equals(parentId)) {
+        if (evt.getOldDiskGroup().getParent() != null && evt.getOldDiskGroup().getParent().getId().equals(parentId)) {
             items.remove(evt.getOldDiskGroup());
             addNotify();
         }
@@ -104,6 +106,8 @@ public class DiskGroupChildren extends Children.Keys implements CatalogEngineLis
             items.add(evt.getNewDisk());
             addNotify();
         }
+        System.err.println("ADICIONADO DISCO COM NOME:" + evt.getNewDisk());
+        System.err.println("PERTENCE? " + parentId + "/" + evt.getNewDisk().getGroup() == null ? null : evt.getNewDisk().getGroup().getId());
     }
 
     @SuppressWarnings("unchecked")

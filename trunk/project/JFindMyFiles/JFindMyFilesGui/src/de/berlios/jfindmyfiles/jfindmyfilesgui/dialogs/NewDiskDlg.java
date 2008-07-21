@@ -98,7 +98,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
             jbtngrpDrives.add(toggle);
             jpButtons.add(toggle);
         }
-        toggle = new JToggleButton("Browse"); //TODO i18n
+        toggle = new JToggleButton("Browse"); //TODO: i18n
         toggle.setIcon(fsv.getSystemIcon(new File(System.getProperty("user.dir"))));
         toggle.setSize(toggle.getWidth(), 24);
 
@@ -380,7 +380,8 @@ private void jbtnScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 scanningDlg.showCentered(ask4Description, showAgain);
             }
         });
-        DiskGroup g = !jcbxCatalog.getSelectedItem().toString().equalsIgnoreCase("---") ? (DiskGroup)jcbxCatalog.getSelectedItem() : null;
+        DiskGroup g = jcbxCatalog.getSelectedItem().toString().equals("---") ? null : (DiskGroup)jcbxCatalog.getSelectedItem();
+        System.err.println("GGGGG::::::::::::::::::::::::::::::::::::::::::::: " + g);
         r.read(new File(currentSelectedPath), calculateHash, isMedia, jtfDiskName.getText().trim(), g);
     }
 }//GEN-LAST:event_jbtnScanActionPerformed

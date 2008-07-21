@@ -90,8 +90,8 @@ public class CatalogChildren extends Children.Keys implements CatalogEngineListe
 
     @SuppressWarnings("unchecked")
     public void diskGroupRemoved(CatalogEngineEvent evt) {
-        if (evt.getNewDiskGroup().getParent() == null) {
-            items.remove(evt.getNewDiskGroup());
+        if (evt.getOldDiskGroup().getParent() == null) {
+            items.remove(evt.getOldDiskGroup());
             addNotify();
         }
     }
