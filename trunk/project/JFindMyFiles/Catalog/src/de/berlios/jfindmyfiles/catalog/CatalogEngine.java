@@ -289,7 +289,7 @@ public class CatalogEngine {
             listeners.remove(l);
         }
     }
-
+    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
     private void fireCatalogCreated(CatalogEngineEvent evt) {
         if (listeners != null) {
             for (CatalogEngineListener l : listeners) {
@@ -322,6 +322,22 @@ public class CatalogEngine {
         }
     }
 
+    private void fireDiskAdded(CatalogEngineEvent evt) {
+        if (listeners != null) {
+            for (CatalogEngineListener l : listeners) {
+                l.diskAdded(evt);
+            }
+        }
+    }
+    
+    private void fireDiskRemoved(CatalogEngineEvent evt) {
+        if (listeners != null) {
+            for (CatalogEngineListener l : listeners) {
+                l.diskRemoved(evt);
+            }
+        }
+    }    
+
     /**
      * In overriding the finalize method we try to garantee that data is 
      * flushed and all resources are released.
@@ -342,25 +358,18 @@ public class CatalogEngine {
             s.save(f);
         }
         s.getTransaction().commit();
+        fireDiskAdded(new CatalogEngineEvent(this, "", null, null, null, disk));
     }
-    //TESTING:
-    public List<FileWrapper> searchDuplicates(String hash) {
-        Session s = sessionFactory.getCurrentSession();
-        s.beginTransaction();
-        List rs = null;//TODO:s.createCriteria(FileWrapper.class).add(Restrictions.like("sha1", hash, MatchMode.EXACT)).list();
-        s.getTransaction().commit();
-        return rs;
-    }
-    
+
     public List<FileWrapper> findDuplicates() {
         List<FileWrapper> result = new ArrayList<FileWrapper>();
         Session s = sessionFactory.getCurrentSession();
         s.beginTransaction();
         result.addAll(s.createQuery("select f from FileWrapper f where sha1 in " +
                 "(select f2.sha1 from FileWrapper f2 group by f2.sha1 having " +
-                "( count(f2.sha1) > 1 AND f2.sha1 <> '' AND f2.sha1 is not null))").list());      
+                "( count(f2.sha1) > 1 AND f2.sha1 <> '' AND f2.sha1 is not null))").list());
         s.getTransaction().commit();
-        
+
         return result;
     }
 }

@@ -34,6 +34,7 @@
     <Property name="title" type="java.lang.String" editor="org.netbeans.modules.i18n.form.FormI18nStringEditor">
       <ResourceString bundle="de/berlios/jfindmyfiles/jfindmyfilesgui/dialogs/Bundle.properties" key="NewDiskDlg.title" replaceFormat="org.openide.util.NbBundle.getMessage({sourceFileName}.class, &quot;{key}&quot;)"/>
     </Property>
+    <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -91,50 +92,50 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jpScanningOptions" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jpButtons" alignment="0" pref="479" max="32767" attributes="0"/>
+                      <Component id="jpButtons" alignment="0" pref="491" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jffDiskNumber" alignment="0" min="-2" pref="42" max="-2" attributes="0"/>
                               <Component id="jlblDiskNumber" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jlblDiskName" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jtfDiskName" alignment="0" min="-2" pref="282" max="-2" attributes="0"/>
+                              <Component id="jtfDiskName" alignment="0" pref="282" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jlblCatalog" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jcbxCatalog" alignment="0" pref="143" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="jpButtons" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jlblDiskName" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jlblDiskNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jlblCatalog" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jffDiskNumber" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jtfDiskName" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jcbxCatalog" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jpScanningOptions" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Component id="jpScanningOptions" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -205,7 +206,7 @@
                           <Component id="jchkCalculateHash" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jchkAskDescription" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jchkShowAgain" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jSeparator1" alignment="0" pref="443" max="32767" attributes="0"/>
+                          <Component id="jSeparator1" alignment="0" pref="455" max="32767" attributes="0"/>
                           <Component id="jtbSelectedPlugins" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>

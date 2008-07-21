@@ -22,12 +22,10 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.catalog.entities.CatalogProperties;
 import java.util.Date;
-import javax.swing.ImageIcon;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import org.hibernate.Session;
 import org.openide.util.Lookup;
-import org.openide.util.Utilities;
 
 /**
  *
@@ -71,20 +69,21 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
     }
 
     private void fillIn() {
-        Date temp;
-        s = eng.sessionFactory.getCurrentSession();
-        s.beginTransaction();
-        props = (CatalogProperties) s.createQuery("from CatalogProperties").uniqueResult();
-        jlblCatalogName.setText(props.getName());
-        if ((temp = props.getCreationDate()) != null) {
-            jdcCreatedOn.setDate(temp);
+        if (eng.isOpened()) {
+            Date temp;
+            s = eng.sessionFactory.getCurrentSession();
+            s.beginTransaction();
+            props = (CatalogProperties) s.createQuery("from CatalogProperties").uniqueResult();
+            jlblCatalogName.setText(props.getName());
+            if ((temp = props.getCreationDate()) != null) {
+                jdcCreatedOn.setDate(temp);
+            }
+            jtaDescription.setText(props.getDescription());
+            jlblNrDisksValue.setText(String.valueOf(props.getDiskNumber()));
+            jlblNrFilesValue.setText(String.valueOf(props.getTotalFiles()));
+            jlblNrFoldersValue.setText(String.valueOf(props.getTotalFolders()));
+            jlblTotalSizeValue.setText(String.valueOf(props.getTotalSize()));
         }
-        jtaDescription.setText(props.getDescription());
-        jlblNrDisksValue.setText(String.valueOf(props.getDiskNumber()));
-        jlblNrFilesValue.setText(String.valueOf(props.getTotalFiles()));
-        jlblNrFoldersValue.setText(String.valueOf(props.getTotalFolders()));
-        jlblTotalSizeValue.setText(String.valueOf(props.getTotalSize()));
-
     }
 
     /** This method is called from within the constructor to
@@ -175,7 +174,8 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jlblCreatedOn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jdcCreatedOn, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jdcCreatedOn, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                        .addGap(56, 56, 56))
                     .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jpCatalogDataLayout.createSequentialGroup()
                         .addComponent(jlblNrDisks)
@@ -231,7 +231,7 @@ public class CatalogPropertiesDlg extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlblDescription)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jscrDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                .addComponent(jscrDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

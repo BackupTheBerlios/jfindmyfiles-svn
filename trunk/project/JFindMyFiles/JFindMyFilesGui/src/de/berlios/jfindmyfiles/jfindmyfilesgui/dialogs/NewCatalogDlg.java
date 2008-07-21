@@ -99,7 +99,7 @@ public class NewCatalogDlg extends javax.swing.JDialog {
      * @param state true/false for activating and deactivating the components.
      */
     private void serverOptionsStateChanged(boolean state) {
-        jpDatabaseSettings.setEnabled(state);
+        //jpDatabaseSettings.setEnabled(state);
         //Labels
         jlblDatabase.setEnabled(state);
         jlblHostname.setEnabled(state);
@@ -151,7 +151,6 @@ public class NewCatalogDlg extends javax.swing.JDialog {
         setTitle(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.title")); // NOI18N
 
         jpDatabaseSettings.setBorder(javax.swing.BorderFactory.createTitledBorder(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.jpDatabaseSettings.border.title"))); // NOI18N
-        jpDatabaseSettings.setEnabled(false);
 
         jlblHostname.setText(org.openide.util.NbBundle.getMessage(NewCatalogDlg.class, "NewCatalogDlg.jlblHostname.text")); // NOI18N
         jlblHostname.setEnabled(false);
@@ -291,16 +290,16 @@ public class NewCatalogDlg extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jlblName)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jtfName, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE))
+                        .addComponent(jtfName, javax.swing.GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jchkUserinternalDB)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE))
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jlbError, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                                .addComponent(jlbError, javax.swing.GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jbtnCreate)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -311,7 +310,7 @@ public class NewCatalogDlg extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jlblDestination)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jtfDestination, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                                .addComponent(jtfDestination, javax.swing.GroupLayout.DEFAULT_SIZE, 374, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jbtnBrowse)))))
                 .addContainerGap())

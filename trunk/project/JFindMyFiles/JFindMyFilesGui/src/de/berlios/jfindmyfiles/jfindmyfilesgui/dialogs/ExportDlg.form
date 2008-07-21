@@ -156,7 +156,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jlblInclude" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSeparator2" pref="345" max="32767" attributes="0"/>
+                              <Component id="jSeparator2" pref="327" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="10" pref="10" max="10" attributes="0"/>
@@ -171,7 +171,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jlblDestination" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="jtfDestination" pref="253" max="32767" attributes="0"/>
+                              <Component id="jtfDestination" pref="235" max="32767" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
                               <Component id="jbtnBrowse" min="-2" max="-2" attributes="0"/>
                           </Group>
@@ -206,7 +206,7 @@
                       <Component id="jSeparator1" min="-2" pref="10" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jchkOpenAfter" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="115" max="32767" attributes="0"/>
+                      <EmptySpace pref="86" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -320,7 +320,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jchkTemplateOpenAfter" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jtfTemplateDestination" pref="275" max="32767" attributes="0"/>
+                                      <Component id="jtfTemplateDestination" pref="269" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jbtnTemplateBrowse" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -351,7 +351,7 @@
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jchkTemplateOpenAfter" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="91" max="32767" attributes="0"/>
+                      <EmptySpace pref="75" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -427,12 +427,12 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jlblSelectTemplate" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jcbxSelectTemplate" pref="136" max="32767" attributes="0"/>
+                                  <Component id="jcbxSelectTemplate" pref="112" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jlblTemplateAuthor" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jlblTemplateAuthorValue" pref="145" max="32767" attributes="0"/>
+                                  <Component id="jlblTemplateAuthorValue" pref="135" max="32767" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jlblVersion" min="-2" max="-2" attributes="0"/>
@@ -580,7 +580,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="153" max="-2" attributes="0"/>
                       <Component id="jpbExportProgress" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="158" max="32767" attributes="0"/>
+                      <EmptySpace pref="152" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>

@@ -88,8 +88,8 @@ public class DiskGroupChildren extends Children.Keys implements CatalogEngineLis
 
     @SuppressWarnings("unchecked")
     public void diskGroupRemoved(CatalogEngineEvent evt) {
-        if (evt.getNewDiskGroup().getId().equals(parentId)) {
-            items.remove(evt.getNewDiskGroup());
+        if (evt.getOldDiskGroup().getId().equals(parentId)) {
+            items.remove(evt.getOldDiskGroup());
             addNotify();
         }
     }
@@ -100,7 +100,7 @@ public class DiskGroupChildren extends Children.Keys implements CatalogEngineLis
 
     @SuppressWarnings("unchecked")
     public void diskAdded(CatalogEngineEvent evt) {
-        if (evt.getNewDisk().getGroup().getId().equals(parentId)) {
+        if (evt.getNewDisk().getGroup() != null && evt.getNewDisk().getGroup().getId().equals(parentId)) {
             items.add(evt.getNewDisk());
             addNotify();
         }
@@ -108,8 +108,8 @@ public class DiskGroupChildren extends Children.Keys implements CatalogEngineLis
 
     @SuppressWarnings("unchecked")
     public void diskRemoved(CatalogEngineEvent evt) {
-        if (evt.getNewDisk().getGroup().getId().equals(parentId)) {
-            items.remove(evt.getNewDisk());
+        if (evt.getOldDisk().getGroup() != null && evt.getOldDisk().getGroup().getId().equals(parentId)) {
+            items.remove(evt.getOldDisk());
             addNotify();
         }
     }

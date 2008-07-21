@@ -129,13 +129,16 @@ public class NewDiskDlg extends javax.swing.JDialog {
 
     @SuppressWarnings("unchecked")
     private Object[] listDiskGroups() {
-        List l = eng.getDiskGroups();
-        if (l != null) {
-            ArrayList ar = new ArrayList(l.size());
-            for (Object obj : l) {
-                ar.add(obj);
+        if (eng.isOpened()) {
+            List l = eng.getDiskGroups();
+            if (l != null) {
+                ArrayList ar = new ArrayList(l.size() + 1);
+                ar.add("---");
+                for (Object obj : l) {
+                    ar.add(obj);
+                }
+                return ar.toArray();
             }
-            return ar.toArray();
         }
         return new Object[]{};
     }
@@ -181,6 +184,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle(org.openide.util.NbBundle.getMessage(NewDiskDlg.class, "NewDiskDlg.title")); // NOI18N
+        setResizable(false);
 
         jpButtons.setPreferredSize(new java.awt.Dimension(10, 50));
         jpButtons.setLayout(new javax.swing.BoxLayout(jpButtons, javax.swing.BoxLayout.LINE_AXIS));
@@ -234,7 +238,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
                     .addComponent(jchkCalculateHash)
                     .addComponent(jchkAskDescription)
                     .addComponent(jchkShowAgain)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
+                    .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
                     .addComponent(jtbSelectedPlugins))
                 .addContainerGap())
         );
@@ -262,7 +266,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jpScanningOptions, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpButtons, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 479, Short.MAX_VALUE)
+                    .addComponent(jpButtons, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 491, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jffDiskNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -270,7 +274,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlblDiskName)
-                            .addComponent(jtfDiskName, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jtfDiskName, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jlblCatalog)
@@ -280,7 +284,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(jpButtons, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -293,7 +297,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
                     .addComponent(jtfDiskName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jcbxCatalog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpScanningOptions, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jpScanningOptions, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE))
         );
 
         jbtnHelp.setText(org.openide.util.NbBundle.getMessage(NewDiskDlg.class, "NewDiskDlg.jbtnHelp.text")); // NOI18N
@@ -376,7 +380,8 @@ private void jbtnScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 scanningDlg.showCentered(ask4Description, showAgain);
             }
         });
-        r.read(new File(currentSelectedPath), calculateHash, isMedia, jtfDiskName.getText().trim(), (DiskGroup) jcbxCatalog.getSelectedItem());
+        DiskGroup g = !jcbxCatalog.getSelectedItem().toString().equalsIgnoreCase("---") ? (DiskGroup)jcbxCatalog.getSelectedItem() : null;
+        r.read(new File(currentSelectedPath), calculateHash, isMedia, jtfDiskName.getText().trim(), g);
     }
 }//GEN-LAST:event_jbtnScanActionPerformed
 

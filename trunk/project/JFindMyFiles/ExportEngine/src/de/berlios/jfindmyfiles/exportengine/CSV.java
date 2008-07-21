@@ -68,7 +68,7 @@ public class CSV extends ExportEngine {
             CatalogProperties props = eng.getProperties();
 
             //name,creation-date,description,total-size,disk-number,total-folders
-            pw = new PrintWriter(new FileWriter(file));
+            pw = new PrintWriter(new FileWriter(base + ".csv"));
             pw.print("name,creation-date,description,total-size,disk-number,total-folders,total-files\r\n");
 
             aux = props.getName() + "," + props.getCreationDate() + "," + props.getDescription() +

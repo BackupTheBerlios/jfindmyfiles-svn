@@ -57,7 +57,9 @@ public class ReadingUtils {
         AbstractChecksum checksum = null;
         try {
             checksum = JacksumAPI.getChecksumInstance("sha-1");
-            return "" + checksum.readFile(file.getAbsolutePath());
+            checksum.reset();
+            checksum.readFile(file.getAbsolutePath());
+            return "" + checksum;
         } catch (IOException ex) {
             return "";
         } catch (NoSuchAlgorithmException ex) {

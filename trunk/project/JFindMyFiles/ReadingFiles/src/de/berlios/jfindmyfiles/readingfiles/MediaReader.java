@@ -61,6 +61,7 @@ public class MediaReader {
                 String tExt;
                 Reader reader;
                 Media container = new Media();
+                container.setGroup(group);
                 container.setName(mediaName);
                 container.setType(ReadingUtils.findFileType(file.getAbsolutePath()));
 
@@ -108,7 +109,7 @@ public class MediaReader {
                                         listing[z].lastModified(), container, fw,
                                         (sha ? ReadingUtils.calculateSHA1HashString(listing[z]) : ""),
                                         (tExt = ReadingUtils.findExtension(listing[z].getName())), //TODO: same for other attributes
-                                        (reader = cache.readerFor(tExt)) != null ? reader.read(listing[z]).getDescription() : "");
+                                        (reader = cache.readerFor(tExt)) != null ? (reader.isActive() ? reader.read(listing[z]).getDescription() : "") : "");
                                 files.add(temp);
                                 fw.addChild(temp);
                             }

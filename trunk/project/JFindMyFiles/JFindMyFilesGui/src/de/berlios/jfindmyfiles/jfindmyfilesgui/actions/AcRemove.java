@@ -28,14 +28,15 @@ import org.openide.util.actions.CallableSystemAction;
 public final class AcRemove extends CallableSystemAction {
 
     private CatalogEngine eng;
-    
+
     public AcRemove() {
         super();
         eng = Lookup.getDefault().lookup(CatalogEngine.class);
     }
 
     public void performAction() {
-        // TODO implement action body
+        if (eng.isOpened()) {
+        }
     }
 
     public String getName() {

@@ -25,16 +25,16 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jpCatalogData" alignment="1" max="32767" attributes="1"/>
+                  <Component id="jpCatalogData" alignment="1" max="32767" attributes="2"/>
                   <Group type="102" alignment="1" attributes="0">
                       <Component id="jbtnOK" linkSize="1" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jbtnCancel" linkSize="1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,7 +69,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jscrDescription" alignment="0" pref="330" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
@@ -78,10 +78,11 @@
                           <Component id="jlblCatalogName" pref="292" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
                           <Component id="jlblCreatedOn" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jdcCreatedOn" min="-2" pref="187" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" max="-2" attributes="0"/>
+                          <Component id="jdcCreatedOn" pref="187" max="32767" attributes="0"/>
+                          <EmptySpace min="56" pref="56" max="56" attributes="0"/>
                       </Group>
                       <Component id="jSeparator2" alignment="0" pref="330" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
@@ -105,7 +106,7 @@
                           </Group>
                       </Group>
                   </Group>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace min="-2" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -153,7 +154,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jlblDescription" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jscrDescription" pref="128" max="32767" attributes="0"/>
+                  <Component id="jscrDescription" pref="124" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
