@@ -5,8 +5,11 @@
 
 package de.berlios.jfindmyfiles.jfindmyfilesgui.utils;
 
+import java.awt.Component;
+import java.awt.Graphics;
 import java.io.File;
 import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -45,13 +48,13 @@ public class CatalogViewTest {
     @Test
     public void testGetTypeDescription() {
         System.out.println("getTypeDescription");
-        File f = null;
+        File f = new File("");
         CatalogView instance = new CatalogView();
-        String expResult = "";
+        String expResult = "JFindMyFile Catalog";
         String result = instance.getTypeDescription(f);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -60,13 +63,13 @@ public class CatalogViewTest {
     @Test
     public void testGetIcon() {
         System.out.println("getIcon");
-        File f = null;
+        File f = new File("");
         CatalogView instance = new CatalogView();
-        Icon expResult = null;
+        Icon expResult = new ImageIcon();
         Icon result = instance.getIcon(f);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
 }
