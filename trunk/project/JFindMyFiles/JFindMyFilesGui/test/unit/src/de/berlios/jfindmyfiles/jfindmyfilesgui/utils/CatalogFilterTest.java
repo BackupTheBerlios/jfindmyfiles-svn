@@ -44,13 +44,13 @@ public class CatalogFilterTest {
     @Test
     public void testAccept() {
         System.out.println("accept");
-        File f = null;
+        File f = new File("");
         CatalogFilter instance = new CatalogFilter();
         boolean expResult = false;
         boolean result = instance.accept(f);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
@@ -60,11 +60,11 @@ public class CatalogFilterTest {
     public void testGetDescription() {
         System.out.println("getDescription");
         CatalogFilter instance = new CatalogFilter();
-        String expResult = "";
+        String expResult = "JFindMyFiles Catalog";
         String result = instance.getDescription();
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
 }
