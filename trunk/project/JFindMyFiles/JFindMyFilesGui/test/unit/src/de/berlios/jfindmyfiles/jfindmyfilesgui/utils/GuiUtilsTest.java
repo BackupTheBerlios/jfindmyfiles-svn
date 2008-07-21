@@ -43,12 +43,12 @@ public class GuiUtilsTest {
     @Test
     public void testFindIconForType() {
         System.out.println("findIconForType");
-        int type = 0;
-        String expResult = "";
+        int type = 2;
+        String expResult = "de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/nodes/media-drive-optical.png";
         String result = GuiUtils.findIconForType(type);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
 }
