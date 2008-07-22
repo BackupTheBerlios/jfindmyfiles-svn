@@ -7,8 +7,7 @@ and open the template in the editor.
 <helpset version="2.0">
     <title>JFindMyFiles Help</title>
     <maps>
-        <!--<homeID>de.berlios.jfindmyfiles.jfindmyfilesgui.about</homeID>-->
-        <homeID>de.berlios.jfindmyfiles.jfindmyfilesgui.preaface</homeID>
+        <homeID>de.berlios.jfindmyfiles.jfindmyfilesgui.intro</homeID>
         <mapref location="jfindmyfilesgui-map.xml"/>
     </maps>     
     <view mergetype="javax.help.AppendMerge">

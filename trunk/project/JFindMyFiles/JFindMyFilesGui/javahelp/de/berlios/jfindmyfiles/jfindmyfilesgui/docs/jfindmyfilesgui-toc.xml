@@ -6,7 +6,9 @@ and open the template in the editor.
 <!DOCTYPE toc PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp TOC Version 2.0//EN" "http://java.sun.com/products/javahelp/toc_2_0.dtd">
 <toc version="2.0">
     <tocitem text="JFindMyFilesGui">
-        <tocitem text="About JFindMyFiles" target="de.berlios.jfindmyfiles.jfindmyfilesgui.about"/>
-        <tocitem text="Prefácio" target="de.berlios.jfindmyfiles.jfindmyfilesgui.preface"/>
+        <tocitem text="Introdução" target="de.berlios.jfindmyfiles.jfindmyfilesgui.intro"/>
+        <tocitem text="Utilização do Programa" target="de.berlios.jfindmyfiles.jfindmyfilesgui.usage"/>
+        <tocitem text="Drives em Linux" target="de.berlios.jfindmyfiles.jfindmyfilesgui.linux"/>
+        <tocitem text="Sobre JFindMyFiles" target="de.berlios.jfindmyfiles.jfindmyfilesgui.about"/>
     </tocitem>
 </toc>
