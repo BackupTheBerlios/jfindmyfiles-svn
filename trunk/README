@@ -1,4 +1,9 @@
-Software de gest„o de ficheiros, aplicaÁ„o DAM, desenvolvida no ‚mbito da 
-unidade curricular Projecto Inform·tico, do curso de Eng∫ Inform·tica da
-Escola Superior de Tecnologia e Gest„o de Leiria, parte do Instituto PolitÈcnico 
-de Leiria.
+Software de gest√£o de ficheiros, aplica√ß√£o DAM, desenvolvida no √¢mbito 
+da unidade curricular Projecto Inform√°tico, do curso de Engenharia 
+Inform√°tica da Escola Superior de Tecnologia e Gest√£o de Leiria do 
+Instituto Polit√©cnico de Leiria.
+
+ATEN√á√ÉO: Este instalador n√£o cria atalhos que permitam inicar a 
+aplica√ß√£o. Execute o ficheiro bin/jfindmyfiles_w.exe se estiver a usar 
+o sistema operativo MS Windows ou bin/jfindmyfiles se estiver e usar 
+um sistema GNU Linux.

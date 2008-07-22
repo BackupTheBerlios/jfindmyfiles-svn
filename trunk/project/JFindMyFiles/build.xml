@@ -5,4 +5,7 @@
 <project name="JFindMyFiles" basedir=".">
     <description>Builds the module suite JFindMyFiles.</description>
     <import file="nbproject/build-impl.xml"/>
+    <target name="unzip to installers build" depends="build-zip">
+        <unzip src="${dist.dir}/${app.name}.zip" dest="../../installer build"/>
+    </target>
 </project>

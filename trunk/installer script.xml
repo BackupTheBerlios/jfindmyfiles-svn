@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="iso-8859-1" standalone="yes" ?>
 
-<!-- 
-    A sample installation file.
-    Use it as a base for your own installers :-)
-    
-    To compile it :
-    - go in the bin directory where you installed IzPack
-    - call "compile ../sample/install.xml -b ../sample"
+<!--     
+    To the installer use this script wiht IzPack:
+    - execute <IzPack installation dir>/bin/compile <this script path>/installer script.xml -b ./ -o <name of the installer>.jar -k standard"
 -->
 
 <installation version="1.0">
@@ -27,18 +23,18 @@
     
     <!-- 
         The gui preferences indication.
-        Sets the installer window to 640x480. It will not be able to change the size.
+        Sets the installer window to 526x526, resizable.
     -->
-    <guiprefs width="320" height="240" resizable="yes"/>
+    <guiprefs width="526" height="366" resizable="yes"/>
     
     <!-- 
         The locale section.
-        Asks here to include the English and French langpacks.
+        Asks here to include the Portuguese, English and French langpacks.
     -->
     <locale>
-        <langpack iso3="por" langDisplayType="native" useFlags="no"/>
-		<langpack iso3="eng" langDisplayType="native" useFlags="no"/>
-		<langpack iso3="fra" langDisplayType="native" useFlags="no"/>
+        <langpack iso3="por"/>
+	<langpack iso3="eng"/>
+	<langpack iso3="fra"/>
     </locale>
     
     <!-- 
@@ -73,12 +69,12 @@
             <description>Ficheiros de instalação base</description>
             <file src="README" targetdir="$INSTALL_PATH"/>
             <file src="LICENSE" targetdir="$INSTALL_PATH"/>
-			<file src="bin" targetdir="$INSTALL_PATH"/>
-			<file src="etc" targetdir="$INSTALL_PATH"/>
-			<file src="jfindmyfiles" targetdir="$INSTALL_PATH"/>
-			<file src="platform8" targetdir="$INSTALL_PATH"/>			
-            <!-- <file src="script.bat" targetdir="$INSTALL_PATH"/>
-            <parsable targetfile="$INSTALL_PATH/script.bat"/> <!-- The file will be parsed --> 
+	    <file src="./installer build/jfindmyfiles/bin" targetdir="$INSTALL_PATH"/>
+	    <file src="./installer build/jfindmyfiles/etc" targetdir="$INSTALL_PATH"/>
+	    <file src="./installer build/jfindmyfiles/jfindmyfiles" targetdir="$INSTALL_PATH"/>
+	    <file src="./installer build/jfindmyfiles/platform8" targetdir="$INSTALL_PATH"/>
+	    <file src="./Templates/" targetdir="$SYSTEM_user_home/.jfmfuserfiles/Templates"/>
+	    <file src="./Plugins/" targetdir="$SYSTEM_user_home/.jfmfuserfiles/Plugins"/>
         </pack>
     </packs>    
 </installation>
