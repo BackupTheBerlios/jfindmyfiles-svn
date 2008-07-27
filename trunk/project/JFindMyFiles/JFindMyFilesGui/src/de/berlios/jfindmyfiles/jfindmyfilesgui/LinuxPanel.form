@@ -18,16 +18,16 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jSeparator1" alignment="0" pref="475" max="32767" attributes="0"/>
+                  <Component id="jSeparator1" alignment="0" pref="544" max="32767" attributes="0"/>
                   <Component id="jchkScanMedia" alignment="0" min="-2" max="-2" attributes="0"/>
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Component id="jlblMountFolder" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jtfMountFolder" pref="329" max="32767" attributes="0"/>
+                              <Component id="jtfMountFolder" pref="378" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="jscpFolders" pref="398" max="32767" attributes="2"/>
+                          <Component id="jscpFolders" pref="474" max="32767" attributes="2"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">

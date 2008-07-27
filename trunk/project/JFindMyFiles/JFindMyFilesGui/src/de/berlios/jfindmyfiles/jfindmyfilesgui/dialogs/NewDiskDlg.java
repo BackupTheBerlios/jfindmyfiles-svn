@@ -21,14 +21,13 @@ package de.berlios.jfindmyfiles.jfindmyfilesgui.dialogs;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
 import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.LinuxPanel;
 import de.berlios.jfindmyfiles.readingfiles.MediaReader;
-import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JToggleButton;
@@ -36,7 +35,7 @@ import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.FileSystemView;
 import org.openide.util.Lookup;
-import org.openide.util.Utilities;
+import org.openide.util.NbPreferences;
 import org.openide.windows.WindowManager;
 
 /**
@@ -98,6 +97,27 @@ public class NewDiskDlg extends javax.swing.JDialog {
             jbtngrpDrives.add(toggle);
             jpButtons.add(toggle);
         }
+
+        if (System.getProperty("os.name").contains("Linux")) {//TODO: create a better solution
+            int count = NbPreferences.forModule(LinuxPanel.class).getInt("moutnumber", 0);
+            for (int z = 0; z < count; z++) {
+                toggle = new JToggleButton(NbPreferences.forModule(LinuxPanel.class).get("mountfolder-" + z, ""), fsv.getSystemIcon(new File(NbPreferences.forModule(LinuxPanel.class).get("mountfolder-" + z, ""))));
+                toggle.setHorizontalTextPosition(SwingConstants.CENTER);
+                toggle.setVerticalTextPosition(SwingConstants.BOTTOM);
+                toggle.setSize(toggle.getWidth(), 24);
+                toggle.addActionListener(new ActionListener() {
+
+                    public void actionPerformed(ActionEvent e) {
+                        currentSelectedPath = ((JToggleButton) e.getSource()).getText();
+                        jtfDiskName.setText(currentSelectedPath);
+                        isMedia = true;
+                    }
+                });
+                jbtngrpDrives.add(toggle);
+                jpButtons.add(toggle);
+            }
+        }
+
         toggle = new JToggleButton("Browse"); //TODO: i18n
         toggle.setIcon(fsv.getSystemIcon(new File(System.getProperty("user.dir"))));
         toggle.setSize(toggle.getWidth(), 24);
@@ -123,7 +143,7 @@ public class NewDiskDlg extends javax.swing.JDialog {
             }
         });
         jpButtons.add(toggle);
-
+        jbtngrpDrives.add(toggle);
         jpButtons.validate();
     }
 
@@ -380,7 +400,7 @@ private void jbtnScanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 scanningDlg.showCentered(ask4Description, showAgain);
             }
         });
-        DiskGroup g = jcbxCatalog.getSelectedItem().toString().equals("---") ? null : (DiskGroup)jcbxCatalog.getSelectedItem();
+        DiskGroup g = jcbxCatalog.getSelectedItem().toString().equals("---") ? null : (DiskGroup) jcbxCatalog.getSelectedItem();
         System.err.println("GGGGG::::::::::::::::::::::::::::::::::::::::::::: " + g);
         r.read(new File(currentSelectedPath), calculateHash, isMedia, jtfDiskName.getText().trim(), g);
     }

@@ -95,7 +95,7 @@
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
                       <Component id="jpScanningOptions" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jpButtons" alignment="0" pref="491" max="32767" attributes="0"/>
+                      <Component id="jpButtons" alignment="0" pref="503" max="32767" attributes="0"/>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jffDiskNumber" alignment="0" min="-2" pref="42" max="-2" attributes="0"/>
@@ -206,7 +206,7 @@
                           <Component id="jchkCalculateHash" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jchkAskDescription" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jchkShowAgain" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jSeparator1" alignment="0" pref="455" max="32767" attributes="0"/>
+                          <Component id="jSeparator1" alignment="0" pref="467" max="32767" attributes="0"/>
                           <Component id="jtbSelectedPlugins" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>

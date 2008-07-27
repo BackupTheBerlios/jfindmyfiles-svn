@@ -8,7 +8,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import org.openide.util.NbPreferences;
 
-final class LinuxPanel extends javax.swing.JPanel {
+public final class LinuxPanel extends javax.swing.JPanel {
 
     private final LinuxOptionsPanelController controller;
     private DefaultListModel model;
