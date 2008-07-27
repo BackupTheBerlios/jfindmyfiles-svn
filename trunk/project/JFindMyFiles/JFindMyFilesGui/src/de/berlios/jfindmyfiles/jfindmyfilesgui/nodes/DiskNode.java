@@ -20,6 +20,8 @@
 package de.berlios.jfindmyfiles.jfindmyfilesgui.nodes;
 
 import de.berlios.jfindmyfiles.catalog.entities.Media;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.AcItemProperties;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.actions.AcRemove;
 import de.berlios.jfindmyfiles.jfindmyfilesgui.utils.GuiUtils;
 import java.awt.Image;
 import java.lang.reflect.InvocationTargetException;
@@ -29,6 +31,7 @@ import org.openide.nodes.Node.Property;
 import org.openide.nodes.PropertySupport;
 import org.openide.nodes.Sheet;
 import org.openide.util.Exceptions;
+import org.openide.util.Lookup;
 import org.openide.util.Utilities;
 import org.openide.util.actions.SystemAction;
 import org.openide.util.lookup.Lookups;
@@ -40,30 +43,38 @@ import org.openide.util.lookup.Lookups;
 public class DiskNode extends AbstractNode {
 
     private Media media;
+    private SystemAction[] sysact;
 
     public DiskNode(Media media) {
         super(new DiskChildren(media.getId(), true), Lookups.singleton(media));
         this.media = media;
         setName(media.getName());
+        Lookup lo = Lookups.forPath("/Actions");//TODO: sort actions correctly and add separators
+        sysact = new SystemAction[]{lo.lookup(AcRemove.class), lo.lookup(AcItemProperties.class)};
     }
-    
-    @Override
+
+    /*@Override
     protected Sheet createSheet() {
-        Sheet s = Sheet.createDefault();
-        //try {
-            
-            Sheet.Set sSet = Sheet.createPropertiesSet();
-            //Property p = new PropertySupport.Reflection(media, String.class, "name");
-            //Property p = new PropertySupport.Reflection(media, String.class, "name");
-            DiskNameProperty p = new DiskNameProperty(media.getName(), "", media.getName());
-            sSet.put(p);
-            s.put(sSet);
-        //} catch (NoSuchMethodException ex) {
-          //  Exceptions.printStackTrace(ex);
-        //}
-        return s;
+    Sheet s = Sheet.createDefault();
+    //try {
+    
+    Sheet.Set sSet = Sheet.createPropertiesSet();
+    //Property p = new PropertySupport.Reflection(media, String.class, "name");
+    //Property p = new PropertySupport.Reflection(media, String.class, "name");
+    DiskNameProperty p = new DiskNameProperty(media.getName(), "", media.getName());
+    sSet.put(p);
+    s.put(sSet);
+    //} catch (NoSuchMethodException ex) {
+    //  Exceptions.printStackTrace(ex);
+    //}
+    return s;
+    }*/
+    @Override
+    public SystemAction[] getActions(boolean bool) {
+        //return new SystemAction[]{};
+        return sysact;
     }
-     
+
     @Override
     public Image getIcon(int type) {
         return Utilities.loadImage(GuiUtils.findIconForType(media.getType()));
@@ -74,11 +85,6 @@ public class DiskNode extends AbstractNode {
         return getIcon(type);
     }
 
-    @Override
-    public SystemAction[] getActions(boolean bool) {
-        return new SystemAction[]{};
-    }
-    
     public Object getValue() {
         return null;
     }

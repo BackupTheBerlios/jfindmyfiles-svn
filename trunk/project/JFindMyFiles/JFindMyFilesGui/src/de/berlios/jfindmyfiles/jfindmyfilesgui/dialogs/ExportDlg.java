@@ -558,6 +558,7 @@ private void jbtnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             CSV cvs = new CSV(selectedFile);
             cvs.addListener(this);
             cvs.export();
+            dispose();
             break;
         case 1://HTML
             HTML html = new HTML(selectedFile,
@@ -565,26 +566,31 @@ private void jbtnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
                     (Template) jcbxSelectTemplate.getSelectedItem());
             html.addListener(this);
             html.export();
+            dispose();
             break;
         case 2://SQL
             SQL sql = new SQL(selectedFile);
             sql.addListener(this);
             sql.export();
+            dispose();
             break;
         case 3://ODS
             ODS ods = new ODS(selectedFile);
             ods.addListener(this);
             ods.export();
+            dispose();
             break;
         case 4://XLS
             XLS xls = new XLS(selectedFile);
             xls.addListener(this);
             xls.export();
+            dispose();
             break;
         case 5://XML
             XML xml = new XML(selectedFile);
             xml.addListener(this);
             xml.export();
+            dispose();
     }
 }//GEN-LAST:event_jbtnExportActionPerformed
 

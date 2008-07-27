@@ -113,6 +113,9 @@ public class CatalogEngine {
 
                     //Try to shutdown the database as soon as there all connections are gone
                     //hConfig.setProperty("hibernate.connection.shutdown", "true");
+                    
+                    //NOTE:TODO: remove this line, only for debugging what seems to be HSQLDB related bug.
+                    hConfig.setProperty("hibernate.jdbc.batch_size", "0");
 
                     hConfig.setProperty("hibernate.connection.password", "");//HSQLDB has a user with no password
 
@@ -147,7 +150,7 @@ public class CatalogEngine {
         cSession.beginTransaction();
         properties = (CatalogProperties) cSession.createQuery("from CatalogProperties").uniqueResult();
         cSession.getTransaction().commit();
-        fireCatalogOpened(new CatalogEngineEvent(this, dbname, null, null, null, null));
+        fireCatalogOpened(new CatalogEngineEvent(this, dbname, null, null, null, null, -1));
     }
 
     /**
@@ -172,20 +175,7 @@ public class CatalogEngine {
         properties.setCreationDate(new Date());
         cSession.save(properties);
         cSession.getTransaction().commit();
-        fireCatalogCreated(new CatalogEngineEvent(this, dbname, null, null, null, null));
-    }
-
-    /**
-     * 
-     */
-    public void closeCatalog() {
-        if (sessionFactory != null) {
-            sessionFactory.close();
-            sessionFactory = null;
-            opened = false;
-            fireCatalogClosed(new CatalogEngineEvent(this, properties.getName(), null, null, null, null));
-            listeners.clear();
-        }
+        fireCatalogCreated(new CatalogEngineEvent(this, dbname, null, null, null, null, -1));
     }
 
     public CatalogProperties getProperties() {
@@ -196,7 +186,27 @@ public class CatalogEngine {
         return opened;
     }
 
-    /*XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
+    public void addNewDisk(Media disk, List<FileWrapper> files) {
+        Session s = sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        s.save(disk);
+        for (FileWrapper f : files) {
+            s.save(f);
+        }
+        s.getTransaction().commit();
+        fireDiskAdded(new CatalogEngineEvent(this, "", null, null, null, disk, -1));
+    }
+    
+    public void removeDisk(Media disk) {
+        int groupId = (int)(disk.getGroup() != null ? disk.getGroup().getId() : -1);
+        Session s = sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        s.delete(disk);
+        s.getTransaction().commit();
+        fireDiskRemoved(new CatalogEngineEvent(this, "", null, null, disk, null, groupId));
+    }
+    
+
     public void addDiskGroup(String name, String description, DiskGroup parent) {
         Session cSession = sessionFactory.getCurrentSession();
         cSession.beginTransaction();
@@ -206,7 +216,34 @@ public class CatalogEngine {
         dg.setParent(parent);
         cSession.save(dg);
         cSession.getTransaction().commit();
-        fireDiskGroupAdded(new CatalogEngineEvent(this, "", null, dg, null, null));
+        fireDiskGroupAdded(new CatalogEngineEvent(this, "", null, dg, null, null, -1));
+    }
+    
+    public void removeDiskGroup(DiskGroup group) {
+        Session s = sessionFactory.getCurrentSession();
+        s.beginTransaction();
+        /*List<Media> disks = group.getDiskList();
+        for(Media m : disks) {
+            m.setGroup(null);
+        }
+        List<DiskGroup> groups = group.getGroupList();
+        for(DiskGroup g : groups) {
+            g.setParent(null);
+        }*/
+        s.delete(group);
+        s.getTransaction().commit();
+        fireDiskGroupRemoved(new CatalogEngineEvent(this, "", group, null, null, null, -1));        
+    }
+
+    /*XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX*/
+    public void closeCatalog() {
+        if (sessionFactory != null) {
+            sessionFactory.close();
+            sessionFactory = null;
+            opened = false;
+            fireCatalogClosed(new CatalogEngineEvent(this, properties.getName(), null, null, null, null, -1));
+            listeners.clear();
+        }
     }
 
     public void addLabel(String name) {
@@ -289,7 +326,7 @@ public class CatalogEngine {
             listeners.remove(l);
         }
     }
-    //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
     private void fireCatalogCreated(CatalogEngineEvent evt) {
         if (listeners != null) {
             for (CatalogEngineListener l : listeners) {
@@ -321,6 +358,14 @@ public class CatalogEngine {
             }
         }
     }
+    
+    private void fireDiskGroupRemoved(CatalogEngineEvent evt) {
+        if (listeners != null) {
+            for (CatalogEngineListener l : listeners) {
+                l.diskGroupRemoved(evt);
+            }
+        }
+    }    
 
     private void fireDiskAdded(CatalogEngineEvent evt) {
         if (listeners != null) {
@@ -329,14 +374,14 @@ public class CatalogEngine {
             }
         }
     }
-    
+
     private void fireDiskRemoved(CatalogEngineEvent evt) {
         if (listeners != null) {
             for (CatalogEngineListener l : listeners) {
                 l.diskRemoved(evt);
             }
         }
-    }    
+    }
 
     /**
      * In overriding the finalize method we try to garantee that data is 
@@ -350,17 +395,6 @@ public class CatalogEngine {
     }
 
     //TESTING:
-    public void addNewDisk(Media disk, List<FileWrapper> files) {
-        Session s = sessionFactory.getCurrentSession();
-        s.beginTransaction();
-        s.save(disk);
-        for (FileWrapper f : files) {
-            s.save(f);
-        }
-        s.getTransaction().commit();
-        fireDiskAdded(new CatalogEngineEvent(this, "", null, null, null, disk));
-    }
-
     public List<FileWrapper> findDuplicates() {
         List<FileWrapper> result = new ArrayList<FileWrapper>();
         Session s = sessionFactory.getCurrentSession();

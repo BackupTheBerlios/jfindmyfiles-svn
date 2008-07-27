@@ -20,10 +20,18 @@
 package de.berlios.jfindmyfiles.jfindmyfilesgui.actions;
 
 import de.berlios.jfindmyfiles.catalog.CatalogEngine;
+import de.berlios.jfindmyfiles.catalog.entities.DiskGroup;
+import de.berlios.jfindmyfiles.catalog.entities.FileWrapper;
+import de.berlios.jfindmyfiles.catalog.entities.Media;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.DiskGroupNode;
+import de.berlios.jfindmyfiles.jfindmyfilesgui.nodes.DiskNode;
+import org.openide.nodes.Node;
 import org.openide.util.HelpCtx;
 import org.openide.util.Lookup;
 import org.openide.util.NbBundle;
+import org.openide.util.Utilities;
 import org.openide.util.actions.CallableSystemAction;
+import org.openide.windows.TopComponent;
 
 public final class AcRemove extends CallableSystemAction {
 
@@ -36,7 +44,24 @@ public final class AcRemove extends CallableSystemAction {
 
     public void performAction() {
         if (eng.isOpened()) {
+            DiskGroup g;
+            Media m;
+            if ((g = Utilities.actionsGlobalContext().lookup(DiskGroup.class)) != null) {
+                eng.removeDiskGroup(g);
+            } else if ((m = Utilities.actionsGlobalContext().lookup(Media.class)) != null) {
+                eng.removeDisk(m);
+            }
         }
+
+        /*TopComponent.Registry registry = TopComponent.getRegistry();
+        Node[] act = registry.getActivatedNodes();
+        if (act.length > 0) {
+            if (act[0] instanceof DiskGroupNode) {
+                System.err.println("group node selected");
+            } else if (act[0] instanceof DiskNode) {
+                System.err.println("media node selected");
+            }
+        }*/
     }
 
     public String getName() {

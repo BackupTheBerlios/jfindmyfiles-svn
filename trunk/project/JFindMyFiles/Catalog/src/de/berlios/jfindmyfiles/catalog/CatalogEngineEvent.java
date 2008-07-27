@@ -34,9 +34,10 @@ public class CatalogEngineEvent extends EventObject {
     private DiskGroup newDiskGroup;
     private Media oldDisk;
     private Media newDisk;
+    private int groupId;
 
     public CatalogEngineEvent(CatalogEngine source, String name, DiskGroup oldDiskGroup,
-            DiskGroup newDiskGroup, Media oldDisk, Media newDisk) {
+            DiskGroup newDiskGroup, Media oldDisk, Media newDisk, int groupId) {
         
         super(source);
         this.name = name;
@@ -44,6 +45,11 @@ public class CatalogEngineEvent extends EventObject {
         this.newDiskGroup = newDiskGroup;
         this.oldDisk = oldDisk;
         this.newDisk = newDisk;
+        this.groupId = groupId;               
+    }
+    
+    public int getGroupId() {
+        return groupId;
     }
 
     public String getName() {

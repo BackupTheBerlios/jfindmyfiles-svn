@@ -46,29 +46,35 @@ public class DiskGroupNode extends AbstractNode implements CatalogEngineListener
     private DiskGroup group;
 
     public DiskGroupNode(DiskGroup group, boolean leaf) {
-        super((leaf ? Children.LEAF : new DiskGroupChildren(group.getId())), Lookups.singleton(group));
+        //super((leaf ? Children.LEAF : new DiskGroupChildren(group.getId())), Lookups.singleton(group));
+        super(new DiskGroupChildren(group.getId()), Lookups.singleton(group));
         setName(group.getName());
+        Lookup.getDefault().lookup(CatalogEngine.class).addListener(this);
         this.group = group;
         Lookup.getDefault().lookup(CatalogEngine.class).addListener(this);
         Lookup lo = Lookups.forPath("/Actions");//TODO: sort actions correctly and add separators
-        sysact = new SystemAction[]{lo.lookup(AcRemove.class), lo.lookup(AcItemProperties.class),
-                    lo.lookup(AcRenumberDisks.class), lo.lookup(AcNewDisk.class), lo.lookup(AcNewGroup.class)
+        sysact = new SystemAction[]{lo.lookup(AcNewDisk.class), lo.lookup(AcNewGroup.class),
+                    lo.lookup(AcRemove.class), lo.lookup(AcRenumberDisks.class),
+                    lo.lookup(AcItemProperties.class)
                 };
     }
 
     @Override
-    public Image getIcon(int type) {
+    public Image getIcon(
+            int type) {
         return Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/nodes/disk-group.png");
     }
 
     @Override
-    public Image getOpenedIcon(int type) {
+    public Image getOpenedIcon(
+            int type) {
         return getIcon(type);
     }
 
     @Override
     public SystemAction[] getActions(boolean bool) {
-        return new SystemAction[]{};
+        //return new SystemAction[]{};
+        return sysact;
     }
 
     public void catalogCreated(CatalogEngineEvent evt) {
@@ -93,10 +99,11 @@ public class DiskGroupNode extends AbstractNode implements CatalogEngineListener
 
     @SuppressWarnings("unchecked")
     public void diskGroupRenamed(CatalogEngineEvent evt) {
-        if(evt.getNewDiskGroup().getId().equals(group.getId())) {
+        if (evt.getNewDiskGroup().getId().equals(group.getId())) {
             group = evt.getNewDiskGroup();
             setName(group.getName());
         }
+
     }
 
     public void diskAdded(CatalogEngineEvent evt) {

@@ -38,7 +38,6 @@ public final class AcClose extends CallableSystemAction {
     @Override
     protected void initialize() {
         super.initialize();
-        // see org.openide.util.actions.SystemAction.iconResource() Javadoc for more details
         putValue("noIconInMenu", Boolean.TRUE);
     }
 

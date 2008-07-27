@@ -55,30 +55,29 @@ public class CatalogNode extends AbstractNode {
         setName(eng.getProperties().getName());
 
         Lookup lo = Lookups.forPath("/Actions");//TODO: sort actions correctly and add separators
-        sysact = new SystemAction[]{lo.lookup(AcCatalogProperties.class),
-                    lo.lookup(AcRenumberDisks.class), lo.lookup(AcSearchDuplicates.class),
-                    lo.lookup(AcNewDisk.class), lo.lookup(AcNewGroup.class), lo.lookup(AcClose.class),
-                    lo.lookup(AcExport.class), lo.lookup(AcImport.class)
+        sysact = new SystemAction[]{lo.lookup(AcNewDisk.class), lo.lookup(AcNewGroup.class),
+                    lo.lookup(AcCatalogProperties.class), lo.lookup(AcSearchDuplicates.class),
+                    lo.lookup(AcRenumberDisks.class), lo.lookup(AcImport.class),
+                    lo.lookup(AcExport.class), lo.lookup(AcClose.class)
                 };
     }
 
-    @Override
+    /*@Override
     protected Sheet createSheet() {
-        Sheet s = Sheet.createDefault();
-        /*try {
-        
-        Sheet.Set sSet = Sheet.createPropertiesSet();
-        //Property p = new PropertySupport.Reflection(media, String.class, "name");
-        Property p = new PropertySupport.Reflection(media, String.class, "name");
-        //DiskNameProperty p = new DiskNameProperty(media.getName(), "", media.getName());
-        sSet.put(p);
-        s.put(sSet);
-        } catch (NoSuchMethodException ex) {
-        Exceptions.printStackTrace(ex);
-        }*/
-        return s;
+    Sheet s = Sheet.createDefault();
+    try {
+    
+    Sheet.Set sSet = Sheet.createPropertiesSet();
+    //Property p = new PropertySupport.Reflection(media, String.class, "name");
+    Property p = new PropertySupport.Reflection(media, String.class, "name");
+    //DiskNameProperty p = new DiskNameProperty(media.getName(), "", media.getName());
+    sSet.put(p);
+    s.put(sSet);
+    } catch (NoSuchMethodException ex) {
+    Exceptions.printStackTrace(ex);
     }
-
+    return s;
+    }*/
     @Override
     public Image getIcon(int type) {
         return Utilities.loadImage("de/berlios/jfindmyfiles/jfindmyfilesgui/resources/icons/nodes/catalog.png");

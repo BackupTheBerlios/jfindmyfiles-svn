@@ -84,8 +84,6 @@ public class DiskGroupChildren extends Children.Keys implements CatalogEngineLis
             items.add(evt.getNewDiskGroup());
             addNotify();
         }
-        System.err.println("ADICIONADO GRUPO COM NOME:" + evt.getNewDiskGroup());
-        System.err.println("PERTENCE? " + parentId + "/" + evt.getNewDiskGroup().getParent() == null ? null : evt.getNewDiskGroup().getParent().getId());
     }
 
     @SuppressWarnings("unchecked")
@@ -106,8 +104,6 @@ public class DiskGroupChildren extends Children.Keys implements CatalogEngineLis
             items.add(evt.getNewDisk());
             addNotify();
         }
-        System.err.println("ADICIONADO DISCO COM NOME:" + evt.getNewDisk());
-        System.err.println("PERTENCE? " + parentId + "/" + evt.getNewDisk().getGroup() == null ? null : evt.getNewDisk().getGroup().getId());
     }
 
     @SuppressWarnings("unchecked")

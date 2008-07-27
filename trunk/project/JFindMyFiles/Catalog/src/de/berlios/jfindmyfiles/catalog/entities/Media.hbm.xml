@@ -42,7 +42,7 @@
             <key column="MEDIA_ID"/>
             <many-to-many column="LABEL_ID" class="de.berlios.jfindmyfiles.catalog.entities.Label"/>
         </set>
-        <set name="files" inverse="true">
+        <set name="files" inverse="true" cascade="delete">
             <key column="MEDIA_ID"/>
             <one-to-many class="de.berlios.jfindmyfiles.catalog.entities.FileWrapper"/>
         </set> 
