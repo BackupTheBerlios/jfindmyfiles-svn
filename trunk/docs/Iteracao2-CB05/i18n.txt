@@ -1,7 +1,0 @@
-Todas as mensagens deverão ser escritas em inglês.
-Quando uma string existente no código, não seja uma mensagem ao utilizador, não 
-deva ser traduzida, deverá ser seguida de um comentário de linha no formato:
-// NO I18N
-
-Os títulos de quadros deverão ter um espaço antes e depois do texto para que 
-sejam mais perceptíveis.

@@ -1,6 +1,0 @@
-As 3 tecnologias ORM mais usadas e conhecidas são a JPA (Java Persistence API), 
-Top Link e Hibernate. As diferenças entre as 3 tecnologias influenciam 
-significativamento o desenvolvimento do sistema de forma que, uma vez que a 
-equipa de desenvolvimento possui alguma experiência com a tecnologia Hibernate, 
-se considerou suficiente esse conhecimento na escolha da tecnologia.
-Foi assim decidio o uso da tecnologia Hibernate no acesso a dados.

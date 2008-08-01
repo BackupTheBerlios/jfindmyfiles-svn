@@ -73,8 +73,8 @@
 	    <file src="./installer build/jfindmyfiles/etc" targetdir="$INSTALL_PATH"/>
 	    <file src="./installer build/jfindmyfiles/jfindmyfiles" targetdir="$INSTALL_PATH"/>
 	    <file src="./installer build/jfindmyfiles/platform8" targetdir="$INSTALL_PATH"/>
-	    <file src="./Templates/" targetdir="$SYSTEM_user_home/.jfmfuserfiles/Templates"/>
-	    <file src="./Plugins/" targetdir="$SYSTEM_user_home/.jfmfuserfiles/Plugins"/>
+	    <!-- <file src="./Templates/" targetdir="$SYSTEM_user_home/.jfmfuserfiles/Templates"/>
+	    <file src="./Plugins/" targetdir="$SYSTEM_user_home/.jfmfuserfiles/Plugins"/> -->
         </pack>
     </packs>    
 </installation>

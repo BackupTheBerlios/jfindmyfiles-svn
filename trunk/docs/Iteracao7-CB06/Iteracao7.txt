@@ -1,8 +1,0 @@
-<==== Objectivos ==============================================================>
-Pretende-se que seja possível exportar os dados, tendo por base de apresentação 
-um template em HTML.
-<==== Documentos produzidos ===================================================>
-Spikes
-	TemplateExport
-<====
-<==== Avaliação ===============================================================>
