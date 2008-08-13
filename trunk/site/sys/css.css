@@ -5,7 +5,7 @@ body {
 #top {
     background-color: #2f4090;
     width: 100%;
-    margin-top: 1em;
+    margin-top: 2em;
 }
 
 #top-left {
@@ -40,13 +40,15 @@ body {
     margin-bottom: 0;
 }
 
-img {
-    border: none;
+#search {
+    margin: 1em auto;
+    width: 95%;
+    text-align: right;    
 }
 
 #content {
     margin: 1em auto;
-    width: 95%;
+    width: 80%;
 }
 
 #footer {
@@ -55,8 +57,12 @@ img {
     border-top-style: solid;
     border-top-color: black;
     border-top-width: 1px;
-    width: 90%;
+    width: 50%;
     text-align: center;
+}
+
+img {
+    border: none;
 }
 
 a {
