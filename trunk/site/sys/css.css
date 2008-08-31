@@ -4,12 +4,12 @@ body {
 
 #container {
     width: 940px;
-margin: 0 auto;
+    margin: 0 auto;
 }
 
 #top {
     width: 100%;
-    margin-top: 1em;
+    margin-top: 0.5em;
     height: 165px;
 }
 
@@ -45,7 +45,6 @@ margin: 0 auto;
 #menu {
     background-color: white;
     width: 220px;
-    /*width: 180px;*/
     height: 100%;
     float:left;
 }
@@ -85,7 +84,7 @@ margin: 0 auto;
     border-top-style: solid;
     border-top-color: black;
     border-top-width: 1px;
-    width: 70%;
+    width: 75%;
     text-align: center;
 }
 
@@ -100,4 +99,90 @@ a, a:visited{
 
 .clear {
     clear: both;
+}
+
+#home-title {
+    background: transparent url(images/home.png) no-repeat;
+    border-bottom-style: solid;
+    border-bottom-color: blue;
+    border-bottom-width: 1px;
+    height: 128px;
+    padding-left: 128px;
+    line-height: 128px;
+}
+
+#features-title {
+    background: transparent url(images/text.png) no-repeat;
+    border-bottom-style: solid;
+    border-bottom-color: blue;
+    border-bottom-width: 1px;
+    height: 128px;
+    padding-left: 128px;
+    line-height: 128px;
+}
+
+#download-title {
+    background: transparent url(images/download.png) no-repeat;
+    border-bottom-style: solid;
+    border-bottom-color: blue;
+    border-bottom-width: 1px;
+    height: 128px;
+    padding-left: 128px;
+    line-height: 128px;
+}
+
+#screenshots-title {
+    background: transparent url(images/screenshots.png) no-repeat;
+    border-bottom-style: solid;
+    border-bottom-color: blue;
+    border-bottom-width: 1px;
+    height: 128px;
+    padding-left: 128px;
+    line-height: 128px;
+}
+
+#bugs-title {
+    background: transparent url(images/dialog-warning.png) no-repeat;
+    border-bottom-style: solid;
+    border-bottom-color: blue;
+    border-bottom-width: 1px;
+    height: 128px;
+    padding-left: 128px;
+    line-height: 128px;
+}
+
+#contact-title {
+    background: transparent url(images/contact.png) no-repeat;
+    border-bottom-style: solid;
+    border-bottom-color: blue;
+    border-bottom-width: 1px;
+    height: 128px;
+    padding-left: 128px;
+    line-height: 128px;
+}
+
+#credits-title {
+    background: transparent url(images/emblem-note.png) no-repeat;
+    border-bottom-style: solid;
+    border-bottom-color: blue;
+    border-bottom-width: 1px;
+    height: 128px;
+    padding-left: 128px;
+    line-height: 128px;
+}
+
+#hidden-berlioslogo {
+    width:0;
+    height:0;
+    display:none;
+}
+
+#bslogo {
+    text-align: right;
+    height: 32px;
+    width: 100%;
+}
+
+.required {
+    color: red;
 }
