@@ -31,27 +31,27 @@ body {
 #empty-left {
     background-color: #2f4090;
     float: left;
-    width: 190px;
+    width: 200px;
     height: 100%;
 }
 
 #empty-right {
     background-color: #2f4090;
     float: left;
-    width: 101px;
+    width: 141px;
     height: 100%;
 }
 
 #menu {
     background-color: white;
-    width: 220px;
+    width: 170px;
     height: 100%;
     float:left;
 }
 
 #menu ul {
-    margin-right: 1em;
-    margin-top: 0;
+    margin: 0;
+    padding: 0;
 }
 
 #menu ul li {
@@ -64,6 +64,7 @@ body {
 
 #menu li img {
     margin-right: 1em;
+    margin-left: 1em;
     margin-bottom: 0;
 }
 
@@ -76,6 +77,11 @@ body {
 #content {
     margin: 1em auto;
     width: 100%;
+}
+
+#text {
+    margin: 0 auto;
+    width: 95%;
 }
 
 #footer {
@@ -92,90 +98,36 @@ img {
     border: none;
 }
 
-a, a:visited{
+a, a:visited {
     text-decoration: none;
     color: blue;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 .clear {
     clear: both;
 }
 
-#home-title {
-    background: transparent url(images/home.png) no-repeat;
+.title {
     border-bottom-style: solid;
     border-bottom-color: blue;
     border-bottom-width: 1px;
     height: 128px;
     padding-left: 128px;
     line-height: 128px;
+    text-align: right;
 }
 
-#features-title {
-    background: transparent url(images/text.png) no-repeat;
-    border-bottom-style: solid;
-    border-bottom-color: blue;
-    border-bottom-width: 1px;
-    height: 128px;
-    padding-left: 128px;
-    line-height: 128px;
-}
-
-#download-title {
-    background: transparent url(images/download.png) no-repeat;
-    border-bottom-style: solid;
-    border-bottom-color: blue;
-    border-bottom-width: 1px;
-    height: 128px;
-    padding-left: 128px;
-    line-height: 128px;
-}
-
-#screenshots-title {
-    background: transparent url(images/screenshots.png) no-repeat;
-    border-bottom-style: solid;
-    border-bottom-color: blue;
-    border-bottom-width: 1px;
-    height: 128px;
-    padding-left: 128px;
-    line-height: 128px;
-}
-
-#bugs-title {
-    background: transparent url(images/dialog-warning.png) no-repeat;
-    border-bottom-style: solid;
-    border-bottom-color: blue;
-    border-bottom-width: 1px;
-    height: 128px;
-    padding-left: 128px;
-    line-height: 128px;
-}
-
-#contact-title {
-    background: transparent url(images/contact.png) no-repeat;
-    border-bottom-style: solid;
-    border-bottom-color: blue;
-    border-bottom-width: 1px;
-    height: 128px;
-    padding-left: 128px;
-    line-height: 128px;
-}
-
-#credits-title {
-    background: transparent url(images/emblem-note.png) no-repeat;
-    border-bottom-style: solid;
-    border-bottom-color: blue;
-    border-bottom-width: 1px;
-    height: 128px;
-    padding-left: 128px;
-    line-height: 128px;
-}
-
-#hidden-berlioslogo {
-    width:0;
-    height:0;
-    display:none;
-}
+#home {background: transparent url(images/home.png) no-repeat;}
+#features {background: transparent url(images/text.png) no-repeat;}
+#download {background: transparent url(images/download.png) no-repeat;}
+#screenshots {background: transparent url(images/screenshots.png) no-repeat;}
+#bugs {background: transparent url(images/dialog-warning.png) no-repeat;}
+#contact {background: transparent url(images/contact.png) no-repeat;}
+#credits {background: transparent url(images/credits.png) no-repeat;}
 
 #bslogo {
     text-align: right;
@@ -183,6 +135,10 @@ a, a:visited{
     width: 100%;
 }
 
-.required {
-    color: red;
+h1 {
+    color: #42515e;
+}
+
+h3 {
+    color: green;
 }
