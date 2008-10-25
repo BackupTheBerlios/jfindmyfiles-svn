@@ -49,7 +49,6 @@ public class CatalogEngine {
      * by the netbeans platform.
      */
     public CatalogEngine() {
-        //DO NOTHING
         listeners = new CopyOnWriteArrayList<CatalogEngineListener>();
     }
 
@@ -314,14 +313,14 @@ public class CatalogEngine {
     }
 
     //XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
-    public void addListener(CatalogEngineListener l) {
+    public synchronized void addListener(CatalogEngineListener l) {
         if (listeners == null) {
             listeners = new CopyOnWriteArrayList<CatalogEngineListener>();
         }
         listeners.add(l);
     }
 
-    public void removeListener(CatalogEngineListener l) {
+    public synchronized void removeListener(CatalogEngineListener l) {
         if (listeners != null) {
             listeners.remove(l);
         }
